@@ -1,6 +1,6 @@
 import { writeFile } from 'node:fs/promises';
 import { eutilsUrl } from '../src/lib.js';
-import { ENTREZ_DBS, QUERY_GROUPS, ERAS, yearRange } from '../src/queries.js';
+import { ENTREZ_DBS, QUERY_GROUPS, ERAS, PAPERS, yearRange } from '../src/queries.js';
 import {
   parseEinfo,
   parseCount,
@@ -11,6 +11,8 @@ import {
   toModule,
   lastPerYear,
   uniqueBy,
+  parseSummaries,
+  parseCitedIn,
 } from './parsers.mjs';
 
 const OUT = new URL('../src/snapshot.js', import.meta.url);
@@ -84,6 +86,18 @@ const groups = async () => {
   return out;
 };
 
+const papers = async () => {
+  step('papers');
+  const summaries = parseSummaries(await eutils('esummary', { db: 'pubmed', id: PAPERS.map((p) => p.pmid).join(',') }));
+  const out = [];
+  for (const paper of PAPERS) {
+    step(`citedin ${paper.pmid}`);
+    const citedBy = parseCitedIn(await eutils('elink', { dbfrom: 'pubmed', linkname: 'pubmed_pubmed_citedin', id: paper.pmid }));
+    out.push({ ...paper, ...summaries.find((s) => s.pmid === paper.pmid), citedBy });
+  }
+  return out;
+};
+
 const genbank = async () => {
   step('genbank');
   const text = await fetchWithRetry(GBREL, 'text');
@@ -105,12 +119,20 @@ const clinicaltrials = async () => {
   const version = await fetchWithRetry(`${CTGOV}/version`);
   const size = await fetchWithRetry(`${CTGOV}/stats/size`);
   const fields = await fetchWithRetry(`${CTGOV}/stats/field/values?fields=${CT_FIELDS.join(',')}`);
+  const title = async (id) => {
+    const study = await fetchWithRetry(`${CTGOV}/studies/${id}?fields=NCTId,BriefTitle,StudyFirstPostDate`);
+    const m = study.protocolSection;
+    return { id, title: m.identificationModule.briefTitle, posted: m.statusModule?.studyFirstPostDateStruct?.date ?? null };
+  };
+  const largest = [];
+  for (const s of size.largestStudies.slice(0, 5)) largest.push({ ...(await title(s.id)), bytes: s.sizeBytes });
   return {
     dataTimestamp: version.dataTimestamp,
+    first: await title('NCT00000102'),
     total: size.totalStudies,
     averageBytes: size.averageSizeBytes,
     medianBytes: size.percentiles['50%'],
-    largest: size.largestStudies.slice(0, 5),
+    largest,
     fields: Object.fromEntries(fields.map((f) => [f.piece, {
       unique: f.uniqueValuesCount,
       missing: f.missingStudiesCount,
@@ -124,6 +146,7 @@ const snapshot = {
   generated: now.toISOString(),
   entrez: await entrez(),
   groups: await groups(),
+  papers: await papers(),
   pubmed: await pubmedTimeline(now.getUTCFullYear()),
   genbank: await genbank(),
   clinicaltrials: await clinicaltrials(),
