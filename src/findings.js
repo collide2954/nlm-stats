@@ -115,6 +115,77 @@ const genes = (snap) => {
 
 const variants = (snap) => `${pct(item(snap, 'cv-review', 'rv-single').count / db(snap, 'clinvar').count)} of ClinVar records rest on a single submitter`;
 
+const at = (years, when) => years.find((y) => y.year === when)?.count ?? 0;
+
+const vocab = (snap) => {
+  const v = snap.vocab;
+  const total = (when) => at(v.totals, when);
+  const best = v.words.map((w) => {
+    const base = at(w.years, v.base) / total(v.base);
+    const peak = w.years.filter((y) => y.year < v.partial).reduce((a, b) => (b.count / total(b.year) > a.count / total(a.year) ? b : a));
+    return { w, peak, g: at(w.years, v.base) >= 50 ? peak.count / total(peak.year) / base : 0 };
+  }).sort((a, b) => b.g - a.g)[0];
+  return `‘${best.w.label}’ appeared ${fold(best.g)} times as often in ${best.peak.year} abstracts as in ${v.base}`;
+};
+
+const zombies = (snap) => {
+  const top = snap.zombies.filter((z) => z.after !== null).reduce((a, b) => (b.after > a.after ? b : a));
+  return `${exact(top.after)} later papers cite ${top.label}, retracted in ${top.retracted}`;
+};
+
+const classics = (snap) => {
+  const blast = snap.classics.find((c) => c.pmid === '2231712');
+  const top = snap.classics.reduce((a, b) => (b.citedBy > a.citedBy ? b : a));
+  if (!blast || top === blast) return `BLAST leads ${snap.classics.length} classic methods papers by citing records`;
+  const [, rest] = top.label.split(', ');
+  const born = rest.slice(-4);
+  return `A ${born} ${rest.slice(0, -5)} paper has ${fold(top.citedBy / blast.citedBy)} times BLAST’s citing records`;
+};
+
+const extremes = (snap) => {
+  const { fy, largest } = snap.extremes.awards;
+  return largest.ic === 'NLM'
+    ? `NIH’s largest FY${fy} award line is NLM’s own: $${compact(largest.dollars)}`
+    : `NIH’s largest FY${fy} award line goes to ${largest.ic}: $${compact(largest.dollars)}`;
+};
+
+const subjects = (snap) => {
+  const [mice, rats] = ['mice', 'rats'].map((id) => snap.subjects.animals.find((a) => a.id === id).years);
+  const behind = mice.filter((y) => y.count <= at(rats, y.year));
+  if (!behind.length) return `Mice have outnumbered rats in every year since ${mice[0].year}`;
+  const last = behind.at(-1).year;
+  const next = mice.find((y) => y.year > last);
+  return next ? `Mice overtook rats in ${next.year}` : 'Rats still outnumber mice in PubMed';
+};
+
+const sex = (snap) => {
+  const [women, men] = ['women', 'men'].map((id) => snap.subjects.sex.find((x) => x.id === id).years.at(-1).count);
+  return women >= men
+    ? `Women-only studies outnumber men-only studies ${fold(women / men)} to 1`
+    : `Men-only studies outnumber women-only studies ${fold(men / women)} to 1`;
+};
+
+const outbreaks = (snap) => {
+  const total = (when) => at(snap.pubmed.years, when);
+  const best = snap.subjects.outbreaks.flatMap((o) => o.years.filter((y) => total(y.year)).map((y) => ({ o, y, share: y.count / total(y.year) })))
+    .reduce((a, b) => (b.share > a.share ? b : a));
+  return `In ${best.y.year}, 1 in ${Math.round(1 / best.share)} papers mentioned ${best.o.label}`;
+};
+
+const stops = (snap) => {
+  const s = snap.trialfate.stops;
+  const top = s.reasons.reduce((a, b) => (b.count > a.count ? b : a));
+  const what = top.id === 'enrollment' ? 'Slow enrollment' : top.label;
+  return `${what} ends ${pct(top.count / s.total)} of terminated trials that give a reason`;
+};
+
+const lag = (snap) => {
+  const l = snap.trialfate.lag;
+  return l.peak === 11
+    ? `${pct(l.months[11] / l.n)} of trial results arrive in the last month before the deadline`
+    : `Trial results most often arrive ${l.peak} months after completion`;
+};
+
 export const findings = (snap) => ({
   entrez: entrez(snap),
   pubmed: pubmed(snap),
@@ -135,4 +206,10 @@ export const findings = (snap) => ({
   ...(snap.funding?.nihStates ? { states: states(snap) } : {}),
   ...(snap.genes ? { genes: genes(snap) } : {}),
   ...(snap.groups.some((g) => g.id === 'cv-review') ? { variants: variants(snap) } : {}),
+  ...(snap.vocab ? { vocab: vocab(snap) } : {}),
+  ...(snap.zombies ? { zombies: zombies(snap) } : {}),
+  ...(snap.classics ? { classics: classics(snap) } : {}),
+  ...(snap.extremes?.awards ? { extremes: extremes(snap) } : {}),
+  ...(snap.subjects ? { subjects: subjects(snap), sex: sex(snap), outbreaks: outbreaks(snap) } : {}),
+  ...(snap.trialfate ? { stops: stops(snap), lag: lag(snap) } : {}),
 });
