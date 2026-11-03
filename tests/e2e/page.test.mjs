@@ -136,10 +136,10 @@ test('genbank and trials sections render data', async () => {
 
 test('theme toggle flips the color scheme', async () => {
   const { page } = await open();
-  const before = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  const initial = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
   await page.click('#theme');
-  const after = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  assert.notEqual(before, after);
+  const toggled = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  assert.notEqual(initial, toggled);
   await page.close();
 });
 
