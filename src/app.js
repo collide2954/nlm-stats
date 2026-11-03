@@ -4,7 +4,7 @@ import {
 } from './facts.js';
 import {
   exact, compact, identify, searchUrl, eutilsUrl, matches, filterTimeline, sortRows,
-  logShare, share, niceTicks, decade, labelize, stamp, parseEinfo,
+  logShare, share, niceTicks, decade, labelize, stamp, parseEinfo, retry,
 } from './lib.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -585,8 +585,11 @@ const refresh = async () => {
   for (const [i, db] of order.entries()) {
     status(`Refreshing ${db} (${i + 1}/${order.length})…`);
     try {
-      const res = await fetch(eutilsUrl('einfo', { db }));
-      const info = parseEinfo(await res.json());
+      const info = await retry(async () => {
+        const res = await fetch(eutilsUrl('einfo', { db }));
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return parseEinfo(await res.json());
+      }, { tries: 4, wait: 1200 });
       if (info.count !== null) {
         Object.assign(state.entrez.get(db), { count: info.count, updated: info.updated });
         updateCount(db, info.count, info.updated);
@@ -595,7 +598,7 @@ const refresh = async () => {
     } catch {
       status(`Could not reach E-utilities for ${db}.`);
     }
-    await sleep(350);
+    await sleep(400);
   }
   try {
     const res = await fetch('https://clinicaltrials.gov/api/v2/stats/size');

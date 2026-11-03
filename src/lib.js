@@ -310,3 +310,14 @@ export const parseEinfo = (json) => {
 };
 
 export const parseCount = (json) => num(json?.esearchresult?.count);
+
+export const retry = async (fn, { tries = 3, wait = 1000 } = {}) => {
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      return await fn();
+    } catch (error) {
+      if (attempt >= tries) throw error;
+      await new Promise((r) => setTimeout(r, wait * 2 ** (attempt - 1)));
+    }
+  }
+};
