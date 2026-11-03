@@ -8,6 +8,8 @@ import {
   parseOrganisms,
   parseDivisions,
   toModule,
+  lastPerYear,
+  uniqueBy,
 } from '../../scripts/parsers.mjs';
 
 const GBREL = `GBREL.TXT          Genetic Sequence Data Bank
@@ -143,4 +145,20 @@ test('parseDivisions sums files per division', () => {
 test('toModule emits a default export of stable JSON', () => {
   const src = toModule({ b: 1, a: [1, 2] });
   assert.equal(src, 'export default {\n  "b": 1,\n  "a": [\n    1,\n    2\n  ]\n};\n');
+});
+
+test('lastPerYear keeps the final release of each year', () => {
+  const rows = [
+    { release: 1, date: 'Feb 2020', bases: 1, entries: 1 },
+    { release: 2, date: 'Dec 2020', bases: 2, entries: 2 },
+    { release: 3, date: 'Apr 2021', bases: 3, entries: 3 },
+  ];
+  assert.deepEqual(lastPerYear(rows), [
+    { year: 2020, release: 2, bases: 2, entries: 2 },
+    { year: 2021, release: 3, bases: 3, entries: 3 },
+  ]);
+});
+
+test('uniqueBy drops later duplicates', () => {
+  assert.deepEqual(uniqueBy([{ db: 'a', n: 1 }, { db: 'b' }, { db: 'a', n: 2 }], 'db'), [{ db: 'a', n: 1 }, { db: 'b' }]);
 });
