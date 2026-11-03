@@ -28,3 +28,9 @@ Lenses at the top filter the page: `?lens=bioinfo`, `?lens=stats` or `?lens=fund
 - `src/queries.js`: every query behind the counts.
 - `src/findings.js`: the section headlines, computed from the data so they stay true after each update.
 - `src/charts.js`: the SVG chart engine and animations.
+- `scripts/snapshot.mjs`: the weekly data pull. `scripts/export.mjs` writes it out as `snapshot.json`, which the published site links for download.
+- `og.png`: the preview image shown when the link is shared.
+
+## Reading the numbers
+
+The page opens with a short guide. In brief: PubMed counts are records, not only papers; MeSH-based counts shift with indexing, which has been automated since April 2022; citation counts are PubMed's own "Cited by" links, which PubMed calls incomplete; dollars are award amounts listed in NIH RePORTER, not appropriations; "trials" means interventional studies.
