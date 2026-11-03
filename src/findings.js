@@ -15,13 +15,16 @@ const pubmed = (snap) => {
   const done = snap.pubmed.years.filter((y) => y.year < year(snap));
   const peak = done.reduce((a, b) => (b.count > a.count ? b : a));
   return peak.year === year(snap) - 1
-    ? `${peak.year} was PubMed’s biggest year yet: ${wordy(peak.count)} papers`
-    : `PubMed’s biggest year was ${peak.year}: ${wordy(peak.count)} papers`;
+    ? `${peak.year} was PubMed’s biggest year yet: ${wordy(peak.count)} records`
+    : `PubMed’s biggest year was ${peak.year}: ${wordy(peak.count)} records`;
 };
 
 const types = (snap) => {
-  const ratio = item(snap, 'types', 'pt-review').count / item(snap, 'types', 'pt-rct').count;
-  return `Reviews outnumber randomized trials ${ratio >= 3 ? Math.round(ratio) : fold(ratio)} to 1`;
+  const series = (id) => snap.types?.find((t) => t.id === id)?.years.at(-1);
+  const [review, rct] = [series('review'), series('rct')];
+  const many = (ratio) => (ratio >= 3 ? Math.round(ratio) : fold(ratio));
+  if (review && rct && review.year === rct.year) return `Reviews outnumbered randomized trials ${many(review.count / rct.count)} to 1 in ${review.year}`;
+  return `Reviews outnumber randomized trials ${many(item(snap, 'types', 'pt-review').count / item(snap, 'types', 'pt-rct').count)} to 1`;
 };
 
 const facets = (snap) => `${pct(item(snap, 'languages', 'la-eng').count / db(snap, 'pubmed').count)} of PubMed is in English`;
@@ -39,7 +42,7 @@ const methods = (snap) => {
 
 const trials = (snap) => {
   const ct = snap.clinicaltrials;
-  return `Only ${pct(ct.completedInterventionalWithResults / ct.completedInterventional)} of finished trials have posted results`;
+  return `${pct(ct.completedInterventionalWithResults / ct.completedInterventional)} of completed trials have posted results`;
 };
 
 const design = (snap) => {
@@ -56,7 +59,7 @@ const funding = (snap) => {
 
 const ics = (snap) => {
   const list = snap.funding.ics;
-  return `NLM ranks ${ordinal(list.findIndex((i) => i.ic === 'NLM') + 1)} of ${list.length} NIH institutes by award dollars`;
+  return `NLM ranks ${ordinal(list.findIndex((i) => i.ic === 'NLM') + 1)} of ${list.length} NIH institutes and centers by award dollars`;
 };
 
 const genbank = (snap) => {
@@ -77,7 +80,7 @@ const seqdata = (snap) => {
 
 const papers = (snap) => {
   const blast = snap.papers.find((p) => p.topic === 'BLAST');
-  return `The ${blast.date.slice(0, 4)} BLAST paper has ${exact(blast.citedBy)} citing records`;
+  return `The ${blast.date.slice(0, 4)} BLAST paper has ${exact(blast.citedBy)} citing records in PubMed`;
 };
 
 const history = (snap) => `${year(snap) - 1836} years from a $150 book budget`;
@@ -88,19 +91,19 @@ const growth = (snap) => {
     const base = d.years.find((y) => y.year === last.year - 10);
     return { d, last, base, g: base && base.count >= 50 ? last.count / base.count : 0 };
   }).sort((a, b) => b.g - a.g)[0];
-  return `${best.d.label} grew ${fold(best.g)}-fold between ${best.base.year} and ${best.last.year}`;
+  return `${best.d.label} added ${fold(best.g)} times as many records in ${best.last.year} as in ${best.base.year}`;
 };
 
 const access = (snap) => {
   const free = snap.access.find((a) => a.id === 'free').years.at(-1);
   const total = snap.pubmed.years.find((y) => y.year === free.year).count;
-  return `${pct(free.count / total)} of papers dated ${free.year} are free to read`;
+  return `${pct(free.count / total)} of PubMed records dated ${free.year} are free to read`;
 };
 
 const geography = (snap) => {
   const yr = Math.max(...Object.keys(snap.countries[0].counts).map(Number));
   const top = snap.countries.reduce((a, b) => (b.counts[yr] > a.counts[yr] ? b : a));
-  return `Authors in ${top.name} appear on ${exact(top.counts[yr])} papers dated ${yr}, the most of ${snap.countries.length} countries checked`;
+  return `Authors in ${top.name} appear on ${exact(top.counts[yr])} records dated ${yr}, the most of ${snap.countries.length} countries checked`;
 };
 
 const states = (snap) => {
@@ -130,7 +133,7 @@ const vocab = (snap) => {
 
 const zombies = (snap) => {
   const top = snap.zombies.filter((z) => z.after !== null).reduce((a, b) => (b.after > a.after ? b : a));
-  return `${exact(top.after)} later papers cite ${top.label}, retracted in ${top.retracted}`;
+  return `${exact(top.after)} later records cite ${top.label}, retracted in ${top.retracted}`;
 };
 
 export const classicCounts = (snap) => snap.classics.map((c) => {
@@ -175,7 +178,7 @@ const outbreaks = (snap) => {
   const total = (when) => at(snap.pubmed.years, when);
   const best = snap.subjects.outbreaks.flatMap((o) => o.years.filter((y) => total(y.year)).map((y) => ({ o, y, share: y.count / total(y.year) })))
     .reduce((a, b) => (b.share > a.share ? b : a));
-  return `In ${best.y.year}, 1 in ${Math.round(1 / best.share)} papers mentioned ${best.o.label}`;
+  return `In ${best.y.year}, 1 in ${Math.round(1 / best.share)} PubMed records mentioned ${best.o.label}`;
 };
 
 const stops = (snap) => {
