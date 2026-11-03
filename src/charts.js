@@ -115,7 +115,7 @@ export const nearestMark = (root, cx, cy, axis) => {
   return bestD <= (axis === 'x' ? 40 : 36) ? best : null;
 };
 
-const hover = (root, lookup, { axis } = {}) => {
+const hover = (root, lookup, { axis, steps } = {}) => {
   installGlobal();
   const resolve = (event) => {
     const direct = event.target.closest?.('[data-k]');
@@ -146,21 +146,51 @@ const hover = (root, lookup, { axis } = {}) => {
     select(mark);
     tip.show(lookup(mark.dataset.k, event, mark), event.pageX, event.pageY, true);
   });
-  root.addEventListener('focusin', (event) => {
-    const mark = event.target.closest('[data-k]');
-    if (!mark || tip.pinned) return;
-    const r = mark.getBoundingClientRect();
-    tip.show(lookup(mark.dataset.k, event, mark), r.right + window.scrollX, r.top + window.scrollY);
-  });
+  root.setAttribute('tabindex', '0');
+  root.setAttribute('aria-keyshortcuts', 'ArrowLeft ArrowRight ArrowUp ArrowDown Home End Enter');
+  root.querySelectorAll('[tabindex]').forEach((n) => n !== root && n.removeAttribute('tabindex'));
+  const marks = () => [...root.querySelectorAll('[data-k]')]
+    .filter((m) => !m.classList.contains('hit') && !m.closest('[visibility="hidden"]') && m.getAttribute('visibility') !== 'hidden')
+    .map((m, i) => ({ m, rank: Number(m.dataset.rank ?? i) }))
+    .sort((a, b) => a.rank - b.rank)
+    .map((x) => x.m);
+  let cursor = -1;
+  const showAt = (i, pinned) => {
+    if (steps) {
+      const hit = root.querySelector('.hit');
+      const out = lookup(hit.dataset.k, { index: i }, hit);
+      const cross = root.querySelector('.cross');
+      const r = (cross ?? root).getBoundingClientRect();
+      tip.show(out, r.left + window.scrollX, r.top + window.scrollY + r.height / 3, pinned);
+      return;
+    }
+    const m = marks()[i];
+    if (!m) return;
+    select(m);
+    const r = m.getBoundingClientRect();
+    tip.show(lookup(m.dataset.k, { index: i }, m), r.right + window.scrollX, r.top + window.scrollY, pinned);
+  };
+  const MOVES = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
   root.addEventListener('keydown', (event) => {
-    const mark = event.target.closest('[data-k]');
-    if (!mark || (event.key !== 'Enter' && event.key !== ' ')) return;
+    const count = steps ?? marks().length;
+    if (!count) return;
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      showAt(Math.max(cursor, 0), true);
+      return;
+    }
+    if (event.key in MOVES) cursor = Math.max(0, Math.min(count - 1, cursor + MOVES[event.key]));
+    else if (event.key === 'Home') cursor = 0;
+    else if (event.key === 'End') cursor = count - 1;
+    else return;
     event.preventDefault();
-    const r = mark.getBoundingClientRect();
-    select(mark);
-    tip.show(lookup(mark.dataset.k, event, mark), r.right + window.scrollX, r.top + window.scrollY, true);
+    showAt(cursor, tip.pinned);
   });
-  root.addEventListener('focusout', () => {
+  root.addEventListener('focus', () => {
+    cursor = Math.max(cursor, 0);
+    if (!tip.pinned) showAt(cursor, false);
+  });
+  root.addEventListener('blur', () => {
     if (!tip.pinned) tip.hide();
   });
 };
@@ -285,7 +315,6 @@ export const dotplot = ({
       'data-row': attr === 'row' ? r.key : null,
       'data-k': i,
       'data-rank': i,
-      tabindex: 0,
       transform: `translate(0 ${rowTop(i)})`,
     }, content);
   }));
@@ -347,7 +376,7 @@ export const stackedArea = ({ mount, years, series, aria, format = exact }) => {
   hover(svg, (k, event) => {
     const box = svg.getBoundingClientRect();
     const px = ((event.clientX ?? box.left + box.width / 2) - box.left) * (W / box.width);
-    const i = Math.max(0, Math.min(years.length - 1, Math.round(((px - L) / (W - L - R)) * (years.length - 1))));
+    const i = event.index ?? Math.max(0, Math.min(years.length - 1, Math.round(((px - L) / (W - L - R)) * (years.length - 1))));
     cross.setAttribute('x1', x(years[i]));
     cross.setAttribute('x2', x(years[i]));
     cross.setAttribute('visibility', 'visible');
@@ -355,11 +384,13 @@ export const stackedArea = ({ mount, years, series, aria, format = exact }) => {
       html('b', {}, `${years[i]}: ${format(totals[i])}`),
       ...[...series].reverse().map((s) => html('span', {}, html('i', { style: `background:${s.color}` }), `${s.label} ${format(rows[i][s.key])}`)),
     ];
-  });
+  }, { steps: years.length });
   return mountSvg(mount, svg, legend);
 };
 
-export const miniArea = ({ years, values, color = 'var(--ink)', describe }) => {
+export const miniArea = ({
+  years, values, color = 'var(--ink)', describe, aria = `Trend from ${years[0]} to ${years.at(-1)}`,
+}) => {
   const W = 260;
   const H = 74;
   const max = Math.max(...values, 1);
@@ -367,7 +398,7 @@ export const miniArea = ({ years, values, color = 'var(--ink)', describe }) => {
   const y = scaleLinear([0, max], [H - 14, 6]);
   const pts = values.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`);
   const cross = el('line', { class: 'cross', y1: 4, y2: H - 14, x1: 0, x2: 0, visibility: 'hidden' });
-  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true', preserveAspectRatio: 'none' },
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria, preserveAspectRatio: 'none' },
     el('line', { class: 'base', x1: 0, x2: W, y1: H - 14, y2: H - 14 }),
     el('path', { class: 'wash', d: `M${x(0)},${H - 14}L${pts.join('L')}L${x(values.length - 1)},${H - 14}Z` }),
     el('path', { class: 'line', d: `M${pts.join('L')}`, style: `stroke:${color}` }),
@@ -377,12 +408,12 @@ export const miniArea = ({ years, values, color = 'var(--ink)', describe }) => {
     el('rect', { class: 'hit', 'data-k': 0, x: 0, y: 0, width: W, height: H - 12 }));
   hover(svg, (k, event) => {
     const box = svg.getBoundingClientRect();
-    const i = Math.max(0, Math.min(values.length - 1, Math.round((((event.clientX ?? box.right) - box.left) / box.width) * (values.length - 1))));
+    const i = event.index ?? Math.max(0, Math.min(values.length - 1, Math.round((((event.clientX ?? box.right) - box.left) / box.width) * (values.length - 1))));
     cross.setAttribute('x1', x(i));
     cross.setAttribute('x2', x(i));
     cross.setAttribute('visibility', 'visible');
     return describe(years[i], values[i]);
-  });
+  }, { steps: values.length });
   return html('div', { class: 'chart mini' }, svg);
 };
 
@@ -421,7 +452,7 @@ export const treemap = ({ mount, items, height, aria, describe }) => {
   const rects = squarify(items, W, H);
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
     rects.map((r, i) => el('g', {
-      'data-ic': r.key, 'data-k': items.indexOf(items.find((it) => it.key === r.key)), class: r.hi ? 'me' : null, tabindex: 0,
+      'data-ic': r.key, 'data-k': items.indexOf(items.find((it) => it.key === r.key)), class: r.hi ? 'me' : null,
     },
     el('rect', { class: `tile${r.hi ? ' hi' : ''}`, x: r.x, y: r.y, width: Math.max(0, r.w), height: Math.max(0, r.h), style: `--i:${i * 3}` }),
     r.w > 46 && r.h > 22 ? el('text', { class: 'tile-lab', x: r.x + 7, y: r.y + 17 }, r.label) : null,
@@ -479,12 +510,12 @@ export const lines = ({
   hover(svg, (k, event) => {
     const box = svg.getBoundingClientRect();
     const px = ((event.clientX ?? box.left + box.width / 2) - box.left) * (W / box.width);
-    const i = Math.max(0, Math.min(xs.length - 1, Math.round(((px - L) / (W - L - R)) * (xs.length - 1))));
+    const i = event.index ?? Math.max(0, Math.min(xs.length - 1, Math.round(((px - L) / (W - L - R)) * (xs.length - 1))));
     cross.setAttribute('x1', x(xs[i]));
     cross.setAttribute('x2', x(xs[i]));
     cross.setAttribute('visibility', 'visible');
     return describe(xs[i]);
-  });
+  }, { steps: xs.length });
   return mountSvg(mount, svg);
 };
 
@@ -716,7 +747,7 @@ export const tileMap = ({ mount, tiles, values, describe, aria }) => {
       const t = tiles[code];
       const v = values[code] ?? 0;
       const p = share(v);
-      return el('g', { 'data-state': code, 'data-k': i, tabindex: 0 },
+      return el('g', { 'data-state': code, 'data-k': i },
         el('rect', {
           class: 'tile state', x: t.col * size, y: t.row * size, width: size - gap, height: size - gap,
           style: `fill:color-mix(in srgb, var(--accent) ${Math.round(8 + p * 92)}%, var(--paper-2));--i:${i}`,
@@ -748,7 +779,7 @@ export const dumbbell = ({ mount, rows, years, describe, aria, format = compact 
     el('g', { class: lay.cls }, rows.map((r, i) => {
       const mid = T + i * rowH + rowH / 2;
       const y = mid + lay.markY;
-      return el('g', { 'data-row': r.key, 'data-k': i, tabindex: 0 },
+      return el('g', { 'data-row': r.key, 'data-k': i },
         el('rect', { class: 'row-hit', x: 0, y: mid - rowH / 2, width: W, height: rowH }),
         el('text', { class: 'lab', x: 0, y: mid + lay.labelY }, r.label),
         el('line', { class: 'stem', x1: x(r.a), x2: x(r.b), y1: y, y2: y, style: `--i:${i}` }),
