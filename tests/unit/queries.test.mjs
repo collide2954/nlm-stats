@@ -92,3 +92,41 @@ test('TYPE_SERIES splits stacked and small-multiple publication types', async ()
   for (const t of all) assert.match(t.term, /\[pt\]$/);
   assert.ok(TYPE_SERIES.from <= 1950);
 });
+
+test('GROWTH lists databases with their own date fields', async () => {
+  const { GROWTH } = await import('../../src/queries.js');
+  assert.ok(GROWTH.dbs.length >= 8);
+  for (const g of GROWTH.dbs) {
+    assert.ok(ENTREZ_DBS.includes(g.db), g.db);
+    assert.match(g.field, /^[A-Z]+$/);
+    assert.ok(g.label && g.what);
+  }
+  assert.ok(GROWTH.from >= 1990);
+});
+
+test('ACCESS series and COUNTRIES are PubMed queries', async () => {
+  const { ACCESS, COUNTRIES } = await import('../../src/queries.js');
+  assert.ok(ACCESS.series.length >= 3);
+  for (const s of ACCESS.series) assert.ok(s.id && s.label && s.term);
+  assert.ok(COUNTRIES.list.length >= 15);
+  assert.equal(new Set(COUNTRIES.list.map((c) => c.name)).size, COUNTRIES.list.length);
+  for (const c of COUNTRIES.list) assert.match(c.term, /\[ad\]/);
+  assert.equal(COUNTRIES.years.length, 2);
+});
+
+test('GENES are verified human Gene IDs with symbols', async () => {
+  const { GENES } = await import('../../src/queries.js');
+  assert.ok(GENES.length >= 15);
+  for (const g of GENES) {
+    assert.match(String(g.id), /^\d+$/);
+    assert.match(g.symbol, /^[A-Z0-9]+$/);
+  }
+});
+
+test('variant and access groups exist', () => {
+  const panels = new Set(QUERY_GROUPS.map((g) => g.panel));
+  assert.ok(panels.has('variants'));
+  assert.ok(panels.has('access'));
+  const review = QUERY_GROUPS.find((g) => g.id === 'cv-review');
+  assert.ok(review.items.every((i) => i.db === 'clinvar' && /\[RVST\]$/.test(i.term)));
+});
