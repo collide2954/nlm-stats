@@ -184,6 +184,13 @@ const mountSvg = (mount, svg, ...before) => {
   return svg;
 };
 
+const noteAt = (cx, text, W) => {
+  const tw = text.length * 6.8;
+  if (cx + 6 + tw <= W) return { x: cx + 6, 'text-anchor': 'start' };
+  if (cx - 6 - tw >= 0) return { x: cx - 6, 'text-anchor': 'end' };
+  return { x: Math.max(0, W - tw), 'text-anchor': 'start' };
+};
+
 const barPath = (x, y, w, h) => {
   const r = Math.min(3, w / 2, h);
   const b = y + h;
@@ -230,10 +237,9 @@ export const columns = ({
       if (i < 0) return null;
       const cx = xAt(i) + bw / 2;
       const ty = 14 + n * 18;
-      const right = cx > W * 0.62;
       return el('g', {},
         el('path', { class: 'note-line', d: `M${cx},${ty + 4}V${y(value(rows[i])) - 5}` }),
-        el('text', { class: 'note', x: right ? cx - 6 : cx + 6, y: ty + 4, 'text-anchor': right ? 'end' : 'start' }, a.text));
+        el('text', { class: 'note', y: ty + 4, ...noteAt(cx, a.text, W) }, a.text));
     }));
   hover(svg, (k) => describe(rows[Number(k)], rows[Number(k) - 1]), { axis: 'x' });
   return mountSvg(mount, svg);
@@ -429,7 +435,7 @@ export const treemap = ({ mount, items, height, aria, describe }) => {
 };
 
 export const lines = ({
-  mount, series, aria, describe, annotations = [], scale = 'log', yFormat = compact, height = 300, labelW = 92,
+  mount, series, aria, describe, annotations = [], scale = 'log', yFormat = compact, height = 300, labelW = 92, logStep = 3,
 }) => {
   const W = widthOf(mount);
   const L = 46;
@@ -444,7 +450,7 @@ export const lines = ({
   const hi = log ? 10 ** Math.ceil(Math.log10(Math.max(...ys))) : niceTicks(Math.max(...ys), 4).at(-1);
   const x = scaleLinear([xs[0], xs.at(-1)], [L, W - R]);
   const y = log ? scaleLog([lo, hi], [H - B, T]) : scaleLinear([0, hi], [H - B, T]);
-  const ticks = log ? logTicks(lo, hi).filter((t) => Math.round(Math.log10(t)) % 3 === 0) : niceTicks(Math.max(...ys), 4);
+  const ticks = log ? logTicks(lo, hi).filter((t) => Math.round(Math.log10(t)) % logStep === 0) : niceTicks(Math.max(...ys), 4);
   const step = labelStep(xs.length, W - L - R, 40);
   const labelY = spread(series.map((s) => y(s.rows.at(-1).y)), 14, T, H - B);
   const cross = el('line', { class: 'cross', y1: T, y2: H - B, x1: 0, x2: 0, visibility: 'hidden' });
@@ -470,7 +476,7 @@ export const lines = ({
       const ty = 14 + n * 18;
       return el('g', {},
         el('path', { class: 'note-line', d: `M${x(r.x)},${ty + 4}V${y(r.y) - 6}` }),
-        el('text', { class: 'note', x: x(r.x) + 6, y: ty + 4 }, a.text));
+        el('text', { class: 'note', y: ty + 4, ...noteAt(x(r.x), a.text, W) }, a.text));
     }),
     cross,
     el('rect', { class: 'hit', 'data-k': 0, x: L, y: T, width: W - L - R, height: H - T - B }));
