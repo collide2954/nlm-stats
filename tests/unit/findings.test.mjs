@@ -38,17 +38,17 @@ const fixture = {
 test('findings states each section as a fact', () => {
   const f = findings(fixture);
   assert.equal(f.entrez, 'Protein alone holds 1.66 billion records');
-  assert.equal(f.pubmed, '2025 was PubMed’s biggest year yet: 1.88 million papers');
+  assert.equal(f.pubmed, '2025 was PubMed’s biggest year yet: 1.88 million records');
   assert.equal(f.types, 'Reviews outnumber randomized trials 6 to 1');
   assert.equal(f.facets, '88.1% of PubMed is in English');
   assert.equal(f.methods, 'Mendelian randomization papers grew 12-fold in five years');
-  assert.equal(f.trials, 'Only 24.1% of finished trials have posted results');
+  assert.equal(f.trials, '24.1% of completed trials have posted results');
   assert.equal(f.design, '55.5% of trials are open label');
   assert.equal(f.funding, '81.6% of NLM’s FY2025 award dollars stay inside NLM');
-  assert.equal(f.ics, 'NLM ranks 2nd of 3 NIH institutes by award dollars');
+  assert.equal(f.ics, 'NLM ranks 2nd of 3 NIH institutes and centers by award dollars');
   assert.equal(f.genbank, 'Triticum aestivum tops GenBank by bases. Humans rank 3rd');
   assert.equal(f.seqdata, 'Amplicon runs outnumber whole genomes in SRA');
-  assert.equal(f.papers, 'The 1990 BLAST paper has 40,937 citing records');
+  assert.equal(f.papers, 'The 1990 BLAST paper has 40,937 citing records in PubMed');
   assert.equal(f.history, '190 years from a $150 book budget');
 });
 
@@ -58,7 +58,7 @@ test('findings fall back when a pattern no longer holds', () => {
   flipped.groups[2].items[0].count = 1;
   flipped.genbank.organisms = [{ species: 'Homo sapiens' }];
   const f = findings(flipped);
-  assert.equal(f.pubmed, 'PubMed’s biggest year was 2024: 1.74 million papers');
+  assert.equal(f.pubmed, 'PubMed’s biggest year was 2024: 1.74 million records');
   assert.equal(f.seqdata, 'WGS leads SRA library strategies');
   assert.equal(f.genbank, 'Homo sapiens tops GenBank by bases');
 });
@@ -95,9 +95,9 @@ test('findings for growth, access, geography, genes and variants', () => {
   more.entrez.push({ db: 'clinvar', name: 'ClinVar', count: 4708791 });
   more.groups.push(group('cv-review', [['rv-single', 3350007]]));
   const f = findings(more);
-  assert.equal(f.growth, 'SRA grew 9-fold between 2015 and 2025');
-  assert.equal(f.access, '50% of papers dated 2025 are free to read');
-  assert.equal(f.geography, 'Authors in China appear on 502,433 papers dated 2025, the most of 2 countries checked');
+  assert.equal(f.growth, 'SRA added 9 times as many records in 2025 as in 2015');
+  assert.equal(f.access, '50% of PubMed records dated 2025 are free to read');
+  assert.equal(f.geography, 'Authors in China appear on 502,433 records dated 2025, the most of 2 countries checked');
   assert.equal(f.states, 'California draws the most NIH award dollars: $5B');
   assert.equal(f.genes, 'TNF is linked to 30,000 PubMed records, the most of 2 genes here');
   assert.equal(f.variants, '71.1% of ClinVar records rest on a single submitter');
@@ -149,12 +149,12 @@ test('findings for machine text, extremes, subjects and trial fate', () => {
   };
   const f = findings(more);
   assert.equal(f.vocab, '‘delve’ appeared 35 times as often in 2024 abstracts as in 2019');
-  assert.equal(f.zombies, '451 later papers cite Mehra, N Engl J Med 2020, retracted in 2020');
+  assert.equal(f.zombies, '451 later records cite Mehra, N Engl J Med 2020, retracted in 2020');
   assert.equal(f.classics, 'A 2001 qPCR ΔΔCt paper has 2.2 times BLAST’s citing records');
   assert.equal(f.extremes, 'NIH’s largest FY2025 award line is NLM’s own: $357.2M');
   assert.equal(f.subjects, 'Mice overtook rats in 2002');
   assert.equal(f.sex, 'Women-only studies outnumber men-only studies 1.8 to 1');
-  assert.equal(f.outbreaks, 'In 2021, 1 in 13 papers mentioned COVID-19');
+  assert.equal(f.outbreaks, 'In 2021, 1 in 13 PubMed records mentioned COVID-19');
   assert.equal(f.stops, 'Slow enrollment ends 41.7% of terminated trials that give a reason');
   assert.equal(f.lag, '25.6% of trial results arrive in the last month before the deadline');
 });
@@ -194,4 +194,13 @@ test('the classics headline uses the same BLAST count as the papers section', ()
   assert.equal(findings(more).classics, 'A 2001 qPCR ΔΔCt paper has 2.2 times BLAST’s citing records');
   more.classics[0].citedBy = 90000;
   assert.equal(findings(more).classics, 'A 2001 qPCR ΔΔCt paper has 2.3 times BLAST’s citing records');
+});
+
+test('the reviews-to-trials ratio uses the last complete year when yearly counts exist', () => {
+  const more = structuredClone(fixture);
+  more.types = [
+    { id: 'review', years: [{ year: 2024, count: 240000 }, { year: 2025, count: 247731 }] },
+    { id: 'rct', years: [{ year: 2024, count: 30000 }, { year: 2025, count: 30843 }] },
+  ];
+  assert.equal(findings(more).types, 'Reviews outnumbered randomized trials 8 to 1 in 2025');
 });
