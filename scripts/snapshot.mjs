@@ -1,7 +1,8 @@
 import { writeFile } from 'node:fs/promises';
 import { eutilsUrl, retry } from '../src/lib.js';
 import {
-  ENTREZ_DBS, QUERY_GROUPS, ERAS, PAPERS, METHODS, METHOD_YEARS, ICS, ENROLLMENT_BANDS, CT_DESIGN, TYPE_SERIES, yearRange,
+  ENTREZ_DBS, QUERY_GROUPS, ERAS, PAPERS, METHODS, METHOD_YEARS, ICS, ENROLLMENT_BANDS, CT_DESIGN, TYPE_SERIES,
+  GROWTH, ACCESS, COUNTRIES, GENES, yearRange,
 } from '../src/queries.js';
 import {
   parseEinfo,
@@ -22,6 +23,7 @@ import {
   parseRefseqHeader,
   enumLabels,
   parseTaxonNames,
+  parseLinkCount,
 } from './parsers.mjs';
 
 const OUT = new URL('../src/snapshot.js', import.meta.url);
@@ -239,7 +241,7 @@ const DETAIL_FIELDS = [
   'ApplId', 'SubprojectId', 'AwardAmount', 'ActivityCode', 'FundingMechanism', 'Organization', 'ProjectStartDate',
   'ProjectEndDate', 'AwardType', 'SpendingCategoriesDesc', 'FiscalYear', 'ProjectTitle', 'ProjectNum',
 ];
-const LEAN_FIELDS = ['ApplId', 'SubprojectId', 'AwardAmount'];
+const LEAN_FIELDS = ['ApplId', 'SubprojectId', 'AwardAmount', 'Organization'];
 
 const funding = async (now) => {
   const detailFy = detailFiscalYear(now);
@@ -252,9 +254,12 @@ const funding = async (now) => {
     if (fy === detailFy) detailRows = rows;
   }
   const ics = [];
+  const nihRows = [];
   for (const ic of ICS) {
     step(`reporter ${ic} ${detailFy}`);
-    ics.push({ ic, ...summarizeAwards(await allProjects({ agencies: [ic], fiscal_years: [detailFy] }, LEAN_FIELDS)) });
+    const rows = await allProjects({ agencies: [ic], fiscal_years: [detailFy] }, LEAN_FIELDS);
+    ics.push({ ic, ...summarizeAwards(rows) });
+    nihRows.push(...rows);
   }
   const main = detailRows.filter((r) => r.subproject_id === null);
   const largest = [...main].sort((a, b) => (b.award_amount ?? 0) - (a.award_amount ?? 0)).slice(0, 5).map((r) => ({
@@ -269,6 +274,7 @@ const funding = async (now) => {
     detailFy,
     years,
     ics: ics.sort((a, b) => b.dollars - a.dollars),
+    nihStates: groupAwards(nihRows, (r) => (r.organization?.org_country === 'UNITED STATES' ? r.organization?.org_state : 'Outside U.S.')),
     detail: {
       ...summarizeAwards(detailRows),
       newProjects: main.filter((r) => r.award_type === '1').length,
@@ -277,7 +283,7 @@ const funding = async (now) => {
       byMechanism: groupAwards(detailRows, (r) => r.funding_mechanism),
       byCategory: groupAwards(detailRows, (r) => (r.spending_categories_desc ?? '').split(';')).slice(0, 15),
       byOrg: groupAwards(detailRows, (r) => r.organization?.org_name).slice(0, 10),
-      byState: groupAwards(detailRows, (r) => r.organization?.org_state).slice(0, 10),
+      byState: groupAwards(detailRows, (r) => r.organization?.org_state),
       largest,
     },
   };
@@ -317,6 +323,63 @@ const types = async (lastYear) => {
   return out;
 };
 
+const growth = async (lastYear) => {
+  const out = [];
+  for (const d of GROWTH.dbs) {
+    step(`growth ${d.db}`);
+    const years = [];
+    for (const year of yearRange(GROWTH.from, lastYear)) {
+      years.push({ year, count: await count(d.db, `${year}/01/01:${year}/12/31[${d.field}]`) });
+    }
+    out.push({ ...d, years });
+  }
+  return out;
+};
+
+const access = async (lastYear) => {
+  const out = [];
+  for (const series of ACCESS.series) {
+    step(`access ${series.id}`);
+    const years = [];
+    for (const year of yearRange(ACCESS.from, lastYear)) {
+      years.push({ year, count: await count('pubmed', `${series.term} AND ${year}[dp]`) });
+    }
+    out.push({ id: series.id, years });
+  }
+  return out;
+};
+
+const countries = async () => {
+  const out = [];
+  for (const country of COUNTRIES.list) {
+    step(`country ${country.name}`);
+    const counts = {};
+    for (const year of COUNTRIES.years) counts[year] = await count('pubmed', `${country.term} AND ${year}[dp]`);
+    out.push({ ...country, counts });
+  }
+  return out;
+};
+
+const genes = async () => {
+  step('genes');
+  const summary = await eutils('esummary', { db: 'gene', id: GENES.map((x) => x.id).join(',') });
+  const out = [];
+  for (const gene of GENES) {
+    step(`gene ${gene.symbol}`);
+    const info = summary.result[String(gene.id)];
+    const links = await eutils('elink', { dbfrom: 'gene', db: 'pubmed', linkname: 'gene_pubmed', id: gene.id });
+    out.push({
+      id: gene.id,
+      symbol: info.name,
+      description: info.description,
+      chromosome: info.chromosome,
+      pubmed: parseLinkCount(links, 'gene_pubmed'),
+      clinvar: await count('clinvar', `${info.name}[gene] AND 9606[taxid]`),
+    });
+  }
+  return out;
+};
+
 const now = new Date();
 const SECTIONS = {
   entrez: () => entrez(),
@@ -325,6 +388,10 @@ const SECTIONS = {
   pubmed: () => pubmedTimeline(now.getUTCFullYear()),
   types: () => types(now.getUTCFullYear() - 1),
   methods: () => methods(now.getUTCFullYear() - 1),
+  growth: () => growth(now.getUTCFullYear() - 1),
+  access: () => access(now.getUTCFullYear() - 1),
+  countries: () => countries(),
+  genes: () => genes(),
   genbank: () => genbank(),
   refseq: () => refseq(),
   clinicaltrials: () => clinicaltrials(),
