@@ -232,3 +232,24 @@ export const ERAS = [
   ...yearRange(180, 193).map((d) => ({ from: d * 10, to: d * 10 + 9 })),
   { from: 1940, to: 1944 },
 ];
+
+const ts = (id, label, term) => ({ id, label, term });
+
+export const TYPE_SERIES = {
+  from: 1950,
+  stacked: [
+    ts('review', 'Review', 'review[pt]'),
+    ts('case', 'Case report', 'case reports[pt]'),
+    ts('letter', 'Letter', 'letter[pt]'),
+    ts('comment', 'Comment', 'comment[pt]'),
+    ts('editorial', 'Editorial', 'editorial[pt]'),
+  ],
+  multiples: [
+    ts('rct', 'Randomized controlled trial', 'randomized controlled trial[pt]'),
+    ts('meta', 'Meta-analysis', 'meta-analysis[pt]'),
+    ts('systematic', 'Systematic review', 'systematic review[pt]'),
+    ts('preprint', 'Preprint', 'preprint[pt]'),
+    ts('retracted', 'Retracted publication', 'retracted publication[pt]'),
+    ts('retraction', 'Retraction notice', 'retraction notice[pt]'),
+  ],
+};
