@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { QUERY_GROUPS, ENTREZ_DBS, yearRange, ERAS } from '../../src/queries.js';
+import { QUERY_GROUPS, ENTREZ_DBS, yearRange, ERAS, PAPERS } from '../../src/queries.js';
 
 test('there are many query groups', () => {
   assert.ok(QUERY_GROUPS.length >= 5);
@@ -36,4 +36,19 @@ test('ERAS cover 1781 to 1944 without gaps', () => {
   for (let i = 1; i < ERAS.length; i += 1) {
     assert.equal(ERAS[i].from, ERAS[i - 1].to + 1);
   }
+});
+
+test('PAPERS lists landmark PMIDs with a topic', () => {
+  assert.ok(PAPERS.length >= 8);
+  for (const p of PAPERS) {
+    assert.match(p.pmid, /^\d+$/);
+    assert.ok(p.topic.length > 1);
+  }
+  assert.equal(new Set(PAPERS.map((p) => p.pmid)).size, PAPERS.length);
+});
+
+test('a MeSH group counts record types', () => {
+  const mesh = QUERY_GROUPS.find((g) => g.id === 'mesh');
+  assert.ok(mesh);
+  assert.ok(mesh.items.every((i) => i.db === 'mesh'));
 });

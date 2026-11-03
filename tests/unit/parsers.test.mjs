@@ -10,6 +10,8 @@ import {
   toModule,
   lastPerYear,
   uniqueBy,
+  parseSummaries,
+  parseCitedIn,
 } from '../../scripts/parsers.mjs';
 
 const GBREL = `GBREL.TXT          Genetic Sequence Data Bank
@@ -161,4 +163,33 @@ test('lastPerYear keeps the final release of each year', () => {
 
 test('uniqueBy drops later duplicates', () => {
   assert.deepEqual(uniqueBy([{ db: 'a', n: 1 }, { db: 'b' }, { db: 'a', n: 2 }], 'db'), [{ db: 'a', n: 1 }, { db: 'b' }]);
+});
+
+test('parseSummaries reads esummary records in uid order', () => {
+  const json = {
+    result: {
+      uids: ['2231712'],
+      2231712: {
+        uid: '2231712',
+        pubdate: '1990 Oct 5',
+        source: 'J Mol Biol',
+        title: 'Basic local alignment search tool.',
+        authors: [{ name: 'Altschul SF' }, { name: 'Gish W' }, { name: 'Miller W' }, { name: 'Myers EW' }],
+      },
+    },
+  };
+  assert.deepEqual(parseSummaries(json), [{
+    pmid: '2231712',
+    date: '1990 Oct 5',
+    journal: 'J Mol Biol',
+    title: 'Basic local alignment search tool.',
+    authors: ['Altschul SF', 'Gish W', 'Miller W'],
+    authorCount: 4,
+  }]);
+});
+
+test('parseCitedIn counts citing records', () => {
+  const json = { linksets: [{ linksetdbs: [{ linkname: 'pubmed_pubmed_citedin', links: ['1', '2', '3'] }] }] };
+  assert.equal(parseCitedIn(json), 3);
+  assert.equal(parseCitedIn({ linksets: [{}] }), 0);
 });
