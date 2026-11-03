@@ -1,6 +1,6 @@
 import snapshot from './snapshot.js';
 import {
-  SOURCES, TIMELINE, PEOPLE, PROJECTS, ODDITIES, EXAMPLES, TAGS, DIVISIONS, PMC_YEARS, APIS, CADENCES,
+  SOURCES, TIMELINE, PEOPLE, PROJECTS, ODDITIES, EXAMPLES, TAGS, DIVISIONS, PMC_YEARS, APIS, CADENCES, SOURCE_TITLES, SOURCE_GROUPS,
 } from './facts.js';
 import {
   exact, compact, pct, identify, searchUrl, matches, filterTimeline, sortRows, labelize, liveOddities,
@@ -698,11 +698,22 @@ const API_SOURCES = [
   ['RefSeq release notes', 'https://ftp.ncbi.nlm.nih.gov/refseq/release/release-notes/'],
 ];
 
+const SITE = 'https://collide2954.github.io/nlm-stats/';
+const REPO = 'https://github.com/collide2954/nlm-stats';
+
 const renderSources = () => {
-  const label = (url) => url.replace(/^https:\/\//, '').replace(/\/$/, '');
+  const host = (url) => new URL(url).hostname.replace(/^www\./, '');
+  const item = (title, url) => h('li', { 'data-search': `${title} ${url}` }, ext(url, title), ' ', h('small', {}, host(url)));
+  const group = (title, items) => h('div', { class: 'srcgroup' }, h('h3', {}, title), h('ul', {}, items));
+  const titled = (g) => Object.entries(SOURCES).filter(([key]) => SOURCE_TITLES[key]?.[0] === g).map(([key, url]) => item(SOURCE_TITLES[key][1], url));
   fill('#source-list',
-    ...API_SOURCES.map(([name, url]) => h('li', { 'data-search': `${name} ${url}` }, h('b', {}, `${name}: `), ext(url, label(url)))),
-    ...Object.values(SOURCES).map((url) => h('li', { 'data-search': url }, ext(url, label(url)))));
+    group('Data APIs', API_SOURCES.map(([name, url]) => item(name, url))),
+    ...SOURCE_GROUPS.map((g) => [g, titled(g)]).filter(([, items]) => items.length).map(([g, items]) => group(g, items)));
+  const day = new Date(snapshot.generated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  fill('#data-use',
+    'Every number on this page, as of ', day, ', is in ', h('a', { href: 'snapshot.json', download: '' }, 'snapshot.json'),
+    '. The code and the weekly rebuild are on ', ext(REPO, 'GitHub'),
+    `. Cite as: NLM & NCBI in Numbers, snapshot of ${day}. ${SITE}`);
   fill('#foot', `Built from public NLM, NCBI and NIH data. Snapshot ${snapshot.generated.slice(0, 16).replace('T', ' ')} UTC. Not an official NLM or NCBI site.`);
 };
 

@@ -1249,18 +1249,36 @@ table.data {
   font-family: var(--sans);
 }
 
-.sources {
-  margin: 20px 0 0;
-  padding-left: 1.4rem;
-  columns: 2 360px;
-  column-gap: 40px;
-  font-size: 0.8rem;
-  color: var(--muted);
+.srcgroups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 24px 40px;
+  margin-top: 24px;
 }
 
-.sources li {
-  break-inside: avoid;
-  padding: 2px 0;
+.srcgroup h3 {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+  font: 700 0.75rem var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.srcgroup ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.srcgroup li {
+  padding: 4px 0;
+}
+
+.srcgroup small {
+  color: var(--muted);
 }
 
 .foot {
