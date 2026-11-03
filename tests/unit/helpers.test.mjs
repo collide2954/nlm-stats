@@ -81,3 +81,12 @@ test('labelize humanizes API enums', () => {
 test('stamp formats an ISO timestamp in UTC', () => {
   assert.equal(stamp('2026-11-03T04:55:10.229Z'), '2026-11-03 04:55 UTC');
 });
+
+test('labelStep spaces axis labels to fit the width', async () => {
+  const { labelStep } = await import('../../src/lib.js');
+  assert.equal(labelStep(82, 770), 5);
+  assert.equal(labelStep(82, 290), 10);
+  assert.equal(labelStep(42, 290), 5);
+  assert.equal(labelStep(5, 600), 1);
+  assert.equal(labelStep(300, 200), 50);
+});
