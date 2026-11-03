@@ -253,3 +253,125 @@ export const TYPE_SERIES = {
     ts('retraction', 'Retraction notice', 'retraction notice[pt]'),
   ],
 };
+
+QUERY_GROUPS.push(
+  {
+    id: 'cv-review',
+    title: 'ClinVar records by review status',
+    panel: 'variants',
+    items: [
+      q('rv-guideline', 'clinvar', 'Practice guideline', '"practice guideline"[RVST]'),
+      q('rv-panel', 'clinvar', 'Reviewed by expert panel', '"reviewed by expert panel"[RVST]'),
+      q('rv-multi', 'clinvar', 'Multiple submitters, no conflicts', '"criteria provided, multiple submitters, no conflicts"[RVST]'),
+      q('rv-single', 'clinvar', 'Single submitter', '"criteria provided, single submitter"[RVST]'),
+      q('rv-conflict', 'clinvar', 'Conflicting classifications', '"criteria provided, conflicting classifications"[RVST]'),
+      q('rv-nocriteria', 'clinvar', 'No assertion criteria provided', '"no assertion criteria provided"[RVST]'),
+      q('rv-noclass', 'clinvar', 'No classification provided', '"no classification provided"[RVST]'),
+    ],
+  },
+  {
+    id: 'cv-type',
+    title: 'ClinVar records by variation type',
+    panel: 'variants',
+    items: [
+      q('vt-snv', 'clinvar', 'Single nucleotide variant', '"single nucleotide variant"[VRTP]'),
+      q('vt-del', 'clinvar', 'Deletion', 'deletion[VRTP]'),
+      q('vt-dup', 'clinvar', 'Duplication', 'duplication[VRTP]'),
+      q('vt-micro', 'clinvar', 'Microsatellite', 'microsatellite[VRTP]'),
+      q('vt-gain', 'clinvar', 'Copy number gain', '"copy number gain"[VRTP]'),
+      q('vt-loss', 'clinvar', 'Copy number loss', '"copy number loss"[VRTP]'),
+      q('vt-indel', 'clinvar', 'Indel', 'indel[VRTP]'),
+      q('vt-ins', 'clinvar', 'Insertion', 'insertion[VRTP]'),
+      q('vt-inv', 'clinvar', 'Inversion', 'inversion[VRTP]'),
+    ],
+  },
+  {
+    id: 'cv-origin',
+    title: 'ClinVar records by allele origin',
+    panel: 'variants',
+    items: [
+      q('or-germline', 'clinvar', 'Germline', 'germline[ORIG]'),
+      q('or-unknown', 'clinvar', 'Unknown', 'unknown[ORIG]'),
+      q('or-denovo', 'clinvar', 'De novo', '"de novo"[ORIG]'),
+      q('or-inherited', 'clinvar', 'Inherited', 'inherited[ORIG]'),
+      q('or-maternal', 'clinvar', 'Maternal', 'maternal[ORIG]'),
+      q('or-somatic', 'clinvar', 'Somatic', 'somatic[ORIG]'),
+      q('or-paternal', 'clinvar', 'Paternal', 'paternal[ORIG]'),
+    ],
+  },
+  {
+    id: 'preprints',
+    title: 'Preprints in PubMed by server',
+    panel: 'access',
+    items: [
+      q('pp-biorxiv', 'pubmed', 'bioRxiv', '"biorxiv"[ta]'),
+      q('pp-medrxiv', 'pubmed', 'medRxiv', '"medrxiv"[ta]'),
+      q('pp-resq', 'pubmed', 'Research Square', '"res sq"[ta]'),
+      q('pp-arxiv', 'pubmed', 'arXiv', '"arxiv"[ta]'),
+    ],
+  },
+);
+
+const gr = (db, field, label, what) => ({ db, field, label, what });
+
+export const GROWTH = {
+  from: 2000,
+  dbs: [
+    gr('sra', 'PDAT', 'SRA', 'experiments by publication date'),
+    gr('biosample', 'PDAT', 'BioSample', 'samples by publication date'),
+    gr('gds', 'PDAT', 'GEO DataSets', 'records by publication date'),
+    gr('bioproject', 'DATE', 'BioProject', 'projects by registration date'),
+    gr('assembly', 'SRDT', 'Assembly', 'assemblies by sequence release date'),
+    gr('clinvar', 'CDAT', 'ClinVar', 'records by creation date'),
+    gr('gene', 'CDAT', 'Gene', 'records by creation date'),
+    gr('pmc', 'PDAT', 'PMC', 'articles by publication date'),
+    gr('structure', 'DDAT', 'Structure', 'MMDB entries by entry date'),
+  ],
+};
+
+export const ACCESS = {
+  from: 1990,
+  series: [
+    { id: 'free', label: 'Free full text', term: 'free full text[sb]' },
+    { id: 'pmc', label: 'Linked to PMC', term: 'pubmed pmc[sb]' },
+    { id: 'erratum', label: 'Published erratum', term: 'published erratum[pt]' },
+    { id: 'concern', label: 'Expression of concern', term: '"expression of concern"[pt]' },
+  ],
+};
+
+const c = (name, term) => ({ name, term });
+
+export const COUNTRIES = {
+  years: [2015, 2025],
+  list: [
+    c('China', 'china[ad]'),
+    c('United States', '(usa[ad] OR "united states"[ad])'),
+    c('Japan', 'japan[ad]'),
+    c('Germany', 'germany[ad]'),
+    c('United Kingdom', '("united kingdom"[ad] OR uk[ad] OR england[ad] OR scotland[ad] OR wales[ad])'),
+    c('India', 'india[ad]'),
+    c('Italy', 'italy[ad]'),
+    c('South Korea', 'korea[ad]'),
+    c('Canada', 'canada[ad]'),
+    c('France', 'france[ad]'),
+    c('Spain', 'spain[ad]'),
+    c('Australia', 'australia[ad]'),
+    c('Brazil', 'brazil[ad]'),
+    c('Iran', 'iran[ad]'),
+    c('Turkey', '(turkey[ad] OR turkiye[ad])'),
+    c('Netherlands', 'netherlands[ad]'),
+    c('Saudi Arabia', '"saudi arabia"[ad]'),
+    c('Pakistan', 'pakistan[ad]'),
+    c('Egypt', 'egypt[ad]'),
+    c('Switzerland', 'switzerland[ad]'),
+  ],
+};
+
+const g = (id, symbol) => ({ id, symbol });
+
+export const GENES = [
+  g(7157, 'TP53'), g(7124, 'TNF'), g(1956, 'EGFR'), g(348, 'APOE'), g(7422, 'VEGFA'), g(3569, 'IL6'),
+  g(672, 'BRCA1'), g(675, 'BRCA2'), g(2099, 'ESR1'), g(207, 'AKT1'), g(4524, 'MTHFR'), g(1080, 'CFTR'),
+  g(3043, 'HBB'), g(3845, 'KRAS'), g(673, 'BRAF'), g(5728, 'PTEN'), g(4609, 'MYC'), g(1636, 'ACE'),
+  g(3630, 'INS'), g(920, 'CD4'), g(351, 'APP'), g(1029, 'CDKN2A'),
+];
