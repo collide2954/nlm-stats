@@ -23,6 +23,10 @@ const snap = {
     biggestEnrollment: { id: 'NCT05697705', count: 188814085 },
     enrollmentBands: [{ from: 0, to: 0, count: 16909 }],
   },
+  funding: {
+    detailFy: 2025,
+    detail: { dollars: 479511888, largest: [{ title: 'National Biomedical Information Services', dollars: 357194999, appl: 11410911 }] },
+  },
 };
 
 test('liveOddities derives sourced oddities from the snapshot', () => {
@@ -36,6 +40,7 @@ test('liveOddities derives sourced oddities from the snapshot', () => {
   assert.match(text, /9\.1 variants of uncertain significance/);
   assert.match(text, /Amplicon.*WGS/i);
   assert.match(text, /Protein Clusters.*2017-12-04/);
+  assert.match(text, /74\.5% of NLM's FY2025.*National Biomedical Information Services/);
   for (const o of out) assert.match(o.href, /^https:\/\//);
 });
 
