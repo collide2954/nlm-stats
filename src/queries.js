@@ -455,7 +455,7 @@ export const RETRACTED = [
   p('15905366', 'Hwang, Science 2005'),
   p('22999595', 'Séralini, Food Chem Toxicol 2012'),
   p('24476887', 'Obokata, Nature 2014'),
-  p('32205204', 'Gautret, Int J Antimicrob Agents 2020'),
+  p('32205204', 'Gautret, IJAA 2020'),
   p('32356626', 'Mehra, N Engl J Med 2020'),
   p('32450107', 'Mehra, Lancet 2020'),
 ];
