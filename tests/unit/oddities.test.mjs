@@ -79,3 +79,15 @@ test('liveOddities copes with an older snapshot', () => {
   delete old.trialfate;
   assert.ok(liveOddities(old).length >= 3);
 });
+
+test('liveOddities words multi-word statuses and links Healthy to the exact field counts', () => {
+  const s = structuredClone(snap);
+  s.extremes.trials.earliest.status = 'ACTIVE_NOT_RECRUITING';
+  s.clinicaltrials.labels = { OverallStatus: { ACTIVE_NOT_RECRUITING: 'Active, not recruiting' } };
+  const out = liveOddities(s);
+  const text = out.map((o) => o.text).join('\n');
+  assert.match(text, /NCT03591926, an active, not recruiting study,/);
+  const healthy = out.find((o) => /Healthy/.test(o.text));
+  assert.equal(healthy.href, 'https://clinicaltrials.gov/api/v2/stats/field/values?fields=Condition');
+  assert.match(healthy.text, /word for word/);
+});

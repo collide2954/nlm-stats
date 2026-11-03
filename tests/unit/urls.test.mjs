@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { searchUrl, eutilsUrl } from '../../src/lib.js';
+import { searchUrl, eutilsUrl, dbHome } from '../../src/lib.js';
 
 test('searchUrl targets the PubMed site', () => {
   assert.equal(searchUrl('pubmed', 'review[pt]'), 'https://pubmed.ncbi.nlm.nih.gov/?term=review%5Bpt%5D');
@@ -28,4 +28,12 @@ test('eutilsUrl builds json E-utilities requests', () => {
     eutilsUrl('esearch', { db: 'pubmed', term: '1999[dp]', retmax: 0 }),
     'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=1999%5Bdp%5D&retmax=0&retmode=json',
   );
+});
+
+test('dbHome points E-utilities-only databases at einfo instead of a missing web page', () => {
+  for (const db of ['annotinfo', 'blastdbinfo', 'grasp', 'orgtrack', 'seqannot']) {
+    assert.equal(dbHome(db), `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=${db}`);
+  }
+  assert.equal(dbHome('pubmed'), 'https://pubmed.ncbi.nlm.nih.gov/');
+  assert.equal(dbHome('gene'), 'https://www.ncbi.nlm.nih.gov/gene/');
 });

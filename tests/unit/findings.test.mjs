@@ -183,3 +183,15 @@ test('subject and trial findings fall back when the pattern changes', () => {
   assert.equal(f.lag, 'Trial results most often arrive 5 months after completion');
   assert.equal(f.extremes, 'NIH’s largest FY2025 award line goes to NCI: $200M');
 });
+
+test('the classics headline uses the same BLAST count as the papers section', () => {
+  const more = structuredClone(fixture);
+  more.papers = [{ topic: 'BLAST', pmid: '2231712', citedBy: 40000, date: '1990 Oct 5' }];
+  more.classics = [
+    { label: 'Livak, qPCR ΔΔCt 2001', pmid: '11846609', citedBy: 88000 },
+    { label: 'Altschul, BLAST 1990', pmid: '2231712', citedBy: 40945 },
+  ];
+  assert.equal(findings(more).classics, 'A 2001 qPCR ΔΔCt paper has 2.2 times BLAST’s citing records');
+  more.classics[0].citedBy = 90000;
+  assert.equal(findings(more).classics, 'A 2001 qPCR ΔΔCt paper has 2.3 times BLAST’s citing records');
+});

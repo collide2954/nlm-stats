@@ -447,3 +447,47 @@ test('chart annotations stay inside their charts on a phone', async () => {
   assert.deepEqual(outside, []);
   await page.close();
 });
+
+test('dragging the timeline pans it by the distance dragged', async () => {
+  const { page } = await open();
+  const svg = page.locator('#timeline-svg svg');
+  await svg.scrollIntoViewIfNeeded();
+  await page.click('#zoom-in');
+  await page.waitForTimeout(100);
+  const span = (t) => t.split('–').map(Number);
+  const [a0, b0] = span(await page.textContent('#timeline-range'));
+  const box = await svg.boundingBox();
+  await page.mouse.move(box.x + box.width * 0.7, box.y + 100);
+  await page.mouse.down();
+  for (let i = 1; i <= 20; i++) await page.mouse.move(box.x + box.width * 0.7 - i * 15, box.y + 100);
+  await page.mouse.up();
+  await page.waitForTimeout(100);
+  const [a1, b1] = span(await page.textContent('#timeline-range'));
+  const expected = (300 / box.width) * (b0 - a0);
+  assert.ok(Math.abs(a1 - a0 - expected) < expected * 0.35, `moved ${a1 - a0}, expected about ${expected.toFixed(1)}`);
+  assert.equal(b1 - a1, b0 - a0);
+  assert.equal(await page.evaluate(() => document.getElementById('tip').dataset.pinned), 'false');
+  await page.close();
+});
+
+test('the filter box reaches outbreak panels and the slices text matches the interaction', async () => {
+  const { page } = await open();
+  await page.fill('#q', 'zebrafish');
+  await page.waitForTimeout(300);
+  assert.equal(await page.locator('#outbreak-multiples .panel:visible').count(), 0);
+  await page.fill('#q', 'ebola');
+  await page.waitForTimeout(300);
+  assert.equal(await page.locator('#outbreak-multiples .panel:visible').count(), 1);
+  assert.doesNotMatch(await page.textContent('#facets .dek'), /Click a label/);
+  await page.close();
+});
+
+test('the countries popup states the real gap between the two years', async () => {
+  const { page } = await open();
+  const row = page.locator('#countries-chart [data-row]').first();
+  await row.scrollIntoViewIfNeeded();
+  await row.click();
+  const [y0, y1] = Object.keys(snapshot.countries[0].counts).map(Number);
+  assert.match(await page.textContent('#tip'), new RegExp(`in ${y1 - y0} years`));
+  await page.close();
+});

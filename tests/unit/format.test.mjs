@@ -29,3 +29,10 @@ test('pct formats a ratio as a percentage', () => {
   assert.equal(pct(1), '100%');
   assert.equal(pct(0), '0%');
 });
+
+test('compact rolls up to the next unit instead of printing 1000K', () => {
+  assert.equal(compact(999_960), '1M');
+  assert.equal(compact(999.6), '1K');
+  assert.equal(compact(999_950_000), '1B');
+  assert.equal(compact(999_400), '999.4K');
+});

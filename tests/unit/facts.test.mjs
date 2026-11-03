@@ -102,3 +102,8 @@ test('release cadences are sourced', async () => {
     assert.ok(SOURCES[c.src], c.resource);
   }
 });
+
+test('projects are listed by start year', () => {
+  const years = PROJECTS.map((p) => p.since);
+  assert.deepEqual(years, [...years].sort((a, b) => a - b));
+});
