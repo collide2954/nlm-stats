@@ -398,6 +398,12 @@ export const liveOddities = (snap) => {
   if (amplicon && wgs && amplicon > wgs) {
     add(`In SRA, Amplicon experiments outnumber WGS: ${exact(amplicon)} vs ${exact(wgs)}.`, 'https://www.ncbi.nlm.nih.gov/sra/');
   }
+  const fund = snap.funding;
+  const top = fund?.detail?.largest?.[0];
+  if (top && fund.detail.dollars && top.dollars / fund.detail.dollars > 0.5) {
+    add(`${pct(top.dollars / fund.detail.dollars)} of NLM's FY${fund.detailFy} award dollars in RePORTER sit in one project: "${top.title}".`,
+      `https://reporter.nih.gov/project-details/${top.appl}`);
+  }
   const dated = (snap.entrez ?? []).filter((d) => d.updated);
   if (dated.length > 1) {
     const stale = dated.reduce((a, b) => (b.updated < a.updated ? b : a));
