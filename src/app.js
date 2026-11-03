@@ -1,11 +1,13 @@
 import snapshot from './snapshot.js';
 import {
-  SOURCES, TIMELINE, PEOPLE, PROJECTS, ODDITIES, EXAMPLES, TAGS, DIVISIONS, PMC_YEARS,
+  SOURCES, TIMELINE, PEOPLE, PROJECTS, ODDITIES, EXAMPLES, TAGS, DIVISIONS, PMC_YEARS, APIS, CADENCES,
 } from './facts.js';
 import {
-  exact, compact, identify, searchUrl, matches, filterTimeline, sortRows,
-  logShare, share, niceTicks, decade, labelize, stamp,
+  exact, compact, pct, identify, searchUrl, matches, filterTimeline, sortRows,
+  logShare, share, niceTicks, decade, labelize, stamp, liveOddities,
+  LENSES, readLens, inLens, lensSearch, REFSEQ_PREFIXES,
 } from './lib.js';
+import { CT_DESIGN } from './queries.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -36,7 +38,7 @@ const s = (tag, attrs = {}, ...kids) => {
 
 const ext = (href, text, props = {}) => h('a', { href, target: '_blank', rel: 'noopener', ...props }, text);
 const cite = (key) => ext(SOURCES[key], 'source', { class: 'src', title: SOURCES[key] });
-const track = (pct) => h('span', { class: 'track' }, h('i', { style: `width:${Math.max(pct, 0.4).toFixed(2)}%` }));
+const track = (percent) => h('span', { class: 'track' }, h('i', { style: `width:${Math.max(percent, 0.4).toFixed(2)}%` }));
 const fill = (id, ...nodes) => $(id).replaceChildren(...nodes);
 
 const state = {
@@ -138,53 +140,72 @@ const renderEntrezDek = () => {
 
 const tipLink = (text, href, linkText) => [text, ' ', ext(href, linkText)];
 
-const renderPubmedChart = () => {
-  const years = snapshot.pubmed.years;
-  const W = 820;
-  const H = 230;
-  const L = 46;
-  const B = 22;
-  const T = 8;
-  const max = Math.max(...years.map((y) => y.count));
-  const ticks = niceTicks(max, 4);
-  const top = ticks.at(-1);
-  const bw = (W - L) / years.length;
+const CHART = { W: 820, H: 230, L: 54, B: 22, T: 8 };
+
+const barChart = ({ mount, tip, rows, attr, key, value, overlay, axis, every, aria, describe }) => {
+  const { W, H, L, B, T } = CHART;
+  const ticks = niceTicks(Math.max(...rows.map(value)), 4);
+  const top = ticks.at(-1) || 1;
+  const bw = (W - L) / rows.length;
   const y = (v) => T + (H - T - B) * (1 - v / top);
-  const now = new Date(snapshot.generated).getUTCFullYear();
-  const svgEl = s('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'PubMed records per publication year, 1945 onward' },
+  const x = (i) => L + i * bw;
+  const svgEl = s('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
     ...ticks.map((t) => s('g', {},
       s('line', { class: 'axis', x1: L, x2: W, y1: y(t), y2: y(t) }),
-      s('text', { x: L - 6, y: y(t) + 3, 'text-anchor': 'end' }, compact(t)))),
-    ...years.map((d, i) => s('rect', {
-      class: 'bar',
-      'data-year': d.year,
-      x: (L + i * bw + 0.5).toFixed(2),
-      y: y(d.count).toFixed(2),
+      s('text', { x: L - 6, y: y(t) + 3, 'text-anchor': 'end' }, axis(t)))),
+    ...rows.map((r, i) => s('rect', {
+      class: r.partial ? 'bar part' : 'bar',
+      [`data-${attr}`]: key(r),
+      x: (x(i) + 0.5).toFixed(2),
+      y: y(value(r)).toFixed(2),
       width: Math.max(bw - 1, 1).toFixed(2),
-      height: (H - B - y(d.count)).toFixed(2),
-      opacity: d.year === now ? 0.55 : 1,
+      height: (H - B - y(value(r))).toFixed(2),
     })),
-    ...years.filter((d) => d.year % 10 === 0).map((d) => s('text', {
-      x: (L + years.indexOf(d) * bw + bw / 2).toFixed(2), y: H - 6, 'text-anchor': 'middle',
-    }, d.year)));
+    ...(overlay ? rows.map((r, i) => s('rect', {
+      class: 'bar2',
+      x: (x(i) + bw * 0.25).toFixed(2),
+      y: y(overlay(r)).toFixed(2),
+      width: Math.max(bw * 0.5, 1).toFixed(2),
+      height: (H - B - y(overlay(r))).toFixed(2),
+    })) : []),
+    ...rows.map((r, i) => (every(key(r)) ? s('text', { x: (x(i) + bw / 2).toFixed(2), y: H - 6, 'text-anchor': 'middle' }, key(r)) : null)).filter(Boolean));
   const show = (event) => {
-    const rect = event.target.closest('[data-year]');
+    const rect = event.target.closest(`[data-${attr}]`);
     if (!rect) return;
-    $$('#pubmed-chart .on').forEach((r) => r.classList.remove('on'));
+    $$('.on', $(mount)).forEach((r) => r.classList.remove('on'));
     rect.classList.add('on');
-    const d = years.find((v) => String(v.year) === rect.dataset.year);
-    const prev = years.find((v) => v.year === d.year - 1);
-    const delta = prev ? ` (${d.count >= prev.count ? '+' : ''}${exact(d.count - prev.count)} vs ${prev.year})` : '';
-    fill('#pubmed-tip', ...tipLink(`${d.year}${d.year === now ? ' so far' : ''}: ${exact(d.count)} records${delta}.`, searchUrl('pubmed', `${d.year}[dp]`), 'Open in PubMed'));
+    const i = rows.findIndex((r) => String(key(r)) === rect.getAttribute(`data-${attr}`));
+    fill(tip, ...describe(rows[i], rows[i - 1]));
   };
   svgEl.addEventListener('pointerover', show);
   svgEl.addEventListener('click', show);
-  fill('#pubmed-chart', svgEl);
-  const done = years.filter((d) => d.year < now);
+  fill(mount, svgEl);
+  fill(tip, 'Hover or tap a bar.');
+};
+
+const signed = (n) => `${n >= 0 ? '+' : ''}${exact(n)}`;
+
+const renderPubmedChart = () => {
+  const now = new Date(snapshot.generated).getUTCFullYear();
+  const years = snapshot.pubmed.years.map((y) => ({ ...y, partial: y.year === now }));
+  barChart({
+    mount: '#pubmed-chart',
+    tip: '#pubmed-tip',
+    rows: years,
+    attr: 'year',
+    key: (r) => r.year,
+    value: (r) => r.count,
+    axis: compact,
+    every: (k) => k % 10 === 0,
+    aria: 'PubMed records per publication year, 1945 onward',
+    describe: (d, prev) => tipLink(
+      `${d.year}${d.partial ? ' so far' : ''}: ${exact(d.count)} records${prev ? ` (${signed(d.count - prev.count)} vs ${prev.year})` : ''}.`,
+      searchUrl('pubmed', `${d.year}[dp]`), 'Open in PubMed'),
+  });
+  const done = years.filter((d) => !d.partial);
   const peak = done.reduce((a, b) => (b.count > a.count ? b : a));
   const first = years[0];
-  $('#pubmed-dek').textContent = `${exact(pubmedTotal())} records in all. Peak complete year: ${peak.year}, with ${exact(peak.count)}. ${first.year}: ${exact(first.count)}. ${now} so far: ${exact(years.at(-1).count)}. Hover or tap a bar.`;
-  fill('#pubmed-tip', 'Hover or tap a year.');
+  $('#pubmed-dek').textContent = `${exact(pubmedTotal())} records in all. Peak complete year: ${peak.year}, with ${exact(peak.count)}. ${first.year}: ${exact(first.count)}. ${now} so far: ${exact(years.at(-1).count)}.`;
   const eraMax = Math.max(...snapshot.pubmed.eras.map((e) => e.count));
   fill('#eras', ...snapshot.pubmed.eras.map((e) => h('li', {},
     ext(searchUrl('pubmed', `${e.from}:${e.to}[dp]`), `${e.from}–${e.to}`),
@@ -217,12 +238,14 @@ const TAB_LABELS = {
   clinvar: 'ClinVar',
 };
 
+const facetGroups = () => snapshot.groups.filter((g) => !g.panel);
+
 const renderFacetTabs = () => {
-  fill('#facet-tabs', ...snapshot.groups.map((g) => h('button', {
+  fill('#facet-tabs', ...facetGroups().map((g) => h('button', {
     type: 'button', role: 'tab', 'data-group': g.id, 'aria-controls': 'facet-panel', 'aria-selected': 'false', title: g.title,
     onclick: () => renderFacet(g.id),
   }, TAB_LABELS[g.id] ?? g.title)));
-  renderFacet(snapshot.groups[0].id);
+  renderFacet(facetGroups()[0].id);
 };
 
 const renderPapers = () => {
@@ -349,6 +372,192 @@ const renderTrials = () => {
     h('small', {}, `${(r.bytes / 1e6).toFixed(2)} MB`))));
 };
 
+const spark = (values) => {
+  const w = 180;
+  const ht = 34;
+  const max = Math.max(...values, 1);
+  const pts = values.map((v, i) => `${((i / Math.max(values.length - 1, 1)) * w).toFixed(1)},${(ht - (v / max) * ht).toFixed(1)}`).join(' ');
+  return s('svg', { class: 'spark', viewBox: `0 0 ${w} ${ht}`, preserveAspectRatio: 'none', 'aria-hidden': 'true' },
+    s('polygon', { class: 'area', points: `0,${ht} ${pts} ${w},${ht}` }),
+    s('polyline', { class: 'line', points: pts }));
+};
+
+const statBox = (value, label) => h('div', {}, h('b', {}, value), h('span', {}, label));
+
+const barList = (items, { label, value, small, href, max, cls } = {}) => {
+  const top = max ?? Math.max(...items.map(value), 1);
+  return h('ul', { class: cls ? `bars ${cls}` : 'bars' }, items.map((item) => h('li', { 'data-search': label(item) },
+    href ? ext(href(item), label(item)) : h('span', {}, label(item)),
+    track(share(value(item), top)),
+    h('span', { class: 'val' }, exact(value(item)), small ? h('small', {}, small(item)) : null))));
+};
+
+const renderMethods = () => {
+  const methods = snapshot.methods;
+  const from = methods[0].years[0].year;
+  const to = methods[0].years.at(-1).year;
+  $('#methods-dek').textContent = `PubMed records tagged with each method, per publication year ${from}–${to}. The first year is the earliest year with a tagged record.`;
+  fill('#methods-list', ...sortRows(methods, 'total', 'desc').map((m) => {
+    const firstYear = m.years.find((y) => y.count > 0)?.year;
+    const peak = m.years.reduce((a, b) => (b.count > a.count ? b : a));
+    return h('li', { 'data-search': `${m.label} ${m.term}` },
+      h('span', { class: 'lab' }, ext(searchUrl('pubmed', m.term), m.label), h('code', {}, m.term)),
+      spark(m.years.map((y) => y.count)),
+      h('span', { class: 'val' }, exact(m.total), h('small', {}, `first ${firstYear ?? '—'} · peak ${peak.year}`)));
+  }));
+};
+
+const renderSeqData = () => {
+  const r = snapshot.refseq;
+  $('#seq-dek').textContent = `RefSeq release ${r.release} (${r.date}) and current counts from the Assembly and SRA databases. Click a row to run the query.`;
+  fill('#refseq-stats',
+    statBox(`Release ${r.release}`, `RefSeq, ${r.date}`),
+    statBox(exact(r.organisms), 'organisms in RefSeq'),
+    statBox(exact(r.records), 'RefSeq records'),
+    statBox(exact(dbCount('assembly')), 'genome assemblies in Entrez'));
+  fill('#seq-groups', ...snapshot.groups.filter((g) => g.panel === 'seqdata').map((g) => h('div', {},
+    h('h3', {}, g.title),
+    h('ul', { class: 'bars' }, sortRows(g.items, 'count', 'desc').map((i) => facetRow(i, dbCount(i.db)))))));
+  fill('#refseq-prefixes',
+    h('thead', {}, h('tr', {}, ['Prefix', 'Molecule', 'Use'].map((t) => h('th', { scope: 'col' }, t)))),
+    h('tbody', {}, REFSEQ_PREFIXES.map((p) => h('tr', { 'data-search': `${p.prefix} ${p.molecule} ${p.use}` },
+      h('td', {}, h('code', {}, p.prefix)),
+      h('td', {}, p.molecule),
+      h('td', {}, p.use)))));
+};
+
+const renderApis = () => {
+  fill('#api-table',
+    h('thead', {}, h('tr', {}, ['Service', 'Without a key', 'With an API key', 'Notes', ''].map((t) => h('th', { scope: 'col' }, t)))),
+    h('tbody', {}, APIS.map((a) => h('tr', { 'data-search': `${a.service} ${a.limit} ${a.note}` },
+      h('td', {}, h('b', {}, a.service)),
+      h('td', { class: 'n' }, a.limit),
+      h('td', { class: 'n' }, a.keyed),
+      h('td', { class: 'desc' }, a.note),
+      h('td', {}, cite(a.src))))));
+  fill('#cadence-table',
+    h('thead', {}, h('tr', {}, ['Resource', 'Updates', ''].map((t) => h('th', { scope: 'col' }, t)))),
+    h('tbody', {}, CADENCES.map((c) => h('tr', { 'data-search': `${c.resource} ${c.cadence}` },
+      h('td', {}, h('b', {}, c.resource)),
+      h('td', {}, c.cadence),
+      h('td', {}, cite(c.src))))));
+};
+
+const fieldTop = (key) => snapshot.clinicaltrials.fields[key]?.top ?? [];
+const fieldValue = (key, value) => fieldTop(key).find((v) => v.value === value)?.count ?? 0;
+const fieldSum = (key) => fieldTop(key).reduce((n, v) => n + v.count, 0);
+
+const DESIGN_LABELS = {
+  DesignAllocation: 'Allocation',
+  DesignMasking: 'Masking',
+  DesignPrimaryPurpose: 'Primary purpose',
+  DesignInterventionModel: 'Intervention model',
+  EnrollmentType: 'Enrollment figure',
+};
+
+const renderDesign = () => {
+  const ct = snapshot.clinicaltrials;
+  const enrollment = ct.fields.EnrollmentCount;
+  const healthy = ct.fields.HealthyVolunteers;
+  $('#design-dek').textContent = 'Design fields as registered on ClinicalTrials.gov. Studies with no value for a field are left out of that field.';
+  fill('#design-stats',
+    statBox(pct(fieldValue('DesignAllocation', 'RANDOMIZED') / fieldSum('DesignAllocation')), 'randomized, of studies stating allocation'),
+    statBox(pct(fieldValue('DesignMasking', 'NONE') / fieldSum('DesignMasking')), 'open label (no masking)'),
+    statBox(pct(ct.completedInterventionalWithResults / ct.completedInterventional), `of ${exact(ct.completedInterventional)} completed interventional studies post results`),
+    statBox(exact(ct.withResults), 'studies with posted results'),
+    statBox(exact(Math.round(enrollment.mean)), 'mean enrollment'),
+    statBox(exact(enrollment.max), `largest enrollment, ${ct.biggestEnrollment.id}`),
+    statBox(pct(healthy.yes / (healthy.yes + healthy.no)), 'accept healthy volunteers'),
+    statBox(pct(fieldValue('EnrollmentType', 'ESTIMATED') / fieldSum('EnrollmentType')), 'enrollment still an estimate'));
+  barChart({
+    mount: '#design-chart',
+    tip: '#design-tip',
+    rows: ct.timing.map((t) => ({ ...t, partial: t.year === new Date(snapshot.generated).getUTCFullYear() })),
+    attr: 'year',
+    key: (r) => r.year,
+    value: (r) => r.registered,
+    overlay: (r) => r.results,
+    axis: compact,
+    every: (k) => k % 5 === 0,
+    aria: 'Studies first posted and results first posted per year',
+    describe: (d) => [`${d.year}${d.partial ? ' so far' : ''}: ${exact(d.registered)} studies first posted, ${exact(d.results)} first posted results.`],
+  });
+  $('#design-chart').prepend(h('div', { class: 'legend' },
+    h('span', {}, h('i', { style: 'background:var(--bar)' }), 'Studies first posted'),
+    h('span', {}, h('i', { style: 'background:var(--bar-2)' }), 'Results first posted')));
+  const bandMax = Math.max(...ct.enrollmentBands.map((b) => b.count));
+  fill('#enrollment', ...ct.enrollmentBands.map((b) => h('li', {},
+    h('span', {}, b.to === 'MAX' ? `${exact(b.from)}+` : b.from === b.to ? exact(b.from) : `${exact(b.from)}–${exact(b.to)}`),
+    track(share(b.count, bandMax)),
+    h('span', { class: 'val' }, exact(b.count)))));
+  fill('#design-fields', ...CT_DESIGN.map((key) => h('div', {},
+    h('h3', {}, DESIGN_LABELS[key]),
+    barList(fieldTop(key), { label: (v) => labelize(v.value), value: (v) => v.count, cls: 'alt' }))));
+};
+
+const usd = (n) => `$${compact(n)}`;
+
+const renderFunding = () => {
+  const f = snapshot.funding;
+  const d = f.detail;
+  const nih = f.ics.reduce((n, i) => n + i.dollars, 0);
+  const rank = f.ics.findIndex((i) => i.ic === 'NLM') + 1;
+  $('#funding-dek').textContent = `FY${f.detailFy}: NLM administered ${exact(d.projects)} awards worth $${exact(d.dollars)} in NIH RePORTER, ${pct(d.dollars / nih)} of the ${usd(nih)} listed across ${f.ics.length} NIH institutes and centers. Totals are award amounts for primary projects, excluding subprojects.`;
+  fill('#funding-stats',
+    statBox(usd(d.dollars), `NLM awards, FY${f.detailFy}`),
+    statBox(exact(d.projects), 'projects'),
+    statBox(exact(d.newProjects), 'new this year'),
+    statBox(`${d.medianYears} yr`, 'median project length'),
+    statBox(`${rank} of ${f.ics.length}`, 'NLM rank by dollars'),
+    statBox(pct(d.dollars / nih), 'of listed NIH dollars'),
+    statBox(usd(f.years[0].dollars), `FY${f.years[0].fy} in RePORTER`),
+    statBox(`×${(d.dollars / f.years.find((y) => y.fy === 2000).dollars).toFixed(1)}`, 'growth since FY2000'));
+  barChart({
+    mount: '#funding-chart',
+    tip: '#funding-tip',
+    rows: f.years,
+    attr: 'fy',
+    key: (r) => r.fy,
+    value: (r) => r.dollars,
+    axis: usd,
+    every: (k) => k % 5 === 0,
+    aria: 'NLM award dollars per fiscal year in NIH RePORTER',
+    describe: (r, prev) => [`FY${r.fy}: $${exact(r.dollars)} across ${exact(r.projects)} NLM awards${prev ? ` (${signed(r.dollars - prev.dollars)} vs FY${prev.fy})` : ''}${r.partial ? '. Data still arriving' : ''}.`],
+  });
+  $('#ics-title').textContent = `Institutes and centers, FY${f.detailFy}`;
+  const icMax = f.ics[0].dollars;
+  fill('#funding-ics', ...f.ics.map((i) => h('li', { class: i.ic === 'NLM' ? 'me' : null, 'data-search': i.ic },
+    h('span', {}, h('b', {}, i.ic)),
+    track(share(i.dollars, icMax)),
+    h('span', { class: 'val' }, usd(i.dollars), h('small', {}, `${exact(i.projects)} awards`)))));
+  $('#activity-title').textContent = `NLM by activity code, FY${f.detailFy}`;
+  const opts = { label: (g) => g.key, value: (g) => g.dollars, small: (g) => `${exact(g.projects)} awards` };
+  $('#funding-activity').replaceWith(Object.assign(barList(d.byActivity, opts), { id: 'funding-activity' }));
+  $('#funding-categories').replaceWith(Object.assign(barList(d.byCategory, { ...opts, cls: 'alt' }), { id: 'funding-categories' }));
+  $('#funding-orgs').replaceWith(Object.assign(barList(d.byOrg, { ...opts, cls: 'alt' }), { id: 'funding-orgs' }));
+  fill('#funding-largest', ...d.largest.map((a) => h('li', {},
+    ext(`https://reporter.nih.gov/project-details/${a.appl}`, a.number), ` ${a.title} `,
+    h('small', {}, `${a.org ?? ''} · ${a.activity} · $${exact(a.dollars)}`))));
+};
+
+const renderLenses = () => {
+  fill('#lenses', ...LENSES.map((l) => h('button', { type: 'button', 'data-lens': l.id, 'aria-pressed': 'false', title: l.hint }, l.label)));
+  fill('#jump', ...$$('main > section[data-nav]').map((sec) => h('a', { href: `#${sec.id}`, 'data-for': sec.id }, sec.dataset.nav)));
+  $('#lenses').addEventListener('click', (event) => {
+    const btn = event.target.closest('button[data-lens]');
+    if (btn) applyLens(btn.dataset.lens, true);
+  });
+};
+
+const applyLens = (lens, push) => {
+  const current = LENSES.find((l) => l.id === lens);
+  $$('#lenses button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lens === lens)));
+  $$('main > section').forEach((sec) => { sec.hidden = !inLens(sec.dataset.lens, lens); });
+  $$('#jump a').forEach((a) => { a.hidden = $(`#${a.dataset.for}`).hidden; });
+  $('#lens-hint').textContent = current.hint;
+  if (push) history.replaceState(null, '', `${location.pathname}${lensSearch(location.search, lens)}${location.hash}`);
+};
+
 const timelineNodes = new Map();
 
 const renderTimeline = () => {
@@ -420,7 +629,9 @@ const renderPeople = () => {
 };
 
 const renderOddities = () => {
-  fill('#oddities', ...ODDITIES.map((o) => h('li', { 'data-search': o.text }, o.text, cite(o.src))));
+  fill('#oddities',
+    ...ODDITIES.map((o) => h('li', { 'data-search': o.text }, o.text, cite(o.src))),
+    ...liveOddities(snapshot).map((o) => h('li', { 'data-search': o.text, class: 'computed' }, o.text, ext(o.href, 'source', { class: 'src', title: o.href }))));
 };
 
 const shuffle = () => {
@@ -489,7 +700,11 @@ const renderSources = () => {
   fill('#foot', `Built from public NLM, NCBI and NIH data. Snapshot ${stamp(snapshot.generated)}, rebuilt every week. Not an official NLM or NCBI site.`);
 };
 
-const SEARCHABLE = ['#projects article', '#people li', '#oddities li', '#paper-list li', '#db-table tbody tr', '#gb-organisms li', '#gb-divisions li'];
+const SEARCHABLE = [
+  '#projects article', '#people li', '#oddities li', '#paper-list li', '#db-table tbody tr', '#gb-organisms li',
+  '#gb-divisions li', '#methods-list li', '#api-table tbody tr', '#cadence-table tbody tr', '#refseq-prefixes tbody tr',
+  '#funding-ics li', '#funding-categories li', '#funding-orgs li',
+];
 
 const applySearch = () => {
   for (const sel of SEARCHABLE) {
@@ -551,6 +766,7 @@ const initTheme = () => {
 
 const init = () => {
   initTheme();
+  renderLenses();
   renderStamp();
   renderHero();
   renderEntrezDek();
@@ -558,8 +774,13 @@ const init = () => {
   renderPubmedChart();
   renderFacetTabs();
   renderPapers();
+  renderSeqData();
   renderGenbank();
+  renderApis();
+  renderMethods();
   renderTrials();
+  renderDesign();
+  renderFunding();
   renderTimeline();
   renderProjects();
   renderPeople();
@@ -567,6 +788,7 @@ const init = () => {
   renderDecoder();
   renderSources();
   applySearch();
+  applyLens(readLens(location.search), false);
   $('#db-table').addEventListener('click', onSort);
   $('#q').addEventListener('input', onSearch);
   $('#timeline-tags').addEventListener('click', toggleChip(state.tags, 'data-tag'));

@@ -234,6 +234,118 @@ h1 em {
   color: var(--ink);
 }
 
+.lens-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 14px;
+}
+
+.lenses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.lenses button {
+  font: 600 .82rem var(--sans);
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.lenses button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.lens-hint {
+  margin: 0;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+.spark-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 8px 28px;
+}
+
+.spark-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px 7rem;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: .84rem;
+}
+
+.spark-list .lab {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.spark-list code {
+  font: .66rem var(--mono);
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spark-list .val {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font: .8rem var(--mono);
+}
+
+.spark-list .val small {
+  font-size: .66rem;
+  color: var(--muted);
+}
+
+.spark {
+  width: 100%;
+  height: 34px;
+  overflow: visible;
+}
+
+.spark .area {
+  fill: color-mix(in srgb, var(--bar) 22%, transparent);
+}
+
+.spark .line {
+  fill: none;
+  stroke: var(--bar);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.chart .bar.part {
+  opacity: .5;
+}
+
+.chart .bar2 {
+  fill: var(--bar-2);
+  pointer-events: none;
+}
+
+.bars li.me {
+  background: var(--lit);
+  border-radius: 6px;
+  outline: 1px solid var(--accent-2);
+}
+
 main section {
   padding: 36px 0 8px;
   border-top: 1px solid var(--rule);
@@ -1013,6 +1125,10 @@ table.grid {
 
   .bars li, .cols .bars li {
     grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .spark-list li {
+    grid-template-columns: minmax(0, 1fr) 90px auto;
   }
 
   .bars .val {
