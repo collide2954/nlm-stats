@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { findings } from '../../src/findings.js';
 import snapshot from '../../src/snapshot.js';
 
-const group = (id, items) => ({ id, items: items.map(([itemId, count]) => ({ id: itemId, count })) });
+const group = (id, items) => ({ id, items: items.map(([itemId, count, label]) => ({ id: itemId, count, label })) });
 
 const fixture = {
   generated: '2026-11-03T05:00:00.000Z',
@@ -14,7 +14,7 @@ const fixture = {
   groups: [
     group('types', [['pt-review', 4095560], ['pt-rct', 674093]]),
     group('languages', [['la-eng', 36462589]]),
-    group('sra-strategy', [['sra-amplicon', 18419145], ['sra-wgs', 9295254]]),
+    group('sra-strategy', [['sra-amplicon', 18419145, 'Amplicon'], ['sra-wgs', 9295254, 'WGS']]),
   ],
   papers: [{ topic: 'BLAST', citedBy: 40937, date: '1990 Oct 5' }],
   pubmed: { years: [{ year: 2024, count: 1740230 }, { year: 2025, count: 1882376 }, { year: 2026, count: 1636618 }] },
