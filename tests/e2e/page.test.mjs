@@ -512,3 +512,39 @@ test('captions carry the caveats a careful reader needs', async () => {
   assert.match(await text('#subjects'), /Case reports are left out/);
   await page.close();
 });
+
+const CHAPTERS = {
+  collections: ['entrez', 'growth', 'seqdata', 'variants', 'extremes'],
+  literature: ['pubmed', 'types', 'facets', 'methods', 'subjects', 'access', 'machine', 'papers'],
+  clinical: ['trials', 'stops'],
+  money: ['funding', 'geography'],
+  reference: ['history', 'projects', 'odd', 'decoder', 'reference', 'sources'],
+};
+
+test('sections sit in five chapters with a reading guide up front', async () => {
+  const { page } = await open();
+  const layout = await page.evaluate(() => {
+    const out = {};
+    let current = null;
+    for (const n of document.querySelectorAll('main > .chapter, main > section.story')) {
+      if (n.classList.contains('chapter')) {
+        current = n.dataset.chapter;
+        out[current] = [];
+      } else out[current].push(n.id);
+    }
+    return out;
+  });
+  assert.deepEqual(layout, CHAPTERS);
+  assert.ok(await page.locator('#readme li').count() >= 5);
+  assert.match(await page.textContent('#readme'), /Cited by/);
+  assert.equal(await page.locator('#jump a.jump-ch').count(), 5);
+  await page.close();
+});
+
+test('a lens hides chapters that have nothing left to show', async () => {
+  const { page } = await open({ search: '?lens=funding' });
+  assert.equal(await page.isVisible('[data-chapter="literature"]'), false);
+  assert.equal(await page.isVisible('[data-chapter="money"]'), true);
+  assert.equal(await page.isVisible('#jump a[data-for="ch-literature"]'), false);
+  await page.close();
+});
