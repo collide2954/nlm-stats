@@ -66,7 +66,10 @@ const hover = (root, lookup) => {
   };
   root.addEventListener('pointermove', show);
   root.addEventListener('pointerdown', show);
-  root.addEventListener('pointerleave', () => tip.hide());
+  root.addEventListener('pointerleave', () => {
+    tip.hide();
+    root.querySelectorAll('.cross').forEach((c) => c.setAttribute('visibility', 'hidden'));
+  });
   root.addEventListener('focusin', (event) => {
     const target = event.target.closest('[data-k]');
     if (!target) return;
@@ -112,7 +115,8 @@ export const columns = ({
   const bw = Math.max(1, Math.min(band - 2, 26));
   const y = scaleLinear([0, top], [H - B, T]);
   const xAt = (i) => L + i * band + (band - bw) / 2;
-  const step = labelStep(rows.length, W - L, 38);
+  const widest = Math.max(...rows.map((r) => String(label(r)).length));
+  const step = labelStep(rows.length, W - L, Math.max(34, widest * 6.6 + 12));
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
     ticks.map((t) => el('g', {},
       el('line', { class: t === 0 ? 'base' : 'grid', x1: L, x2: W, y1: y(t), y2: y(t) }),
@@ -128,7 +132,7 @@ export const columns = ({
       class: 'bar2',
       d: barPath(xAt(i) + bw * 0.22, y(overlay(r)), bw * 0.56, Math.max(0, H - B - y(overlay(r)))),
     })) : null,
-    rows.map((r, i) => (i % step === 0 || (rows.length <= 16) ? el('text', {
+    rows.map((r, i) => (i % step === 0 ? el('text', {
       x: xAt(i) + bw / 2, y: H - 6, 'text-anchor': 'middle',
     }, label(r)) : null)),
     annotations.map((a, n) => {
@@ -165,7 +169,11 @@ export const dotplot = ({
   const lo = scale === 'log' ? 10 ** Math.floor(Math.log10(min)) : 0;
   const hi = scale === 'log' ? 10 ** Math.ceil(Math.log10(max)) : niceTicks(max, 4).at(-1);
   const x = scale === 'log' ? scaleLog([lo, hi], [L, W - R]) : scaleLinear([0, hi], [L, W - R]);
-  const ticks = scale === 'log' ? logTicks(lo, hi).filter((_, i, all) => all.length <= 7 || i % 2 === 0) : niceTicks(max, 4);
+  const spaced = (list) => list.reduce((kept, t) => {
+    if (!kept.length || x(t) - x(kept.at(-1)) >= 40) kept.push(t);
+    return kept;
+  }, []);
+  const ticks = spaced(scale === 'log' ? logTicks(lo, hi) : niceTicks(max, 4));
   const at = (v) => (v > 0 ? x(v) : L);
   const rowsG = el('g', { class: 'rows' }, rows.map((r, i) => {
     const content = [
@@ -224,13 +232,13 @@ export const stackedArea = ({ mount, years, series, aria, format = exact }) => {
     return `M${upper.join('L')}L${lower.join('L')}Z`;
   };
   const step = labelStep(years.length, W - L, 40);
-  const cross = el('line', { class: 'cross', y1: T, y2: H - B, x1: -10, x2: -10 });
+  const cross = el('line', { class: 'cross', y1: T, y2: H - B, x1: 0, x2: 0, visibility: 'hidden' });
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
     ticks.map((t) => el('g', {},
       el('line', { class: t === 0 ? 'base' : 'grid', x1: L, x2: W - R, y1: y(t), y2: y(t) }),
       el('text', { x: L - 8, y: y(t) + 4, 'text-anchor': 'end' }, compact(t)))),
     layers.map((layer, i) => el('path', {
-      class: 'area', 'data-key': layer.key, d: area(layer.points), fill: series[i].color, style: `--i:${i * 8}`,
+      class: 'area', 'data-key': layer.key, d: area(layer.points), style: `fill:${series[i].color};--i:${i * 8}`,
     })),
     years.map((yr) => (yr % step === 0 ? el('text', { x: x(yr), y: H - 6, 'text-anchor': 'middle' }, yr) : null)),
     cross,
@@ -242,6 +250,7 @@ export const stackedArea = ({ mount, years, series, aria, format = exact }) => {
     const i = Math.max(0, Math.min(years.length - 1, Math.round(((px - L) / (W - L - R)) * (years.length - 1))));
     cross.setAttribute('x1', x(years[i]));
     cross.setAttribute('x2', x(years[i]));
+    cross.setAttribute('visibility', 'visible');
     return [
       html('b', {}, `${years[i]}: ${format(totals[i])}`),
       ...[...series].reverse().map((s) => html('span', {}, html('i', { style: `background:${s.color}` }), `${s.label} ${format(rows[i][s.key])}`)),
@@ -257,7 +266,7 @@ export const miniArea = ({ years, values, color = 'var(--ink)', describe }) => {
   const x = scaleLinear([0, values.length - 1], [2, W - 2]);
   const y = scaleLinear([0, max], [H - 14, 6]);
   const pts = values.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`);
-  const cross = el('line', { class: 'cross', y1: 4, y2: H - 14, x1: -10, x2: -10 });
+  const cross = el('line', { class: 'cross', y1: 4, y2: H - 14, x1: 0, x2: 0, visibility: 'hidden' });
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true', preserveAspectRatio: 'none' },
     el('line', { class: 'base', x1: 0, x2: W, y1: H - 14, y2: H - 14 }),
     el('path', { class: 'wash', d: `M${x(0)},${H - 14}L${pts.join('L')}L${x(values.length - 1)},${H - 14}Z` }),
@@ -271,9 +280,10 @@ export const miniArea = ({ years, values, color = 'var(--ink)', describe }) => {
     const i = Math.max(0, Math.min(values.length - 1, Math.round((((event.clientX ?? box.right) - box.left) / box.width) * (values.length - 1))));
     cross.setAttribute('x1', x(i));
     cross.setAttribute('x2', x(i));
+    cross.setAttribute('visibility', 'visible');
     return describe(years[i], values[i]);
   });
-  return svg;
+  return html('div', { class: 'chart mini' }, svg);
 };
 
 export const waffle = ({ mount, parts, aria, format = exact }) => {
@@ -281,7 +291,7 @@ export const waffle = ({ mount, parts, aria, format = exact }) => {
   const cells = waffleCells(parts.map((p, i) => ({ key: i, value: p.value })));
   const side = Math.min(widthOf(mount), 300) / 10;
   const gap = 2;
-  const svg = el('svg', { viewBox: `0 0 ${side * 10} ${side * 10}`, role: 'img', 'aria-label': aria, style: `max-width:${side * 10}px` },
+  const svg = el('svg', { class: `w${parts.length}`, viewBox: `0 0 ${side * 10} ${side * 10}`, role: 'img', 'aria-label': aria, style: `max-width:${side * 10}px` },
     cells.map((k, n) => el('rect', {
       class: `cell k${k}`,
       x: (n % 10) * side,
@@ -335,7 +345,7 @@ export const lines = ({ mount, series, aria, describe, annotations = [] }) => {
   const y = scaleLog([lo, hi], [H - B, T]);
   const ticks = logTicks(lo, hi).filter((t) => Math.round(Math.log10(t)) % 3 === 0);
   const step = labelStep(xs.length, W - L - R, 40);
-  const cross = el('line', { class: 'cross', y1: T, y2: H - B, x1: -10, x2: -10 });
+  const cross = el('line', { class: 'cross', y1: T, y2: H - B, x1: 0, x2: 0, visibility: 'hidden' });
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
     ticks.map((t) => el('g', {},
       el('line', { class: 'grid', x1: L, x2: W - R, y1: y(t), y2: y(t) }),
@@ -365,6 +375,7 @@ export const lines = ({ mount, series, aria, describe, annotations = [] }) => {
     const i = Math.max(0, Math.min(xs.length - 1, Math.round(((px - L) / (W - L - R)) * (xs.length - 1))));
     cross.setAttribute('x1', x(xs[i]));
     cross.setAttribute('x2', x(xs[i]));
+    cross.setAttribute('visibility', 'visible');
     return describe(xs[i]);
   });
   return mountSvg(mount, svg);
@@ -518,8 +529,6 @@ export const timeline = ({ mount, events, people, projects, limits, onSelect, on
     },
     set(range) {
       animateTo(range);
-      domain = range;
-      draw();
     },
     focus(year, type, i) {
       selected = { type, i };

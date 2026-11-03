@@ -12,6 +12,10 @@
   --accent-text: #b3301a;
   --wash: #f3d6cc;
   --on-accent: #fff;
+  --w1: #3b3833;
+  --w2: #6f6b62;
+  --w3: #a29d91;
+  --w4: #d3ccbd;
   --s1: #d93a1f;
   --s2: #2468b3;
   --s3: #b88500;
@@ -39,6 +43,10 @@
     --accent-text: #ff7d61;
     --wash: #3d2119;
     --on-accent: #141413;
+    --w1: #e3dfd5;
+    --w2: #a9a498;
+    --w3: #726e66;
+    --w4: #45423d;
 
     color-scheme: dark;
   }
@@ -58,6 +66,10 @@
   --accent-text: #ff7d61;
   --wash: #3d2119;
   --on-accent: #141413;
+  --w1: #e3dfd5;
+  --w2: #a9a498;
+  --w3: #726e66;
+  --w4: #45423d;
 
   color-scheme: dark;
 }
@@ -450,7 +462,6 @@ h2,
 .chart text {
   fill: var(--muted);
   font: 11px var(--sans);
-  font-variant-numeric: tabular-nums;
 }
 
 .chart .lab {
@@ -551,12 +562,32 @@ h2,
   fill: var(--accent);
 }
 
-.chart .cell.k1 {
+.chart .w2 .k1 {
+  fill: var(--data-2);
+}
+
+.chart .w3 .k1 {
   fill: var(--data);
 }
 
-.chart .cell.k2 {
-  fill: var(--ink-2);
+.chart .w3 .k2 {
+  fill: var(--data-2);
+}
+
+.chart .w5 .k1 {
+  fill: var(--w1);
+}
+
+.chart .w5 .k2 {
+  fill: var(--w2);
+}
+
+.chart .w5 .k3 {
+  fill: var(--w3);
+}
+
+.chart .w5 .k4 {
+  fill: var(--w4);
 }
 
 .chart .tile {
