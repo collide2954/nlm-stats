@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  squarify, waffle, scaleLinear, scaleLog, logTicks, stack, zoomDomain, panDomain, wordy, easeOut, spread,
+  squarify, waffle, scaleLinear, scaleLog, logTicks, stack, zoomDomain, panDomain, wordy, easeOut, spread, doublingMonths, medianBand,
 } from '../../src/lib.js';
 
 const close = (a, b, eps = 1e-6) => Math.abs(a - b) <= eps;
@@ -108,4 +108,15 @@ test('spread preserves input order and leaves separated labels alone', () => {
   const sorted = [...out].sort((a, b) => a - b);
   for (let i = 1; i < sorted.length; i++) assert.ok(sorted[i] - sorted[i - 1] >= 12 - 1e-9);
   assert.ok(out[0] < out[1] && out[1] < out[2]);
+});
+
+test('doublingMonths turns growth between two dates into a doubling time', () => {
+  assert.ok(close(doublingMonths(Date.UTC(1982, 11, 1), 680338, Date.UTC(2026, 9, 15), 9384961284424), 22.2, 0.1));
+  assert.ok(close(doublingMonths(Date.UTC(2000, 0, 1), 1, Date.UTC(2001, 0, 1), 2), 12, 0.05));
+});
+
+test('medianBand finds the band that holds the middle study', () => {
+  const bands = [{ from: 0, to: 0, count: 16909 }, { from: 1, to: 20, count: 86449 }, { from: 21, to: 50, count: 143068 }, { from: 51, to: 100, count: 128962 }, { from: 101, to: 500, count: 163410 }, { from: 501, to: 'MAX', count: 63869 }];
+  assert.deepEqual(medianBand(bands), { from: 51, to: 100, count: 128962 });
+  assert.deepEqual(medianBand([{ from: 0, to: 0, count: 5 }, { from: 1, to: 9, count: 4 }]), { from: 0, to: 0, count: 5 });
 });
