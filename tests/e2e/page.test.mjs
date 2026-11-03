@@ -310,6 +310,20 @@ test('access and integrity charts render', async () => {
   await page.close();
 });
 
+test('line chart end labels never overlap', async () => {
+  for (const width of [1280, 375]) {
+    const { page } = await open({ width });
+    const clashes = await page.$$eval('.chart svg:has(path.line)', (svgs) => svgs.flatMap((svg) => {
+      const boxes = [...svg.querySelectorAll('text.lab')].map((t) => ({ id: `${svg.closest('[id]')?.id}:${t.textContent}`, b: t.getBBox() }));
+      return boxes.flatMap((a, i) => boxes.slice(i + 1)
+        .filter((c) => a.b.x < c.b.x + c.b.width && c.b.x < a.b.x + a.b.width && a.b.y < c.b.y + c.b.height - 1 && c.b.y < a.b.y + a.b.height - 1)
+        .map((c) => `${a.id} / ${c.id}`));
+    }));
+    assert.deepEqual(clashes, [], `${width}px`);
+    await page.close();
+  }
+});
+
 test('geography shows a state tile map with a toggle and author countries', async () => {
   const { page } = await open();
   assert.equal(await page.locator('#state-map [data-state]').count(), Object.keys(US_TILES).length);
