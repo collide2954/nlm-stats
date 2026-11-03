@@ -206,13 +206,6 @@ h1 em {
   cursor: progress;
 }
 
-.live-status {
-  min-height: 1.2em;
-  margin: 6px auto 0;
-  font: .75rem var(--mono);
-  color: var(--muted);
-}
-
 .jump {
   position: sticky;
   top: 0;
@@ -317,18 +310,6 @@ main section:first-child {
   font-family: var(--mono);
 }
 
-.stat.flash {
-  animation: flash 1.2s ease;
-}
-
-@keyframes flash {
-  from { background: var(--lit);
-  }
-
- to { background: var(--panel);
-  };
-}
-
 .scroll {
   overflow-x: auto;
   border: 1px solid var(--rule);
@@ -390,10 +371,6 @@ table.grid {
 
 .grid tr:last-child td {
   border-bottom: 0;
-}
-
-.grid tr.fresh td {
-  background: var(--lit);
 }
 
 .grid .db {
@@ -555,7 +532,6 @@ table.grid {
 .chart .hit {
   fill: transparent;
 }
-
 
 .legend {
   display: flex;
@@ -841,12 +817,12 @@ table.grid {
   white-space: nowrap;
 }
 
-.cards .live {
+.cards .count {
   font: 600 1.25rem var(--mono);
   color: var(--accent);
 }
 
-.cards .live small {
+.cards .count small {
   font: .7rem var(--sans);
   color: var(--muted);
   margin-left: 4px;
@@ -1112,9 +1088,5 @@ table.grid {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .stat.flash {
-    animation: none;
   }
 }

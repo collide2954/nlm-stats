@@ -1,5 +1,5 @@
 import { writeFile } from 'node:fs/promises';
-import { eutilsUrl } from '../src/lib.js';
+import { eutilsUrl, retry } from '../src/lib.js';
 import { ENTREZ_DBS, QUERY_GROUPS, ERAS, PAPERS, yearRange } from '../src/queries.js';
 import {
   parseEinfo,
@@ -22,14 +22,11 @@ const GAP_MS = 400;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const fetchWithRetry = async (url, as = 'json') => {
-  for (let attempt = 0; attempt < 6; attempt += 1) {
-    const res = await fetch(url, { headers: { 'user-agent': 'nlm-stats-snapshot' } });
-    if (res.ok) return as === 'json' ? res.json() : res.text();
-    await sleep(1000 * 2 ** attempt);
-  }
-  throw new Error(`failed ${url}`);
-};
+const fetchWithRetry = (url, as = 'json') => retry(async () => {
+  const res = await fetch(url, { headers: { 'user-agent': 'nlm-stats-snapshot' } });
+  if (!res.ok) throw new Error(`HTTP ${res.status} ${url}`);
+  return as === 'json' ? res.json() : res.text();
+}, { tries: 6, wait: 1000 });
 
 let last = 0;
 const eutils = async (tool, params) => {

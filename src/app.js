@@ -3,8 +3,8 @@ import {
   SOURCES, TIMELINE, PEOPLE, PROJECTS, ODDITIES, EXAMPLES, TAGS, DIVISIONS, PMC_YEARS,
 } from './facts.js';
 import {
-  exact, compact, identify, searchUrl, eutilsUrl, matches, filterTimeline, sortRows,
-  logShare, share, niceTicks, decade, labelize, stamp, parseEinfo, retry,
+  exact, compact, identify, searchUrl, matches, filterTimeline, sortRows,
+  logShare, share, niceTicks, decade, labelize, stamp,
 } from './lib.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -86,7 +86,7 @@ const renderHero = () => fill('#hero', ...HERO.map(heroCard));
 
 const renderStamp = () => {
   const gb = snapshot.genbank;
-  $('#stamp').textContent = `Snapshot ${stamp(snapshot.generated)} · ${snapshot.entrez.length} Entrez databases · GenBank ${gb.release} · ClinicalTrials.gov data ${snapshot.clinicaltrials.dataTimestamp.slice(0, 10)}`;
+  $('#stamp').textContent = `Snapshot ${stamp(snapshot.generated)}, rebuilt weekly · ${snapshot.entrez.length} Entrez databases · GenBank ${gb.release} · ClinicalTrials.gov data ${snapshot.clinicaltrials.dataTimestamp.slice(0, 10)}`;
 };
 
 const COLS = [
@@ -394,7 +394,7 @@ const renderProjects = () => {
     const count = p.name === 'ClinicalTrials.gov' ? state.trials : p.db ? dbCount(p.db) : null;
     return h('article', { 'data-search': `${p.name} ${p.org} ${p.since} ${p.id ?? ''} ${p.facts.join(' ')}` },
       h('header', {}, h('h3', {}, p.name), h('span', { class: 'since' }, `${p.org} · since ${p.since}`)),
-      count !== null && h('div', { class: 'live', 'data-live': p.db ?? 'trials' }, exact(count), h('small', {}, p.db ? `in ${dbName(p.db)}` : 'studies')),
+      count !== null && h('div', { class: 'count' }, exact(count), h('small', {}, p.db ? `in ${dbName(p.db)}` : 'studies')),
       h('ul', {}, p.facts.map((f) => h('li', {}, f))),
       h('footer', {},
         ext(p.url, 'Open'),
@@ -486,7 +486,7 @@ const renderSources = () => {
   fill('#source-list',
     ...API.map(([name, url]) => h('li', {}, h('b', {}, `${name}: `), ext(url, label(url)))),
     ...Object.values(SOURCES).map((url) => h('li', {}, ext(url, label(url)))));
-  fill('#foot', `Built from public NLM and NCBI data. Snapshot ${stamp(snapshot.generated)}; “Refresh live” re-reads every Entrez count and the ClinicalTrials.gov total from your browser. Not an official NLM or NCBI site.`);
+  fill('#foot', `Built from public NLM, NCBI and NIH data. Snapshot ${stamp(snapshot.generated)}, rebuilt every week. Not an official NLM or NCBI site.`);
 };
 
 const SEARCHABLE = ['#projects article', '#people li', '#oddities li', '#paper-list li', '#db-table tbody tr', '#gb-organisms li', '#gb-divisions li'];
@@ -549,70 +549,6 @@ const initTheme = () => {
   });
 };
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-const flash = (node) => {
-  if (!node) return;
-  node.classList.remove('flash');
-  void node.offsetWidth;
-  node.classList.add('flash');
-};
-
-const updateCount = (key, count, updated) => {
-  const card = $(`[data-hero="${key}"]`);
-  if (card) {
-    $('.big', card).textContent = compact(count);
-    $('.exact', card).textContent = exact(count);
-    if (updated) $('.upd', card).textContent = updated;
-    flash(card);
-  }
-  const row = $(`#db-table tr[data-db="${key}"]`);
-  if (row) {
-    $('[data-col="count"]', row).textContent = exact(count);
-    if (updated) $('[data-col="updated"]', row).textContent = updated;
-    row.classList.add('fresh');
-  }
-  $$(`[data-live="${key}"]`).forEach((n) => { n.firstChild.textContent = exact(count); });
-};
-
-const status = (text) => { $('#live-status').textContent = text; };
-
-const refresh = async () => {
-  const btn = $('#refresh');
-  btn.disabled = true;
-  const order = [...new Set([...HERO.map(([k]) => k).filter((k) => state.entrez.has(k)), ...state.entrez.keys()])];
-  let ok = 0;
-  for (const [i, db] of order.entries()) {
-    status(`Refreshing ${db} (${i + 1}/${order.length})…`);
-    try {
-      const info = await retry(async () => {
-        const res = await fetch(eutilsUrl('einfo', { db }));
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return parseEinfo(await res.json());
-      }, { tries: 4, wait: 1200 });
-      if (info.count !== null) {
-        Object.assign(state.entrez.get(db), { count: info.count, updated: info.updated });
-        updateCount(db, info.count, info.updated);
-        ok += 1;
-      }
-    } catch {
-      status(`Could not reach E-utilities for ${db}.`);
-    }
-    await sleep(400);
-  }
-  try {
-    const res = await fetch('https://clinicaltrials.gov/api/v2/stats/size');
-    const json = await res.json();
-    state.trials = json.totalStudies;
-    updateCount('trials', state.trials, new Date().toISOString().slice(0, 10));
-  } catch {
-    status('Could not reach ClinicalTrials.gov.');
-  }
-  renderEntrezDek();
-  status(`Live: ${ok}/${order.length} Entrez counts refreshed at ${stamp(new Date().toISOString())}.`);
-  btn.disabled = false;
-};
-
 const init = () => {
   initTheme();
   renderStamp();
@@ -636,7 +572,6 @@ const init = () => {
   $('#timeline-tags').addEventListener('click', toggleChip(state.tags, 'data-tag'));
   $('#timeline-orgs').addEventListener('click', toggleChip(state.orgs, 'data-org'));
   $('#shuffle').addEventListener('click', shuffle);
-  $('#refresh').addEventListener('click', refresh);
 };
 
 init();
