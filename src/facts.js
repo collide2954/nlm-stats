@@ -294,3 +294,44 @@ export const EXAMPLES = [
   e('txid9606', 'Homo sapiens'),
   e('GeneID:7157', 'TP53, chromosome 17'),
 ];
+
+export const DIVISIONS = {
+  PRI: 'Primate',
+  ROD: 'Rodent',
+  MAM: 'Other mammalian',
+  VRT: 'Other vertebrate',
+  INV: 'Invertebrate',
+  PLN: 'Plant, fungal and algal',
+  BCT: 'Bacterial',
+  VRL: 'Viral',
+  PHG: 'Bacteriophage',
+  SYN: 'Synthetic',
+  UNA: 'Unannotated',
+  EST: 'Expressed Sequence Tags',
+  PAT: 'Patent',
+  STS: 'Sequence Tagged Sites',
+  GSS: 'Genome Survey Sequences',
+  HTG: 'High Throughput Genomic',
+  HTC: 'High Throughput cDNA',
+  ENV: 'Environmental sampling',
+  CON: 'Constructed',
+  TSA: 'Transcriptome Shotgun Assembly',
+};
+
+const fy = (year, articles, sessions) => ({ fy: year, articles, sessions });
+
+export const PMC_YEARS = [
+  fy(2013, 2859268, 834000),
+  fy(2014, 3227379, 886000),
+  fy(2015, 3623566, 1200000),
+  fy(2016, 4054283, 1300000),
+  fy(2017, 4553343, 2100000),
+  fy(2018, 5107590, 2400000),
+  fy(2019, 5725819, 2600000),
+  fy(2020, 6471176, 3400000),
+  fy(2021, 7383455, 3100000),
+  fy(2022, 8386512, 3200000),
+  fy(2023, 9407149, 3800000),
+  fy(2024, 10307502, 4400000),
+  fy(2025, 11327616, 3800000),
+];
