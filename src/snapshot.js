@@ -1,5 +1,5 @@
 export default {
-  "generated": "2026-11-03T22:34:21.041Z",
+  "generated": "2026-11-03T23:45:30.968Z",
   "entrez": [
     {
       "db": "pubmed",
@@ -1367,7 +1367,7 @@ export default {
         "Miller W"
       ],
       "authorCount": 5,
-      "citedBy": 40937
+      "citedBy": 40945
     },
     {
       "pmid": "9254694",
@@ -1381,7 +1381,7 @@ export default {
         "Schäffer AA"
       ],
       "authorCount": 7,
-      "citedBy": 28739
+      "citedBy": 28741
     },
     {
       "pmid": "8743683",
@@ -1491,7 +1491,7 @@ export default {
         "Riley GR"
       ],
       "authorCount": 7,
-      "citedBy": 2255
+      "citedBy": 2256
     },
     {
       "pmid": "26400175",
@@ -13380,11 +13380,11 @@ export default {
       },
       {
         "year": 2010,
-        "count": 847902
+        "count": 847907
       },
       {
         "year": 2011,
-        "count": 904486
+        "count": 904487
       },
       {
         "year": 2012,
@@ -13412,7 +13412,7 @@ export default {
       },
       {
         "year": 2018,
-        "count": 1020557
+        "count": 1020570
       },
       {
         "year": 2019,
@@ -13440,7 +13440,7 @@ export default {
       },
       {
         "year": 2025,
-        "count": 1094407
+        "count": 1094430
       }
     ],
     "animals": [
@@ -15559,422 +15559,422 @@ export default {
       {
         "id": "women",
         "label": "Women only",
-        "term": "humans[mh] AND female[mh] NOT male[mh]",
+        "term": "humans[mh] AND female[mh] NOT male[mh] NOT case reports[pt]",
         "years": [
           {
             "year": 1975,
-            "count": 20815
+            "count": 15801
           },
           {
             "year": 1976,
-            "count": 21628
+            "count": 13282
           },
           {
             "year": 1977,
-            "count": 22534
+            "count": 13343
           },
           {
             "year": 1978,
-            "count": 23378
+            "count": 13740
           },
           {
             "year": 1979,
-            "count": 25167
+            "count": 15012
           },
           {
             "year": 1980,
-            "count": 25159
+            "count": 14612
           },
           {
             "year": 1981,
-            "count": 25521
+            "count": 14594
           },
           {
             "year": 1982,
-            "count": 26477
+            "count": 14874
           },
           {
             "year": 1983,
-            "count": 27521
+            "count": 15536
           },
           {
             "year": 1984,
-            "count": 29032
+            "count": 16509
           },
           {
             "year": 1985,
-            "count": 30268
+            "count": 17283
           },
           {
             "year": 1986,
-            "count": 30619
+            "count": 17480
           },
           {
             "year": 1987,
-            "count": 31643
+            "count": 18068
           },
           {
             "year": 1988,
-            "count": 33060
+            "count": 18982
           },
           {
             "year": 1989,
-            "count": 35588
+            "count": 20710
           },
           {
             "year": 1990,
-            "count": 35685
+            "count": 21180
           },
           {
             "year": 1991,
-            "count": 35076
+            "count": 20827
           },
           {
             "year": 1992,
-            "count": 35574
+            "count": 21086
           },
           {
             "year": 1993,
-            "count": 37428
+            "count": 22404
           },
           {
             "year": 1994,
-            "count": 37355
+            "count": 22712
           },
           {
             "year": 1995,
-            "count": 38686
+            "count": 23580
           },
           {
             "year": 1996,
-            "count": 39730
+            "count": 24586
           },
           {
             "year": 1997,
-            "count": 40566
+            "count": 25404
           },
           {
             "year": 1998,
-            "count": 42070
+            "count": 26154
           },
           {
             "year": 1999,
-            "count": 42702
+            "count": 26532
           },
           {
             "year": 2000,
-            "count": 44911
+            "count": 28447
           },
           {
             "year": 2001,
-            "count": 45974
+            "count": 28886
           },
           {
             "year": 2002,
-            "count": 47029
+            "count": 29738
           },
           {
             "year": 2003,
-            "count": 50303
+            "count": 31730
           },
           {
             "year": 2004,
-            "count": 52534
+            "count": 33759
           },
           {
             "year": 2005,
-            "count": 57661
+            "count": 36833
           },
           {
             "year": 2006,
-            "count": 61386
+            "count": 38882
           },
           {
             "year": 2007,
-            "count": 64742
+            "count": 40916
           },
           {
             "year": 2008,
-            "count": 68155
+            "count": 43070
           },
           {
             "year": 2009,
-            "count": 71546
+            "count": 46142
           },
           {
             "year": 2010,
-            "count": 76046
+            "count": 50175
           },
           {
             "year": 2011,
-            "count": 80964
+            "count": 54399
           },
           {
             "year": 2012,
-            "count": 84216
+            "count": 57245
           },
           {
             "year": 2013,
-            "count": 86567
+            "count": 59460
           },
           {
             "year": 2014,
-            "count": 89293
+            "count": 62376
           },
           {
             "year": 2015,
-            "count": 90248
+            "count": 64757
           },
           {
             "year": 2016,
-            "count": 86287
+            "count": 62551
           },
           {
             "year": 2017,
-            "count": 84658
+            "count": 60999
           },
           {
             "year": 2018,
-            "count": 87255
+            "count": 64027
           },
           {
             "year": 2019,
-            "count": 92231
+            "count": 68979
           },
           {
             "year": 2020,
-            "count": 101691
+            "count": 79912
           },
           {
             "year": 2021,
-            "count": 108360
+            "count": 89841
           },
           {
             "year": 2022,
-            "count": 101286
+            "count": 89263
           },
           {
             "year": 2023,
-            "count": 93121
+            "count": 82270
           },
           {
             "year": 2024,
-            "count": 87718
+            "count": 75481
           },
           {
             "year": 2025,
-            "count": 86845
+            "count": 74834
           }
         ]
       },
       {
         "id": "men",
         "label": "Men only",
-        "term": "humans[mh] AND male[mh] NOT female[mh]",
+        "term": "humans[mh] AND male[mh] NOT female[mh] NOT case reports[pt]",
         "years": [
           {
             "year": 1975,
-            "count": 17909
+            "count": 11938
           },
           {
             "year": 1976,
-            "count": 18703
+            "count": 8617
           },
           {
             "year": 1977,
-            "count": 19337
+            "count": 8538
           },
           {
             "year": 1978,
-            "count": 19821
+            "count": 8572
           },
           {
             "year": 1979,
-            "count": 20727
+            "count": 8989
           },
           {
             "year": 1980,
-            "count": 21791
+            "count": 9603
           },
           {
             "year": 1981,
-            "count": 22187
+            "count": 9180
           },
           {
             "year": 1982,
-            "count": 23247
+            "count": 9836
           },
           {
             "year": 1983,
-            "count": 25000
+            "count": 10624
           },
           {
             "year": 1984,
-            "count": 26428
+            "count": 11458
           },
           {
             "year": 1985,
-            "count": 26519
+            "count": 11260
           },
           {
             "year": 1986,
-            "count": 26462
+            "count": 10920
           },
           {
             "year": 1987,
-            "count": 27817
+            "count": 11495
           },
           {
             "year": 1988,
-            "count": 28781
+            "count": 12147
           },
           {
             "year": 1989,
-            "count": 29141
+            "count": 12242
           },
           {
             "year": 1990,
-            "count": 29618
+            "count": 12613
           },
           {
             "year": 1991,
-            "count": 28767
+            "count": 12416
           },
           {
             "year": 1992,
-            "count": 28738
+            "count": 12151
           },
           {
             "year": 1993,
-            "count": 30032
+            "count": 13276
           },
           {
             "year": 1994,
-            "count": 29843
+            "count": 13206
           },
           {
             "year": 1995,
-            "count": 30368
+            "count": 13620
           },
           {
             "year": 1996,
-            "count": 31267
+            "count": 14112
           },
           {
             "year": 1997,
-            "count": 31333
+            "count": 14180
           },
           {
             "year": 1998,
-            "count": 32337
+            "count": 14377
           },
           {
             "year": 1999,
-            "count": 31985
+            "count": 14206
           },
           {
             "year": 2000,
-            "count": 33519
+            "count": 15109
           },
           {
             "year": 2001,
-            "count": 33829
+            "count": 15045
           },
           {
             "year": 2002,
-            "count": 34648
+            "count": 15604
           },
           {
             "year": 2003,
-            "count": 37121
+            "count": 17197
           },
           {
             "year": 2004,
-            "count": 38693
+            "count": 18332
           },
           {
             "year": 2005,
-            "count": 42063
+            "count": 19785
           },
           {
             "year": 2006,
-            "count": 45592
+            "count": 20981
           },
           {
             "year": 2007,
-            "count": 48867
+            "count": 22828
           },
           {
             "year": 2008,
-            "count": 50804
+            "count": 23360
           },
           {
             "year": 2009,
-            "count": 52415
+            "count": 24691
           },
           {
             "year": 2010,
-            "count": 54865
+            "count": 26777
           },
           {
             "year": 2011,
-            "count": 59252
+            "count": 29929
           },
           {
             "year": 2012,
-            "count": 61572
+            "count": 31515
           },
           {
             "year": 2013,
-            "count": 64205
+            "count": 33814
           },
           {
             "year": 2014,
-            "count": 65077
+            "count": 35215
           },
           {
             "year": 2015,
-            "count": 62917
+            "count": 34736
           },
           {
             "year": 2016,
-            "count": 59526
+            "count": 32913
           },
           {
             "year": 2017,
-            "count": 58518
+            "count": 32036
           },
           {
             "year": 2018,
-            "count": 58466
+            "count": 32668
           },
           {
             "year": 2019,
-            "count": 59393
+            "count": 33704
           },
           {
             "year": 2020,
-            "count": 61209
+            "count": 37342
           },
           {
             "year": 2021,
-            "count": 59424
+            "count": 40591
           },
           {
             "year": 2022,
-            "count": 43967
+            "count": 32428
           },
           {
             "year": 2023,
-            "count": 39011
+            "count": 28662
           },
           {
             "year": 2024,
-            "count": 45988
+            "count": 32637
           },
           {
             "year": 2025,
-            "count": 48933
+            "count": 36212
           }
         ]
       }
@@ -16018,7 +16018,7 @@ export default {
           "term": "child[mh:noexp]",
           "counts": {
             "2005": 38501,
-            "2025": 66865
+            "2025": 66866
           }
         },
         {
@@ -16027,7 +16027,7 @@ export default {
           "term": "adolescent[mh]",
           "counts": {
             "2005": 48986,
-            "2025": 92864
+            "2025": 92868
           }
         },
         {
@@ -16036,7 +16036,7 @@ export default {
           "term": "\"young adult\"[mh]",
           "counts": {
             "2005": 645,
-            "2025": 115577
+            "2025": 115580
           }
         },
         {
@@ -16045,7 +16045,7 @@ export default {
           "term": "adult[mh:noexp]",
           "counts": {
             "2005": 130490,
-            "2025": 299416
+            "2025": 299429
           }
         },
         {
@@ -16054,7 +16054,7 @@ export default {
           "term": "\"middle aged\"[mh]",
           "counts": {
             "2005": 114455,
-            "2025": 297537
+            "2025": 297546
           }
         },
         {
@@ -16063,7 +16063,7 @@ export default {
           "term": "aged[mh:noexp]",
           "counts": {
             "2005": 83807,
-            "2025": 218455
+            "2025": 218456
           }
         },
         {
@@ -16185,7 +16185,7 @@ export default {
           },
           {
             "year": 2025,
-            "count": 39920
+            "count": 39922
           }
         ]
       },
@@ -16747,60 +16747,60 @@ export default {
     ]
   },
   "trialfate": {
-    "terminated": 34649,
+    "terminated": 30078,
     "stops": {
-      "total": 31096,
-      "industry": 10386,
-      "notSafety": 1246,
-      "unclassified": 7779,
+      "total": 27098,
+      "industry": 9256,
+      "notSafety": 1152,
+      "unclassified": 6578,
       "reasons": [
         {
           "id": "enrollment",
           "label": "Enrollment or accrual",
-          "count": 12973,
-          "industry": 2698
+          "count": 11361,
+          "industry": 2298
         },
         {
           "id": "business",
           "label": "Sponsor or business decision",
-          "count": 4849,
-          "industry": 3834
+          "count": 4395,
+          "industry": 3495
         },
         {
           "id": "funding",
           "label": "Funding",
-          "count": 2565,
-          "industry": 209
-        },
-        {
-          "id": "investigator",
-          "label": "Investigator left",
-          "count": 1856,
-          "industry": 91
+          "count": 2206,
+          "industry": 169
         },
         {
           "id": "covid",
           "label": "COVID-19",
-          "count": 1753,
-          "industry": 304
+          "count": 1498,
+          "industry": 255
+        },
+        {
+          "id": "investigator",
+          "label": "Investigator left",
+          "count": 1438,
+          "industry": 73
         },
         {
           "id": "efficacy",
           "label": "Futility or no efficacy",
-          "count": 1458,
-          "industry": 814
+          "count": 1423,
+          "industry": 803
         },
         {
           "id": "safety",
           "label": "Safety or toxicity",
-          "count": 867,
-          "industry": 392
+          "count": 838,
+          "industry": 379
         },
         {
           "id": "supply",
           "label": "Drug or device supply",
-          "count": 375,
-          "industry": 80
+          "count": 347,
+          "industry": 65
         }
       ]
     },
