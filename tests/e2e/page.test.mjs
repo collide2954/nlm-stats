@@ -557,3 +557,29 @@ test('sources are titled and grouped, not bare URLs', async () => {
   assert.deepEqual(texts.filter((t) => /^(https?:|www\.|[a-z0-9.-]+\.(gov|org|com)\/)/.test(t)), []);
   await page.close();
 });
+
+test('the data behind the page can be downloaded and cited', async () => {
+  const { page } = await open();
+  const href = await page.getAttribute('#data-use a[href$="snapshot.json"]', 'href');
+  const json = await (await page.request.get(new URL(href, page.url()).href)).json();
+  assert.equal(json.generated, snapshot.generated);
+  assert.ok(await page.locator('#data-use a[href="https://github.com/collide2954/nlm-stats"]').count());
+  assert.match(await page.textContent('#data-use'), /Cite as:.*https:\/\/collide2954\.github\.io\/nlm-stats\//);
+  await page.close();
+});
+
+test('shared links get a title, description and preview image', async () => {
+  const { page } = await open();
+  const meta = (sel) => page.getAttribute(sel, 'content');
+  assert.equal(await meta('meta[property="og:title"]'), 'NLM & NCBI in Numbers');
+  assert.ok((await meta('meta[property="og:description"]')).length > 40);
+  assert.equal(await meta('meta[property="og:url"]'), 'https://collide2954.github.io/nlm-stats/');
+  const image = await meta('meta[property="og:image"]');
+  assert.equal(image, 'https://collide2954.github.io/nlm-stats/og.png');
+  assert.equal(await meta('meta[name="twitter:card"]'), 'summary_large_image');
+  const res = await page.request.get(new URL('og.png', page.url()).href);
+  assert.equal(res.status(), 200);
+  const png = await res.body();
+  assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], [1200, 630]);
+  await page.close();
+});
