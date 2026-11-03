@@ -87,3 +87,9 @@ test('easeOut eases toward one', () => {
   assert.equal(easeOut(1), 1);
   assert.equal(easeOut(0.5), 0.875);
 });
+
+test('waffle always fills every cell when several parts round down', () => {
+  const cells = waffle([1, 1, 1, 1, 1, 1].map((value, key) => ({ key, value })));
+  assert.equal(cells.length, 100);
+  assert.deepEqual([0, 1, 2, 3, 4, 5].map((k) => cells.filter((c) => c === k).length), [17, 17, 17, 17, 16, 16]);
+});
