@@ -18,13 +18,14 @@ const UNITS = [
 export const compact = (v) => {
   const n = toNumber(v);
   if (!Number.isFinite(n)) return '—';
-  for (const [size, unit] of UNITS) {
+  const scaledBy = (size) => Math.round((n / size) * 10) / 10;
+  for (const [i, [size, unit]] of UNITS.entries()) {
     if (Math.abs(n) >= size) {
-      const scaled = Math.round((n / size) * 10) / 10;
-      return `${scaled}${unit}`;
+      const scaled = scaledBy(size);
+      return Math.abs(scaled) >= 1000 && i > 0 ? `${scaledBy(UNITS[i - 1][0])}${UNITS[i - 1][1]}` : `${scaled}${unit}`;
     }
   }
-  return String(Math.round(n));
+  return Math.abs(Math.round(n)) >= 1000 ? `${scaledBy(1e3)}K` : String(Math.round(n));
 };
 
 export const pct = (ratio) => {
@@ -226,6 +227,10 @@ export const searchUrl = (db, term) => {
   return term ? `${home}?term=${encodeURIComponent(term)}` : db === 'pmc' ? 'https://pmc.ncbi.nlm.nih.gov/' : home;
 };
 
+const EUTILS_ONLY = new Set(['annotinfo', 'blastdbinfo', 'grasp', 'orgtrack', 'seqannot']);
+
+export const dbHome = (db) => (EUTILS_ONLY.has(db) ? `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi?db=${db}` : searchUrl(db));
+
 export const eutilsUrl = (tool, params) => {
   const query = Object.entries({ ...params, retmode: 'json' })
     .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
@@ -393,7 +398,8 @@ export const liveOddities = (snap) => {
   }
   const early = ex?.trials?.earliest;
   if (early && yearOf(early.date) < ex.trials.longAgo.year) {
-    add(`${early.id}, a ${early.status.toLowerCase()} study, gives its start date as ${longDate(early.date)}. It was first posted in ${yearOf(early.posted)}.`,
+    const status = (snap.clinicaltrials?.labels?.OverallStatus?.[early.status] ?? labelize(early.status)).toLowerCase();
+    add(`${early.id}, ${/^[aeiou]/.test(status) ? 'an' : 'a'} ${status} study, gives its start date as ${longDate(early.date)}. It was first posted in ${yearOf(early.posted)}.`,
       `${CT}/study/${early.id}`);
   }
   const late = ex?.trials;
@@ -416,8 +422,8 @@ export const liveOddities = (snap) => {
   }
   const topCondition = ct.fields?.Condition?.top?.[0];
   if (topCondition?.value === 'Healthy') {
-    add(`"Healthy" is the most listed condition on ClinicalTrials.gov, in ${exact(topCondition.count)} studies.`,
-      `${CT}/search?cond=Healthy`);
+    add(`"Healthy" is the most listed condition on ClinicalTrials.gov: ${exact(topCondition.count)} studies give it, word for word.`,
+      `${CT}/api/v2/stats/field/values?fields=Condition`);
   }
   const vus = itemCount(snap, 'clinvar', 'cv-vus');
   const path = itemCount(snap, 'clinvar', 'cv-path');
