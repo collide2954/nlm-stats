@@ -139,10 +139,6 @@ const hover = (root, lookup, { axis } = {}) => {
     if (event.pointerType === 'mouse' && !tip.pinned) tip.hide();
   });
   root.addEventListener('click', (event) => {
-    if (root.dataset.dragged === '1') {
-      root.dataset.dragged = '';
-      return;
-    }
     const mark = resolve(event);
     if (!mark) return;
     event.stopPropagation();
@@ -572,33 +568,6 @@ export const timeline = ({ mount, events, people, projects, limits, onSelect, on
       if (type === 'person') return tipLines(people[i].name, `${people[i].role}, ${people[i].org}, ${people[i].from}–${people[i].to ?? 'now'}`);
       return tipLines(String(projects[i].since), `${projects[i].name} (${projects[i].org})`);
     });
-    let drag = null;
-    svg.addEventListener('pointerdown', (event) => {
-      drag = { x: event.clientX, d: [...domain], moved: false };
-      svg.setPointerCapture(event.pointerId);
-    });
-    svg.addEventListener('pointermove', (event) => {
-      if (!drag) return;
-      const dx = event.clientX - drag.x;
-      if (Math.abs(dx) > 6) drag.moved = true;
-      if (!drag.moved) return;
-      svg.dataset.dragged = '1';
-      const perPx = (drag.d[1] - drag.d[0]) / svg.getBoundingClientRect().width;
-      domain = panDomain(drag.d, -dx * perPx, limits);
-      tip.hide();
-      redraw();
-    });
-    svg.addEventListener('pointerup', (event) => {
-      const moved = drag?.moved;
-      drag = null;
-      if (moved) return;
-      const hit = nearestMark(svg, event.clientX, event.clientY);
-      if (!hit) return;
-      const [type, i] = hit.dataset.k.split(':');
-      selected = { type, i: Number(i) };
-      onSelect(type, Number(i));
-      redraw();
-    });
     svg.addEventListener('wheel', (event) => {
       if (!event.ctrlKey && !event.metaKey) return;
       event.preventDefault();
@@ -614,6 +583,46 @@ export const timeline = ({ mount, events, people, projects, limits, onSelect, on
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(draw);
   };
+  let drag = null;
+  let justDragged = false;
+  mount.addEventListener('pointerdown', (event) => {
+    drag = { x: event.clientX, d: [...domain], moved: false };
+    mount.setPointerCapture?.(event.pointerId);
+  });
+  mount.addEventListener('pointermove', (event) => {
+    if (!drag) return;
+    const dx = event.clientX - drag.x;
+    if (Math.abs(dx) > 6) drag.moved = true;
+    if (!drag.moved) return;
+    const perPx = (drag.d[1] - drag.d[0]) / mount.getBoundingClientRect().width;
+    domain = panDomain(drag.d, -dx * perPx, limits);
+    tip.hide();
+    redraw();
+  });
+  const release = (event) => {
+    const moved = drag?.moved;
+    drag = null;
+    if (moved) {
+      justDragged = true;
+      return;
+    }
+    if (event.type !== 'pointerup') return;
+    const svg = mount.querySelector('svg');
+    const hit = svg && nearestMark(svg, event.clientX, event.clientY);
+    if (!hit) return;
+    const [type, i] = hit.dataset.k.split(':');
+    selected = { type, i: Number(i) };
+    onSelect(type, Number(i));
+    redraw();
+  };
+  mount.addEventListener('pointerup', release);
+  mount.addEventListener('pointercancel', release);
+  mount.addEventListener('click', (event) => {
+    if (!justDragged) return;
+    justDragged = false;
+    event.stopPropagation();
+    event.preventDefault();
+  }, true);
   draw();
   const animateTo = (target) => {
     const from = [...domain];
