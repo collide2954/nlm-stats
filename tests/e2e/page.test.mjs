@@ -4,7 +4,9 @@ import { createRequire } from 'node:module';
 import { start } from '../../scripts/serve.mjs';
 import snapshot from '../../src/snapshot.js';
 import { TIMELINE, PROJECTS, ODDITIES, PEOPLE, APIS, CADENCES } from '../../src/facts.js';
-import { exact, liveOddities, sortRows } from '../../src/lib.js';
+import {
+  exact, liveOddities, sortRows, doublingMonths, medianBand,
+} from '../../src/lib.js';
 import { findings } from '../../src/findings.js';
 import {
   ICS, METHODS, GROWTH, COUNTRIES, GENES, VOCAB, SUBJECTS, RETRACTED, CLASSICS,
@@ -489,5 +491,24 @@ test('the countries popup states the real gap between the two years', async () =
   await row.click();
   const [y0, y1] = Object.keys(snapshot.countries[0].counts).map(Number);
   assert.match(await page.textContent('#tip'), new RegExp(`in ${y1 - y0} years`));
+  await page.close();
+});
+
+test('captions carry the caveats a careful reader needs', async () => {
+  const { page } = await open();
+  const text = (sel) => page.textContent(sel);
+  assert.match(await text('#papers .dek'), /may be incomplete/);
+  assert.match(await text('#extremes figure:last-of-type figcaption'), /Cited by/);
+  assert.match(await text('#machine figure:last-of-type figcaption'), /not endorsing/);
+  assert.match(await text('#methods figcaption'), /automated in April 2022/);
+  const gb = snapshot.genbank;
+  const months = Math.round(doublingMonths(Date.parse(gb.firstRelease.date), gb.firstRelease.bases, Date.parse(gb.date), gb.traditional.bases));
+  assert.match(await text('#gb-dek'), new RegExp(`doubled about every ${months} months`));
+  const band = medianBand(snapshot.clinicaltrials.enrollmentBands);
+  assert.match(await text('#enrollment-caption'), new RegExp(`median study plans ${band.from} to ${band.to}`));
+  assert.match(await text('#trials figure:first-of-type figcaption'), /applicable clinical trials/);
+  assert.doesNotMatch(await text('#timeline-list'), /scheduled start/);
+  assert.match(await text('#records'), /intramural/);
+  assert.match(await text('#subjects'), /Case reports are left out/);
   await page.close();
 });
