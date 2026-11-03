@@ -62,3 +62,19 @@ test('every decoder example is recognised', () => {
     assert.ok(e.is.length > 2, e.id);
   }
 });
+
+test('every GenBank division in the snapshot has a name', async () => {
+  const { DIVISIONS } = await import('../../src/facts.js');
+  const { default: snapshot } = await import('../../src/snapshot.js');
+  for (const d of snapshot.genbank.divisions) assert.ok(DIVISIONS[d.code], d.code);
+});
+
+test('PMC growth runs FY13 to FY25 in order', async () => {
+  const { PMC_YEARS } = await import('../../src/facts.js');
+  assert.equal(PMC_YEARS[0].fy, 2013);
+  assert.equal(PMC_YEARS.at(-1).fy, 2025);
+  for (let i = 1; i < PMC_YEARS.length; i += 1) {
+    assert.equal(PMC_YEARS[i].fy, PMC_YEARS[i - 1].fy + 1);
+    assert.ok(PMC_YEARS[i].articles > PMC_YEARS[i - 1].articles);
+  }
+});
