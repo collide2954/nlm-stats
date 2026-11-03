@@ -20,6 +20,12 @@ const GBREL = `GBREL.TXT          Genetic Sequence Data Bank
   269895537 sequences,  9384961284424 bases, for traditional GenBank records
  6736062960 sequences, 56003937587326 bases, for set-based (WGS/TSA/TLS) records
 
+TABLE OF CONTENTS
+
+     2.2.6 Per-Division Statistics 
+     2.2.7 Selected Per-Organism Statistics 
+     2.2.8 Growth of GenBank
+
 2.2.6 Per-Division Statistics
 
 Division     Entries    Bases
@@ -44,6 +50,7 @@ Release      Date     Base Pairs   Entries
 
     3    Dec 1982         680338       606
    14    Nov 1983        2274029      2427
+   57.1  Oct 1988       23800000     20579
   n/a    Feb 2024 n/a             n/a         No GenBank Release delivered in Feb 2024
   227   Aug 2018   260806936411   208831050 (Section 1.3.1 explains decrease)
   271	 Apr 2026 45628511953497  4756526485
@@ -112,8 +119,9 @@ test('parseGrowth splits growth tables and skips n/a rows', () => {
   const tables = parseGrowth(GBREL);
   assert.equal(tables.length, 2);
   assert.deepEqual(tables[0][0], { release: 3, date: 'Dec 1982', bases: 680338, entries: 606 });
-  assert.equal(tables[0].length, 4);
-  assert.deepEqual(tables[0][3], { release: 271, date: 'Apr 2026', bases: 45628511953497, entries: 4756526485 });
+  assert.equal(tables[0].length, 5);
+  assert.deepEqual(tables[0][2], { release: 57.1, date: 'Oct 1988', bases: 23800000, entries: 20579 });
+  assert.deepEqual(tables[0][4], { release: 271, date: 'Apr 2026', bases: 45628511953497, entries: 4756526485 });
   assert.equal(tables[1].length, 2);
 });
 
