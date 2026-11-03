@@ -77,3 +77,28 @@ test('findings use a common name when one is known', () => {
   named.genbank.organisms[0].common = 'bread wheat';
   assert.equal(findings(named).genbank, 'Bread wheat tops GenBank by bases. Humans rank 3rd');
 });
+
+test('findings for growth, access, geography, genes and variants', () => {
+  const more = structuredClone(fixture);
+  more.pubmed.years = [{ year: 2015, count: 1000000 }, { year: 2025, count: 1882376 }, { year: 2026, count: 5 }];
+  more.growth = [
+    { label: 'SRA', years: [{ year: 2015, count: 100 }, { year: 2025, count: 900 }] },
+    { label: 'Gene', years: [{ year: 2015, count: 100 }, { year: 2025, count: 200 }] },
+  ];
+  more.access = [{ id: 'free', years: [{ year: 2025, count: 941188 }] }];
+  more.countries = [
+    { name: 'United States', counts: { 2015: 300, 2025: 354005 } },
+    { name: 'China', counts: { 2015: 100, 2025: 502433 } },
+  ];
+  more.funding.nihStates = [{ key: 'CA', dollars: 5e9 }, { key: 'MD', dollars: 4e9 }];
+  more.genes = [{ symbol: 'TNF', pubmed: 30000 }, { symbol: 'TP53', pubmed: 12000 }];
+  more.entrez.push({ db: 'clinvar', name: 'ClinVar', count: 4708791 });
+  more.groups.push(group('cv-review', [['rv-single', 3350007]]));
+  const f = findings(more);
+  assert.equal(f.growth, 'SRA grew 9-fold between 2015 and 2025');
+  assert.equal(f.access, '50% of papers dated 2025 are free to read');
+  assert.equal(f.geography, 'Authors in China appear on 502,433 papers dated 2025, the most of any country');
+  assert.equal(f.states, 'California draws the most NIH award dollars: $5B');
+  assert.equal(f.genes, 'TNF is linked to 30,000 PubMed records, the most of 2 genes here');
+  assert.equal(f.variants, '71.1% of ClinVar records rest on a single submitter');
+});
