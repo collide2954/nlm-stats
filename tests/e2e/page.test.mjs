@@ -8,7 +8,7 @@ import { exact, liveOddities, sortRows } from '../../src/lib.js';
 import { findings } from '../../src/findings.js';
 import { ICS, METHODS } from '../../src/queries.js';
 
-const { chromium } = createRequire(import.meta.url)('playwright');
+const { chromium, devices } = createRequire(import.meta.url)('playwright');
 
 let server;
 let browser;
@@ -23,6 +23,22 @@ const open = async ({ width = 1280, height = 900, search = '', motion = 'reduce'
   await page.goto(`${base}${search}`);
   await page.waitForSelector('#entrez-chart [data-db]', { state: 'attached' });
   return { page, errors };
+};
+
+const openPhone = async () => {
+  const context = await browser.newContext({ ...devices['iPhone 13'], reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) => route.abort());
+  await page.goto(base);
+  await page.waitForSelector('#entrez-chart [data-db]', { state: 'attached' });
+  return { page, context };
+};
+
+const tapAt = async (page, selector, fx = 0.5, fy = 0.5) => {
+  await page.locator(selector).scrollIntoViewIfNeeded();
+  const box = await page.locator(selector).boundingBox();
+  await page.touchscreen.tap(box.x + box.width * fx, box.y + box.height * fy);
+  await page.waitForTimeout(250);
 };
 
 before(async () => {
@@ -221,6 +237,60 @@ test('figures animate in when scrolled into view', async () => {
   await page.locator('[data-hero="pubmed"]').scrollIntoViewIfNeeded();
   const pubmed = snapshot.entrez.find((d) => d.db === 'pubmed').count;
   await page.waitForFunction((v) => document.querySelector('[data-hero="pubmed"]').textContent.trim() === v, exact(pubmed));
+  await page.close();
+});
+
+test('on a phone a tap pins the popup near the nearest bar and it stays', async () => {
+  const { page, context } = await openPhone();
+  await tapAt(page, '#pubmed-chart svg', 0.5, 0.85);
+  assert.equal(await page.isVisible('#tip'), true);
+  await page.waitForTimeout(600);
+  assert.equal(await page.isVisible('#tip'), true);
+  assert.equal(await page.getAttribute('#tip', 'data-pinned'), 'true');
+  assert.match(await page.textContent('#tip'), /\d{4}/);
+  assert.ok(await page.locator('#tip a[href*="pubmed.ncbi.nlm.nih.gov"]').count() >= 1);
+  const tip = await page.locator('#tip').boundingBox();
+  const vw = page.viewportSize().width;
+  assert.ok(tip.x >= 0 && tip.x + tip.width <= vw, `tip ${tip.x}+${tip.width} outside ${vw}`);
+  await context.close();
+});
+
+test('on a phone tapping a dot plot row opens a popup with the link, not a new tab', async () => {
+  const { page, context } = await openPhone();
+  const opened = [];
+  context.on('page', (p) => opened.push(p));
+  await tapAt(page, '#entrez-chart [data-db="gene"]', 0.6, 0.5);
+  assert.equal(opened.length, 0);
+  assert.equal(await page.isVisible('#tip'), true);
+  assert.match(await page.textContent('#tip'), /Gene/);
+  assert.ok(await page.locator('#tip a[href="https://www.ncbi.nlm.nih.gov/gene/"]').count() === 1);
+  await context.close();
+});
+
+test('on a phone a tap outside closes the popup and it scrolls with the page', async () => {
+  const { page, context } = await openPhone();
+  await tapAt(page, '#ic-treemap [data-ic="NCI"]');
+  const chartTop = await page.evaluate(() => document.querySelector('#ic-treemap').getBoundingClientRect().top);
+  const tipTop = await page.evaluate(() => document.querySelector('#tip').getBoundingClientRect().top);
+  await page.evaluate(() => window.scrollBy(0, 120));
+  await page.waitForTimeout(150);
+  const chartTop2 = await page.evaluate(() => document.querySelector('#ic-treemap').getBoundingClientRect().top);
+  const tipTop2 = await page.evaluate(() => document.querySelector('#tip').getBoundingClientRect().top);
+  assert.ok(Math.abs((tipTop2 - chartTop2) - (tipTop - chartTop)) < 2, 'popup moved relative to its chart');
+  await tapAt(page, '#funding .dek', 0.5, 0.5);
+  assert.equal(await page.isVisible('#tip'), false);
+  await context.close();
+});
+
+test('on desktop hover previews, click pins and Escape closes', async () => {
+  const { page } = await open();
+  await page.hover('#funding-chart [data-fy="2010"]');
+  assert.equal(await page.isVisible('#tip'), true);
+  assert.notEqual(await page.getAttribute('#tip', 'data-pinned'), 'true');
+  await page.click('#funding-chart [data-fy="2010"]');
+  assert.equal(await page.getAttribute('#tip', 'data-pinned'), 'true');
+  await page.keyboard.press('Escape');
+  assert.equal(await page.isVisible('#tip'), false);
   await page.close();
 });
 
