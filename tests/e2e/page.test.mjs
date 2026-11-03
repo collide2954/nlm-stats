@@ -384,7 +384,7 @@ test('who gets studied draws animals, sex, ages and outbreaks', async () => {
   assert.equal(await page.locator('#mice-rats path.line').count(), 2);
   assert.equal(await page.locator('#sex-chart path.line').count(), 2);
   assert.equal(await page.locator('#ages-chart [data-row]').count(), SUBJECTS.ages.list.length);
-  assert.equal(await page.locator('#outbreak-chart path.line').count(), SUBJECTS.outbreaks.list.length);
+  assert.equal(await page.locator('#outbreak-multiples .panel').count(), SUBJECTS.outbreaks.list.length);
   assert.equal((await page.textContent('[data-finding="sex"]')).trim(), f.sex);
   assert.equal((await page.textContent('[data-finding="outbreaks"]')).trim(), f.outbreaks);
   await page.close();
@@ -425,4 +425,14 @@ test('new charts open pinned popups with links on a phone', async () => {
     await page.locator('#sources h2').tap();
   }
   await context.close();
+});
+
+test('vocabulary chart stops at the last complete year and sponsor classes read as words', async () => {
+  const { page } = await open();
+  const years = await page.$$eval('#vocab-chart svg text', (ts) => ts.map((t) => t.textContent).filter((s) => /^\d{4}$/.test(s)).map(Number));
+  assert.ok(Math.max(...years) < snapshot.vocab.partial);
+  const labels = await page.$$eval('#sponsor-lag text.lab', (ts) => ts.map((t) => t.textContent));
+  assert.ok(labels.includes('Industry'));
+  assert.ok(labels.every((l) => !/^[A-Z_]+$/.test(l) || l === 'NIH'), labels.join());
+  await page.close();
 });
