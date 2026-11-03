@@ -157,3 +157,6 @@ export const enumLabels = (json) => {
 export const parseTaxonNames = (json) => Object.fromEntries(
   json.result.uids.map((uid) => json.result[uid]).filter((t) => t.commonname).map((t) => [t.scientificname, t.commonname]),
 );
+
+export const parseLinkCount = (json, linkname) =>
+  (json.linksets?.[0]?.linksetdbs ?? []).filter((l) => l.linkname === linkname).reduce((sum, l) => sum + l.links.length, 0);
