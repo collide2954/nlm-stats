@@ -67,6 +67,7 @@ const HERO = [
   ['clinvar', 'ClinVar records'],
   ['taxonomy', 'Taxonomy nodes'],
   ['books', 'Bookshelf records'],
+  ['assembly', 'Genome assemblies'],
   ['trials', 'ClinicalTrials.gov studies'],
 ];
 
@@ -203,14 +204,24 @@ const renderFacet = (id) => {
   const sameDb = items.every((i) => i.db === items[0].db);
   const total = sameDb ? dbCount(items[0].db) : Math.max(...items.map((i) => i.count ?? 0));
   const note = sameDb ? `Share of all ${dbName(items[0].db)} records.` : 'Shares are of the largest bar.';
-  fill('#facet-panel', h('p', { class: 'dek' }, note), h('ul', { class: 'bars' }, items.map((i) => facetRow(i, total))));
+  fill('#facet-panel', h('p', { class: 'dek' }, `${group.title}. ${note}`), h('ul', { class: 'bars' }, items.map((i) => facetRow(i, total))));
+};
+
+const TAB_LABELS = {
+  types: 'Publication type',
+  languages: 'Language',
+  organisms: 'Organism',
+  subsets: 'Subsets',
+  mesh: 'MeSH records',
+  molecular: 'Genes & taxa',
+  clinvar: 'ClinVar',
 };
 
 const renderFacetTabs = () => {
   fill('#facet-tabs', ...snapshot.groups.map((g) => h('button', {
-    type: 'button', role: 'tab', 'data-group': g.id, 'aria-controls': 'facet-panel', 'aria-selected': 'false',
+    type: 'button', role: 'tab', 'data-group': g.id, 'aria-controls': 'facet-panel', 'aria-selected': 'false', title: g.title,
     onclick: () => renderFacet(g.id),
-  }, g.title)));
+  }, TAB_LABELS[g.id] ?? g.title)));
   renderFacet(snapshot.groups[0].id);
 };
 
@@ -224,7 +235,7 @@ const renderPapers = () => {
   fill('#pmc-years', ...PMC_YEARS.map((y) => h('li', {},
     h('span', {}, `FY${String(y.fy).slice(2)}`),
     track(share(y.articles, max)),
-    h('span', { class: 'val' }, exact(y.articles), h('small', {}, `${compact(y.sessions)} sessions/weekday`)))));
+    h('span', { class: 'val' }, exact(y.articles), h('small', {}, `${compact(y.sessions)} sessions/wkday`)))));
 };
 
 const lineChart = ({ series, id, tip, label }) => {
@@ -320,7 +331,9 @@ const renderTrials = () => {
     stat(`${exact(ct.medianBytes)} B`, 'median record size'),
     stat(exact(ct.fields.LocationCountry.unique), 'countries with sites'),
     stat(exact(ct.fields.Condition.unique), 'distinct condition names'),
-    stat(ct.first.id, `lowest NCT number, posted ${ct.first.posted}`));
+    stat(ct.first.id, `lowest NCT number, posted ${ct.first.posted}`),
+    stat(`${(ct.largest[0].bytes / 1e6).toFixed(2)} MB`, `largest record, ${ct.largest[0].id}`),
+    stat(exact(ct.fields.Condition.top[0].count), `studies list "${ct.fields.Condition.top[0].value}", the top condition`));
   fill('#ct-fields', ...CT_FIELDS.map(([key, label, enumish, param]) => {
     const f = ct.fields[key];
     const max = f.top[0].count;
@@ -516,13 +529,23 @@ const store = {
   },
 };
 
+const paintThemeButton = () => {
+  const btn = $('#theme');
+  const isDark = theme() === 'dark';
+  btn.textContent = isDark ? 'Light' : 'Dark';
+  btn.setAttribute('aria-pressed', String(isDark));
+};
+
 const initTheme = () => {
   const saved = store.get(THEME_KEY);
   if (saved) document.documentElement.dataset.theme = saved;
+  paintThemeButton();
+  dark.addEventListener('change', paintThemeButton);
   $('#theme').addEventListener('click', () => {
     const next = theme() === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     store.set(THEME_KEY, next);
+    paintThemeButton();
   });
 };
 
