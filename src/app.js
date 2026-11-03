@@ -4,11 +4,11 @@ import {
 } from './facts.js';
 import {
   exact, compact, pct, identify, searchUrl, matches, filterTimeline, sortRows, labelize, liveOddities,
-  LENSES, readLens, inLens, lensSearch, REFSEQ_PREFIXES, wordy, yearOf,
+  LENSES, readLens, inLens, lensSearch, REFSEQ_PREFIXES, wordy, yearOf, dbHome,
 } from './lib.js';
 import { TYPE_SERIES, ACCESS, EXTREMES } from './queries.js';
 import { US_TILES } from './tiles.js';
-import { findings } from './findings.js';
+import { findings, classicCounts } from './findings.js';
 import {
   columns, dotplot, stackedArea, miniArea, waffle, treemap, lines, timeline, observeFigures, countUp, tipLines,
   tileMap, dumbbell,
@@ -96,14 +96,14 @@ const renderEntrez = () => {
     attr: 'db',
     rowH: 22,
     aria: 'Records per Entrez database, log scale',
-    href: (r) => searchUrl(r.key),
-    linkText: (r) => `Open ${r.label}`,
+    href: (r) => dbHome(r.key),
+    linkText: (r) => (dbHome(r.key).includes('einfo') ? `${r.label} in E-utilities (no web page)` : `Open ${r.label}`),
     describe: (r) => tipLines(exact(r.value), r.label, r.d.description, `Updated ${r.d.updated} · ${r.d.fields} search fields · ${r.d.links} link types`),
   });
   fill('#entrez-table',
     h('thead', {}, h('tr', {}, ['Database', 'Code', 'What', 'Records', 'Updated', 'Fields', 'Links'].map((t) => h('th', { scope: 'col' }, t)))),
     h('tbody', {}, snapshot.entrez.map((d) => h('tr', { 'data-search': `${d.name} ${d.db} ${d.description}` },
-      h('td', {}, ext(searchUrl(d.db), d.name)), h('td', {}, h('code', {}, d.db)), h('td', {}, d.description || '—'),
+      h('td', {}, ext(dbHome(d.db), d.name)), h('td', {}, h('code', {}, d.db)), h('td', {}, d.description || '—'),
       h('td', { class: 'n' }, exact(d.count)), h('td', { class: 'n' }, d.updated), h('td', { class: 'n' }, d.fields), h('td', { class: 'n' }, d.links)))));
 };
 
@@ -534,7 +534,7 @@ const renderGeography = () => {
     rows: sortRows(snapshot.countries.map((c) => ({ key: c.name, label: c.name, a: c.counts[y0], b: c.counts[y1], term: c.term })), 'b', 'desc'),
     years: [y0, y1],
     aria: 'PubMed records by author country',
-    describe: (r) => tipLines(exact(r.b), `${r.label}, ${y1}`, `${exact(r.a)} in ${y0}`, `${(r.b / r.a).toFixed(1)}× in ten years`,
+    describe: (r) => tipLines(exact(r.b), `${r.label}, ${y1}`, `${exact(r.a)} in ${y0}`, `${(r.b / r.a).toFixed(1)}× in ${y1 - y0} years`,
       { href: searchUrl('pubmed', `${r.term} AND ${y1}[dp]`), text: 'Run this query' }),
   });
 };
@@ -708,7 +708,7 @@ const renderSources = () => {
 const SEARCHABLE = [
   '#projects-table tbody tr', '#oddities li', '#entrez-table tbody tr', '#source-list li', '#api-table tbody tr',
   '#cadence-table tbody tr', '#refseq-prefixes tbody tr', '#methods-list li', '#types-multiples .panel', '#growth-multiples .panel',
-  '#animal-multiples .panel', '#records > div',
+  '#animal-multiples .panel', '#outbreak-multiples .panel', '#records > div',
 ];
 
 const applySearch = () => {
@@ -968,7 +968,7 @@ const renderExtremes = () => {
   $('#chrom-caption').textContent = `Human protein-coding genes per chromosome in NCBI Gene. Chromosome ${top.chr} holds ${exact(top.genes)}${y ? `; Y holds ${exact(y.genes)}` : ''}.`;
   dotplot({
     mount: $('#classics-chart'),
-    rows: sortRows(snapshot.classics, 'citedBy', 'desc').map((c) => ({ key: c.pmid, label: c.label, value: c.citedBy, hi: BLAST_PMIDS.has(c.pmid), c })),
+    rows: sortRows(classicCounts(snapshot), 'citedBy', 'desc').map((c) => ({ key: c.pmid, label: c.label, value: c.citedBy, hi: BLAST_PMIDS.has(c.pmid), c })),
     scale: 'linear',
     labelShare: 0.42,
     href: (r) => `https://pubmed.ncbi.nlm.nih.gov/${r.c.pmid}/`,
