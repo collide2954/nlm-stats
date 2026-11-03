@@ -310,6 +310,15 @@ test('access and integrity charts render', async () => {
   await page.close();
 });
 
+test('chart row labels are never cut off', async () => {
+  for (const width of [1280, 375]) {
+    const { page } = await open({ width });
+    const cut = await page.$$eval('.chart text.lab', (ts) => ts.map((t) => t.textContent).filter((s) => s.endsWith('…')));
+    assert.deepEqual(cut, [], `${width}px`);
+    await page.close();
+  }
+});
+
 test('line chart end labels never overlap', async () => {
   for (const width of [1280, 375]) {
     const { page } = await open({ width });
