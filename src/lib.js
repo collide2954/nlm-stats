@@ -321,3 +321,31 @@ export const retry = async (fn, { tries = 3, wait = 1000 } = {}) => {
     }
   }
 };
+
+export const LENSES = [
+  { id: 'all', label: 'Everything', hint: 'Every section, for biomedical researchers' },
+  { id: 'bioinfo', label: 'Bioinformatics', hint: 'Databases, sequence data, APIs, identifiers' },
+  { id: 'stats', label: 'Biostatistics', hint: 'Literature counts, methods, trial design' },
+  { id: 'funding', label: 'Funding & time', hint: 'NIH dollars, release cadences, history' },
+];
+
+const LENS_IDS = new Set(LENSES.map((l) => l.id));
+
+export const readLens = (search) => {
+  const value = new URLSearchParams(search).get('lens');
+  return LENS_IDS.has(value) ? value : 'all';
+};
+
+export const inLens = (tags, lens) => {
+  if (lens === 'all') return true;
+  const list = String(tags ?? '').split(/\s+/).filter(Boolean);
+  return list.length === 0 || list.includes(lens);
+};
+
+export const lensSearch = (search, lens) => {
+  const params = new URLSearchParams(search);
+  if (lens === 'all') params.delete('lens');
+  else params.set('lens', lens);
+  const out = params.toString();
+  return out ? `?${out}` : '';
+};
