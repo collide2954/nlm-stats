@@ -150,28 +150,11 @@ test('shuffle highlights an oddity', async () => {
   await page.close();
 });
 
-test('live refresh updates counts from E-utilities', async () => {
-  const page = await browser.newPage();
-  await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) => {
-    const url = route.request().url();
-    if (url.includes('einfo.fcgi')) {
-      const db = new URL(url).searchParams.get('db');
-      return route.fulfill({
-        contentType: 'application/json',
-        headers: { 'access-control-allow-origin': '*' },
-        body: JSON.stringify({ einforesult: { dbinfo: [{ dbname: db, menuname: db, description: '', count: '123456789', lastupdate: '2030/01/02 03:04', fieldlist: [], linklist: [] }] } }),
-      });
-    }
-    if (url.includes('clinicaltrials.gov')) {
-      return route.fulfill({ contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ totalStudies: 777777 }) });
-    }
-    return route.abort();
-  });
-  await page.goto(base);
-  await page.waitForSelector('#db-table tbody tr');
-  await page.click('#refresh');
-  await page.waitForFunction(() => document.querySelector('[data-hero="pubmed"] .exact').textContent.includes('123,456,789'));
-  await page.waitForFunction(() => document.querySelector('[data-hero="trials"] .exact').textContent.includes('777,777'));
+test('data comes from the weekly snapshot only', async () => {
+  const { page } = await open();
+  assert.equal(await page.locator('#refresh').count(), 0);
+  assert.match(await page.textContent('#stamp'), /Snapshot \d{4}-\d{2}-\d{2}/);
+  assert.match(await page.textContent('#stamp'), /weekly/i);
   await page.close();
 });
 
