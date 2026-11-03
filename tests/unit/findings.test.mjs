@@ -97,7 +97,7 @@ test('findings for growth, access, geography, genes and variants', () => {
   const f = findings(more);
   assert.equal(f.growth, 'SRA grew 9-fold between 2015 and 2025');
   assert.equal(f.access, '50% of papers dated 2025 are free to read');
-  assert.equal(f.geography, 'Authors in China appear on 502,433 papers dated 2025, the most of any country');
+  assert.equal(f.geography, 'Authors in China appear on 502,433 papers dated 2025, the most of 2 countries checked');
   assert.equal(f.states, 'California draws the most NIH award dollars: $5B');
   assert.equal(f.genes, 'TNF is linked to 30,000 PubMed records, the most of 2 genes here');
   assert.equal(f.variants, '71.1% of ClinVar records rest on a single submitter');
