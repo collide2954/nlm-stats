@@ -380,8 +380,6 @@ export const liveOddities = (snap) => {
     add(`The largest stated enrollment on ClinicalTrials.gov is ${exact(ct.biggestEnrollment.count)} people, in ${ct.biggestEnrollment.id}.`,
       `https://clinicaltrials.gov/study/${ct.biggestEnrollment.id}`);
   }
-  const zero = ct.enrollmentBands?.find((b) => b.from === 0 && b.to === 0);
-  if (zero) add(`${exact(zero.count)} registered studies report an enrollment of 0.`, 'https://clinicaltrials.gov/');
   const topCondition = ct.fields?.Condition?.top?.[0];
   if (topCondition?.value === 'Healthy') {
     add(`"Healthy" is the most listed condition on ClinicalTrials.gov, in ${exact(topCondition.count)} studies.`,
