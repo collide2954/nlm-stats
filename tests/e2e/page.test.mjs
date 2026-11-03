@@ -24,7 +24,7 @@ const open = async (viewport = { width: 1280, height: 900 }, search = '') => {
   page.on('console', (m) => m.type() === 'error' && !/net::ERR_FAILED/.test(m.text()) && errors.push(m.text()));
   await blockNetwork(page);
   await page.goto(`${base}${search}`);
-  await page.waitForSelector('#db-table tbody tr');
+  await page.waitForSelector('#db-table tbody tr', { state: 'attached' });
   return { page, errors };
 };
 
