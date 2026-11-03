@@ -577,3 +577,17 @@ export const spread = (positions, gap, lo, hi) => {
   for (const b of blocks) b.items.forEach((o, k) => { out[o.i] = fit(b) + k * gap; });
   return out;
 };
+
+export const doublingMonths = (fromMs, fromValue, toMs, toValue) => {
+  const months = (toMs - fromMs) / (1000 * 3600 * 24 * 30.4375);
+  return months / Math.log2(toValue / fromValue);
+};
+
+export const medianBand = (bands) => {
+  const half = bands.reduce((n, b) => n + b.count, 0) / 2;
+  let seen = 0;
+  return bands.find((b) => {
+    seen += b.count;
+    return seen >= half;
+  });
+};
