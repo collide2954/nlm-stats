@@ -70,3 +70,14 @@ test('identify exposes the normalized id', () => {
   assert.equal(identify('pmc176545').id, 'PMC176545');
   assert.equal(identify('CID 2244').id, '2244');
 });
+
+test('REFSEQ_PREFIXES mirrors the 15 official RefSeq prefixes', async () => {
+  const { REFSEQ_PREFIXES } = await import('../../src/lib.js');
+  assert.equal(REFSEQ_PREFIXES.length, 15);
+  for (const p of REFSEQ_PREFIXES) {
+    assert.match(p.prefix, /^[A-Z]{2}_$/);
+    assert.ok(['DNA', 'mRNA', 'RNA', 'protein'].includes(p.molecule), p.prefix);
+    assert.ok(p.use.length > 5, p.prefix);
+  }
+  assert.match(REFSEQ_PREFIXES.find((p) => p.prefix === 'WP_').use, /\.1/);
+});
