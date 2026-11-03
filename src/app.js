@@ -68,18 +68,18 @@ const HERO = [
   ['taxonomy', 'Taxonomy nodes'],
   ['books', 'Bookshelf records'],
   ['assembly', 'Genome assemblies'],
-  ['trials', 'ClinicalTrials.gov studies'],
+  ['trials', 'CT.gov studies'],
 ];
 
 const heroCard = ([key, label]) => {
   const isTrials = key === 'trials';
   const count = isTrials ? state.trials : dbCount(key);
   const updated = isTrials ? snapshot.clinicaltrials.dataTimestamp.slice(0, 10) : state.entrez.get(key)?.updated;
-  return h('a', { class: 'stat', 'data-hero': key, href: isTrials ? 'https://clinicaltrials.gov/' : searchUrl(key), target: '_blank', rel: 'noopener' },
+  return h('a', { class: 'stat', 'data-hero': key, href: isTrials ? 'https://clinicaltrials.gov/' : searchUrl(key), target: '_blank', rel: 'noopener', title: isTrials ? 'ClinicalTrials.gov registered studies' : dbName(key) },
     h('div', { class: 'lbl' }, label),
     h('div', { class: 'big' }, compact(count)),
     h('div', { class: 'exact' }, exact(count)),
-    h('div', { class: 'upd' }, `updated ${updated ?? '—'}`));
+    h('div', { class: 'upd', title: 'Last updated' }, updated ?? '—'));
 };
 
 const renderHero = () => fill('#hero', ...HERO.map(heroCard));
@@ -563,7 +563,7 @@ const updateCount = (key, count, updated) => {
   if (card) {
     $('.big', card).textContent = compact(count);
     $('.exact', card).textContent = exact(count);
-    if (updated) $('.upd', card).textContent = `updated ${updated}`;
+    if (updated) $('.upd', card).textContent = updated;
     flash(card);
   }
   const row = $(`#db-table tr[data-db="${key}"]`);
