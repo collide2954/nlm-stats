@@ -129,6 +129,87 @@ export const QUERY_GROUPS = [
   },
 ];
 
+QUERY_GROUPS.push(
+  {
+    id: 'assembly',
+    title: 'Genome assemblies by level',
+    panel: 'seqdata',
+    items: [
+      q('asm-complete', 'assembly', 'Complete genome', '"complete genome"[Assembly Level]'),
+      q('asm-chromosome', 'assembly', 'Chromosome', 'chromosome[Assembly Level]'),
+      q('asm-scaffold', 'assembly', 'Scaffold', 'scaffold[Assembly Level]'),
+      q('asm-contig', 'assembly', 'Contig', 'contig[Assembly Level]'),
+      q('asm-refseq', 'assembly', 'Latest RefSeq assemblies', '"latest refseq"[filter]'),
+    ],
+  },
+  {
+    id: 'sra-platform',
+    title: 'SRA experiments by platform',
+    panel: 'seqdata',
+    items: [
+      q('sra-illumina', 'sra', 'Illumina', 'illumina[Platform]'),
+      q('sra-ont', 'sra', 'Oxford Nanopore', '"oxford nanopore"[Platform]'),
+      q('sra-pacbio', 'sra', 'PacBio SMRT', '"pacbio smrt"[Platform]'),
+      q('sra-ion', 'sra', 'Ion Torrent', '"ion torrent"[Platform]'),
+      q('sra-454', 'sra', '454 (LS454)', 'ls454[Platform]'),
+      q('sra-capillary', 'sra', 'Capillary', 'capillary[Platform]'),
+      q('sra-bgi', 'sra', 'BGISEQ / DNBSEQ', 'bgiseq[Platform]'),
+      q('sra-element', 'sra', 'Element', 'element[Platform]'),
+      q('sra-ultima', 'sra', 'Ultima', 'ultima[Platform]'),
+    ],
+  },
+  {
+    id: 'sra-strategy',
+    title: 'SRA experiments by library strategy',
+    panel: 'seqdata',
+    items: [
+      q('sra-amplicon', 'sra', 'Amplicon', 'amplicon[Strategy]'),
+      q('sra-wgs', 'sra', 'WGS', 'wgs[Strategy]'),
+      q('sra-rnaseq', 'sra', 'RNA-Seq', '"rna seq"[Strategy]'),
+      q('sra-wxs', 'sra', 'Whole exome (WXS)', 'wxs[Strategy]'),
+      q('sra-chip', 'sra', 'ChIP-Seq', '"chip seq"[Strategy]'),
+      q('sra-bisulfite', 'sra', 'Bisulfite-Seq', '"bisulfite seq"[Strategy]'),
+      q('sra-atac', 'sra', 'ATAC-seq', '"atac seq"[Strategy]'),
+    ],
+  },
+);
+
+const m = (id, label, term) => ({ id, label, term });
+
+export const METHODS = [
+  m('meta', 'Meta-analysis', 'meta-analysis[pt]'),
+  m('survival', 'Survival analysis', '"survival analysis"[mh]'),
+  m('cox', 'Proportional hazards', '"proportional hazards models"[mh]'),
+  m('logistic', 'Logistic models', '"logistic models"[mh]'),
+  m('bayes', 'Bayes theorem', '"bayes theorem"[mh]'),
+  m('montecarlo', 'Monte Carlo', '"monte carlo method"[mh]'),
+  m('propensity', 'Propensity score', '"propensity score"[mh]'),
+  m('mr', 'Mendelian randomization', '"mendelian randomization analysis"[mh]'),
+  m('ml', 'Machine learning', '"machine learning"[mh]'),
+  m('dl', 'Deep learning', '"deep learning"[mh]'),
+];
+
+export const METHOD_YEARS = { from: 1985 };
+
+export const ICS = [
+  'NCI', 'NIAID', 'NHLBI', 'NIGMS', 'NIA', 'NINDS', 'NIDDK', 'NICHD', 'NIMH', 'NIDA',
+  'NEI', 'NIAMS', 'NIEHS', 'NIAAA', 'NIDCD', 'NIBIB', 'NIDCR', 'NIMHD', 'OD', 'NHGRI',
+  'NCATS', 'FIC', 'NCCIH', 'NINR', 'NLM',
+];
+
+export const ENROLLMENT_BANDS = [
+  { from: 0, to: 0 },
+  { from: 1, to: 20 },
+  { from: 21, to: 50 },
+  { from: 51, to: 100 },
+  { from: 101, to: 500 },
+  { from: 501, to: 1000 },
+  { from: 1001, to: 10000 },
+  { from: 10001, to: 'MAX' },
+];
+
+export const CT_DESIGN = ['DesignAllocation', 'DesignMasking', 'DesignPrimaryPurpose', 'DesignInterventionModel', 'EnrollmentType'];
+
 export const PAPERS = [
   { pmid: '1', topic: 'PMID 1' },
   { pmid: '2231712', topic: 'BLAST' },
