@@ -64,7 +64,8 @@ test('stack accumulates series per row', () => {
 
 test('zoomDomain zooms around a point and stays inside limits', () => {
   assert.deepEqual(zoomDomain([1800, 2000], 1900, 0.5, [1800, 2026]), [1850, 1950]);
-  assert.deepEqual(zoomDomain([1900, 2000], 2000, 2, [1800, 2026]), [1826, 2026]);
+  assert.deepEqual(zoomDomain([1950, 2026], 2026, 4, [1800, 2026]), [1800, 2026]);
+  assert.deepEqual(zoomDomain([1900, 2000], 2000, 2, [1800, 2026]), [1800, 2000]);
   assert.deepEqual(zoomDomain([1900, 1902], 1901, 0.1, [1800, 2026], 4), [1899, 1903]);
 });
 

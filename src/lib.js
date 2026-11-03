@@ -417,3 +417,117 @@ const STEPS = [1, 2, 5, 10, 20, 25, 50, 100];
 
 export const labelStep = (count, width, gap = 32) =>
   STEPS.find((step) => Math.ceil(count / step) * gap <= width) ?? STEPS.at(-1);
+
+export const squarify = (items, width, height) => {
+  const total = items.reduce((sum, i) => sum + i.value, 0);
+  const scale = (width * height) / total;
+  const queue = [...items].filter((i) => i.value > 0).sort((a, b) => b.value - a.value)
+    .map((item) => ({ item, area: item.value * scale }));
+  const out = [];
+  const box = { x: 0, y: 0, w: width, h: height };
+  const worst = (row, side) => {
+    const sum = row.reduce((a, r) => a + r.area, 0);
+    const max = Math.max(...row.map((r) => r.area));
+    const min = Math.min(...row.map((r) => r.area));
+    return Math.max((side * side * max) / (sum * sum), (sum * sum) / (side * side * min));
+  };
+  const place = (row) => {
+    const sum = row.reduce((a, r) => a + r.area, 0);
+    if (box.w >= box.h) {
+      const cw = sum / box.h;
+      let cy = box.y;
+      for (const r of row) {
+        const ch = r.area / cw;
+        out.push({ ...r.item, x: box.x, y: cy, w: cw, h: ch });
+        cy += ch;
+      }
+      box.x += cw;
+      box.w -= cw;
+    } else {
+      const rh = sum / box.w;
+      let cx = box.x;
+      for (const r of row) {
+        const cw = r.area / rh;
+        out.push({ ...r.item, x: cx, y: box.y, w: cw, h: rh });
+        cx += cw;
+      }
+      box.y += rh;
+      box.h -= rh;
+    }
+  };
+  let row = [];
+  while (queue.length) {
+    const side = Math.min(box.w, box.h);
+    if (!row.length || worst([...row, queue[0]], side) <= worst(row, side)) {
+      row.push(queue.shift());
+    } else {
+      place(row);
+      row = [];
+    }
+  }
+  if (row.length) place(row);
+  return out;
+};
+
+export const waffle = (parts, cells = 100) => {
+  const total = parts.reduce((sum, p) => sum + p.value, 0);
+  const raw = parts.map((p) => (p.value / total) * cells);
+  const counts = raw.map(Math.floor);
+  const order = raw.map((r, i) => ({ i, rest: r - Math.floor(r) })).sort((a, b) => b.rest - a.rest || a.i - b.i);
+  for (let k = 0; k < cells - counts.reduce((a, b) => a + b, 0); k += 1) counts[order[k].i] += 1;
+  return parts.flatMap((p, i) => Array(counts[i]).fill(p.key));
+};
+
+export const scaleLinear = ([d0, d1], [r0, r1]) => (v) => r0 + ((v - d0) / (d1 - d0)) * (r1 - r0);
+
+export const scaleLog = ([d0, d1], [r0, r1]) => {
+  const l0 = Math.log10(d0);
+  const l1 = Math.log10(d1);
+  return (v) => r0 + ((Math.log10(v) - l0) / (l1 - l0)) * (r1 - r0);
+};
+
+export const logTicks = (min, max) => {
+  const out = [];
+  for (let k = Math.ceil(Math.log10(min)); k <= Math.floor(Math.log10(max)); k += 1) out.push(10 ** k);
+  return out;
+};
+
+export const stack = (rows, keys) => {
+  const base = rows.map(() => 0);
+  return keys.map((key) => ({
+    key,
+    points: rows.map((r, i) => {
+      const point = [base[i], base[i] + r[key]];
+      base[i] += r[key];
+      return point;
+    }),
+  }));
+};
+
+const clampSpan = ([a, b], [lo, hi]) => {
+  const span = b - a;
+  if (a < lo) return [lo, lo + span];
+  if (b > hi) return [hi - span, hi];
+  return [a, b];
+};
+
+export const zoomDomain = ([a, b], center, factor, [lo, hi], minSpan = 1) => {
+  const span = Math.min(Math.max((b - a) * factor, minSpan), hi - lo);
+  const ratio = (center - a) / (b - a);
+  const start = center - ratio * span;
+  return clampSpan([start, start + span], [lo, hi]);
+};
+
+export const panDomain = ([a, b], delta, limits) => clampSpan([a + delta, b + delta], limits);
+
+const WORD_UNITS = [[1e12, 'trillion'], [1e9, 'billion'], [1e6, 'million']];
+
+export const wordy = (n) => {
+  const unit = WORD_UNITS.find(([size]) => n >= size);
+  if (!unit) return exact(n);
+  const v = n / unit[0];
+  const digits = v >= 100 ? 0 : v >= 10 ? 1 : 2;
+  return `${Number(v.toFixed(digits))} ${unit[1]}`;
+};
+
+export const easeOut = (t) => 1 - (1 - t) ** 3;
