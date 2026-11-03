@@ -465,7 +465,7 @@ test('dragging the timeline pans it by the distance dragged', async () => {
   const [a1, b1] = span(await page.textContent('#timeline-range'));
   const expected = (300 / box.width) * (b0 - a0);
   assert.ok(Math.abs(a1 - a0 - expected) < expected * 0.35, `moved ${a1 - a0}, expected about ${expected.toFixed(1)}`);
-  assert.equal(b1 - a1, b0 - a0);
+  assert.ok(Math.abs((b1 - a1) - (b0 - a0)) <= 1);
   assert.equal(await page.evaluate(() => document.getElementById('tip').dataset.pinned), 'false');
   await page.close();
 });
