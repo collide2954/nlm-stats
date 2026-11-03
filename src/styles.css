@@ -179,7 +179,9 @@ table.grid { width: 100%; border-collapse: collapse; font-size: .84rem; }
 .bars .val small { color: var(--muted); margin-left: 6px; }
 .bars li .track > i { background: var(--bar); }
 .bars.alt li .track > i { background: var(--bar-2); }
-.bars code { font: .7rem var(--mono); color: var(--muted); }
+.bars .lab { display: flex; flex-direction: column; }
+.bars .lab a { overflow: hidden; text-overflow: ellipsis; }
+.bars code { font: .68rem var(--mono); color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
 
 .tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 8px; }
 .tabs [role="tab"] {
