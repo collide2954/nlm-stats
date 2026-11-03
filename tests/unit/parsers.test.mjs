@@ -218,3 +218,10 @@ test('parseTaxonNames reads scientific and common names', async () => {
   };
   assert.deepEqual(parseTaxonNames(json), { 'Triticum aestivum': 'bread wheat', 'Homo sapiens': 'human' });
 });
+
+test('parseLinkCount counts links of one link name', async () => {
+  const { parseLinkCount } = await import('../../scripts/parsers.mjs');
+  const json = { linksets: [{ linksetdbs: [{ linkname: 'gene_pubmed', links: ['1', '2'] }, { linkname: 'gene_pmc', links: ['9'] }] }] };
+  assert.equal(parseLinkCount(json, 'gene_pubmed'), 2);
+  assert.equal(parseLinkCount(json, 'gene_snp'), 0);
+});
