@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  squarify, waffle, scaleLinear, scaleLog, logTicks, stack, zoomDomain, panDomain, wordy, easeOut,
+  squarify, waffle, scaleLinear, scaleLog, logTicks, stack, zoomDomain, panDomain, wordy, easeOut, spread,
 } from '../../src/lib.js';
 
 const close = (a, b, eps = 1e-6) => Math.abs(a - b) <= eps;
@@ -92,4 +92,20 @@ test('waffle always fills every cell when several parts round down', () => {
   const cells = waffle([1, 1, 1, 1, 1, 1].map((value, key) => ({ key, value })));
   assert.equal(cells.length, 100);
   assert.deepEqual([0, 1, 2, 3, 4, 5].map((k) => cells.filter((c) => c === k).length), [17, 17, 17, 17, 16, 16]);
+});
+
+test('spread keeps labels a minimum gap apart and inside the range', () => {
+  const out = spread([100, 102, 104, 200], 14, 0, 300);
+  for (let i = 1; i < out.length; i++) assert.ok(out[i] - out[i - 1] >= 14 - 1e-9, JSON.stringify(out));
+  assert.ok(Math.abs(out.slice(0, 3).reduce((a, b) => a + b) / 3 - 102) < 1e-9);
+  assert.equal(out[3], 200);
+});
+
+test('spread preserves input order and leaves separated labels alone', () => {
+  assert.deepEqual(spread([50, 10, 90], 12, 0, 100), [50, 10, 90]);
+  const out = spread([295, 298, 299], 12, 0, 300);
+  assert.ok(Math.max(...out) <= 300 && Math.min(...out) >= 0);
+  const sorted = [...out].sort((a, b) => a - b);
+  for (let i = 1; i < sorted.length; i++) assert.ok(sorted[i] - sorted[i - 1] >= 12 - 1e-9);
+  assert.ok(out[0] < out[1] && out[1] < out[2]);
 });
