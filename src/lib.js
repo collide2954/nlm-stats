@@ -474,7 +474,8 @@ export const waffle = (parts, cells = 100) => {
   const raw = parts.map((p) => (p.value / total) * cells);
   const counts = raw.map(Math.floor);
   const order = raw.map((r, i) => ({ i, rest: r - Math.floor(r) })).sort((a, b) => b.rest - a.rest || a.i - b.i);
-  for (let k = 0; k < cells - counts.reduce((a, b) => a + b, 0); k += 1) counts[order[k].i] += 1;
+  const missing = cells - counts.reduce((a, b) => a + b, 0);
+  for (let k = 0; k < missing; k += 1) counts[order[k].i] += 1;
   return parts.flatMap((p, i) => Array(counts[i]).fill(p.key));
 };
 
