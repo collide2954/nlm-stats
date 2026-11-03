@@ -35,7 +35,7 @@ export const parseGenbankHeader = (text) => {
   return { release, date, traditional: totals[0], sets: totals[1] };
 };
 
-const ROW = /^\s*(\d+)\s+([A-Z][a-z]{2} \d{4})\s+(\d+)\s+(\d+)/;
+const ROW = /^\s*(\d+(?:\.\d+)?)\s+([A-Z][a-z]{2} \d{4})\s+(\d+)\s+(\d+)/;
 
 export const parseGrowth = (text) => {
   const lines = text.split('\n');
@@ -56,7 +56,7 @@ export const parseGrowth = (text) => {
 };
 
 const section = (text, start, end) => {
-  const from = text.indexOf(start);
+  const from = text.lastIndexOf(start);
   if (from < 0) return '';
   const to = text.indexOf(end, from + start.length);
   return text.slice(from, to < 0 ? undefined : to);
