@@ -52,3 +52,33 @@ test('a MeSH group counts record types', () => {
   assert.ok(mesh);
   assert.ok(mesh.items.every((i) => i.db === 'mesh'));
 });
+
+test('ICS lists the 25 NIH institutes and centers RePORTER funds under', async () => {
+  const { ICS } = await import('../../src/queries.js');
+  assert.equal(ICS.length, 25);
+  assert.ok(ICS.includes('NLM'));
+  assert.equal(new Set(ICS).size, ICS.length);
+});
+
+test('METHODS are PubMed terms with unique ids', async () => {
+  const { METHODS } = await import('../../src/queries.js');
+  assert.ok(METHODS.length >= 8);
+  assert.equal(new Set(METHODS.map((m) => m.id)).size, METHODS.length);
+  for (const m of METHODS) assert.match(m.term, /\[(mh|pt)\]$/);
+});
+
+test('ENROLLMENT_BANDS are contiguous from 0 to MAX', async () => {
+  const { ENROLLMENT_BANDS } = await import('../../src/queries.js');
+  assert.equal(ENROLLMENT_BANDS[0].from, 0);
+  assert.equal(ENROLLMENT_BANDS.at(-1).to, 'MAX');
+  for (let i = 1; i < ENROLLMENT_BANDS.length; i += 1) {
+    assert.equal(ENROLLMENT_BANDS[i].from, ENROLLMENT_BANDS[i - 1].to + 1);
+  }
+});
+
+test('sequence data groups target assembly and sra', () => {
+  const seq = QUERY_GROUPS.filter((g) => g.panel === 'seqdata');
+  assert.ok(seq.length >= 3);
+  assert.ok(seq.some((g) => g.items.every((i) => i.db === 'assembly')));
+  assert.ok(seq.some((g) => g.items.every((i) => i.db === 'sra')));
+});
