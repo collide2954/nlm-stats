@@ -86,3 +86,21 @@ export const parseDivisions = (text) => {
 };
 
 export const toModule = (value) => `export default ${JSON.stringify(value, null, 2)};\n`;
+
+export const lastPerYear = (rows) => {
+  const byYear = new Map();
+  for (const { release, date, bases, entries } of rows) {
+    const year = Number(date.slice(-4));
+    byYear.set(year, { year, release, bases, entries });
+  }
+  return [...byYear.values()];
+};
+
+export const uniqueBy = (items, key) => {
+  const seen = new Set();
+  return items.filter((item) => {
+    if (seen.has(item[key])) return false;
+    seen.add(item[key]);
+    return true;
+  });
+};

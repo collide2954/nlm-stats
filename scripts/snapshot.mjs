@@ -9,6 +9,8 @@ import {
   parseOrganisms,
   parseDivisions,
   toModule,
+  lastPerYear,
+  uniqueBy,
 } from './parsers.mjs';
 
 const OUT = new URL('../src/snapshot.js', import.meta.url);
@@ -52,7 +54,7 @@ const entrez = async () => {
     step(`einfo ${db}`);
     out.push(parseEinfo(await eutils('einfo', { db })));
   }
-  return out;
+  return uniqueBy(out, 'db');
 };
 
 const pubmedTimeline = async (lastYear) => {
@@ -85,9 +87,11 @@ const groups = async () => {
 const genbank = async () => {
   step('genbank');
   const text = await fetchWithRetry(GBREL, 'text');
-  const [traditional, wgs, tsa, tls] = parseGrowth(text);
+  const tables = parseGrowth(text);
+  const [traditional, wgs, tsa, tls] = tables.map(lastPerYear);
   return {
     ...parseGenbankHeader(text),
+    firstRelease: tables[0][0],
     growth: { traditional, wgs, tsa, tls },
     organisms: parseOrganisms(text),
     divisions: parseDivisions(text).sort((a, b) => b.bases - a.bases),
