@@ -82,3 +82,13 @@ test('sequence data groups target assembly and sra', () => {
   assert.ok(seq.some((g) => g.items.every((i) => i.db === 'assembly')));
   assert.ok(seq.some((g) => g.items.every((i) => i.db === 'sra')));
 });
+
+test('TYPE_SERIES splits stacked and small-multiple publication types', async () => {
+  const { TYPE_SERIES } = await import('../../src/queries.js');
+  assert.equal(TYPE_SERIES.stacked.length, 5);
+  assert.ok(TYPE_SERIES.multiples.length >= 5);
+  const all = [...TYPE_SERIES.stacked, ...TYPE_SERIES.multiples];
+  assert.equal(new Set(all.map((t) => t.id)).size, all.length);
+  for (const t of all) assert.match(t.term, /\[pt\]$/);
+  assert.ok(TYPE_SERIES.from <= 1950);
+});
