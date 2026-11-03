@@ -102,3 +102,84 @@ test('findings for growth, access, geography, genes and variants', () => {
   assert.equal(f.genes, 'TNF is linked to 30,000 PubMed records, the most of 2 genes here');
   assert.equal(f.variants, '71.1% of ClinVar records rest on a single submitter');
 });
+
+const yr = (pairs) => pairs.map(([year, count]) => ({ year, count }));
+
+test('findings for machine text, extremes, subjects and trial fate', () => {
+  const more = structuredClone(fixture);
+  more.pubmed.years = yr([[2019, 1500000], [2020, 1700000], [2021, 1787550], [2022, 1800000], [2025, 1882376]]);
+  more.vocab = {
+    base: 2019,
+    partial: 2026,
+    totals: yr([[2019, 1248394], [2024, 1559752], [2025, 1687551], [2026, 1400000]]),
+    words: [
+      { id: 'delve', label: 'delve', years: yr([[2019, 215], [2024, 9468], [2025, 4989], [2026, 9000]]) },
+      { id: 'nuanced', label: 'nuanced', years: yr([[2019, 870], [2024, 4660], [2025, 5060], [2026, 9000]]) },
+    ],
+    control: { id: 'patients', label: 'patients', years: yr([[2019, 361000], [2024, 457000], [2025, 485000], [2026, 1]]) },
+  };
+  more.zombies = [
+    { label: 'Wakefield, Lancet 1998', retracted: 2010, after: 341 },
+    { label: 'Mehra, N Engl J Med 2020', retracted: 2020, after: 451 },
+    { label: 'Gautret, Int J Antimicrob Agents 2020', retracted: 2025, after: 8 },
+  ];
+  more.classics = [
+    { label: 'Livak, qPCR ΔΔCt 2001', citedBy: 89076 },
+    { label: 'Altschul, BLAST 1990', pmid: '2231712', citedBy: 40945 },
+  ];
+  more.extremes = { awards: { fy: 2025, largest: { ic: 'NLM', dollars: 357194999, title: 'National Biomedical Information Services' } } };
+  more.subjects = {
+    medline: yr([[2000, 100], [2001, 100], [2002, 100], [2003, 100], [2025, 100]]),
+    animals: [
+      { id: 'mice', label: 'Mice', years: yr([[2000, 31501], [2001, 32595], [2002, 34216], [2003, 36910], [2025, 90000]]) },
+      { id: 'rats', label: 'Rats', years: yr([[2000, 35020], [2001, 33588], [2002, 33487], [2003, 34768], [2025, 27000]]) },
+    ],
+    sex: [
+      { id: 'women', label: 'Women only', years: yr([[2000, 90], [2025, 794]]) },
+      { id: 'men', label: 'Men only', years: yr([[2000, 70], [2025, 447]]) },
+    ],
+    outbreaks: [
+      { id: 'covid', label: 'COVID-19', years: yr([[2019, 0], [2020, 90000], [2021, 133727], [2022, 120000]]) },
+      { id: 'zika', label: 'Zika', years: yr([[2019, 900], [2020, 800], [2021, 700], [2022, 600]]) },
+    ],
+  };
+  more.trialfate = {
+    stops: { total: 31096, reasons: [{ id: 'enrollment', label: 'Enrollment or accrual', count: 12973 }, { id: 'safety', count: 889 }] },
+    lag: { n: 27584, peak: 11, months: [...Array(11).fill(100), 7053, ...Array(37).fill(100)] },
+  };
+  const f = findings(more);
+  assert.equal(f.vocab, '‘delve’ appeared 35 times as often in 2024 abstracts as in 2019');
+  assert.equal(f.zombies, '451 later papers cite Mehra, N Engl J Med 2020, retracted in 2020');
+  assert.equal(f.classics, 'A 2001 qPCR ΔΔCt paper has 2.2 times BLAST’s citing records');
+  assert.equal(f.extremes, 'NIH’s largest FY2025 award line is NLM’s own: $357.2M');
+  assert.equal(f.subjects, 'Mice overtook rats in 2002');
+  assert.equal(f.sex, 'Women-only studies outnumber men-only studies 1.8 to 1');
+  assert.equal(f.outbreaks, 'In 2021, 1 in 13 papers mentioned COVID-19');
+  assert.equal(f.stops, 'Slow enrollment ends 41.7% of terminated trials that give a reason');
+  assert.equal(f.lag, '25.6% of trial results arrive in the last month before the deadline');
+});
+
+test('subject and trial findings fall back when the pattern changes', () => {
+  const more = structuredClone(fixture);
+  more.subjects = {
+    medline: yr([[2000, 1], [2025, 1]]),
+    animals: [
+      { id: 'mice', label: 'Mice', years: yr([[2000, 9], [2025, 9]]) },
+      { id: 'rats', label: 'Rats', years: yr([[2000, 1], [2025, 1]]) },
+    ],
+    sex: [{ id: 'women', years: yr([[2025, 400]]) }, { id: 'men', years: yr([[2025, 500]]) }],
+    outbreaks: [{ id: 'covid', label: 'COVID-19', years: yr([[2021, 10]]) }],
+  };
+  more.pubmed.years = yr([[2021, 1000]]);
+  more.trialfate = {
+    stops: { total: 100, reasons: [{ id: 'business', label: 'Sponsor or business decision', count: 50 }] },
+    lag: { n: 100, peak: 5, months: [0, 0, 0, 0, 0, 60, ...Array(43).fill(0)] },
+  };
+  more.extremes = { awards: { fy: 2025, largest: { ic: 'NCI', dollars: 2e8, title: 'X' } } };
+  const f = findings(more);
+  assert.equal(f.subjects, 'Mice have outnumbered rats in every year since 2000');
+  assert.equal(f.sex, 'Men-only studies outnumber women-only studies 1.3 to 1');
+  assert.equal(f.stops, 'Sponsor or business decision ends 50% of terminated trials that give a reason');
+  assert.equal(f.lag, 'Trial results most often arrive 5 months after completion');
+  assert.equal(f.extremes, 'NIH’s largest FY2025 award line goes to NCI: $200M');
+});
