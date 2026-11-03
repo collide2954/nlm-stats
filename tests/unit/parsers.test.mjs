@@ -193,3 +193,16 @@ test('parseCitedIn counts citing records', () => {
   assert.equal(parseCitedIn(json), 3);
   assert.equal(parseCitedIn({ linksets: [{}] }), 0);
 });
+
+test('enumLabels maps each field piece to official labels', async () => {
+  const { enumLabels } = await import('../../scripts/parsers.mjs');
+  const json = [
+    { type: 'PrimaryPurpose', pieces: ['DesignPrimaryPurpose'], values: [{ value: 'ECT', legacyValue: 'Educational/Counseling/Training' }] },
+    { type: 'Phase', pieces: ['Phase', 'OtherPhase'], values: [{ value: 'NA', legacyValue: 'Not Applicable' }, { value: 'PHASE2', legacyValue: 'Phase 2' }] },
+  ];
+  assert.deepEqual(enumLabels(json), {
+    DesignPrimaryPurpose: { ECT: 'Educational/Counseling/Training' },
+    Phase: { NA: 'Not Applicable', PHASE2: 'Phase 2' },
+    OtherPhase: { NA: 'Not Applicable', PHASE2: 'Phase 2' },
+  });
+});
