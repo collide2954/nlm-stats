@@ -175,3 +175,9 @@ test('EXTREMES holds the queries for record holders', async () => {
   assert.equal(EXTREMES.stopword, 'however');
   assert.ok(EXTREMES.farFuture >= 2050 && EXTREMES.longAgo <= 1960);
 });
+
+test('EXTREMES counts modern humans only, not Neanderthal or Denisovan records', async () => {
+  const { EXTREMES } = await import('../../src/queries.js');
+  assert.match(EXTREMES.genes, /^txid9606\[orgn:noexp\]/);
+  assert.match(EXTREMES.protein, /^txid9606\[orgn:noexp\]/);
+});
