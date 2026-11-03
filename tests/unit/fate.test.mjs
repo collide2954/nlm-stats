@@ -125,3 +125,8 @@ test('geneExtremes finds the longest, shortest and most exons, and counts per ch
     { chr: '1', genes: 1 }, { chr: '2', genes: 1 }, { chr: '7', genes: 1 }, { chr: 'X', genes: 1 }, { chr: 'MT', genes: 1 },
   ]);
 });
+
+test('classifyStop matches whole words for deaths', () => {
+  assert.deepEqual(reasons('No significant uptake of studied traces were found.'), []);
+  assert.deepEqual(reasons('Two participants died'), ['safety']);
+});
