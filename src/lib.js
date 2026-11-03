@@ -349,3 +349,55 @@ export const lensSearch = (search, lens) => {
   const out = params.toString();
   return out ? `?${out}` : '';
 };
+
+const ordinal = (n) => {
+  const suffix = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return `${n}${suffix[(v - 20) % 10] || suffix[v] || suffix[0]}`;
+};
+
+const itemCount = (snap, group, id) =>
+  snap.groups?.find((g) => g.id === group)?.items.find((i) => i.id === id)?.count ?? null;
+
+export const liveOddities = (snap) => {
+  const out = [];
+  const add = (text, href) => out.push({ text, href });
+  const orgs = snap.genbank?.organisms ?? [];
+  const human = orgs.findIndex((o) => o.species === 'Homo sapiens');
+  if (orgs.length && human > 0) {
+    add(`By bases, ${orgs[0].species} is GenBank's most sequenced organism. Homo sapiens ranks ${ordinal(human + 1)}.`,
+      'https://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt');
+  }
+  const ct = snap.clinicaltrials ?? {};
+  if (ct.biggestEnrollment) {
+    add(`The largest stated enrollment on ClinicalTrials.gov is ${exact(ct.biggestEnrollment.count)} people, in ${ct.biggestEnrollment.id}.`,
+      `https://clinicaltrials.gov/study/${ct.biggestEnrollment.id}`);
+  }
+  const zero = ct.enrollmentBands?.find((b) => b.from === 0 && b.to === 0);
+  if (zero) add(`${exact(zero.count)} registered studies report an enrollment of 0.`, 'https://clinicaltrials.gov/');
+  const topCondition = ct.fields?.Condition?.top?.[0];
+  if (topCondition?.value === 'Healthy') {
+    add(`"Healthy" is the most listed condition on ClinicalTrials.gov, in ${exact(topCondition.count)} studies.`,
+      'https://clinicaltrials.gov/search?cond=Healthy');
+  }
+  const vus = itemCount(snap, 'clinvar', 'cv-vus');
+  const path = itemCount(snap, 'clinvar', 'cv-path');
+  if (vus && path && vus > path) {
+    add(`ClinVar holds ${(vus / path).toFixed(1)} variants of uncertain significance for every pathogenic one.`,
+      'https://www.ncbi.nlm.nih.gov/clinvar/');
+  }
+  const amplicon = itemCount(snap, 'sra-strategy', 'sra-amplicon');
+  const wgs = itemCount(snap, 'sra-strategy', 'sra-wgs');
+  if (amplicon && wgs && amplicon > wgs) {
+    add(`In SRA, Amplicon experiments outnumber WGS: ${exact(amplicon)} vs ${exact(wgs)}.`, 'https://www.ncbi.nlm.nih.gov/sra/');
+  }
+  const dated = (snap.entrez ?? []).filter((d) => d.updated);
+  if (dated.length > 1) {
+    const stale = dated.reduce((a, b) => (b.updated < a.updated ? b : a));
+    const fresh = dated.reduce((a, b) => (b.updated > a.updated ? b : a));
+    if (yearOf(fresh.updated) - yearOf(stale.updated) >= 2) {
+      add(`${stale.name} was last updated ${stale.updated} and is still searchable in Entrez.`, `https://www.ncbi.nlm.nih.gov/${stale.db}/`);
+    }
+  }
+  return out;
+};
