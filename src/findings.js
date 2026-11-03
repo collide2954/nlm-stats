@@ -133,10 +133,16 @@ const zombies = (snap) => {
   return `${exact(top.after)} later papers cite ${top.label}, retracted in ${top.retracted}`;
 };
 
+export const classicCounts = (snap) => snap.classics.map((c) => {
+  const same = c.pmid && snap.papers?.find((p) => p.pmid === c.pmid);
+  return same ? { ...c, citedBy: same.citedBy } : c;
+});
+
 const classics = (snap) => {
-  const blast = snap.classics.find((c) => c.pmid === '2231712');
-  const top = snap.classics.reduce((a, b) => (b.citedBy > a.citedBy ? b : a));
-  if (!blast || top === blast) return `BLAST leads ${snap.classics.length} classic methods papers by citing records`;
+  const list = classicCounts(snap);
+  const blast = list.find((c) => c.pmid === '2231712');
+  const top = list.reduce((a, b) => (b.citedBy > a.citedBy ? b : a));
+  if (!blast || top === blast) return `BLAST leads ${list.length} classic methods papers by citing records`;
   const [, rest] = top.label.split(', ');
   const born = rest.slice(-4);
   return `A ${born} ${rest.slice(0, -5)} paper has ${fold(top.citedBy / blast.citedBy)} times BLAST’s citing records`;
