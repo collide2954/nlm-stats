@@ -239,20 +239,24 @@ export const columns = ({
   return mountSvg(mount, svg);
 };
 
-const truncate = (text, px) => {
-  const max = Math.max(4, Math.floor(px / 6.6));
-  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+const fitsIn = (text, px) => text.length <= Math.max(4, Math.floor(px / 6.6));
+
+const rowLayout = (rows, labelW, rowH) => {
+  const fits = rows.every((r) => fitsIn(r.label, labelW));
+  return fits
+    ? { L: labelW + 10, rowH, labelY: 4, markY: 0, cls: 'rows' }
+    : { L: 14, rowH: rowH + 16, labelY: -8, markY: 5, cls: 'rows stacked' };
 };
 
 export const dotplot = ({
   mount, rows, attr = 'row', scale = 'log', format = exact, describe, rowH = 24, href, linkText, labelShare = 0.34, aria,
 }) => {
   const W = widthOf(mount);
-  const labelW = Math.min(240, Math.max(96, W * labelShare));
-  const L = labelW + 10;
   const R = 70;
   const T = 22;
-  const H = T + rows.length * rowH + 6;
+  const lay = rowLayout(rows, Math.min(240, Math.max(96, W * labelShare)), rowH);
+  const { L } = lay;
+  const H = T + rows.length * lay.rowH + 6;
   const values = rows.map((r) => r.value).filter((v) => v > 0);
   const min = Math.min(...values);
   const max = Math.max(...values);
@@ -265,13 +269,14 @@ export const dotplot = ({
   }, []);
   const ticks = spaced(scale === 'log' ? logTicks(lo, hi) : niceTicks(max, 4));
   const at = (v) => (v > 0 ? x(v) : L);
-  const rowsG = el('g', { class: 'rows' }, rows.map((r, i) => {
+  const rowTop = (rank) => T + rank * lay.rowH + lay.rowH / 2;
+  const rowsG = el('g', { class: lay.cls }, rows.map((r, i) => {
     const content = [
-      el('rect', { class: 'row-hit', x: 0, y: -rowH / 2, width: W, height: rowH }),
-      el('text', { class: 'lab', x: 0, y: 4 }, truncate(r.label, labelW)),
-      el('line', { class: 'stem', x1: L, x2: at(r.value), y1: 0, y2: 0, style: `--i:${i}` }),
-      el('circle', { class: `dot${r.hi ? ' hi' : ''}`, cx: at(r.value), cy: 0, r: 4.5, style: `--i:${i}` }),
-      el('text', { x: at(r.value) + 9, y: 4 }, format(r.value)),
+      el('rect', { class: 'row-hit', x: 0, y: -lay.rowH / 2, width: W, height: lay.rowH }),
+      el('text', { class: 'lab', x: 0, y: lay.labelY }, r.label),
+      el('line', { class: 'stem', x1: L, x2: at(r.value), y1: lay.markY, y2: lay.markY, style: `--i:${i}` }),
+      el('circle', { class: `dot${r.hi ? ' hi' : ''}`, cx: at(r.value), cy: lay.markY, r: 4.5, style: `--i:${i}` }),
+      el('text', { x: at(r.value) + 9, y: lay.markY + 4 }, format(r.value)),
     ];
     return el('g', {
       [`data-${attr}`]: r.key,
@@ -279,7 +284,7 @@ export const dotplot = ({
       'data-k': i,
       'data-rank': i,
       tabindex: 0,
-      transform: `translate(0 ${T + i * rowH + rowH / 2})`,
+      transform: `translate(0 ${rowTop(i)})`,
     }, content);
   }));
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
@@ -298,8 +303,8 @@ export const dotplot = ({
     order(keys) {
       keys.forEach((key, rank) => {
         const g = groups.find((n) => n.getAttribute(`data-${attr}`) === String(key));
-        g.setAttribute('transform', `translate(0 ${T + rank * rowH + rowH / 2})`);
-        g.style.transform = `translate(0px, ${T + rank * rowH + rowH / 2}px)`;
+        g.setAttribute('transform', `translate(0 ${rowTop(rank)})`);
+        g.style.transform = `translate(0px, ${rowTop(rank)}px)`;
         g.dataset.rank = rank;
       });
     },
@@ -711,11 +716,10 @@ export const tileMap = ({ mount, tiles, values, describe, aria }) => {
 
 export const dumbbell = ({ mount, rows, years, describe, aria, format = compact }) => {
   const W = widthOf(mount);
-  const labelW = Math.min(170, Math.max(96, W * 0.3));
-  const L = labelW + 10;
   const R = 60;
   const T = 22;
-  const rowH = 24;
+  const lay = rowLayout(rows, Math.min(170, Math.max(96, W * 0.3)), 24);
+  const { L, rowH } = lay;
   const H = T + rows.length * rowH + 6;
   const values = rows.flatMap((r) => [r.a, r.b]).filter((v) => v > 0);
   const lo = 10 ** Math.floor(Math.log10(Math.min(...values)));
@@ -726,16 +730,17 @@ export const dumbbell = ({ mount, rows, years, describe, aria, format = compact 
     ticks.map((t) => el('g', {},
       el('line', { class: 'grid', x1: x(t), x2: x(t), y1: T - 6, y2: H }),
       el('text', { x: x(t), y: 10, 'text-anchor': 'middle' }, compact(t)))),
-    rows.map((r, i) => {
-      const y = T + i * rowH + rowH / 2;
+    el('g', { class: lay.cls }, rows.map((r, i) => {
+      const mid = T + i * rowH + rowH / 2;
+      const y = mid + lay.markY;
       return el('g', { 'data-row': r.key, 'data-k': i, tabindex: 0 },
-        el('rect', { class: 'row-hit', x: 0, y: y - rowH / 2, width: W, height: rowH }),
-        el('text', { class: 'lab', x: 0, y: y + 4 }, truncate(r.label, labelW)),
+        el('rect', { class: 'row-hit', x: 0, y: mid - rowH / 2, width: W, height: rowH }),
+        el('text', { class: 'lab', x: 0, y: mid + lay.labelY }, r.label),
         el('line', { class: 'stem', x1: x(r.a), x2: x(r.b), y1: y, y2: y, style: `--i:${i}` }),
         el('circle', { class: 'dot then', cx: x(r.a), cy: y, r: 4, style: `--i:${i}` }),
         el('circle', { class: 'dot hi', cx: x(r.b), cy: y, r: 4.5, style: `--i:${i}` }),
         el('text', { x: Math.max(x(r.a), x(r.b)) + 9, y: y + 4 }, format(r.b)));
-    }));
+    })));
   hover(svg, (k) => describe(rows[Number(k)]));
   const legend = html('ul', { class: 'legend' },
     html('li', {}, html('i', { class: 'dot-key then' }), String(years[0])),

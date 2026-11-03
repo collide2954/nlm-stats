@@ -469,6 +469,13 @@ h2,
   font-size: 12.5px;
 }
 
+.chart .stacked .lab {
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
 .chart .note {
   fill: var(--ink);
   font: italic 13.5px var(--serif);
