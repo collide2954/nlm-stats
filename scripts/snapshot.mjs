@@ -2,7 +2,7 @@ import { writeFile } from 'node:fs/promises';
 import { eutilsUrl, retry } from '../src/lib.js';
 import {
   ENTREZ_DBS, QUERY_GROUPS, ERAS, PAPERS, METHODS, METHOD_YEARS, ICS, ENROLLMENT_BANDS, CT_DESIGN, TYPE_SERIES,
-  GROWTH, ACCESS, COUNTRIES, GENES, yearRange,
+  GROWTH, ACCESS, COUNTRIES, GENES, VOCAB, SUBJECTS, RETRACTED, CLASSICS, EXTREMES, yearRange,
 } from '../src/queries.js';
 import {
   parseEinfo,
@@ -24,6 +24,10 @@ import {
   enumLabels,
   parseTaxonNames,
   parseLinkCount,
+  stopReasons,
+  resultsLag,
+  retractionYears,
+  geneExtremes,
 } from './parsers.mjs';
 
 const OUT = new URL('../src/snapshot.js', import.meta.url);
@@ -47,6 +51,13 @@ const eutils = async (tool, params) => {
   if (wait > 0) await sleep(wait);
   last = Date.now();
   return fetchWithRetry(eutilsUrl(tool, { ...params, tool: 'nlm-stats' }));
+};
+
+const efetchXml = async (params) => {
+  const wait = last + GAP_MS - Date.now();
+  if (wait > 0) await sleep(wait);
+  last = Date.now();
+  return fetchWithRetry(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?${new URLSearchParams({ ...params, retmode: 'xml', tool: 'nlm-stats' })}`, 'text');
 };
 
 const count = async (db, term) => {
@@ -213,7 +224,7 @@ const clinicaltrials = async () => {
 };
 
 let reporterLast = 0;
-const reporter = async (criteria, fields, offset) => {
+const reporter = async (criteria, fields, offset, extra = {}) => {
   const wait = reporterLast + 1100 - Date.now();
   if (wait > 0) await sleep(wait);
   reporterLast = Date.now();
@@ -221,7 +232,7 @@ const reporter = async (criteria, fields, offset) => {
     const res = await fetch(REPORTER, {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'user-agent': 'nlm-stats-snapshot' },
-      body: JSON.stringify({ criteria, include_fields: fields, offset, limit: 500 }),
+      body: JSON.stringify({ criteria, include_fields: fields, offset, limit: 500, ...extra }),
     });
     if (!res.ok) throw new Error(`RePORTER HTTP ${res.status}`);
     return res.json();
@@ -380,6 +391,196 @@ const genes = async () => {
   return out;
 };
 
+const perYear = async (term, years) => {
+  const out = [];
+  for (const year of years) out.push({ year, count: await count('pubmed', `${term} AND ${year}[dp]`) });
+  return out;
+};
+
+const vocab = async (thisYear) => {
+  const years = yearRange(VOCAB.from, thisYear);
+  step('vocab totals');
+  const totals = await perYear('hasabstract', years);
+  const words = [];
+  for (const word of [...VOCAB.words, VOCAB.control]) {
+    step(`vocab ${word.id}`);
+    words.push({ ...word, years: await perYear(`${word.term} AND hasabstract`, years) });
+  }
+  return { base: VOCAB.base, partial: thisYear, totals, words: words.slice(0, -1), control: words.at(-1) };
+};
+
+const subjects = async (lastYear) => {
+  const years = yearRange(SUBJECTS.animals.from, lastYear);
+  step('subjects medline');
+  const medline = await perYear('medline[sb]', years);
+  const series = async (list) => {
+    const out = [];
+    for (const item of list) {
+      step(`subject ${item.id}`);
+      out.push({ ...item, years: await perYear(`${item.term} AND medline[sb]`, years) });
+    }
+    return out;
+  };
+  const ages = [];
+  for (const age of SUBJECTS.ages.list) {
+    step(`age ${age.id}`);
+    const counts = {};
+    for (const year of SUBJECTS.ages.years) counts[year] = await count('pubmed', `${age.term} AND ${year}[dp] AND medline[sb]`);
+    ages.push({ ...age, counts });
+  }
+  const outbreaks = [];
+  for (const o of SUBJECTS.outbreaks.list) {
+    step(`outbreak ${o.id}`);
+    outbreaks.push({ ...o, years: await perYear(o.term, yearRange(SUBJECTS.outbreaks.from, lastYear)) });
+  }
+  return {
+    medline,
+    animals: await series(SUBJECTS.animals.list),
+    sex: await series(SUBJECTS.sex.list),
+    ages: { years: SUBJECTS.ages.years, list: ages },
+    outbreaks,
+  };
+};
+
+const citedIn = async (pmid, term) => parseCitedIn(await eutils('elink', {
+  dbfrom: 'pubmed', db: 'pubmed', linkname: 'pubmed_pubmed_citedin', id: pmid, ...(term ? { term } : {}),
+}));
+
+const zombies = async () => {
+  step('zombies');
+  const ids = RETRACTED.map((p) => p.pmid).join(',');
+  const years = retractionYears(await efetchXml({ db: 'pubmed', id: ids }));
+  const summaries = parseSummaries(await eutils('esummary', { db: 'pubmed', id: ids }));
+  const out = [];
+  for (const paper of RETRACTED) {
+    step(`zombie ${paper.pmid}`);
+    const retracted = years[paper.pmid] ?? null;
+    const s = summaries.find((x) => x.pmid === paper.pmid);
+    out.push({
+      ...paper,
+      title: s.title,
+      date: s.date,
+      retracted,
+      citedBy: await citedIn(paper.pmid),
+      after: retracted ? await citedIn(paper.pmid, `${retracted + 1}:3000[dp]`) : null,
+    });
+  }
+  return out;
+};
+
+const classics = async () => {
+  step('classics');
+  const summaries = parseSummaries(await eutils('esummary', { db: 'pubmed', id: CLASSICS.map((p) => p.pmid).join(',') }));
+  const out = [];
+  for (const paper of CLASSICS) {
+    step(`classic ${paper.pmid}`);
+    const s = summaries.find((x) => x.pmid === paper.pmid);
+    out.push({ ...paper, title: s.title, journal: s.journal, date: s.date, citedBy: await citedIn(paper.pmid) });
+  }
+  return out;
+};
+
+const proteinExtreme = async () => {
+  step('largest protein');
+  const ids = (await eutils('esearch', { db: 'protein', term: EXTREMES.protein, retmax: 200 })).esearchresult.idlist;
+  const json = await eutils('esummary', { db: 'protein', id: ids.join(',') });
+  const top = ids.map((id) => json.result[id]).reduce((a, b) => (b.slen > a.slen ? b : a));
+  return { accession: top.accessionversion, length: top.slen, title: top.title, candidates: ids.length };
+};
+
+const geneRecords = async () => {
+  const search = await eutils('esearch', { db: 'gene', term: EXTREMES.genes, retmax: 0, usehistory: 'y' });
+  const { count: total, webenv, querykey } = search.esearchresult;
+  const out = [];
+  for (let start = 0; start < Number(total); start += 500) {
+    step(`genes ${start}`);
+    const json = await eutils('esummary', { db: 'gene', query_key: querykey, WebEnv: webenv, retstart: start, retmax: 500 });
+    out.push(...json.result.uids.map((uid) => json.result[uid]));
+  }
+  return out;
+};
+
+const trialExtremes = async () => {
+  step('trial extremes');
+  const pick = async (sort, fields) => (await ctget('studies', { sort, pageSize: '1', fields })).studies[0].protocolSection;
+  const late = await pick('CompletionDate:desc', 'NCTId,BriefTitle,CompletionDate');
+  const early = await pick('StartDate:asc', 'NCTId,BriefTitle,StartDate,StudyFirstPostDate,OverallStatus');
+  return {
+    latest: { id: late.identificationModule.nctId, title: late.identificationModule.briefTitle, date: late.statusModule.completionDateStruct.date },
+    farFuture: { year: EXTREMES.farFuture, count: await ctCount(`AREA[CompletionDate]RANGE[${EXTREMES.farFuture}-01-01,MAX]`) },
+    earliest: {
+      id: early.identificationModule.nctId,
+      title: early.identificationModule.briefTitle,
+      date: early.statusModule.startDateStruct.date,
+      posted: early.statusModule.studyFirstPostDateStruct?.date ?? null,
+      status: early.statusModule.overallStatus,
+    },
+    longAgo: { year: EXTREMES.longAgo, count: await ctCount(`AREA[StartDate]RANGE[MIN,${EXTREMES.longAgo - 1}-12-31]`) },
+  };
+};
+
+const awardExtremes = async (fy) => {
+  step('award extremes');
+  const fields = ['ApplId', 'ProjectNum', 'ProjectTitle', 'AwardAmount', 'Organization', 'AgencyIcAdmin', 'ActivityCode'];
+  const top = (await reporter({ fiscal_years: [fy] }, fields, 0, { limit: 1, sort_field: 'award_amount', sort_order: 'desc' })).results[0];
+  const range = async (min, max) => (await reporter({ fiscal_years: [fy], award_amount_range: { min_amount: min, max_amount: max } }, ['ApplId'], 0, { limit: 1 })).meta.total;
+  return {
+    fy,
+    largest: {
+      appl: top.appl_id,
+      number: top.project_num,
+      title: top.project_title,
+      dollars: top.award_amount,
+      ic: top.agency_ic_admin?.abbreviation ?? null,
+      org: top.organization?.org_name ?? null,
+      activity: top.activity_code,
+    },
+    upTo100: await range(1, 100),
+    exactlyOne: await range(1, 1),
+  };
+};
+
+const extremes = async (now) => {
+  const stop = await eutils('esearch', { db: 'pubmed', term: EXTREMES.stopword, retmax: 0 });
+  return {
+    protein: await proteinExtreme(),
+    genes: geneExtremes(await geneRecords()),
+    uncultured: await count('nuccore', EXTREMES.uncultured),
+    stopword: {
+      word: EXTREMES.stopword,
+      count: parseCount(stop),
+      ignored: (stop.esearchresult.warninglist?.phrasesignored ?? []).includes(EXTREMES.stopword),
+    },
+    trials: await trialExtremes(),
+    awards: await awardExtremes(detailFiscalYear(now)),
+  };
+};
+
+const ctAll = async (params) => {
+  const rows = [];
+  let token;
+  do {
+    step(`ct page ${rows.length}`);
+    const json = await ctget('studies', { ...params, pageSize: '1000', ...(token ? { pageToken: token } : {}) });
+    rows.push(...json.studies.map((x) => x.protocolSection));
+    token = json.nextPageToken;
+  } while (token);
+  return rows;
+};
+
+const trialfate = async (now) => {
+  const stopped = await ctAll({ 'query.term': 'AREA[OverallStatus]TERMINATED AND AREA[WhyStopped]NOT MISSING', fields: 'NCTId,WhyStopped,LeadSponsorClass' });
+  const reported = await ctAll({ aggFilters: 'results:with', fields: 'NCTId,PrimaryCompletionDate,ResultsFirstSubmitDate,LeadSponsorClass,StudyType' });
+  const lagRows = reported
+    .filter((m) => m.designModule?.studyType === 'INTERVENTIONAL' && m.statusModule?.primaryCompletionDateStruct?.date && m.statusModule?.resultsFirstSubmitDate)
+    .map((m) => ({ pc: m.statusModule.primaryCompletionDateStruct.date, submit: m.statusModule.resultsFirstSubmitDate, cls: m.sponsorCollaboratorsModule?.leadSponsor?.class ?? 'UNKNOWN' }));
+  return {
+    terminated: await ctCount('AREA[OverallStatus]TERMINATED'),
+    stops: stopReasons(stopped.map((m) => ({ why: m.statusModule.whyStopped, cls: m.sponsorCollaboratorsModule?.leadSponsor?.class ?? 'UNKNOWN' }))),
+    lag: resultsLag(lagRows, { from: 2018, to: now.getUTCFullYear() - 4 }),
+  };
+};
+
 const now = new Date();
 const SECTIONS = {
   entrez: () => entrez(),
@@ -396,6 +597,12 @@ const SECTIONS = {
   refseq: () => refseq(),
   clinicaltrials: () => clinicaltrials(),
   funding: () => funding(now),
+  vocab: () => vocab(now.getUTCFullYear()),
+  subjects: () => subjects(now.getUTCFullYear() - 1),
+  zombies: () => zombies(),
+  classics: () => classics(),
+  extremes: () => extremes(now),
+  trialfate: () => trialfate(now),
 };
 
 const only = process.argv.slice(2).filter((a) => SECTIONS[a]);
