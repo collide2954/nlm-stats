@@ -363,7 +363,7 @@ const renderTrials = () => {
     return h('div', {},
       h('h3', {}, label, h('small', {}, `${exact(f.unique)} values`)),
       h('ul', { class: 'bars alt' }, f.top.map((v) => h('li', { 'data-search': v.value },
-        param ? ext(`https://clinicaltrials.gov/search?${param}=${encodeURIComponent(v.value)}`, v.value) : h('span', {}, enumish ? labelize(v.value) : v.value),
+        param ? ext(`https://clinicaltrials.gov/search?${param}=${encodeURIComponent(v.value)}`, v.value) : h('span', {}, enumish ? ctLabel(key, v.value) : v.value),
         track(share(v.count, max)),
         h('span', { class: 'val' }, exact(v.count))))));
   }));
@@ -384,12 +384,12 @@ const spark = (values) => {
 
 const statBox = (value, label) => h('div', {}, h('b', {}, value), h('span', {}, label));
 
-const barList = (items, { label, value, small, href, max, cls } = {}) => {
+const barList = (items, { label, value, small, href, max, cls, format = exact } = {}) => {
   const top = max ?? Math.max(...items.map(value), 1);
   return h('ul', { class: cls ? `bars ${cls}` : 'bars' }, items.map((item) => h('li', { 'data-search': label(item) },
     href ? ext(href(item), label(item)) : h('span', {}, label(item)),
     track(share(value(item), top)),
-    h('span', { class: 'val' }, exact(value(item)), small ? h('small', {}, small(item)) : null))));
+    h('span', { class: 'val' }, format(value(item)), small ? h('small', {}, small(item)) : null))));
 };
 
 const renderMethods = () => {
@@ -403,7 +403,7 @@ const renderMethods = () => {
     return h('li', { 'data-search': `${m.label} ${m.term}` },
       h('span', { class: 'lab' }, ext(searchUrl('pubmed', m.term), m.label), h('code', {}, m.term)),
       spark(m.years.map((y) => y.count)),
-      h('span', { class: 'val' }, exact(m.total), h('small', {}, `first ${firstYear ?? '—'} · peak ${peak.year}`)));
+      h('span', { class: 'val' }, exact(m.total), h('small', {}, `first ${firstYear === from ? `≤${from}` : firstYear ?? '—'} · peak ${peak.year}`)));
   }));
 };
 
@@ -442,6 +442,8 @@ const renderApis = () => {
       h('td', {}, c.cadence),
       h('td', {}, cite(c.src))))));
 };
+
+const ctLabel = (piece, value) => snapshot.clinicaltrials.labels?.[piece]?.[value] ?? labelize(value);
 
 const fieldTop = (key) => snapshot.clinicaltrials.fields[key]?.top ?? [];
 const fieldValue = (key, value) => fieldTop(key).find((v) => v.value === value)?.count ?? 0;
@@ -492,7 +494,7 @@ const renderDesign = () => {
     h('span', { class: 'val' }, exact(b.count)))));
   fill('#design-fields', ...CT_DESIGN.map((key) => h('div', {},
     h('h3', {}, DESIGN_LABELS[key]),
-    barList(fieldTop(key), { label: (v) => labelize(v.value), value: (v) => v.count, cls: 'alt' }))));
+    barList(fieldTop(key), { label: (v) => ctLabel(key, v.value), value: (v) => v.count, cls: 'alt' }))));
 };
 
 const usd = (n) => `$${compact(n)}`;
@@ -502,7 +504,7 @@ const renderFunding = () => {
   const d = f.detail;
   const nih = f.ics.reduce((n, i) => n + i.dollars, 0);
   const rank = f.ics.findIndex((i) => i.ic === 'NLM') + 1;
-  $('#funding-dek').textContent = `FY${f.detailFy}: NLM administered ${exact(d.projects)} awards worth $${exact(d.dollars)} in NIH RePORTER, ${pct(d.dollars / nih)} of the ${usd(nih)} listed across ${f.ics.length} NIH institutes and centers. Totals are award amounts for primary projects, excluding subprojects.`;
+  $('#funding-dek').textContent = `FY${f.detailFy}: NLM administered ${exact(d.projects)} awards worth $${exact(d.dollars)} in NIH RePORTER, ${pct(d.dollars / nih)} of the ${usd(nih)} listed across ${f.ics.length} NIH institutes and centers. Totals are award amounts for primary projects, excluding subprojects. The step at FY2008 is when NLM's intramural "National Biomedical Information Services" record first appears in RePORTER, not a budget jump.`;
   fill('#funding-stats',
     statBox(usd(d.dollars), `NLM awards, FY${f.detailFy}`),
     statBox(exact(d.projects), 'projects'),
@@ -531,9 +533,12 @@ const renderFunding = () => {
     track(share(i.dollars, icMax)),
     h('span', { class: 'val' }, usd(i.dollars), h('small', {}, `${exact(i.projects)} awards`)))));
   $('#activity-title').textContent = `NLM by activity code, FY${f.detailFy}`;
-  const opts = { label: (g) => g.key, value: (g) => g.dollars, small: (g) => `${exact(g.projects)} awards` };
+  const opts = { label: (g) => g.key, value: (g) => g.dollars, small: (g) => `${exact(g.projects)} awards`, format: usd };
+  const byAwards = sortRows(d.byCategory, 'projects', 'desc');
   $('#funding-activity').replaceWith(Object.assign(barList(d.byActivity, opts), { id: 'funding-activity' }));
-  $('#funding-categories').replaceWith(Object.assign(barList(d.byCategory, { ...opts, cls: 'alt' }), { id: 'funding-categories' }));
+  $('#funding-categories').replaceWith(Object.assign(barList(byAwards, {
+    label: (g) => g.key, value: (g) => g.projects, small: (g) => usd(g.dollars), cls: 'alt',
+  }), { id: 'funding-categories' }));
   $('#funding-orgs').replaceWith(Object.assign(barList(d.byOrg, { ...opts, cls: 'alt' }), { id: 'funding-orgs' }));
   fill('#funding-largest', ...d.largest.map((a) => h('li', {},
     ext(`https://reporter.nih.gov/project-details/${a.appl}`, a.number), ` ${a.title} `,

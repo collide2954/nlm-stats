@@ -280,7 +280,7 @@ h1 em {
 
 .spark-list li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 120px 7rem;
+  grid-template-columns: minmax(0, 1fr) 110px 8.6rem;
   gap: 10px;
   align-items: center;
   padding: 6px 0;
