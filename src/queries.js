@@ -1,0 +1,127 @@
+export const ENTREZ_DBS = [
+  'pubmed', 'protein', 'nuccore', 'ipg', 'nucleotide', 'structure', 'genome', 'gap', 'grasp',
+  'annotinfo', 'assembly', 'bioproject', 'biosample', 'blastdbinfo', 'books', 'cdd', 'clinvar',
+  'dbvar', 'gene', 'gds', 'geoprofiles', 'medgen', 'mesh', 'nlmcatalog', 'omim', 'orgtrack',
+  'pmc', 'proteinclusters', 'pcassay', 'protfam', 'pccompound', 'pcsubstance', 'seqannot', 'snp',
+  'sra', 'taxonomy', 'biocollections', 'gtr',
+];
+
+const q = (id, db, label, term) => ({ id, db, label, term });
+
+export const QUERY_GROUPS = [
+  {
+    id: 'types',
+    title: 'PubMed by publication type',
+    items: [
+      q('pt-journal', 'pubmed', 'Journal Article', 'journal article[pt]'),
+      q('pt-review', 'pubmed', 'Review', 'review[pt]'),
+      q('pt-case', 'pubmed', 'Case Reports', 'case reports[pt]'),
+      q('pt-letter', 'pubmed', 'Letter', 'letter[pt]'),
+      q('pt-comment', 'pubmed', 'Comment', 'comment[pt]'),
+      q('pt-trial', 'pubmed', 'Clinical Trial', 'clinical trial[pt]'),
+      q('pt-editorial', 'pubmed', 'Editorial', 'editorial[pt]'),
+      q('pt-rct', 'pubmed', 'Randomized Controlled Trial', 'randomized controlled trial[pt]'),
+      q('pt-historical', 'pubmed', 'Historical Article', 'historical article[pt]'),
+      q('pt-systematic', 'pubmed', 'Systematic Review', 'systematic review[pt]'),
+      q('pt-meta', 'pubmed', 'Meta-Analysis', 'meta-analysis[pt]'),
+      q('pt-biography', 'pubmed', 'Biography', 'biography[pt]'),
+      q('pt-erratum', 'pubmed', 'Published Erratum', 'published erratum[pt]'),
+      q('pt-preprint', 'pubmed', 'Preprint', 'preprint[pt]'),
+      q('pt-portrait', 'pubmed', 'Portrait', 'portrait[pt]'),
+      q('pt-retracted', 'pubmed', 'Retracted Publication', 'retracted publication[pt]'),
+      q('pt-retraction', 'pubmed', 'Retraction Notice', 'retraction notice[pt]'),
+      q('pt-concern', 'pubmed', 'Expression of Concern', '"expression of concern"[pt]'),
+      q('pt-duplicate', 'pubmed', 'Duplicate Publication', 'duplicate publication[pt]'),
+    ],
+  },
+  {
+    id: 'languages',
+    title: 'PubMed by language',
+    items: [
+      q('la-eng', 'pubmed', 'English', 'english[la]'),
+      q('la-ger', 'pubmed', 'German', 'german[la]'),
+      q('la-fre', 'pubmed', 'French', 'french[la]'),
+      q('la-rus', 'pubmed', 'Russian', 'russian[la]'),
+      q('la-jpn', 'pubmed', 'Japanese', 'japanese[la]'),
+      q('la-spa', 'pubmed', 'Spanish', 'spanish[la]'),
+      q('la-chi', 'pubmed', 'Chinese', 'chinese[la]'),
+      q('la-ita', 'pubmed', 'Italian', 'italian[la]'),
+      q('la-pol', 'pubmed', 'Polish', 'polish[la]'),
+      q('la-por', 'pubmed', 'Portuguese', 'portuguese[la]'),
+      q('la-dut', 'pubmed', 'Dutch', 'dutch[la]'),
+      q('la-cze', 'pubmed', 'Czech', 'czech[la]'),
+      q('la-hun', 'pubmed', 'Hungarian', 'hungarian[la]'),
+      q('la-swe', 'pubmed', 'Swedish', 'swedish[la]'),
+      q('la-dan', 'pubmed', 'Danish', 'danish[la]'),
+      q('la-tur', 'pubmed', 'Turkish', 'turkish[la]'),
+      q('la-kor', 'pubmed', 'Korean', 'korean[la]'),
+      q('la-lat', 'pubmed', 'Latin', 'latin[la]'),
+    ],
+  },
+  {
+    id: 'organisms',
+    title: 'PubMed by organism (MeSH)',
+    items: [
+      q('mh-humans', 'pubmed', 'Humans', 'humans[mh]'),
+      q('mh-mice', 'pubmed', 'Mice', 'mice[mh]'),
+      q('mh-rats', 'pubmed', 'Rats', 'rats[mh]'),
+      q('mh-dogs', 'pubmed', 'Dogs', 'dogs[mh]'),
+      q('mh-cattle', 'pubmed', 'Cattle', 'cattle[mh]'),
+      q('mh-swine', 'pubmed', 'Swine', 'swine[mh]'),
+      q('mh-rabbits', 'pubmed', 'Rabbits', 'rabbits[mh]'),
+      q('mh-ecoli', 'pubmed', 'Escherichia coli', '"escherichia coli"[mh]'),
+      q('mh-yeast', 'pubmed', 'Saccharomyces cerevisiae', '"saccharomyces cerevisiae"[mh]'),
+      q('mh-fly', 'pubmed', 'Drosophila', 'drosophila[mh]'),
+      q('mh-zebrafish', 'pubmed', 'Zebrafish', 'zebrafish[mh]'),
+      q('mh-arabidopsis', 'pubmed', 'Arabidopsis', 'arabidopsis[mh]'),
+      q('mh-worm', 'pubmed', 'Caenorhabditis elegans', '"caenorhabditis elegans"[mh]'),
+      q('mh-macaque', 'pubmed', 'Macaca mulatta', '"macaca mulatta"[mh]'),
+    ],
+  },
+  {
+    id: 'subsets',
+    title: 'PubMed subsets',
+    items: [
+      q('sb-medline', 'pubmed', 'MEDLINE-indexed', 'medline[sb]'),
+      q('sb-abstract', 'pubmed', 'Has an abstract', 'hasabstract'),
+      q('sb-free', 'pubmed', 'Free full text', 'free full text[sb]'),
+      q('sb-pmc', 'pubmed', 'Linked to PMC', 'pubmed pmc[sb]'),
+      q('sb-covid', 'pubmed', 'Mentions COVID-19', 'covid-19'),
+      q('sb-pre1900', 'pubmed', 'Published before 1900', '1781:1899[dp]'),
+      q('sb-1781', 'pubmed', 'Published in 1781', '1781[dp]'),
+      q('nlm-indexed', 'nlmcatalog', 'Journals currently indexed for MEDLINE', 'currentlyindexed[All]'),
+      q('pmc-oa', 'pmc', 'PMC open access articles', '"open access"[filter]'),
+    ],
+  },
+  {
+    id: 'molecular',
+    title: 'Genes, taxa and variants',
+    items: [
+      q('gene-live', 'gene', 'Live Gene records, all species', 'alive[prop]'),
+      q('gene-human', 'gene', 'Live human Gene records', '9606[taxid] AND alive[prop]'),
+      q('gene-human-pc', 'gene', 'Human protein-coding genes', '9606[taxid] AND alive[prop] AND genetype protein coding[prop]'),
+      q('tax-species', 'taxonomy', 'Taxonomy nodes at species rank', 'species[rank]'),
+      q('tax-genus', 'taxonomy', 'Taxonomy nodes at genus rank', 'genus[rank]'),
+      q('sra-human', 'sra', 'Human SRA experiments', '"homo sapiens"[orgn]'),
+    ],
+  },
+  {
+    id: 'clinvar',
+    title: 'ClinVar by clinical significance',
+    items: [
+      q('cv-path', 'clinvar', 'Pathogenic', '"clinsig pathogenic"[Properties]'),
+      q('cv-lpath', 'clinvar', 'Likely pathogenic', '"clinsig likely pathogenic"[Properties]'),
+      q('cv-vus', 'clinvar', 'Uncertain significance', '"clinsig vus"[Properties]'),
+      q('cv-lben', 'clinvar', 'Likely benign', '"clinsig likely benign"[Properties]'),
+      q('cv-ben', 'clinvar', 'Benign', '"clinsig benign"[Properties]'),
+    ],
+  },
+];
+
+export const yearRange = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => from + i);
+
+export const ERAS = [
+  { from: 1781, to: 1799 },
+  ...yearRange(180, 193).map((d) => ({ from: d * 10, to: d * 10 + 9 })),
+  { from: 1940, to: 1944 },
+];
