@@ -596,6 +596,69 @@ h2,
   stroke-width: 2;
 }
 
+.chart .tile.state {
+  stroke: none;
+}
+
+.chart .tile-code {
+  fill: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.chart .tile-code.on {
+  fill: var(--on-accent);
+}
+
+.chart g.sel .tile.state {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.chart .dot.then {
+  fill: var(--paper);
+  stroke: var(--data);
+  stroke-width: 1.5;
+}
+
+.dot-key {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot-key.then {
+  border: 1.5px solid var(--data);
+}
+
+.dot-key.now {
+  background: var(--accent);
+}
+
+.scale-key {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.scale-key i {
+  width: 140px;
+  height: 10px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 8%, var(--paper-2)), var(--accent));
+}
+
+.chart .line.soft {
+  stroke: var(--data);
+}
+
+.chart .line.mid {
+  stroke: var(--ink-2);
+}
+
 .chart .tile-lab {
   fill: var(--ink);
   font-size: 12px;

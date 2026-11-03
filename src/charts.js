@@ -423,32 +423,35 @@ export const treemap = ({ mount, items, height, aria, describe }) => {
   return mountSvg(mount, svg);
 };
 
-export const lines = ({ mount, series, aria, describe, annotations = [] }) => {
+export const lines = ({
+  mount, series, aria, describe, annotations = [], scale = 'log', yFormat = compact, height = 300, labelW = 92,
+}) => {
   const W = widthOf(mount);
   const L = 46;
-  const R = 92;
+  const R = labelW;
   const T = 16 + annotations.length * 18;
   const B = 24;
-  const H = 300;
+  const H = height;
   const xs = [...new Set(series.flatMap((s) => s.rows.map((r) => r.x)))].sort((a, b) => a - b);
   const ys = series.flatMap((s) => s.rows.map((r) => r.y)).filter((v) => v > 0);
-  const lo = 10 ** Math.floor(Math.log10(Math.min(...ys)));
-  const hi = 10 ** Math.ceil(Math.log10(Math.max(...ys)));
+  const log = scale === 'log';
+  const lo = log ? 10 ** Math.floor(Math.log10(Math.min(...ys))) : 0;
+  const hi = log ? 10 ** Math.ceil(Math.log10(Math.max(...ys))) : niceTicks(Math.max(...ys), 4).at(-1);
   const x = scaleLinear([xs[0], xs.at(-1)], [L, W - R]);
-  const y = scaleLog([lo, hi], [H - B, T]);
-  const ticks = logTicks(lo, hi).filter((t) => Math.round(Math.log10(t)) % 3 === 0);
+  const y = log ? scaleLog([lo, hi], [H - B, T]) : scaleLinear([0, hi], [H - B, T]);
+  const ticks = log ? logTicks(lo, hi).filter((t) => Math.round(Math.log10(t)) % 3 === 0) : niceTicks(Math.max(...ys), 4);
   const step = labelStep(xs.length, W - L - R, 40);
   const cross = el('line', { class: 'cross', y1: T, y2: H - B, x1: 0, x2: 0, visibility: 'hidden' });
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
     ticks.map((t) => el('g', {},
       el('line', { class: 'grid', x1: L, x2: W - R, y1: y(t), y2: y(t) }),
-      el('text', { x: L - 8, y: y(t) + 4, 'text-anchor': 'end' }, compact(t)))),
+      el('text', { x: L - 8, y: y(t) + 4, 'text-anchor': 'end' }, yFormat(t)))),
     el('line', { class: 'base', x1: L, x2: W - R, y1: H - B, y2: H - B }),
     xs.map((v) => (v % step === 0 ? el('text', { x: x(v), y: H - 6, 'text-anchor': 'middle' }, v) : null)),
     series.map((s) => {
       const last = s.rows.at(-1);
       return el('g', {},
-        el('path', { class: `line${s.alt ? ' alt' : ''}`, d: `M${s.rows.map((r) => `${x(r.x).toFixed(1)},${y(r.y).toFixed(1)}`).join('L')}` }),
+        el('path', { class: `line${s.alt ? ' alt' : ''}${s.cls ? ` ${s.cls}` : ''}`, d: `M${s.rows.filter((r) => !log || r.y > 0).map((r) => `${x(r.x).toFixed(1)},${y(r.y).toFixed(1)}`).join('L')}` }),
         el('text', { class: 'lab', x: x(last.x) + 8, y: y(last.y) + 4 }, s.label));
     }),
     annotations.map((a, n) => {
@@ -673,4 +676,66 @@ export const countUp = (node, value, format = exact) => {
     requestAnimationFrame(tick);
   });
   io.observe(node);
+};
+
+export const tileMap = ({ mount, tiles, values, describe, aria }) => {
+  const W = widthOf(mount);
+  const size = Math.floor(Math.min(W / 12, 72));
+  const gap = 3;
+  const present = Object.values(values).filter((v) => v > 0);
+  const lo = Math.log10(Math.max(1, Math.min(...present)));
+  const hi = Math.log10(Math.max(...present));
+  const share = (v) => (v > 0 && hi > lo ? (Math.log10(v) - lo) / (hi - lo) : 0);
+  const codes = Object.keys(tiles);
+  const svg = el('svg', { viewBox: `0 0 ${size * 12} ${size * 8}`, role: 'img', 'aria-label': aria, style: `max-width:${size * 12}px` },
+    codes.map((code, i) => {
+      const t = tiles[code];
+      const v = values[code] ?? 0;
+      const p = share(v);
+      return el('g', { 'data-state': code, 'data-k': i, tabindex: 0 },
+        el('rect', {
+          class: 'tile state', x: t.col * size, y: t.row * size, width: size - gap, height: size - gap,
+          style: `fill:color-mix(in srgb, var(--accent) ${Math.round(8 + p * 92)}%, var(--paper-2));--i:${i}`,
+        }),
+        el('text', { class: `tile-code${p > 0.55 ? ' on' : ''}`, x: t.col * size + (size - gap) / 2, y: t.row * size + (size - gap) / 2 + 4, 'text-anchor': 'middle' }, code));
+    }));
+  hover(svg, (k) => describe(codes[Number(k)], values[codes[Number(k)]] ?? 0));
+  const legend = html('p', { class: 'scale-key' }, html('span', {}, 'Fewer dollars'), html('i', {}), html('span', {}, 'More, log scale'));
+  mount.replaceChildren(svg, legend);
+  return svg;
+};
+
+export const dumbbell = ({ mount, rows, years, describe, aria, format = compact }) => {
+  const W = widthOf(mount);
+  const labelW = Math.min(170, Math.max(96, W * 0.3));
+  const L = labelW + 10;
+  const R = 60;
+  const T = 22;
+  const rowH = 24;
+  const H = T + rows.length * rowH + 6;
+  const values = rows.flatMap((r) => [r.a, r.b]).filter((v) => v > 0);
+  const lo = 10 ** Math.floor(Math.log10(Math.min(...values)));
+  const hi = 10 ** Math.ceil(Math.log10(Math.max(...values)));
+  const x = scaleLog([lo, hi], [L, W - R]);
+  const ticks = logTicks(lo, hi);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
+    ticks.map((t) => el('g', {},
+      el('line', { class: 'grid', x1: x(t), x2: x(t), y1: T - 6, y2: H }),
+      el('text', { x: x(t), y: 10, 'text-anchor': 'middle' }, compact(t)))),
+    rows.map((r, i) => {
+      const y = T + i * rowH + rowH / 2;
+      return el('g', { 'data-row': r.key, 'data-k': i, tabindex: 0 },
+        el('rect', { class: 'row-hit', x: 0, y: y - rowH / 2, width: W, height: rowH }),
+        el('text', { class: 'lab', x: 0, y: y + 4 }, truncate(r.label, labelW)),
+        el('line', { class: 'stem', x1: x(r.a), x2: x(r.b), y1: y, y2: y, style: `--i:${i}` }),
+        el('circle', { class: 'dot then', cx: x(r.a), cy: y, r: 4, style: `--i:${i}` }),
+        el('circle', { class: 'dot hi', cx: x(r.b), cy: y, r: 4.5, style: `--i:${i}` }),
+        el('text', { x: Math.max(x(r.a), x(r.b)) + 9, y: y + 4 }, format(r.b)));
+    }));
+  hover(svg, (k) => describe(rows[Number(k)]));
+  const legend = html('ul', { class: 'legend' },
+    html('li', {}, html('i', { class: 'dot-key then' }), String(years[0])),
+    html('li', {}, html('i', { class: 'dot-key now' }), String(years[1])));
+  mountSvg(mount, svg, legend);
+  return svg;
 };
