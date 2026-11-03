@@ -183,18 +183,17 @@ export const PROJECTS = [
     'Indexing fully automated since April 2022',
     'Goal: MeSH terms within 24 hours of a citation appearing',
   ], 'medlineOverview'),
+  proj('GenBank', 'NCBI', 1982, 'nuccore', 'https://www.ncbi.nlm.nih.gov/genbank/', 'NM_000518.5', [
+    'Release 3 (Dec 1982): 606 entries, 680,338 bases',
+    'A new release every two months',
+    'Shares data with DDBJ and ENA through INSDC',
+  ], 'gbrel'),
   proj('UMLS', 'NLM', 1986, null, 'https://www.nlm.nih.gov/research/umls/', 'C0000005', [
     '2026AB: 3,550,208 concepts',
     '18,302,757 concept names',
     '196 sources in 31 languages',
     'English is 59.59% of names. Hebrew has 485',
   ], 'umlsStats'),
-  proj('GenBank', 'NCBI', 1982, 'nuccore', 'https://www.ncbi.nlm.nih.gov/genbank/', 'NM_000518.5', [
-    'Release 3 (Dec 1982): 606 entries, 680,338 bases',
-    'Bases have doubled about every 18 months',
-    'A new release every two months',
-    'Shares data with DDBJ and ENA through INSDC',
-  ], 'gbrel'),
   proj('BLAST', 'NCBI', 1990, null, 'https://blast.ncbi.nlm.nih.gov/', '2231712', [
     'J Mol Biol 215:403-10, 5 Oct 1990',
     'Gapped BLAST and PSI-BLAST followed in 1997',
