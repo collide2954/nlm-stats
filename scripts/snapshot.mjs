@@ -2,7 +2,7 @@ import { writeFile } from 'node:fs/promises';
 import { eutilsUrl, retry } from '../src/lib.js';
 import {
   ENTREZ_DBS, QUERY_GROUPS, ERAS, PAPERS, METHODS, METHOD_YEARS, ICS, ENROLLMENT_BANDS, CT_DESIGN, TYPE_SERIES,
-  GROWTH, ACCESS, COUNTRIES, GENES, VOCAB, SUBJECTS, RETRACTED, CLASSICS, EXTREMES, yearRange,
+  GROWTH, ACCESS, COUNTRIES, GENES, VOCAB, SUBJECTS, RETRACTED, CLASSICS, EXTREMES, TRIALFATE, yearRange,
 } from '../src/queries.js';
 import {
   parseEinfo,
@@ -569,13 +569,13 @@ const ctAll = async (params) => {
 };
 
 const trialfate = async (now) => {
-  const stopped = await ctAll({ 'query.term': 'AREA[OverallStatus]TERMINATED AND AREA[WhyStopped]NOT MISSING', fields: 'NCTId,WhyStopped,LeadSponsorClass' });
+  const stopped = await ctAll({ 'query.term': TRIALFATE.stopped, fields: 'NCTId,WhyStopped,LeadSponsorClass' });
   const reported = await ctAll({ aggFilters: 'results:with', fields: 'NCTId,PrimaryCompletionDate,ResultsFirstSubmitDate,LeadSponsorClass,StudyType' });
   const lagRows = reported
     .filter((m) => m.designModule?.studyType === 'INTERVENTIONAL' && m.statusModule?.primaryCompletionDateStruct?.date && m.statusModule?.resultsFirstSubmitDate)
     .map((m) => ({ pc: m.statusModule.primaryCompletionDateStruct.date, submit: m.statusModule.resultsFirstSubmitDate, cls: m.sponsorCollaboratorsModule?.leadSponsor?.class ?? 'UNKNOWN' }));
   return {
-    terminated: await ctCount('AREA[OverallStatus]TERMINATED'),
+    terminated: await ctCount(TRIALFATE.terminated),
     stops: stopReasons(stopped.map((m) => ({ why: m.statusModule.whyStopped, cls: m.sponsorCollaboratorsModule?.leadSponsor?.class ?? 'UNKNOWN' }))),
     lag: resultsLag(lagRows, { from: 2018, to: now.getUTCFullYear() - 4 }),
   };

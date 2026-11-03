@@ -415,8 +415,8 @@ export const SUBJECTS = {
   sex: {
     from: 1975,
     list: [
-      s('women', 'Women only', 'humans[mh] AND female[mh] NOT male[mh]'),
-      s('men', 'Men only', 'humans[mh] AND male[mh] NOT female[mh]'),
+      s('women', 'Women only', 'humans[mh] AND female[mh] NOT male[mh] NOT case reports[pt]'),
+      s('men', 'Men only', 'humans[mh] AND male[mh] NOT female[mh] NOT case reports[pt]'),
     ],
   },
   ages: {
@@ -483,4 +483,9 @@ export const EXTREMES = {
   stopword: 'however',
   farFuture: 2090,
   longAgo: 1950,
+};
+
+export const TRIALFATE = {
+  terminated: 'AREA[OverallStatus]TERMINATED AND AREA[StudyType]INTERVENTIONAL',
+  stopped: 'AREA[OverallStatus]TERMINATED AND AREA[StudyType]INTERVENTIONAL AND AREA[WhyStopped]NOT MISSING',
 };
