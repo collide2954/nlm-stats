@@ -6,7 +6,9 @@ import snapshot from '../../src/snapshot.js';
 import { TIMELINE, PROJECTS, ODDITIES, PEOPLE, APIS, CADENCES } from '../../src/facts.js';
 import { exact, liveOddities, sortRows } from '../../src/lib.js';
 import { findings } from '../../src/findings.js';
-import { ICS, METHODS, GROWTH, COUNTRIES, GENES } from '../../src/queries.js';
+import {
+  ICS, METHODS, GROWTH, COUNTRIES, GENES, VOCAB, SUBJECTS, RETRACTED, CLASSICS,
+} from '../../src/queries.js';
 import { US_TILES } from '../../src/tiles.js';
 
 const { chromium, devices } = createRequire(import.meta.url)('playwright');
@@ -362,3 +364,65 @@ for (const width of [320, 375, 414, 768, 1280]) {
     await page.close();
   });
 }
+
+test('machine text shows the vocabulary curve and retracted papers still cited', async () => {
+  const { page, errors } = await open();
+  const f = findings(snapshot);
+  assert.equal((await page.textContent('#machine h2')).trim(), f.vocab);
+  assert.equal((await page.textContent('#machine h3')).trim(), f.zombies);
+  assert.equal(await page.locator('#vocab-chart path.line').count(), VOCAB.words.length + 1);
+  assert.equal(await page.locator('#zombie-chart [data-row]').count(), RETRACTED.length);
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
+test('who gets studied draws animals, sex, ages and outbreaks', async () => {
+  const { page } = await open();
+  const f = findings(snapshot);
+  assert.equal((await page.textContent('#subjects h2')).trim(), f.subjects);
+  assert.equal(await page.locator('#animal-multiples .panel').count(), SUBJECTS.animals.list.length);
+  assert.equal(await page.locator('#mice-rats path.line').count(), 2);
+  assert.equal(await page.locator('#sex-chart path.line').count(), 2);
+  assert.equal(await page.locator('#ages-chart [data-row]').count(), SUBJECTS.ages.list.length);
+  assert.equal(await page.locator('#outbreak-chart path.line').count(), SUBJECTS.outbreaks.list.length);
+  assert.equal((await page.textContent('[data-finding="sex"]')).trim(), f.sex);
+  assert.equal((await page.textContent('[data-finding="outbreaks"]')).trim(), f.outbreaks);
+  await page.close();
+});
+
+test('why trials stop shows reasons, the results deadline pile-up and sponsors', async () => {
+  const { page } = await open();
+  const f = findings(snapshot);
+  assert.equal((await page.textContent('#stops h2')).trim(), f.stops);
+  assert.equal((await page.textContent('[data-finding="lag"]')).trim(), f.lag);
+  assert.equal(await page.locator('#stop-chart [data-row]').count(), snapshot.trialfate.stops.reasons.length);
+  assert.equal(await page.locator('#lag-chart [data-month]').count(), snapshot.trialfate.lag.months.length);
+  assert.equal(await page.locator('#sponsor-lag [data-row]').count(), snapshot.trialfate.lag.byClass.length);
+  await page.close();
+});
+
+test('record extremes show cards, genes per chromosome and classic papers', async () => {
+  const { page } = await open();
+  const f = findings(snapshot);
+  assert.equal((await page.textContent('#extremes h2')).trim(), f.extremes);
+  assert.equal((await page.textContent('[data-finding="classics"]')).trim(), f.classics);
+  assert.ok(await page.locator('#records > div').count() >= 6);
+  assert.match(await page.textContent('#records'), new RegExp(exact(snapshot.extremes.protein.length)));
+  assert.equal(await page.locator('#chrom-chart [data-chr]').count(), snapshot.extremes.genes.byChromosome.length);
+  assert.equal(await page.locator('#classics-chart [data-row]').count(), CLASSICS.length);
+  await page.close();
+});
+
+test('new charts open pinned popups with links on a phone', async () => {
+  const { page, context } = await openPhone();
+  for (const sel of ['#stop-chart [data-row]', '#zombie-chart [data-row]', '#classics-chart [data-row]']) {
+    const row = page.locator(sel).first();
+    await row.scrollIntoViewIfNeeded();
+    await row.tap();
+    await page.waitForTimeout(150);
+    assert.equal(await page.locator('#tip').getAttribute('data-pinned'), 'true', sel);
+    assert.ok(await page.locator('#tip a').count() >= 1, sel);
+    await page.locator('#sources h2').tap();
+  }
+  await context.close();
+});
