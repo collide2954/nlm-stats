@@ -98,3 +98,49 @@ export const parseCitedIn = (json) =>
   (json.linksets?.[0]?.linksetdbs ?? [])
     .filter((l) => l.linkname === 'pubmed_pubmed_citedin')
     .reduce((sum, l) => sum + l.links.length, 0);
+
+const primary = (rows) => rows.filter((r) => r.subproject_id === null || r.subproject_id === undefined);
+
+export const summarizeAwards = (rows) => {
+  const main = primary(rows);
+  return { projects: main.length, dollars: main.reduce((sum, r) => sum + (r.award_amount ?? 0), 0) };
+};
+
+export const groupAwards = (rows, keyFn) => {
+  const groups = new Map();
+  for (const r of primary(rows)) {
+    const keys = [keyFn(r)].flat().map((k) => String(k ?? '').trim()).filter(Boolean);
+    for (const key of keys) {
+      const g = groups.get(key) ?? { key, projects: 0, dollars: 0 };
+      g.projects += 1;
+      g.dollars += r.award_amount ?? 0;
+      groups.set(key, g);
+    }
+  }
+  return [...groups.values()].sort((a, b) => b.dollars - a.dollars || b.projects - a.projects);
+};
+
+const YEAR_MS = 365.25 * 24 * 3600 * 1000;
+
+export const medianYears = (rows) => {
+  const spans = primary(rows)
+    .filter((r) => r.project_start_date && r.project_end_date)
+    .map((r) => (Date.parse(r.project_end_date) - Date.parse(r.project_start_date)) / YEAR_MS)
+    .sort((a, b) => a - b);
+  if (!spans.length) return null;
+  const mid = Math.floor(spans.length / 2);
+  const value = spans.length % 2 ? spans[mid] : (spans[mid - 1] + spans[mid]) / 2;
+  return Math.round(value * 10) / 10;
+};
+
+export const detailFiscalYear = (date) => {
+  const year = date.getUTCFullYear();
+  return date.getUTCMonth() >= 3 ? year - 1 : year - 2;
+};
+
+export const parseRefseqHeader = (text) => ({
+  release: Number(text.match(/Release (\d+)/)[1]),
+  date: text.match(/Release \d+\s*\n\s*([A-Z][a-z]+ \d{1,2}, \d{4})/)[1],
+  organisms: Number(text.match(/(\d+) organisms/)[1]),
+  records: Number(text.match(/(\d+) records/)[1]),
+});
