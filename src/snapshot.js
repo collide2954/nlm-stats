@@ -1,5 +1,5 @@
 export default {
-  "generated": "2026-11-03T05:26:58.343Z",
+  "generated": "2026-11-03T06:06:16.042Z",
   "entrez": [
     {
       "db": "pubmed",
@@ -255,9 +255,9 @@ export default {
       "db": "pmc",
       "name": "PMC",
       "description": "PubMed Central",
-      "build": "Build-2026.11.02.23.38",
+      "build": "Build-2026.11.03.00.23",
       "count": 12758449,
-      "updated": "2026-11-02",
+      "updated": "2026-11-03",
       "fields": 45,
       "links": 18
     },
@@ -376,6 +376,7 @@ export default {
     {
       "id": "types",
       "title": "PubMed by publication type",
+      "panel": null,
       "items": [
         {
           "id": "pt-journal",
@@ -515,6 +516,7 @@ export default {
     {
       "id": "languages",
       "title": "PubMed by language",
+      "panel": null,
       "items": [
         {
           "id": "la-eng",
@@ -647,6 +649,7 @@ export default {
     {
       "id": "organisms",
       "title": "PubMed by organism (MeSH)",
+      "panel": null,
       "items": [
         {
           "id": "mh-humans",
@@ -751,6 +754,7 @@ export default {
     {
       "id": "subsets",
       "title": "PubMed subsets",
+      "panel": null,
       "items": [
         {
           "id": "sb-medline",
@@ -820,6 +824,7 @@ export default {
     {
       "id": "mesh",
       "title": "MeSH records by type",
+      "panel": null,
       "items": [
         {
           "id": "mesh-mh",
@@ -861,6 +866,7 @@ export default {
     {
       "id": "molecular",
       "title": "Genes, taxa and variants",
+      "panel": null,
       "items": [
         {
           "id": "gene-live",
@@ -909,6 +915,7 @@ export default {
     {
       "id": "clinvar",
       "title": "ClinVar by clinical significance",
+      "panel": null,
       "items": [
         {
           "id": "cv-path",
@@ -944,6 +951,174 @@ export default {
           "label": "Benign",
           "term": "\"clinsig benign\"[Properties]",
           "count": 281422
+        }
+      ]
+    },
+    {
+      "id": "assembly",
+      "title": "Genome assemblies by level",
+      "panel": "seqdata",
+      "items": [
+        {
+          "id": "asm-complete",
+          "db": "assembly",
+          "label": "Complete genome",
+          "term": "\"complete genome\"[Assembly Level]",
+          "count": 349470
+        },
+        {
+          "id": "asm-chromosome",
+          "db": "assembly",
+          "label": "Chromosome",
+          "term": "chromosome[Assembly Level]",
+          "count": 53531
+        },
+        {
+          "id": "asm-scaffold",
+          "db": "assembly",
+          "label": "Scaffold",
+          "term": "scaffold[Assembly Level]",
+          "count": 640265
+        },
+        {
+          "id": "asm-contig",
+          "db": "assembly",
+          "label": "Contig",
+          "term": "contig[Assembly Level]",
+          "count": 2988415
+        },
+        {
+          "id": "asm-refseq",
+          "db": "assembly",
+          "label": "Latest RefSeq assemblies",
+          "term": "\"latest refseq\"[filter]",
+          "count": 569845
+        }
+      ]
+    },
+    {
+      "id": "sra-platform",
+      "title": "SRA experiments by platform",
+      "panel": "seqdata",
+      "items": [
+        {
+          "id": "sra-illumina",
+          "db": "sra",
+          "label": "Illumina",
+          "term": "illumina[Platform]",
+          "count": 38214105
+        },
+        {
+          "id": "sra-ont",
+          "db": "sra",
+          "label": "Oxford Nanopore",
+          "term": "\"oxford nanopore\"[Platform]",
+          "count": 1123736
+        },
+        {
+          "id": "sra-pacbio",
+          "db": "sra",
+          "label": "PacBio SMRT",
+          "term": "\"pacbio smrt\"[Platform]",
+          "count": 943284
+        },
+        {
+          "id": "sra-ion",
+          "db": "sra",
+          "label": "Ion Torrent",
+          "term": "\"ion torrent\"[Platform]",
+          "count": 552558
+        },
+        {
+          "id": "sra-454",
+          "db": "sra",
+          "label": "454 (LS454)",
+          "term": "ls454[Platform]",
+          "count": 365127
+        },
+        {
+          "id": "sra-capillary",
+          "db": "sra",
+          "label": "Capillary",
+          "term": "capillary[Platform]",
+          "count": 368552
+        },
+        {
+          "id": "sra-bgi",
+          "db": "sra",
+          "label": "BGISEQ / DNBSEQ",
+          "term": "bgiseq[Platform]",
+          "count": 264378
+        },
+        {
+          "id": "sra-element",
+          "db": "sra",
+          "label": "Element",
+          "term": "element[Platform]",
+          "count": 94191
+        },
+        {
+          "id": "sra-ultima",
+          "db": "sra",
+          "label": "Ultima",
+          "term": "ultima[Platform]",
+          "count": 2350
+        }
+      ]
+    },
+    {
+      "id": "sra-strategy",
+      "title": "SRA experiments by library strategy",
+      "panel": "seqdata",
+      "items": [
+        {
+          "id": "sra-amplicon",
+          "db": "sra",
+          "label": "Amplicon",
+          "term": "amplicon[Strategy]",
+          "count": 18419145
+        },
+        {
+          "id": "sra-wgs",
+          "db": "sra",
+          "label": "WGS",
+          "term": "wgs[Strategy]",
+          "count": 9295254
+        },
+        {
+          "id": "sra-rnaseq",
+          "db": "sra",
+          "label": "RNA-Seq",
+          "term": "\"rna seq\"[Strategy]",
+          "count": 7182874
+        },
+        {
+          "id": "sra-wxs",
+          "db": "sra",
+          "label": "Whole exome (WXS)",
+          "term": "wxs[Strategy]",
+          "count": 559819
+        },
+        {
+          "id": "sra-chip",
+          "db": "sra",
+          "label": "ChIP-Seq",
+          "term": "\"chip seq\"[Strategy]",
+          "count": 413432
+        },
+        {
+          "id": "sra-bisulfite",
+          "db": "sra",
+          "label": "Bisulfite-Seq",
+          "term": "\"bisulfite seq\"[Strategy]",
+          "count": 338021
+        },
+        {
+          "id": "sra-atac",
+          "db": "sra",
+          "label": "ATAC-seq",
+          "term": "\"atac seq\"[Strategy]",
+          "count": 229528
         }
       ]
     }
@@ -1530,6 +1705,1728 @@ export default {
       }
     ]
   },
+  "methods": [
+    {
+      "id": "meta",
+      "label": "Meta-analysis",
+      "term": "meta-analysis[pt]",
+      "total": 246586,
+      "years": [
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 0
+        },
+        {
+          "year": 1988,
+          "count": 1
+        },
+        {
+          "year": 1989,
+          "count": 0
+        },
+        {
+          "year": 1990,
+          "count": 271
+        },
+        {
+          "year": 1991,
+          "count": 332
+        },
+        {
+          "year": 1992,
+          "count": 370
+        },
+        {
+          "year": 1993,
+          "count": 322
+        },
+        {
+          "year": 1994,
+          "count": 383
+        },
+        {
+          "year": 1995,
+          "count": 420
+        },
+        {
+          "year": 1996,
+          "count": 476
+        },
+        {
+          "year": 1997,
+          "count": 588
+        },
+        {
+          "year": 1998,
+          "count": 629
+        },
+        {
+          "year": 1999,
+          "count": 729
+        },
+        {
+          "year": 2000,
+          "count": 836
+        },
+        {
+          "year": 2001,
+          "count": 932
+        },
+        {
+          "year": 2002,
+          "count": 1068
+        },
+        {
+          "year": 2003,
+          "count": 1284
+        },
+        {
+          "year": 2004,
+          "count": 1590
+        },
+        {
+          "year": 2005,
+          "count": 2099
+        },
+        {
+          "year": 2006,
+          "count": 2470
+        },
+        {
+          "year": 2007,
+          "count": 2617
+        },
+        {
+          "year": 2008,
+          "count": 2904
+        },
+        {
+          "year": 2009,
+          "count": 3528
+        },
+        {
+          "year": 2010,
+          "count": 4385
+        },
+        {
+          "year": 2011,
+          "count": 5635
+        },
+        {
+          "year": 2012,
+          "count": 7510
+        },
+        {
+          "year": 2013,
+          "count": 9243
+        },
+        {
+          "year": 2014,
+          "count": 10855
+        },
+        {
+          "year": 2015,
+          "count": 12039
+        },
+        {
+          "year": 2016,
+          "count": 12657
+        },
+        {
+          "year": 2017,
+          "count": 13416
+        },
+        {
+          "year": 2018,
+          "count": 14407
+        },
+        {
+          "year": 2019,
+          "count": 16221
+        },
+        {
+          "year": 2020,
+          "count": 19802
+        },
+        {
+          "year": 2021,
+          "count": 22895
+        },
+        {
+          "year": 2022,
+          "count": 23643
+        },
+        {
+          "year": 2023,
+          "count": 23129
+        },
+        {
+          "year": 2024,
+          "count": 24155
+        },
+        {
+          "year": 2025,
+          "count": 26253
+        }
+      ]
+    },
+    {
+      "id": "survival",
+      "label": "Survival analysis",
+      "term": "\"survival analysis\"[mh]",
+      "total": 360570,
+      "years": [
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 3
+        },
+        {
+          "year": 1988,
+          "count": 16
+        },
+        {
+          "year": 1989,
+          "count": 220
+        },
+        {
+          "year": 1990,
+          "count": 823
+        },
+        {
+          "year": 1991,
+          "count": 1205
+        },
+        {
+          "year": 1992,
+          "count": 1916
+        },
+        {
+          "year": 1993,
+          "count": 2228
+        },
+        {
+          "year": 1994,
+          "count": 2741
+        },
+        {
+          "year": 1995,
+          "count": 3196
+        },
+        {
+          "year": 1996,
+          "count": 3492
+        },
+        {
+          "year": 1997,
+          "count": 4377
+        },
+        {
+          "year": 1998,
+          "count": 4772
+        },
+        {
+          "year": 1999,
+          "count": 5003
+        },
+        {
+          "year": 2000,
+          "count": 6260
+        },
+        {
+          "year": 2001,
+          "count": 6750
+        },
+        {
+          "year": 2002,
+          "count": 7045
+        },
+        {
+          "year": 2003,
+          "count": 8176
+        },
+        {
+          "year": 2004,
+          "count": 9284
+        },
+        {
+          "year": 2005,
+          "count": 9916
+        },
+        {
+          "year": 2006,
+          "count": 10190
+        },
+        {
+          "year": 2007,
+          "count": 11830
+        },
+        {
+          "year": 2008,
+          "count": 13282
+        },
+        {
+          "year": 2009,
+          "count": 14042
+        },
+        {
+          "year": 2010,
+          "count": 15522
+        },
+        {
+          "year": 2011,
+          "count": 17788
+        },
+        {
+          "year": 2012,
+          "count": 20179
+        },
+        {
+          "year": 2013,
+          "count": 20885
+        },
+        {
+          "year": 2014,
+          "count": 21270
+        },
+        {
+          "year": 2015,
+          "count": 23345
+        },
+        {
+          "year": 2016,
+          "count": 24490
+        },
+        {
+          "year": 2017,
+          "count": 24717
+        },
+        {
+          "year": 2018,
+          "count": 22679
+        },
+        {
+          "year": 2019,
+          "count": 21799
+        },
+        {
+          "year": 2020,
+          "count": 18341
+        },
+        {
+          "year": 2021,
+          "count": 14883
+        },
+        {
+          "year": 2022,
+          "count": 5904
+        },
+        {
+          "year": 2023,
+          "count": 4198
+        },
+        {
+          "year": 2024,
+          "count": 8633
+        },
+        {
+          "year": 2025,
+          "count": 10772
+        }
+      ]
+    },
+    {
+      "id": "cox",
+      "label": "Proportional hazards",
+      "term": "\"proportional hazards models\"[mh]",
+      "total": 102303,
+      "years": [
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 0
+        },
+        {
+          "year": 1988,
+          "count": 3
+        },
+        {
+          "year": 1989,
+          "count": 45
+        },
+        {
+          "year": 1990,
+          "count": 152
+        },
+        {
+          "year": 1991,
+          "count": 216
+        },
+        {
+          "year": 1992,
+          "count": 355
+        },
+        {
+          "year": 1993,
+          "count": 460
+        },
+        {
+          "year": 1994,
+          "count": 614
+        },
+        {
+          "year": 1995,
+          "count": 623
+        },
+        {
+          "year": 1996,
+          "count": 713
+        },
+        {
+          "year": 1997,
+          "count": 812
+        },
+        {
+          "year": 1998,
+          "count": 893
+        },
+        {
+          "year": 1999,
+          "count": 961
+        },
+        {
+          "year": 2000,
+          "count": 1256
+        },
+        {
+          "year": 2001,
+          "count": 1353
+        },
+        {
+          "year": 2002,
+          "count": 1423
+        },
+        {
+          "year": 2003,
+          "count": 1707
+        },
+        {
+          "year": 2004,
+          "count": 1830
+        },
+        {
+          "year": 2005,
+          "count": 1993
+        },
+        {
+          "year": 2006,
+          "count": 2246
+        },
+        {
+          "year": 2007,
+          "count": 2670
+        },
+        {
+          "year": 2008,
+          "count": 3094
+        },
+        {
+          "year": 2009,
+          "count": 3708
+        },
+        {
+          "year": 2010,
+          "count": 4243
+        },
+        {
+          "year": 2011,
+          "count": 4951
+        },
+        {
+          "year": 2012,
+          "count": 6104
+        },
+        {
+          "year": 2013,
+          "count": 6664
+        },
+        {
+          "year": 2014,
+          "count": 6607
+        },
+        {
+          "year": 2015,
+          "count": 7390
+        },
+        {
+          "year": 2016,
+          "count": 8327
+        },
+        {
+          "year": 2017,
+          "count": 8102
+        },
+        {
+          "year": 2018,
+          "count": 6131
+        },
+        {
+          "year": 2019,
+          "count": 5832
+        },
+        {
+          "year": 2020,
+          "count": 5077
+        },
+        {
+          "year": 2021,
+          "count": 4462
+        },
+        {
+          "year": 2022,
+          "count": 2351
+        },
+        {
+          "year": 2023,
+          "count": 1604
+        },
+        {
+          "year": 2024,
+          "count": 3723
+        },
+        {
+          "year": 2025,
+          "count": 4898
+        }
+      ]
+    },
+    {
+      "id": "logistic",
+      "label": "Logistic models",
+      "term": "\"logistic models\"[mh]",
+      "total": 163867,
+      "years": [
+        {
+          "year": 1985,
+          "count": 1
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 4
+        },
+        {
+          "year": 1988,
+          "count": 3
+        },
+        {
+          "year": 1989,
+          "count": 68
+        },
+        {
+          "year": 1990,
+          "count": 202
+        },
+        {
+          "year": 1991,
+          "count": 341
+        },
+        {
+          "year": 1992,
+          "count": 609
+        },
+        {
+          "year": 1993,
+          "count": 697
+        },
+        {
+          "year": 1994,
+          "count": 1132
+        },
+        {
+          "year": 1995,
+          "count": 1444
+        },
+        {
+          "year": 1996,
+          "count": 1777
+        },
+        {
+          "year": 1997,
+          "count": 2275
+        },
+        {
+          "year": 1998,
+          "count": 2242
+        },
+        {
+          "year": 1999,
+          "count": 2530
+        },
+        {
+          "year": 2000,
+          "count": 2744
+        },
+        {
+          "year": 2001,
+          "count": 3429
+        },
+        {
+          "year": 2002,
+          "count": 3313
+        },
+        {
+          "year": 2003,
+          "count": 3788
+        },
+        {
+          "year": 2004,
+          "count": 4115
+        },
+        {
+          "year": 2005,
+          "count": 4160
+        },
+        {
+          "year": 2006,
+          "count": 4320
+        },
+        {
+          "year": 2007,
+          "count": 4970
+        },
+        {
+          "year": 2008,
+          "count": 6146
+        },
+        {
+          "year": 2009,
+          "count": 7225
+        },
+        {
+          "year": 2010,
+          "count": 8745
+        },
+        {
+          "year": 2011,
+          "count": 10024
+        },
+        {
+          "year": 2012,
+          "count": 11877
+        },
+        {
+          "year": 2013,
+          "count": 11538
+        },
+        {
+          "year": 2014,
+          "count": 9924
+        },
+        {
+          "year": 2015,
+          "count": 10582
+        },
+        {
+          "year": 2016,
+          "count": 11237
+        },
+        {
+          "year": 2017,
+          "count": 11118
+        },
+        {
+          "year": 2018,
+          "count": 9558
+        },
+        {
+          "year": 2019,
+          "count": 8586
+        },
+        {
+          "year": 2020,
+          "count": 6411
+        },
+        {
+          "year": 2021,
+          "count": 4470
+        },
+        {
+          "year": 2022,
+          "count": 1839
+        },
+        {
+          "year": 2023,
+          "count": 1537
+        },
+        {
+          "year": 2024,
+          "count": 3731
+        },
+        {
+          "year": 2025,
+          "count": 4820
+        }
+      ]
+    },
+    {
+      "id": "bayes",
+      "label": "Bayes theorem",
+      "term": "\"bayes theorem\"[mh]",
+      "total": 62670,
+      "years": [
+        {
+          "year": 1985,
+          "count": 67
+        },
+        {
+          "year": 1986,
+          "count": 63
+        },
+        {
+          "year": 1987,
+          "count": 77
+        },
+        {
+          "year": 1988,
+          "count": 102
+        },
+        {
+          "year": 1989,
+          "count": 115
+        },
+        {
+          "year": 1990,
+          "count": 102
+        },
+        {
+          "year": 1991,
+          "count": 129
+        },
+        {
+          "year": 1992,
+          "count": 102
+        },
+        {
+          "year": 1993,
+          "count": 126
+        },
+        {
+          "year": 1994,
+          "count": 153
+        },
+        {
+          "year": 1995,
+          "count": 157
+        },
+        {
+          "year": 1996,
+          "count": 193
+        },
+        {
+          "year": 1997,
+          "count": 202
+        },
+        {
+          "year": 1998,
+          "count": 206
+        },
+        {
+          "year": 1999,
+          "count": 266
+        },
+        {
+          "year": 2000,
+          "count": 275
+        },
+        {
+          "year": 2001,
+          "count": 380
+        },
+        {
+          "year": 2002,
+          "count": 446
+        },
+        {
+          "year": 2003,
+          "count": 578
+        },
+        {
+          "year": 2004,
+          "count": 831
+        },
+        {
+          "year": 2005,
+          "count": 1012
+        },
+        {
+          "year": 2006,
+          "count": 1130
+        },
+        {
+          "year": 2007,
+          "count": 1286
+        },
+        {
+          "year": 2008,
+          "count": 1489
+        },
+        {
+          "year": 2009,
+          "count": 1767
+        },
+        {
+          "year": 2010,
+          "count": 2134
+        },
+        {
+          "year": 2011,
+          "count": 2392
+        },
+        {
+          "year": 2012,
+          "count": 2717
+        },
+        {
+          "year": 2013,
+          "count": 2778
+        },
+        {
+          "year": 2014,
+          "count": 2714
+        },
+        {
+          "year": 2015,
+          "count": 2906
+        },
+        {
+          "year": 2016,
+          "count": 2859
+        },
+        {
+          "year": 2017,
+          "count": 2964
+        },
+        {
+          "year": 2018,
+          "count": 2952
+        },
+        {
+          "year": 2019,
+          "count": 3164
+        },
+        {
+          "year": 2020,
+          "count": 4011
+        },
+        {
+          "year": 2021,
+          "count": 4805
+        },
+        {
+          "year": 2022,
+          "count": 5781
+        },
+        {
+          "year": 2023,
+          "count": 5317
+        },
+        {
+          "year": 2024,
+          "count": 4462
+        },
+        {
+          "year": 2025,
+          "count": 4464
+        }
+      ]
+    },
+    {
+      "id": "montecarlo",
+      "label": "Monte Carlo",
+      "term": "\"monte carlo method\"[mh]",
+      "total": 36467,
+      "years": [
+        {
+          "year": 1985,
+          "count": 52
+        },
+        {
+          "year": 1986,
+          "count": 76
+        },
+        {
+          "year": 1987,
+          "count": 91
+        },
+        {
+          "year": 1988,
+          "count": 80
+        },
+        {
+          "year": 1989,
+          "count": 136
+        },
+        {
+          "year": 1990,
+          "count": 136
+        },
+        {
+          "year": 1991,
+          "count": 161
+        },
+        {
+          "year": 1992,
+          "count": 186
+        },
+        {
+          "year": 1993,
+          "count": 229
+        },
+        {
+          "year": 1994,
+          "count": 269
+        },
+        {
+          "year": 1995,
+          "count": 308
+        },
+        {
+          "year": 1996,
+          "count": 333
+        },
+        {
+          "year": 1997,
+          "count": 356
+        },
+        {
+          "year": 1998,
+          "count": 434
+        },
+        {
+          "year": 1999,
+          "count": 549
+        },
+        {
+          "year": 2000,
+          "count": 619
+        },
+        {
+          "year": 2001,
+          "count": 728
+        },
+        {
+          "year": 2002,
+          "count": 776
+        },
+        {
+          "year": 2003,
+          "count": 730
+        },
+        {
+          "year": 2004,
+          "count": 931
+        },
+        {
+          "year": 2005,
+          "count": 1243
+        },
+        {
+          "year": 2006,
+          "count": 1133
+        },
+        {
+          "year": 2007,
+          "count": 1312
+        },
+        {
+          "year": 2008,
+          "count": 1374
+        },
+        {
+          "year": 2009,
+          "count": 1611
+        },
+        {
+          "year": 2010,
+          "count": 1803
+        },
+        {
+          "year": 2011,
+          "count": 1851
+        },
+        {
+          "year": 2012,
+          "count": 1842
+        },
+        {
+          "year": 2013,
+          "count": 1907
+        },
+        {
+          "year": 2014,
+          "count": 1803
+        },
+        {
+          "year": 2015,
+          "count": 1837
+        },
+        {
+          "year": 2016,
+          "count": 1544
+        },
+        {
+          "year": 2017,
+          "count": 1629
+        },
+        {
+          "year": 2018,
+          "count": 1662
+        },
+        {
+          "year": 2019,
+          "count": 1564
+        },
+        {
+          "year": 2020,
+          "count": 1483
+        },
+        {
+          "year": 2021,
+          "count": 1272
+        },
+        {
+          "year": 2022,
+          "count": 1081
+        },
+        {
+          "year": 2023,
+          "count": 896
+        },
+        {
+          "year": 2024,
+          "count": 1243
+        },
+        {
+          "year": 2025,
+          "count": 1550
+        }
+      ]
+    },
+    {
+      "id": "propensity",
+      "label": "Propensity score",
+      "term": "\"propensity score\"[mh]",
+      "total": 24613,
+      "years": [
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 0
+        },
+        {
+          "year": 1988,
+          "count": 0
+        },
+        {
+          "year": 1989,
+          "count": 0
+        },
+        {
+          "year": 1990,
+          "count": 0
+        },
+        {
+          "year": 1991,
+          "count": 0
+        },
+        {
+          "year": 1992,
+          "count": 0
+        },
+        {
+          "year": 1993,
+          "count": 0
+        },
+        {
+          "year": 1994,
+          "count": 0
+        },
+        {
+          "year": 1995,
+          "count": 0
+        },
+        {
+          "year": 1996,
+          "count": 0
+        },
+        {
+          "year": 1997,
+          "count": 0
+        },
+        {
+          "year": 1998,
+          "count": 0
+        },
+        {
+          "year": 1999,
+          "count": 0
+        },
+        {
+          "year": 2000,
+          "count": 0
+        },
+        {
+          "year": 2001,
+          "count": 0
+        },
+        {
+          "year": 2002,
+          "count": 0
+        },
+        {
+          "year": 2003,
+          "count": 0
+        },
+        {
+          "year": 2004,
+          "count": 0
+        },
+        {
+          "year": 2005,
+          "count": 1
+        },
+        {
+          "year": 2006,
+          "count": 0
+        },
+        {
+          "year": 2007,
+          "count": 1
+        },
+        {
+          "year": 2008,
+          "count": 6
+        },
+        {
+          "year": 2009,
+          "count": 69
+        },
+        {
+          "year": 2010,
+          "count": 221
+        },
+        {
+          "year": 2011,
+          "count": 310
+        },
+        {
+          "year": 2012,
+          "count": 486
+        },
+        {
+          "year": 2013,
+          "count": 685
+        },
+        {
+          "year": 2014,
+          "count": 845
+        },
+        {
+          "year": 2015,
+          "count": 1182
+        },
+        {
+          "year": 2016,
+          "count": 1544
+        },
+        {
+          "year": 2017,
+          "count": 1895
+        },
+        {
+          "year": 2018,
+          "count": 2050
+        },
+        {
+          "year": 2019,
+          "count": 2241
+        },
+        {
+          "year": 2020,
+          "count": 2326
+        },
+        {
+          "year": 2021,
+          "count": 2386
+        },
+        {
+          "year": 2022,
+          "count": 1766
+        },
+        {
+          "year": 2023,
+          "count": 1644
+        },
+        {
+          "year": 2024,
+          "count": 3008
+        },
+        {
+          "year": 2025,
+          "count": 3974
+        }
+      ]
+    },
+    {
+      "id": "mr",
+      "label": "Mendelian randomization",
+      "term": "\"mendelian randomization analysis\"[mh]",
+      "total": 14596,
+      "years": [
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 0
+        },
+        {
+          "year": 1988,
+          "count": 0
+        },
+        {
+          "year": 1989,
+          "count": 0
+        },
+        {
+          "year": 1990,
+          "count": 0
+        },
+        {
+          "year": 1991,
+          "count": 0
+        },
+        {
+          "year": 1992,
+          "count": 0
+        },
+        {
+          "year": 1993,
+          "count": 0
+        },
+        {
+          "year": 1994,
+          "count": 0
+        },
+        {
+          "year": 1995,
+          "count": 0
+        },
+        {
+          "year": 1996,
+          "count": 0
+        },
+        {
+          "year": 1997,
+          "count": 0
+        },
+        {
+          "year": 1998,
+          "count": 0
+        },
+        {
+          "year": 1999,
+          "count": 0
+        },
+        {
+          "year": 2000,
+          "count": 0
+        },
+        {
+          "year": 2001,
+          "count": 0
+        },
+        {
+          "year": 2002,
+          "count": 0
+        },
+        {
+          "year": 2003,
+          "count": 0
+        },
+        {
+          "year": 2004,
+          "count": 0
+        },
+        {
+          "year": 2005,
+          "count": 0
+        },
+        {
+          "year": 2006,
+          "count": 0
+        },
+        {
+          "year": 2007,
+          "count": 0
+        },
+        {
+          "year": 2008,
+          "count": 1
+        },
+        {
+          "year": 2009,
+          "count": 7
+        },
+        {
+          "year": 2010,
+          "count": 31
+        },
+        {
+          "year": 2011,
+          "count": 32
+        },
+        {
+          "year": 2012,
+          "count": 62
+        },
+        {
+          "year": 2013,
+          "count": 69
+        },
+        {
+          "year": 2014,
+          "count": 86
+        },
+        {
+          "year": 2015,
+          "count": 109
+        },
+        {
+          "year": 2016,
+          "count": 146
+        },
+        {
+          "year": 2017,
+          "count": 184
+        },
+        {
+          "year": 2018,
+          "count": 247
+        },
+        {
+          "year": 2019,
+          "count": 393
+        },
+        {
+          "year": 2020,
+          "count": 599
+        },
+        {
+          "year": 2021,
+          "count": 783
+        },
+        {
+          "year": 2022,
+          "count": 934
+        },
+        {
+          "year": 2023,
+          "count": 1742
+        },
+        {
+          "year": 2024,
+          "count": 4093
+        },
+        {
+          "year": 2025,
+          "count": 4314
+        }
+      ]
+    },
+    {
+      "id": "ml",
+      "label": "Machine learning",
+      "term": "\"machine learning\"[mh]",
+      "total": 139505,
+      "years": [
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 0
+        },
+        {
+          "year": 1988,
+          "count": 0
+        },
+        {
+          "year": 1989,
+          "count": 0
+        },
+        {
+          "year": 1990,
+          "count": 0
+        },
+        {
+          "year": 1991,
+          "count": 0
+        },
+        {
+          "year": 1992,
+          "count": 0
+        },
+        {
+          "year": 1993,
+          "count": 0
+        },
+        {
+          "year": 1994,
+          "count": 0
+        },
+        {
+          "year": 1995,
+          "count": 0
+        },
+        {
+          "year": 1996,
+          "count": 0
+        },
+        {
+          "year": 1997,
+          "count": 0
+        },
+        {
+          "year": 1998,
+          "count": 0
+        },
+        {
+          "year": 1999,
+          "count": 0
+        },
+        {
+          "year": 2000,
+          "count": 0
+        },
+        {
+          "year": 2001,
+          "count": 0
+        },
+        {
+          "year": 2002,
+          "count": 0
+        },
+        {
+          "year": 2003,
+          "count": 0
+        },
+        {
+          "year": 2004,
+          "count": 0
+        },
+        {
+          "year": 2005,
+          "count": 4
+        },
+        {
+          "year": 2006,
+          "count": 0
+        },
+        {
+          "year": 2007,
+          "count": 0
+        },
+        {
+          "year": 2008,
+          "count": 2
+        },
+        {
+          "year": 2009,
+          "count": 12
+        },
+        {
+          "year": 2010,
+          "count": 67
+        },
+        {
+          "year": 2011,
+          "count": 411
+        },
+        {
+          "year": 2012,
+          "count": 713
+        },
+        {
+          "year": 2013,
+          "count": 852
+        },
+        {
+          "year": 2014,
+          "count": 1072
+        },
+        {
+          "year": 2015,
+          "count": 2040
+        },
+        {
+          "year": 2016,
+          "count": 2402
+        },
+        {
+          "year": 2017,
+          "count": 3180
+        },
+        {
+          "year": 2018,
+          "count": 5104
+        },
+        {
+          "year": 2019,
+          "count": 7832
+        },
+        {
+          "year": 2020,
+          "count": 10098
+        },
+        {
+          "year": 2021,
+          "count": 13041
+        },
+        {
+          "year": 2022,
+          "count": 14453
+        },
+        {
+          "year": 2023,
+          "count": 12201
+        },
+        {
+          "year": 2024,
+          "count": 22184
+        },
+        {
+          "year": 2025,
+          "count": 33192
+        }
+      ]
+    },
+    {
+      "id": "dl",
+      "label": "Deep learning",
+      "term": "\"deep learning\"[mh]",
+      "total": 49222,
+      "years": [
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 0
+        },
+        {
+          "year": 1988,
+          "count": 0
+        },
+        {
+          "year": 1989,
+          "count": 0
+        },
+        {
+          "year": 1990,
+          "count": 0
+        },
+        {
+          "year": 1991,
+          "count": 0
+        },
+        {
+          "year": 1992,
+          "count": 0
+        },
+        {
+          "year": 1993,
+          "count": 0
+        },
+        {
+          "year": 1994,
+          "count": 0
+        },
+        {
+          "year": 1995,
+          "count": 0
+        },
+        {
+          "year": 1996,
+          "count": 0
+        },
+        {
+          "year": 1997,
+          "count": 0
+        },
+        {
+          "year": 1998,
+          "count": 0
+        },
+        {
+          "year": 1999,
+          "count": 0
+        },
+        {
+          "year": 2000,
+          "count": 0
+        },
+        {
+          "year": 2001,
+          "count": 0
+        },
+        {
+          "year": 2002,
+          "count": 0
+        },
+        {
+          "year": 2003,
+          "count": 0
+        },
+        {
+          "year": 2004,
+          "count": 0
+        },
+        {
+          "year": 2005,
+          "count": 0
+        },
+        {
+          "year": 2006,
+          "count": 0
+        },
+        {
+          "year": 2007,
+          "count": 0
+        },
+        {
+          "year": 2008,
+          "count": 0
+        },
+        {
+          "year": 2009,
+          "count": 0
+        },
+        {
+          "year": 2010,
+          "count": 0
+        },
+        {
+          "year": 2011,
+          "count": 0
+        },
+        {
+          "year": 2012,
+          "count": 0
+        },
+        {
+          "year": 2013,
+          "count": 0
+        },
+        {
+          "year": 2014,
+          "count": 0
+        },
+        {
+          "year": 2015,
+          "count": 0
+        },
+        {
+          "year": 2016,
+          "count": 4
+        },
+        {
+          "year": 2017,
+          "count": 116
+        },
+        {
+          "year": 2018,
+          "count": 947
+        },
+        {
+          "year": 2019,
+          "count": 2298
+        },
+        {
+          "year": 2020,
+          "count": 3322
+        },
+        {
+          "year": 2021,
+          "count": 4445
+        },
+        {
+          "year": 2022,
+          "count": 5044
+        },
+        {
+          "year": 2023,
+          "count": 4572
+        },
+        {
+          "year": 2024,
+          "count": 8770
+        },
+        {
+          "year": 2025,
+          "count": 13978
+        }
+      ]
+    }
+  ],
   "genbank": {
     "release": "274.0",
     "date": "October 15 2026",
@@ -2340,8 +4237,400 @@ export default {
       }
     ]
   },
+  "refseq": {
+    "release": 237,
+    "date": "August 31, 2026",
+    "organisms": 184752,
+    "records": 645505406
+  },
   "clinicaltrials": {
     "dataTimestamp": "2026-11-02T10:00:05",
+    "labels": {
+      "OrgStudyIdType": {
+        "NIH": "U.S. NIH Grant/Contract",
+        "FDA": "U.S. FDA Grant/Contract",
+        "VA": "U.S. VA Grant/Contract",
+        "CDC": "U.S. CDC Grant/Contract",
+        "AHRQ": "U.S. AHRQ Grant/Contract",
+        "SAMHSA": "U.S. SAMHSA Grant/Contract"
+      },
+      "SecondaryIdType": {
+        "NIH": "U.S. NIH Grant/Contract",
+        "FDA": "U.S. FDA Grant/Contract",
+        "VA": "U.S. VA Grant/Contract",
+        "CDC": "U.S. CDC Grant/Contract",
+        "AHRQ": "U.S. AHRQ Grant/Contract",
+        "SAMHSA": "U.S. SAMHSA Grant/Contract",
+        "OTHER_GRANT": "Other Grant/Funding Number",
+        "EUDRACT_NUMBER": "EudraCT Number",
+        "CTIS": "EU Trial (CTIS) Number",
+        "REGISTRY": "Registry Identifier",
+        "OTHER": "Other Identifier"
+      },
+      "OrgClass": {
+        "NIH": "NIH",
+        "FED": "FED",
+        "OTHER_GOV": "OTHER_GOV",
+        "INDIV": "INDIV",
+        "INDUSTRY": "INDUSTRY",
+        "NETWORK": "NETWORK",
+        "AMBIG": "AMBIG",
+        "OTHER": "OTHER",
+        "UNKNOWN": "UNKNOWN"
+      },
+      "LeadSponsorClass": {
+        "NIH": "NIH",
+        "FED": "FED",
+        "OTHER_GOV": "OTHER_GOV",
+        "INDIV": "INDIV",
+        "INDUSTRY": "INDUSTRY",
+        "NETWORK": "NETWORK",
+        "AMBIG": "AMBIG",
+        "OTHER": "OTHER",
+        "UNKNOWN": "UNKNOWN"
+      },
+      "CollaboratorClass": {
+        "NIH": "NIH",
+        "FED": "FED",
+        "OTHER_GOV": "OTHER_GOV",
+        "INDIV": "INDIV",
+        "INDUSTRY": "INDUSTRY",
+        "NETWORK": "NETWORK",
+        "AMBIG": "AMBIG",
+        "OTHER": "OTHER",
+        "UNKNOWN": "UNKNOWN"
+      },
+      "OverallStatus": {
+        "ACTIVE_NOT_RECRUITING": "Active, not recruiting",
+        "COMPLETED": "Completed",
+        "ENROLLING_BY_INVITATION": "Enrolling by invitation",
+        "NOT_YET_RECRUITING": "Not yet recruiting",
+        "RECRUITING": "Recruiting",
+        "SUSPENDED": "Suspended",
+        "TERMINATED": "Terminated",
+        "WITHDRAWN": "Withdrawn",
+        "AVAILABLE": "Available",
+        "NO_LONGER_AVAILABLE": "No longer available",
+        "TEMPORARILY_NOT_AVAILABLE": "Temporarily not available",
+        "APPROVED_FOR_MARKETING": "Approved for marketing",
+        "WITHHELD": "Withheld",
+        "UNKNOWN": "Unknown status"
+      },
+      "LastKnownStatus": {
+        "ACTIVE_NOT_RECRUITING": "Active, not recruiting",
+        "COMPLETED": "Completed",
+        "ENROLLING_BY_INVITATION": "Enrolling by invitation",
+        "NOT_YET_RECRUITING": "Not yet recruiting",
+        "RECRUITING": "Recruiting",
+        "SUSPENDED": "Suspended",
+        "TERMINATED": "Terminated",
+        "WITHDRAWN": "Withdrawn",
+        "AVAILABLE": "Available",
+        "NO_LONGER_AVAILABLE": "No longer available",
+        "TEMPORARILY_NOT_AVAILABLE": "Temporarily not available",
+        "APPROVED_FOR_MARKETING": "Approved for marketing",
+        "WITHHELD": "Withheld",
+        "UNKNOWN": "Unknown status"
+      },
+      "ExpandedAccessStatusForNCTId": {
+        "AVAILABLE": "Available",
+        "NO_LONGER_AVAILABLE": "No longer available",
+        "TEMPORARILY_NOT_AVAILABLE": "Temporarily not available",
+        "APPROVED_FOR_MARKETING": "Approved for marketing"
+      },
+      "StartDateType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "PrimaryCompletionDateType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "CompletionDateType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "StudyFirstPostDateType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "ResultsFirstPostDateType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "DispFirstPostDateType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "LastUpdatePostDateType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "FirstMCPPostDateType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "ResponsiblePartyType": {
+        "SPONSOR": "Sponsor",
+        "PRINCIPAL_INVESTIGATOR": "Principal Investigator",
+        "SPONSOR_INVESTIGATOR": "Sponsor-Investigator"
+      },
+      "StudyType": {
+        "EXPANDED_ACCESS": "Expanded Access",
+        "INTERVENTIONAL": "Interventional",
+        "OBSERVATIONAL": "Observational"
+      },
+      "Phase": {
+        "NA": "Not Applicable",
+        "EARLY_PHASE1": "Early Phase 1",
+        "PHASE1": "Phase 1",
+        "PHASE2": "Phase 2",
+        "PHASE3": "Phase 3",
+        "PHASE4": "Phase 4"
+      },
+      "DesignAllocation": {
+        "RANDOMIZED": "Randomized",
+        "NON_RANDOMIZED": "Non-Randomized",
+        "NA": "N/A"
+      },
+      "DesignInterventionModel": {
+        "SINGLE_GROUP": "Single Group Assignment",
+        "PARALLEL": "Parallel Assignment",
+        "CROSSOVER": "Crossover Assignment",
+        "FACTORIAL": "Factorial Assignment",
+        "SEQUENTIAL": "Sequential Assignment"
+      },
+      "DesignPrimaryPurpose": {
+        "TREATMENT": "Treatment",
+        "PREVENTION": "Prevention",
+        "DIAGNOSTIC": "Diagnostic",
+        "ECT": "Educational/Counseling/Training",
+        "SUPPORTIVE_CARE": "Supportive Care",
+        "SCREENING": "Screening",
+        "HEALTH_SERVICES_RESEARCH": "Health Services Research",
+        "BASIC_SCIENCE": "Basic Science",
+        "DEVICE_FEASIBILITY": "Device Feasibility",
+        "OTHER": "Other"
+      },
+      "DesignObservationalModel": {
+        "COHORT": "Cohort",
+        "CASE_CONTROL": "Case-Control",
+        "CASE_ONLY": "Case-Only",
+        "CASE_CROSSOVER": "Case-Crossover",
+        "ECOLOGIC_OR_COMMUNITY": "Ecologic or Community",
+        "FAMILY_BASED": "Family-Based",
+        "DEFINED_POPULATION": "Defined Population",
+        "NATURAL_HISTORY": "Natural History",
+        "OTHER": "Other"
+      },
+      "DesignTimePerspective": {
+        "RETROSPECTIVE": "Retrospective",
+        "PROSPECTIVE": "Prospective",
+        "CROSS_SECTIONAL": "Cross-Sectional",
+        "OTHER": "Other"
+      },
+      "DesignMasking": {
+        "NONE": "None (Open Label)",
+        "SINGLE": "Single",
+        "DOUBLE": "Double",
+        "TRIPLE": "Triple",
+        "QUADRUPLE": "Quadruple"
+      },
+      "DesignWhoMasked": {
+        "PARTICIPANT": "Participant",
+        "CARE_PROVIDER": "Care Provider",
+        "INVESTIGATOR": "Investigator",
+        "OUTCOMES_ASSESSOR": "Outcomes Assessor"
+      },
+      "BioSpecRetention": {
+        "NONE_RETAINED": "None Retained",
+        "SAMPLES_WITH_DNA": "Samples With DNA",
+        "SAMPLES_WITHOUT_DNA": "Samples Without DNA"
+      },
+      "EnrollmentType": {
+        "ACTUAL": "Actual",
+        "ESTIMATED": "Estimated"
+      },
+      "ArmGroupType": {
+        "EXPERIMENTAL": "Experimental",
+        "ACTIVE_COMPARATOR": "Active Comparator",
+        "PLACEBO_COMPARATOR": "Placebo Comparator",
+        "SHAM_COMPARATOR": "Sham Comparator",
+        "NO_INTERVENTION": "No Intervention",
+        "OTHER": "Other"
+      },
+      "InterventionType": {
+        "BEHAVIORAL": "Behavioral",
+        "BIOLOGICAL": "Biological",
+        "COMBINATION_PRODUCT": "Combination Product",
+        "DEVICE": "Device",
+        "DIAGNOSTIC_TEST": "Diagnostic Test",
+        "DIETARY_SUPPLEMENT": "Dietary Supplement",
+        "DRUG": "Drug",
+        "GENETIC": "Genetic",
+        "PROCEDURE": "Procedure",
+        "RADIATION": "Radiation",
+        "OTHER": "Other"
+      },
+      "Sex": {
+        "FEMALE": "Female",
+        "MALE": "Male",
+        "ALL": "All"
+      },
+      "StdAge": {
+        "CHILD": "Child",
+        "ADULT": "Adult",
+        "OLDER_ADULT": "Older Adult"
+      },
+      "SamplingMethod": {
+        "PROBABILITY_SAMPLE": "Probability Sample",
+        "NON_PROBABILITY_SAMPLE": "Non-Probability Sample"
+      },
+      "CentralContactRole": {
+        "STUDY_CHAIR": "Study Chair",
+        "STUDY_DIRECTOR": "Study Director",
+        "PRINCIPAL_INVESTIGATOR": "Principal Investigator",
+        "SUB_INVESTIGATOR": "Sub-Investigator",
+        "CONTACT": "Contact"
+      },
+      "LocationContactRole": {
+        "STUDY_CHAIR": "Study Chair",
+        "STUDY_DIRECTOR": "Study Director",
+        "PRINCIPAL_INVESTIGATOR": "Principal Investigator",
+        "SUB_INVESTIGATOR": "Sub-Investigator",
+        "CONTACT": "Contact"
+      },
+      "OverallOfficialRole": {
+        "STUDY_CHAIR": "Study Chair",
+        "STUDY_DIRECTOR": "Study Director",
+        "PRINCIPAL_INVESTIGATOR": "Principal Investigator",
+        "SUB_INVESTIGATOR": "Sub-Investigator"
+      },
+      "LocationStatus": {
+        "ACTIVE_NOT_RECRUITING": "Active, not recruiting",
+        "COMPLETED": "Completed",
+        "ENROLLING_BY_INVITATION": "Enrolling by invitation",
+        "NOT_YET_RECRUITING": "Not yet recruiting",
+        "RECRUITING": "Recruiting",
+        "SUSPENDED": "Suspended",
+        "TERMINATED": "Terminated",
+        "WITHDRAWN": "Withdrawn",
+        "AVAILABLE": "Available"
+      },
+      "ReferenceType": {
+        "BACKGROUND": "background",
+        "RESULT": "result",
+        "DERIVED": "derived"
+      },
+      "IPDSharing": {
+        "YES": "Yes",
+        "NO": "No",
+        "UNDECIDED": "Undecided"
+      },
+      "IPDSharingInfoType": {
+        "STUDY_PROTOCOL": "Study Protocol",
+        "SAP": "Statistical Analysis Plan (SAP)",
+        "ICF": "Informed Consent Form (ICF)",
+        "CSR": "Clinical Study Report (CSR)",
+        "ANALYTIC_CODE": "Analytic Code"
+      },
+      "BaselineMeasureParamType": {
+        "GEOMETRIC_MEAN": "Geometric Mean",
+        "GEOMETRIC_LEAST_SQUARES_MEAN": "Geometric Least Squares Mean",
+        "LEAST_SQUARES_MEAN": "Least Squares Mean",
+        "LOG_MEAN": "Log Mean",
+        "MEAN": "Mean",
+        "MEDIAN": "Median",
+        "NUMBER": "Number",
+        "COUNT_OF_PARTICIPANTS": "Count of Participants",
+        "COUNT_OF_UNITS": "Count of Units"
+      },
+      "OutcomeMeasureParamType": {
+        "GEOMETRIC_MEAN": "Geometric Mean",
+        "GEOMETRIC_LEAST_SQUARES_MEAN": "Geometric Least Squares Mean",
+        "LEAST_SQUARES_MEAN": "Least Squares Mean",
+        "LOG_MEAN": "Log Mean",
+        "MEAN": "Mean",
+        "MEDIAN": "Median",
+        "NUMBER": "Number",
+        "COUNT_OF_PARTICIPANTS": "Count of Participants",
+        "COUNT_OF_UNITS": "Count of Units"
+      },
+      "BaselineMeasureDispersionType": {
+        "NA": "Not Applicable",
+        "STANDARD_DEVIATION": "Standard Deviation",
+        "STANDARD_ERROR": "Standard Error",
+        "INTER_QUARTILE_RANGE": "Inter-Quartile Range",
+        "FULL_RANGE": "Full Range",
+        "CONFIDENCE_80": "80% Confidence Interval",
+        "CONFIDENCE_90": "90% Confidence Interval",
+        "CONFIDENCE_95": "95% Confidence Interval",
+        "CONFIDENCE_975": "97.5% Confidence Interval",
+        "CONFIDENCE_99": "99% Confidence Interval",
+        "CONFIDENCE_OTHER": "Other Confidence Interval Level",
+        "GEOMETRIC_COEFFICIENT": "Geometric Coefficient of Variation"
+      },
+      "OutcomeMeasureType": {
+        "PRIMARY": "Primary",
+        "SECONDARY": "Secondary",
+        "OTHER_PRE_SPECIFIED": "Other Pre-specified",
+        "POST_HOC": "Post-Hoc"
+      },
+      "OutcomeMeasureReportingStatus": {
+        "NOT_POSTED": "Not Posted",
+        "POSTED": "Posted"
+      },
+      "OutcomeAnalysisDispersionType": {
+        "STANDARD_DEVIATION": "Standard Deviation",
+        "STANDARD_ERROR_OF_MEAN": "Standard Error of the Mean"
+      },
+      "OutcomeAnalysisCINumSides": {
+        "ONE_SIDED": "1-Sided",
+        "TWO_SIDED": "2-Sided"
+      },
+      "OutcomeAnalysisNonInferiorityType": {
+        "SUPERIORITY": "Superiority",
+        "NON_INFERIORITY": "Non-Inferiority",
+        "EQUIVALENCE": "Equivalence",
+        "OTHER": "Other",
+        "NON_INFERIORITY_OR_EQUIVALENCE": "Non-Inferiority or Equivalence",
+        "SUPERIORITY_OR_OTHER": "Superiority or Other",
+        "NON_INFERIORITY_OR_EQUIVALENCE_LEGACY": "Non-Inferiority or Equivalence (legacy)",
+        "SUPERIORITY_OR_OTHER_LEGACY": "Superiority or Other (legacy)"
+      },
+      "SeriousEventAssessmentType": {
+        "NON_SYSTEMATIC_ASSESSMENT": "Non-systematic Assessment",
+        "SYSTEMATIC_ASSESSMENT": "Systematic Assessment"
+      },
+      "OtherEventAssessmentType": {
+        "NON_SYSTEMATIC_ASSESSMENT": "Non-systematic Assessment",
+        "SYSTEMATIC_ASSESSMENT": "Systematic Assessment"
+      },
+      "AgreementRestrictionType": {
+        "LTE60": "LTE60",
+        "GT60": "GT60",
+        "OTHER": "OTHER"
+      },
+      "UnpostedEventType": {
+        "RESET": "Reset",
+        "RELEASE": "Release",
+        "UNRELEASE": "Unrelease"
+      },
+      "ViolationEventType": {
+        "VIOLATION_IDENTIFIED": "Violation Identified by FDA",
+        "CORRECTION_CONFIRMED": "Correction Confirmed by FDA",
+        "PENALTY_IMPOSED": "Penalty Imposed by FDA",
+        "ISSUES_IN_LETTER_ADDRESSED_CONFIRMED": "Issues in letter addressed; confirmed by FDA."
+      },
+      "ConditionBrowseLeafRelevance": {
+        "LOW": "low",
+        "HIGH": "high"
+      },
+      "InterventionBrowseLeafRelevance": {
+        "LOW": "low",
+        "HIGH": "high"
+      }
+    },
     "first": {
       "id": "NCT00000102",
       "title": "Congenital Adrenal Hyperplasia: Calcium Channels as Therapeutic Targets",
@@ -2774,7 +5063,1067 @@ export default {
             "count": 2963
           }
         ]
+      },
+      "DesignAllocation": {
+        "unique": 3,
+        "missing": 150177,
+        "top": [
+          {
+            "value": "RANDOMIZED",
+            "count": 306367
+          },
+          {
+            "value": "NA",
+            "count": 104791
+          },
+          {
+            "value": "NON_RANDOMIZED",
+            "count": 48476
+          }
+        ]
+      },
+      "DesignMasking": {
+        "unique": 5,
+        "missing": 149896,
+        "top": [
+          {
+            "value": "NONE",
+            "count": 255385
+          },
+          {
+            "value": "SINGLE",
+            "count": 70751
+          },
+          {
+            "value": "DOUBLE",
+            "count": 62289
+          },
+          {
+            "value": "QUADRUPLE",
+            "count": 41133
+          },
+          {
+            "value": "TRIPLE",
+            "count": 30357
+          }
+        ]
+      },
+      "DesignPrimaryPurpose": {
+        "unique": 10,
+        "missing": 151292,
+        "top": [
+          {
+            "value": "TREATMENT",
+            "count": 295360
+          },
+          {
+            "value": "PREVENTION",
+            "count": 49129
+          },
+          {
+            "value": "OTHER",
+            "count": 27122
+          },
+          {
+            "value": "SUPPORTIVE_CARE",
+            "count": 26740
+          },
+          {
+            "value": "BASIC_SCIENCE",
+            "count": 22164
+          },
+          {
+            "value": "DIAGNOSTIC",
+            "count": 19653
+          },
+          {
+            "value": "HEALTH_SERVICES_RESEARCH",
+            "count": 12339
+          },
+          {
+            "value": "SCREENING",
+            "count": 4212
+          },
+          {
+            "value": "DEVICE_FEASIBILITY",
+            "count": 1627
+          },
+          {
+            "value": "ECT",
+            "count": 173
+          }
+        ]
+      },
+      "DesignInterventionModel": {
+        "unique": 5,
+        "missing": 151080,
+        "top": [
+          {
+            "value": "PARALLEL",
+            "count": 277700
+          },
+          {
+            "value": "SINGLE_GROUP",
+            "count": 125156
+          },
+          {
+            "value": "CROSSOVER",
+            "count": 36434
+          },
+          {
+            "value": "SEQUENTIAL",
+            "count": 13432
+          },
+          {
+            "value": "FACTORIAL",
+            "count": 6009
+          }
+        ]
+      },
+      "EnrollmentType": {
+        "unique": 2,
+        "missing": 17142,
+        "top": [
+          {
+            "value": "ACTUAL",
+            "count": 379462
+          },
+          {
+            "value": "ESTIMATED",
+            "count": 213207
+          }
+        ]
+      },
+      "HealthyVolunteers": {
+        "missing": 15092,
+        "yes": 161334,
+        "no": 433385
+      },
+      "EnrollmentCount": {
+        "missing": 7144,
+        "min": 0,
+        "max": 188814085,
+        "mean": 5430.374401725674
       }
+    },
+    "biggestEnrollment": {
+      "id": "NCT05697705",
+      "title": "Effectiveness of the Oxford-AstraZeneca COVID-19 Vaccine as a 2nd Booster, the REFORCO-Brazil Study",
+      "count": 188814085
+    },
+    "enrollmentBands": [
+      {
+        "from": 0,
+        "to": 0,
+        "count": 16909
+      },
+      {
+        "from": 1,
+        "to": 20,
+        "count": 86449
+      },
+      {
+        "from": 21,
+        "to": 50,
+        "count": 143068
+      },
+      {
+        "from": 51,
+        "to": 100,
+        "count": 128962
+      },
+      {
+        "from": 101,
+        "to": 500,
+        "count": 163410
+      },
+      {
+        "from": 501,
+        "to": 1000,
+        "count": 28964
+      },
+      {
+        "from": 1001,
+        "to": 10000,
+        "count": 28983
+      },
+      {
+        "from": 10001,
+        "to": "MAX",
+        "count": 5922
+      }
+    ],
+    "completedInterventional": 261165,
+    "completedInterventionalWithResults": 63019,
+    "withResults": 80822,
+    "timing": [
+      {
+        "year": 1999,
+        "registered": 1056,
+        "results": 0
+      },
+      {
+        "year": 2000,
+        "registered": 1063,
+        "results": 0
+      },
+      {
+        "year": 2001,
+        "registered": 1773,
+        "results": 0
+      },
+      {
+        "year": 2002,
+        "registered": 1378,
+        "results": 0
+      },
+      {
+        "year": 2003,
+        "registered": 3588,
+        "results": 0
+      },
+      {
+        "year": 2004,
+        "registered": 3166,
+        "results": 0
+      },
+      {
+        "year": 2005,
+        "registered": 12797,
+        "results": 0
+      },
+      {
+        "year": 2006,
+        "registered": 10917,
+        "results": 0
+      },
+      {
+        "year": 2007,
+        "registered": 12549,
+        "results": 0
+      },
+      {
+        "year": 2008,
+        "registered": 17563,
+        "results": 41
+      },
+      {
+        "year": 2009,
+        "registered": 17008,
+        "results": 1099
+      },
+      {
+        "year": 2010,
+        "registered": 17344,
+        "results": 1618
+      },
+      {
+        "year": 2011,
+        "registered": 17815,
+        "results": 2203
+      },
+      {
+        "year": 2012,
+        "registered": 19462,
+        "results": 2803
+      },
+      {
+        "year": 2013,
+        "registered": 20428,
+        "results": 3091
+      },
+      {
+        "year": 2014,
+        "registered": 23307,
+        "results": 4827
+      },
+      {
+        "year": 2015,
+        "registered": 24103,
+        "results": 3803
+      },
+      {
+        "year": 2016,
+        "registered": 27785,
+        "results": 4185
+      },
+      {
+        "year": 2017,
+        "registered": 29175,
+        "results": 5828
+      },
+      {
+        "year": 2018,
+        "registered": 30945,
+        "results": 4660
+      },
+      {
+        "year": 2019,
+        "registered": 32508,
+        "results": 6521
+      },
+      {
+        "year": 2020,
+        "registered": 36718,
+        "results": 6043
+      },
+      {
+        "year": 2021,
+        "registered": 37011,
+        "results": 5818
+      },
+      {
+        "year": 2022,
+        "registered": 38021,
+        "results": 4023
+      },
+      {
+        "year": 2023,
+        "registered": 39702,
+        "results": 5063
+      },
+      {
+        "year": 2024,
+        "registered": 43668,
+        "results": 6829
+      },
+      {
+        "year": 2025,
+        "registered": 42963,
+        "results": 7292
+      },
+      {
+        "year": 2026,
+        "registered": 45998,
+        "results": 5075
+      }
+    ]
+  },
+  "funding": {
+    "detailFy": 2025,
+    "years": [
+      {
+        "fy": 1985,
+        "projects": 146,
+        "dollars": 12305451,
+        "partial": false
+      },
+      {
+        "fy": 1986,
+        "projects": 142,
+        "dollars": 14589301,
+        "partial": false
+      },
+      {
+        "fy": 1987,
+        "projects": 133,
+        "dollars": 15723059,
+        "partial": false
+      },
+      {
+        "fy": 1988,
+        "projects": 179,
+        "dollars": 23907396,
+        "partial": false
+      },
+      {
+        "fy": 1989,
+        "projects": 229,
+        "dollars": 34644769,
+        "partial": false
+      },
+      {
+        "fy": 1990,
+        "projects": 240,
+        "dollars": 39292313,
+        "partial": false
+      },
+      {
+        "fy": 1991,
+        "projects": 299,
+        "dollars": 45840064,
+        "partial": false
+      },
+      {
+        "fy": 1992,
+        "projects": 319,
+        "dollars": 44071445,
+        "partial": false
+      },
+      {
+        "fy": 1993,
+        "projects": 333,
+        "dollars": 46488843,
+        "partial": false
+      },
+      {
+        "fy": 1994,
+        "projects": 339,
+        "dollars": 55254332,
+        "partial": false
+      },
+      {
+        "fy": 1995,
+        "projects": 387,
+        "dollars": 54436391,
+        "partial": false
+      },
+      {
+        "fy": 1996,
+        "projects": 450,
+        "dollars": 73877681,
+        "partial": false
+      },
+      {
+        "fy": 1997,
+        "projects": 435,
+        "dollars": 66881872,
+        "partial": false
+      },
+      {
+        "fy": 1998,
+        "projects": 502,
+        "dollars": 75662956,
+        "partial": false
+      },
+      {
+        "fy": 1999,
+        "projects": 487,
+        "dollars": 100127120,
+        "partial": false
+      },
+      {
+        "fy": 2000,
+        "projects": 450,
+        "dollars": 91958101,
+        "partial": false
+      },
+      {
+        "fy": 2001,
+        "projects": 266,
+        "dollars": 38125924,
+        "partial": false
+      },
+      {
+        "fy": 2002,
+        "projects": 258,
+        "dollars": 45637015,
+        "partial": false
+      },
+      {
+        "fy": 2003,
+        "projects": 243,
+        "dollars": 50489595,
+        "partial": false
+      },
+      {
+        "fy": 2004,
+        "projects": 252,
+        "dollars": 55563051,
+        "partial": false
+      },
+      {
+        "fy": 2005,
+        "projects": 267,
+        "dollars": 57218106,
+        "partial": false
+      },
+      {
+        "fy": 2006,
+        "projects": 232,
+        "dollars": 53934778,
+        "partial": false
+      },
+      {
+        "fy": 2007,
+        "projects": 259,
+        "dollars": 84043440,
+        "partial": false
+      },
+      {
+        "fy": 2008,
+        "projects": 245,
+        "dollars": 295298825,
+        "partial": false
+      },
+      {
+        "fy": 2009,
+        "projects": 356,
+        "dollars": 385849616,
+        "partial": false
+      },
+      {
+        "fy": 2010,
+        "projects": 351,
+        "dollars": 414286086,
+        "partial": false
+      },
+      {
+        "fy": 2011,
+        "projects": 206,
+        "dollars": 345151871,
+        "partial": false
+      },
+      {
+        "fy": 2012,
+        "projects": 221,
+        "dollars": 385977574,
+        "partial": false
+      },
+      {
+        "fy": 2013,
+        "projects": 205,
+        "dollars": 371613269,
+        "partial": false
+      },
+      {
+        "fy": 2014,
+        "projects": 198,
+        "dollars": 361954030,
+        "partial": false
+      },
+      {
+        "fy": 2015,
+        "projects": 212,
+        "dollars": 369526286,
+        "partial": false
+      },
+      {
+        "fy": 2016,
+        "projects": 206,
+        "dollars": 398565410,
+        "partial": false
+      },
+      {
+        "fy": 2017,
+        "projects": 246,
+        "dollars": 414797176,
+        "partial": false
+      },
+      {
+        "fy": 2018,
+        "projects": 247,
+        "dollars": 431120601,
+        "partial": false
+      },
+      {
+        "fy": 2019,
+        "projects": 232,
+        "dollars": 436986702,
+        "partial": false
+      },
+      {
+        "fy": 2020,
+        "projects": 239,
+        "dollars": 442571502,
+        "partial": false
+      },
+      {
+        "fy": 2021,
+        "projects": 232,
+        "dollars": 452000499,
+        "partial": false
+      },
+      {
+        "fy": 2022,
+        "projects": 249,
+        "dollars": 479960902,
+        "partial": false
+      },
+      {
+        "fy": 2023,
+        "projects": 249,
+        "dollars": 495750495,
+        "partial": false
+      },
+      {
+        "fy": 2024,
+        "projects": 246,
+        "dollars": 488165136,
+        "partial": false
+      },
+      {
+        "fy": 2025,
+        "projects": 217,
+        "dollars": 479511888,
+        "partial": false
+      },
+      {
+        "fy": 2026,
+        "projects": 181,
+        "dollars": 78268554,
+        "partial": true
+      }
+    ],
+    "ics": [
+      {
+        "ic": "NCI",
+        "projects": 8878,
+        "dollars": 6659186681
+      },
+      {
+        "ic": "NIAID",
+        "projects": 7147,
+        "dollars": 5824823915
+      },
+      {
+        "ic": "NIA",
+        "projects": 4759,
+        "dollars": 4053430613
+      },
+      {
+        "ic": "NHLBI",
+        "projects": 6217,
+        "dollars": 3786351755
+      },
+      {
+        "ic": "NIGMS",
+        "projects": 6311,
+        "dollars": 3093116509
+      },
+      {
+        "ic": "NINDS",
+        "projects": 4600,
+        "dollars": 2661605754
+      },
+      {
+        "ic": "NIDDK",
+        "projects": 4164,
+        "dollars": 2324663854
+      },
+      {
+        "ic": "NIMH",
+        "projects": 3162,
+        "dollars": 2074269776
+      },
+      {
+        "ic": "NIDA",
+        "projects": 2510,
+        "dollars": 1780598688
+      },
+      {
+        "ic": "NICHD",
+        "projects": 3130,
+        "dollars": 1677581015
+      },
+      {
+        "ic": "OD",
+        "projects": 695,
+        "dollars": 1192004377
+      },
+      {
+        "ic": "NIEHS",
+        "projects": 1173,
+        "dollars": 823517194
+      },
+      {
+        "ic": "NEI",
+        "projects": 1681,
+        "dollars": 808222768
+      },
+      {
+        "ic": "NCATS",
+        "projects": 514,
+        "dollars": 762228175
+      },
+      {
+        "ic": "NIAMS",
+        "projects": 1477,
+        "dollars": 693430411
+      },
+      {
+        "ic": "NHGRI",
+        "projects": 605,
+        "dollars": 585382836
+      },
+      {
+        "ic": "NIAAA",
+        "projects": 1016,
+        "dollars": 518880954
+      },
+      {
+        "ic": "NIDCD",
+        "projects": 1088,
+        "dollars": 498554152
+      },
+      {
+        "ic": "NIDCR",
+        "projects": 943,
+        "dollars": 484933413
+      },
+      {
+        "ic": "NLM",
+        "projects": 217,
+        "dollars": 479511888
+      },
+      {
+        "ic": "NIMHD",
+        "projects": 609,
+        "dollars": 470817834
+      },
+      {
+        "ic": "NIBIB",
+        "projects": 851,
+        "dollars": 439301521
+      },
+      {
+        "ic": "NCCIH",
+        "projects": 288,
+        "dollars": 206513737
+      },
+      {
+        "ic": "NINR",
+        "projects": 274,
+        "dollars": 163432945
+      },
+      {
+        "ic": "FIC",
+        "projects": 406,
+        "dollars": 101239103
+      }
+    ],
+    "detail": {
+      "projects": 217,
+      "dollars": 479511888,
+      "newProjects": 60,
+      "medianYears": 4,
+      "byActivity": [
+        {
+          "key": "ZIH",
+          "projects": 2,
+          "dollars": 357645999
+        },
+        {
+          "key": "R01",
+          "projects": 85,
+          "dollars": 44229696
+        },
+        {
+          "key": "ZIA",
+          "projects": 23,
+          "dollars": 33592631
+        },
+        {
+          "key": "T15",
+          "projects": 18,
+          "dollars": 11736501
+        },
+        {
+          "key": "UG4",
+          "projects": 7,
+          "dollars": 10696546
+        },
+        {
+          "key": "R03",
+          "projects": 7,
+          "dollars": 3027235
+        },
+        {
+          "key": "R25",
+          "projects": 21,
+          "dollars": 2975532
+        },
+        {
+          "key": "N02",
+          "projects": 1,
+          "dollars": 2500000
+        },
+        {
+          "key": "DP1",
+          "projects": 2,
+          "dollars": 2218300
+        },
+        {
+          "key": "R00",
+          "projects": 8,
+          "dollars": 1971965
+        },
+        {
+          "key": "R44",
+          "projects": 3,
+          "dollars": 1739697
+        },
+        {
+          "key": "G08",
+          "projects": 7,
+          "dollars": 1194511
+        },
+        {
+          "key": "R21",
+          "projects": 6,
+          "dollars": 1099388
+        },
+        {
+          "key": "R56",
+          "projects": 1,
+          "dollars": 828904
+        },
+        {
+          "key": "U24",
+          "projects": 1,
+          "dollars": 813867
+        }
+      ],
+      "byMechanism": [
+        {
+          "key": "Intramural Research",
+          "projects": 26,
+          "dollars": 391497695
+        },
+        {
+          "key": "Non-SBIR/STTR",
+          "projects": 113,
+          "dollars": 54913956
+        },
+        {
+          "key": "Other",
+          "projects": 25,
+          "dollars": 22433047
+        },
+        {
+          "key": "Other Research-Related",
+          "projects": 45,
+          "dollars": 5834395
+        },
+        {
+          "key": "R and D Contracts",
+          "projects": 1,
+          "dollars": 2500000
+        },
+        {
+          "key": "SBIR/STTR",
+          "projects": 4,
+          "dollars": 2211241
+        },
+        {
+          "key": "Training, Individual",
+          "projects": 3,
+          "dollars": 121554
+        }
+      ],
+      "byCategory": [
+        {
+          "key": "Machine Learning and Artificial Intelligence",
+          "projects": 114,
+          "dollars": 427106245
+        },
+        {
+          "key": "Data Science",
+          "projects": 117,
+          "dollars": 423021374
+        },
+        {
+          "key": "Bioengineering",
+          "projects": 105,
+          "dollars": 416657318
+        },
+        {
+          "key": "Genetics",
+          "projects": 43,
+          "dollars": 384320389
+        },
+        {
+          "key": "Human Genome",
+          "projects": 32,
+          "dollars": 376371323
+        },
+        {
+          "key": "Infectious Diseases",
+          "projects": 24,
+          "dollars": 372298736
+        },
+        {
+          "key": "Biotechnology",
+          "projects": 22,
+          "dollars": 372036214
+        },
+        {
+          "key": "Health Services",
+          "projects": 35,
+          "dollars": 369544880
+        },
+        {
+          "key": "Emerging Infectious Diseases",
+          "projects": 16,
+          "dollars": 366107675
+        },
+        {
+          "key": "Digital Health",
+          "projects": 22,
+          "dollars": 365978696
+        },
+        {
+          "key": "Prevention",
+          "projects": 26,
+          "dollars": 364495542
+        },
+        {
+          "key": "HIV/AIDS",
+          "projects": 10,
+          "dollars": 362695638
+        },
+        {
+          "key": "Women's Health Research",
+          "projects": 13,
+          "dollars": 361000101
+        },
+        {
+          "key": "Networking and Information Technology R&D (NITRD)",
+          "projects": 149,
+          "dollars": 82209988
+        },
+        {
+          "key": "Clinical Research",
+          "projects": 75,
+          "dollars": 32228485
+        }
+      ],
+      "byOrg": [
+        {
+          "key": "NATIONAL LIBRARY OF MEDICINE",
+          "projects": 26,
+          "dollars": 391497695
+        },
+        {
+          "key": "YALE UNIVERSITY",
+          "projects": 6,
+          "dollars": 5140115
+        },
+        {
+          "key": "STANFORD UNIVERSITY",
+          "projects": 11,
+          "dollars": 4984386
+        },
+        {
+          "key": "UNIVERSITY OF PITTSBURGH AT PITTSBURGH",
+          "projects": 7,
+          "dollars": 4288230
+        },
+        {
+          "key": "CEDARS-SINAI MEDICAL CENTER",
+          "projects": 4,
+          "dollars": 4168733
+        },
+        {
+          "key": "COLUMBIA UNIVERSITY HEALTH SCIENCES",
+          "projects": 5,
+          "dollars": 3559039
+        },
+        {
+          "key": "UNIVERSITY OF WASHINGTON",
+          "projects": 7,
+          "dollars": 3051569
+        },
+        {
+          "key": "UTAH STATE HIGHER EDUCATION SYSTEM--UNIVERSITY OF UTAH",
+          "projects": 3,
+          "dollars": 2853751
+        },
+        {
+          "key": "UNIVERSITY OF PENNSYLVANIA",
+          "projects": 7,
+          "dollars": 2842681
+        },
+        {
+          "key": "COMPUTERCRAFT CORPORATION",
+          "projects": 1,
+          "dollars": 2500000
+        }
+      ],
+      "byState": [
+        {
+          "key": "CA",
+          "projects": 34,
+          "dollars": 15397870
+        },
+        {
+          "key": "MA",
+          "projects": 18,
+          "dollars": 9879747
+        },
+        {
+          "key": "NY",
+          "projects": 17,
+          "dollars": 8935605
+        },
+        {
+          "key": "PA",
+          "projects": 16,
+          "dollars": 7769621
+        },
+        {
+          "key": "CT",
+          "projects": 6,
+          "dollars": 5140115
+        },
+        {
+          "key": "TX",
+          "projects": 11,
+          "dollars": 4844632
+        },
+        {
+          "key": "MD",
+          "projects": 6,
+          "dollars": 3467803
+        },
+        {
+          "key": "IL",
+          "projects": 8,
+          "dollars": 3336170
+        },
+        {
+          "key": "WA",
+          "projects": 8,
+          "dollars": 3184409
+        },
+        {
+          "key": "UT",
+          "projects": 3,
+          "dollars": 2853751
+        }
+      ],
+      "largest": [
+        {
+          "appl": 11410911,
+          "number": "1ZIHLM200888-17",
+          "title": "National Biomedical Information Services",
+          "org": "NATIONAL LIBRARY OF MEDICINE",
+          "activity": "ZIH",
+          "dollars": 357194999
+        },
+        {
+          "appl": 11416136,
+          "number": "1ZIALM237241-03",
+          "title": "Machine Learning and Natural Language Processing for Biomedical Applications",
+          "org": "NATIONAL LIBRARY OF MEDICINE",
+          "activity": "ZIA",
+          "dollars": 4571730
+        },
+        {
+          "appl": 11246985,
+          "number": "1R01LM014731-01A1",
+          "title": "AI Methods for Large Scale Epidemiological Studies using Patient Reports of Medication Adherence and Tolerability",
+          "org": "CEDARS-SINAI MEDICAL CENTER",
+          "activity": "R01",
+          "dollars": 3484662
+        },
+        {
+          "appl": 11225779,
+          "number": "1R01LM014163-01A1",
+          "title": "Supervised Weighted Distances: Patient Similarity to Explain Clinical AI Models",
+          "org": "YALE UNIVERSITY",
+          "activity": "R01",
+          "dollars": 2720667
+        },
+        {
+          "appl": 11404267,
+          "number": "75N97023F00079-P00004-0-1",
+          "title": "Bioinformatics Tools and Services for Antimicrobial Resistance Research",
+          "org": "COMPUTERCRAFT CORPORATION",
+          "activity": "N02",
+          "dollars": 2500000
+        }
+      ]
     }
   }
 };
