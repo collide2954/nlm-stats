@@ -158,11 +158,12 @@ test('live refresh updates counts from E-utilities', async () => {
       const db = new URL(url).searchParams.get('db');
       return route.fulfill({
         contentType: 'application/json',
+        headers: { 'access-control-allow-origin': '*' },
         body: JSON.stringify({ einforesult: { dbinfo: [{ dbname: db, menuname: db, description: '', count: '123456789', lastupdate: '2030/01/02 03:04', fieldlist: [], linklist: [] }] } }),
       });
     }
     if (url.includes('clinicaltrials.gov')) {
-      return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ totalStudies: 777777 }) });
+      return route.fulfill({ contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ totalStudies: 777777 }) });
     }
     return route.abort();
   });

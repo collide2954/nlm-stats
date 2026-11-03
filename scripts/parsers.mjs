@@ -1,29 +1,4 @@
-const num = (v) => {
-  if (v === null || v === undefined || v === '') return null;
-  const n = Number(String(v).replace(/,/g, ''));
-  return Number.isFinite(n) ? n : null;
-};
-
-const isoDay = (v) => {
-  const m = String(v ?? '').match(/^(\d{4})\/(\d{2})\/(\d{2})/);
-  return m ? `${m[1]}-${m[2]}-${m[3]}` : null;
-};
-
-export const parseEinfo = (json) => {
-  const info = json.einforesult.dbinfo[0];
-  return {
-    db: info.dbname,
-    name: info.menuname,
-    description: info.description,
-    build: info.dbbuild ?? null,
-    count: num(info.count),
-    updated: isoDay(info.lastupdate),
-    fields: (info.fieldlist ?? []).length,
-    links: (info.linklist ?? []).length,
-  };
-};
-
-export const parseCount = (json) => num(json?.esearchresult?.count);
+export { parseEinfo, parseCount } from '../src/lib.js';
 
 export const parseGenbankHeader = (text) => {
   const release = text.match(/GenBank Flat File Release (\d+\.\d+)/)[1];
