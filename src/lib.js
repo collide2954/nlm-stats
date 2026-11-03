@@ -372,7 +372,8 @@ export const liveOddities = (snap) => {
   const orgs = snap.genbank?.organisms ?? [];
   const human = orgs.findIndex((o) => o.species === 'Homo sapiens');
   if (orgs.length && human > 0) {
-    add(`By bases, ${orgs[0].species} is GenBank's most sequenced organism. Homo sapiens ranks ${ordinal(human + 1)}.`,
+    const top = orgs[0].common ? `${orgs[0].common} (${orgs[0].species})` : orgs[0].species;
+    add(`By bases, ${top} is GenBank's most sequenced organism. Homo sapiens ranks ${ordinal(human + 1)}.`,
       'https://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt');
   }
   const ct = snap.clinicaltrials ?? {};

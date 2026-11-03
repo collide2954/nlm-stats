@@ -1,5 +1,5 @@
 export default {
-  "generated": "2026-11-03T12:51:59.866Z",
+  "generated": "2026-11-03T13:07:40.485Z",
   "entrez": [
     {
       "db": "pubmed",
@@ -4022,102 +4022,122 @@ export default {
       {
         "species": "Triticum aestivum",
         "entries": 1949031,
-        "bases": 419236647828
+        "bases": 419236647828,
+        "common": "bread wheat"
       },
       {
         "species": "Hordeum vulgare",
         "entries": 113964,
-        "bases": 394376791066
+        "bases": 394376791066,
+        "common": "barley"
       },
       {
         "species": "Severe acute respiratory syndrome coronavirus 2",
         "entries": 9219597,
-        "bases": 274022013072
+        "bases": 274022013072,
+        "common": null
       },
       {
         "species": "Avena sativa",
         "entries": 30572,
-        "bases": 273192746340
+        "bases": 273192746340,
+        "common": "oats"
       },
       {
         "species": "Hordeum bulbosum",
         "entries": 753,
-        "bases": 212675690135
+        "bases": 212675690135,
+        "common": null
       },
       {
         "species": "Hordeum vulgare subsp. vulgare",
         "entries": 1347128,
-        "bases": 125991720014
+        "bases": 125991720014,
+        "common": "domesticated barley"
       },
       {
         "species": "Viscum album",
         "entries": 164,
-        "bases": 93011095388
+        "bases": 93011095388,
+        "common": "European mistletoe"
       },
       {
         "species": "Hordeum vulgare subsp. spontaneum",
         "entries": 30006,
-        "bases": 92980413381
+        "bases": 92980413381,
+        "common": "wild barley"
       },
       {
         "species": "Escherichia coli",
         "entries": 206478,
-        "bases": 47008834838
+        "bases": 47008834838,
+        "common": "E. coli"
       },
       {
         "species": "Mus musculus",
         "entries": 10128325,
-        "bases": 46342747762
+        "bases": 46342747762,
+        "common": "house mouse"
       },
       {
         "species": "Taxus baccata",
         "entries": 656,
-        "bases": 40050691233
+        "bases": 40050691233,
+        "common": "English yew"
       },
       {
         "species": "Homo sapiens",
         "entries": 29108547,
-        "bases": 39122845109
+        "bases": 39122845109,
+        "common": "human"
       },
       {
         "species": "Solanum melongena",
         "entries": 4900,
-        "bases": 37408232171
+        "bases": 37408232171,
+        "common": "eggplant"
       },
       {
         "species": "Arabidopsis thaliana",
         "entries": 2645722,
-        "bases": 33869576260
+        "bases": 33869576260,
+        "common": "thale cress"
       },
       {
         "species": "Bos taurus",
         "entries": 2247541,
-        "bases": 33009040131
+        "bases": 33009040131,
+        "common": "domestic cattle"
       },
       {
         "species": "Klebsiella pneumoniae",
         "entries": 46468,
-        "bases": 28805498191
+        "bases": 28805498191,
+        "common": null
       },
       {
         "species": "Zea mays",
         "entries": 4225701,
-        "bases": 24919427048
+        "bases": 24919427048,
+        "common": "maize"
       },
       {
         "species": "Lissotriton montandoni",
         "entries": 690,
-        "bases": 23795651964
+        "bases": 23795651964,
+        "common": "Carpathian newt"
       },
       {
         "species": "Vicia faba",
         "entries": 28789,
-        "bases": 23037494648
+        "bases": 23037494648,
+        "common": "fava bean"
       },
       {
         "species": "Humulus lupulus",
         "entries": 30910,
-        "bases": 22926207909
+        "bases": 22926207909,
+        "common": "European hop"
       }
     ],
     "divisions": [

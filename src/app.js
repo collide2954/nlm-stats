@@ -389,11 +389,11 @@ const renderSeq = () => {
   });
   dotplot({
     mount: $('#organisms-chart'),
-    rows: gb.organisms.map((o) => ({ key: o.species, label: o.species, value: o.bases, hi: o.species === 'Homo sapiens', o })),
+    rows: gb.organisms.map((o) => ({ key: o.species, label: o.common ?? o.species, value: o.bases, hi: o.species === 'Homo sapiens', o })),
     format: compact,
     labelShare: 0.42,
     aria: 'Most sequenced organisms by bases',
-    describe: (r) => tipLines(`${wordy(r.value)} bases`, r.label, `${exact(r.o.entries)} records`),
+    describe: (r) => tipLines(`${wordy(r.value)} bases`, r.o.species, r.o.common, `${exact(r.o.entries)} records`),
   });
   dotplot({
     mount: $('#divisions-chart'),
