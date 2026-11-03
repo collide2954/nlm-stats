@@ -1,4 +1,5 @@
-import { pct, wordy, exact, ordinal } from './lib.js';
+import { pct, wordy, exact, ordinal, compact } from './lib.js';
+import { US_TILES } from './tiles.js';
 
 const item = (snap, group, id) => snap.groups.find((g) => g.id === group)?.items.find((i) => i.id === id);
 const db = (snap, name) => snap.entrez.find((d) => d.db === name);
@@ -81,6 +82,39 @@ const papers = (snap) => {
 
 const history = (snap) => `${year(snap) - 1836} years from a $150 book budget`;
 
+const growth = (snap) => {
+  const best = snap.growth.map((d) => {
+    const last = d.years.at(-1);
+    const base = d.years.find((y) => y.year === last.year - 10);
+    return { d, last, base, g: base && base.count >= 50 ? last.count / base.count : 0 };
+  }).sort((a, b) => b.g - a.g)[0];
+  return `${best.d.label} grew ${fold(best.g)}-fold between ${best.base.year} and ${best.last.year}`;
+};
+
+const access = (snap) => {
+  const free = snap.access.find((a) => a.id === 'free').years.at(-1);
+  const total = snap.pubmed.years.find((y) => y.year === free.year).count;
+  return `${pct(free.count / total)} of papers dated ${free.year} are free to read`;
+};
+
+const geography = (snap) => {
+  const yr = Math.max(...Object.keys(snap.countries[0].counts).map(Number));
+  const top = snap.countries.reduce((a, b) => (b.counts[yr] > a.counts[yr] ? b : a));
+  return `Authors in ${top.name} appear on ${exact(top.counts[yr])} papers dated ${yr}, the most of ${snap.countries.length} countries checked`;
+};
+
+const states = (snap) => {
+  const top = snap.funding.nihStates.filter((s) => US_TILES[s.key]).reduce((a, b) => (b.dollars > a.dollars ? b : a));
+  return `${US_TILES[top.key].name} draws the most NIH award dollars: $${compact(top.dollars)}`;
+};
+
+const genes = (snap) => {
+  const top = snap.genes.reduce((a, b) => (b.pubmed > a.pubmed ? b : a));
+  return `${top.symbol} is linked to ${exact(top.pubmed)} PubMed records, the most of ${snap.genes.length} genes here`;
+};
+
+const variants = (snap) => `${pct(item(snap, 'cv-review', 'rv-single').count / db(snap, 'clinvar').count)} of ClinVar records rest on a single submitter`;
+
 export const findings = (snap) => ({
   entrez: entrez(snap),
   pubmed: pubmed(snap),
@@ -95,4 +129,10 @@ export const findings = (snap) => ({
   seqdata: seqdata(snap),
   papers: papers(snap),
   history: history(snap),
+  ...(snap.growth ? { growth: growth(snap) } : {}),
+  ...(snap.access ? { access: access(snap) } : {}),
+  ...(snap.countries ? { geography: geography(snap) } : {}),
+  ...(snap.funding?.nihStates ? { states: states(snap) } : {}),
+  ...(snap.genes ? { genes: genes(snap) } : {}),
+  ...(snap.groups.some((g) => g.id === 'cv-review') ? { variants: variants(snap) } : {}),
 });
