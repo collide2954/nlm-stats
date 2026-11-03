@@ -6,7 +6,8 @@ import snapshot from '../../src/snapshot.js';
 import { TIMELINE, PROJECTS, ODDITIES, PEOPLE, APIS, CADENCES } from '../../src/facts.js';
 import { exact, liveOddities, sortRows } from '../../src/lib.js';
 import { findings } from '../../src/findings.js';
-import { ICS, METHODS } from '../../src/queries.js';
+import { ICS, METHODS, GROWTH, COUNTRIES, GENES } from '../../src/queries.js';
+import { US_TILES } from '../../src/tiles.js';
 
 const { chromium, devices } = createRequire(import.meta.url)('playwright');
 
@@ -291,6 +292,42 @@ test('on desktop hover previews, click pins and Escape closes', async () => {
   assert.equal(await page.getAttribute('#tip', 'data-pinned'), 'true');
   await page.keyboard.press('Escape');
   assert.equal(await page.isVisible('#tip'), false);
+  await page.close();
+});
+
+test('database growth draws one panel per database', async () => {
+  const { page } = await open();
+  assert.equal(await page.locator('#growth-multiples .panel').count(), GROWTH.dbs.length);
+  assert.equal((await page.textContent('#growth h2')).trim(), findings(snapshot).growth);
+  await page.close();
+});
+
+test('access and integrity charts render', async () => {
+  const { page } = await open();
+  assert.ok(await page.locator('#access-chart path.line').count() >= 2);
+  assert.ok(await page.locator('#integrity-chart path.line').count() >= 3);
+  assert.equal(await page.locator('#preprints-chart [data-row]').count(), 4);
+  await page.close();
+});
+
+test('geography shows a state tile map with a toggle and author countries', async () => {
+  const { page } = await open();
+  assert.equal(await page.locator('#state-map [data-state]').count(), Object.keys(US_TILES).length);
+  const initialStyle = await page.getAttribute('#state-map [data-state="MD"] rect', 'style');
+  await page.click('#state-tabs [role="tab"][data-scope="nlm"]');
+  assert.notEqual(await page.getAttribute('#state-map [data-state="MD"] rect', 'style'), initialStyle);
+  await page.hover('#state-map [data-state="CA"]');
+  assert.match(await page.textContent('#tip'), /California/);
+  assert.equal(await page.locator('#countries-chart [data-row]').count(), COUNTRIES.list.length);
+  await page.close();
+});
+
+test('genes and variants render', async () => {
+  const { page } = await open();
+  assert.equal(await page.locator('#genes-chart [data-row]').count(), GENES.length);
+  assert.equal(await page.locator('#review-chart [data-row]').count(), 7);
+  assert.ok(await page.locator('#vtype-chart [data-row]').count() >= 5);
+  assert.ok(await page.locator('#origin-chart [data-row]').count() >= 5);
   await page.close();
 });
 
