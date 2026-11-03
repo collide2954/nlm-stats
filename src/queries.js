@@ -375,3 +375,112 @@ export const GENES = [
   g(3043, 'HBB'), g(3845, 'KRAS'), g(673, 'BRAF'), g(5728, 'PTEN'), g(4609, 'MYC'), g(1636, 'ACE'),
   g(3630, 'INS'), g(920, 'CD4'), g(351, 'APP'), g(1029, 'CDKN2A'),
 ];
+
+const w = (id, label, term) => ({ id, label, term: `${term}[tiab]` });
+
+export const VOCAB = {
+  from: 2010,
+  base: 2019,
+  control: w('patients', 'patients', 'patients'),
+  words: [
+    w('delve', 'delve', 'delve*'),
+    w('showcasing', 'showcasing', 'showcasing'),
+    w('underscore', 'underscore', 'underscore*'),
+    w('intricate', 'intricate', 'intricate'),
+    w('meticulous', 'meticulous', 'meticulous*'),
+    w('commendable', 'commendable', 'commendable'),
+    w('leveraging', 'leveraging', 'leveraging'),
+    w('nuanced', 'nuanced', 'nuanced'),
+  ],
+};
+
+const s = (id, label, term) => ({ id, label, term });
+
+export const SUBJECTS = {
+  animals: {
+    from: 1975,
+    list: [
+      s('mice', 'Mice', 'mice[mh]'),
+      s('rats', 'Rats', 'rats[mh]'),
+      s('dogs', 'Dogs', 'dogs[mh]'),
+      s('rabbits', 'Rabbits', 'rabbits[mh]'),
+      s('swine', 'Pigs', 'swine[mh]'),
+      s('zebrafish', 'Zebrafish', 'zebrafish[mh]'),
+      s('drosophila', 'Fruit flies', 'drosophila[mh]'),
+      s('elegans', 'C. elegans', 'caenorhabditis elegans[mh]'),
+      s('yeast', 'Baker’s yeast', 'saccharomyces cerevisiae[mh]'),
+      s('arabidopsis', 'Arabidopsis', 'arabidopsis[mh]'),
+    ],
+  },
+  sex: {
+    from: 1975,
+    list: [
+      s('women', 'Women only', 'humans[mh] AND female[mh] NOT male[mh]'),
+      s('men', 'Men only', 'humans[mh] AND male[mh] NOT female[mh]'),
+    ],
+  },
+  ages: {
+    years: [2005, 2025],
+    list: [
+      s('newborn', 'Newborn', '"infant, newborn"[mh]'),
+      s('infant', 'Infant', 'infant[mh:noexp]'),
+      s('preschool', 'Preschool child', '"child, preschool"[mh]'),
+      s('child', 'Child', 'child[mh:noexp]'),
+      s('adolescent', 'Adolescent', 'adolescent[mh]'),
+      s('young', 'Young adult', '"young adult"[mh]'),
+      s('adult', 'Adult', 'adult[mh:noexp]'),
+      s('middle', 'Middle aged', '"middle aged"[mh]'),
+      s('aged', 'Aged', 'aged[mh:noexp]'),
+      s('oldest', 'Aged 80 and over', '"aged, 80 and over"[mh]'),
+    ],
+  },
+  outbreaks: {
+    from: 2000,
+    list: [
+      s('covid', 'COVID-19', '(covid-19[tiab] OR sars-cov-2[tiab])'),
+      s('h1n1', 'H1N1 influenza', 'h1n1[tiab]'),
+      s('ebola', 'Ebola', 'ebola[tiab]'),
+      s('zika', 'Zika', 'zika[tiab]'),
+      s('mers', 'MERS', '(mers-cov[tiab] OR "middle east respiratory syndrome"[tiab])'),
+      s('mpox', 'Mpox', '(mpox[tiab] OR monkeypox[tiab])'),
+    ],
+  },
+};
+
+const p = (pmid, label) => ({ pmid, label });
+
+export const RETRACTED = [
+  p('9500320', 'Wakefield, Lancet 1998'),
+  p('14963337', 'Hwang, Science 2004'),
+  p('15905366', 'Hwang, Science 2005'),
+  p('22999595', 'Séralini, Food Chem Toxicol 2012'),
+  p('24476887', 'Obokata, Nature 2014'),
+  p('32205204', 'Gautret, Int J Antimicrob Agents 2020'),
+  p('32356626', 'Mehra, N Engl J Med 2020'),
+  p('32450107', 'Mehra, Lancet 2020'),
+];
+
+export const CLASSICS = [
+  p('11846609', 'Livak, qPCR ΔΔCt 2001'),
+  p('5432063', 'Laemmli, SDS gels 1970'),
+  p('14907713', 'Lowry, protein assay 1951'),
+  p('942051', 'Bradford, protein assay 1976'),
+  p('2231712', 'Altschul, BLAST 1990'),
+  p('9254694', 'Altschul, Gapped BLAST 1997'),
+  p('271968', 'Sanger, DNA sequencing 1977'),
+  p('10592173', 'Kanehisa, KEGG 2000'),
+  p('7984417', 'Thompson, CLUSTAL W 1994'),
+  p('3802833', 'DerSimonian, meta-analysis 1986'),
+  p('2440339', 'Chomczynski, RNA isolation 1987'),
+  p('2868172', 'Bland, agreement 1986'),
+  p('13428781', 'Folch, lipid extraction 1957'),
+];
+
+export const EXTREMES = {
+  protein: 'Homo sapiens[orgn] AND refseq[filter] AND 30000:100000[slen]',
+  genes: 'Homo sapiens[orgn] AND "genetype protein coding"[prop] AND alive[prop]',
+  uncultured: '"uncultured bacterium"[orgn]',
+  stopword: 'however',
+  farFuture: 2090,
+  longAgo: 1950,
+};
