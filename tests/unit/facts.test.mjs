@@ -1,0 +1,64 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { SOURCES, TIMELINE, PEOPLE, PROJECTS, ODDITIES, EXAMPLES, TAGS } from '../../src/facts.js';
+import { identify } from '../../src/lib.js';
+import { ENTREZ_DBS } from '../../src/queries.js';
+
+const DATE = /^\d{4}(-\d{2}(-\d{2})?)?$/;
+
+test('every source is an https url', () => {
+  for (const [key, url] of Object.entries(SOURCES)) {
+    assert.match(url, /^https:\/\//, key);
+  }
+});
+
+test('timeline is long, dated, tagged, sourced and sorted', () => {
+  assert.ok(TIMELINE.length >= 50);
+  for (const item of TIMELINE) {
+    assert.match(item.date, DATE, item.text);
+    assert.ok(['NLM', 'NCBI'].includes(item.org), item.text);
+    assert.ok(TAGS.includes(item.tag), item.tag);
+    assert.ok(item.text.length > 10 && item.text.length <= 140, item.text);
+    assert.ok(SOURCES[item.src], `missing source ${item.src}`);
+  }
+  const dates = TIMELINE.map((t) => t.date);
+  assert.deepEqual(dates, [...dates].sort());
+});
+
+test('people have ordered tenures and sources', () => {
+  assert.ok(PEOPLE.length >= 9);
+  for (const p of PEOPLE) {
+    assert.ok(p.name && p.role && p.org);
+    assert.ok(p.from <= (p.to ?? 9999), p.name);
+    assert.ok(SOURCES[p.src], p.name);
+  }
+});
+
+test('projects are unique with several facts each', () => {
+  assert.ok(PROJECTS.length >= 14);
+  assert.equal(new Set(PROJECTS.map((p) => p.name)).size, PROJECTS.length);
+  for (const p of PROJECTS) {
+    assert.ok(['NLM', 'NCBI'].includes(p.org), p.name);
+    assert.match(String(p.since), /^\d{4}$/, p.name);
+    assert.ok(p.facts.length >= 3, p.name);
+    assert.ok(SOURCES[p.src], p.name);
+    assert.match(p.url, /^https:\/\//, p.name);
+    if (p.db) assert.ok(ENTREZ_DBS.includes(p.db), p.db);
+  }
+});
+
+test('oddities are plentiful and sourced', () => {
+  assert.ok(ODDITIES.length >= 20);
+  for (const o of ODDITIES) {
+    assert.ok(o.text.length > 10);
+    assert.ok(SOURCES[o.src], o.text);
+  }
+});
+
+test('every decoder example is recognised', () => {
+  assert.ok(EXAMPLES.length >= 12);
+  for (const e of EXAMPLES) {
+    assert.ok(identify(e.id), e.id);
+    assert.ok(e.is.length > 2, e.id);
+  }
+});
