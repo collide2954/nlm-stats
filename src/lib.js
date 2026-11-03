@@ -225,3 +225,61 @@ export const eutilsUrl = (tool, params) => {
     .join('&');
   return `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/${tool}.fcgi?${query}`;
 };
+
+const fold = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+export const matches = (text, query) => {
+  const terms = fold(query).split(/\s+/).filter(Boolean);
+  const hay = fold(text);
+  return terms.every((t) => hay.includes(t));
+};
+
+export const filterTimeline = (items, { tags, orgs, query } = {}) =>
+  items.filter((i) =>
+    (!tags?.length || tags.includes(i.tag)) &&
+    (!orgs?.length || orgs.includes(i.org)) &&
+    matches(`${i.date} ${i.org} ${i.tag} ${i.text}`, query));
+
+export const sortRows = (rows, key, dir = 'asc') => {
+  const sign = dir === 'desc' ? -1 : 1;
+  return [...rows].sort((a, b) => {
+    const x = a[key];
+    const y = b[key];
+    if (x === null || x === undefined) return y === null || y === undefined ? 0 : 1;
+    if (y === null || y === undefined) return -1;
+    if (typeof x === 'number' && typeof y === 'number') return (x - y) * sign;
+    return String(x).localeCompare(String(y)) * sign;
+  });
+};
+
+export const logShare = (value, max) => {
+  if (!value || value <= 0 || !max) return 0;
+  return Math.min(100, (Math.log10(value + 1) / Math.log10(max + 1)) * 100);
+};
+
+export const share = (value, max) => (max > 0 ? Math.min(100, (value / max) * 100) : 0);
+
+export const niceTicks = (max, count) => {
+  if (!max || max <= 0) return [0];
+  const raw = max / count;
+  const mag = 10 ** Math.floor(Math.log10(raw));
+  const r = raw / mag;
+  const step = (r <= 1 ? 1 : r <= 2 ? 2 : r <= 5 ? 5 : 10) * mag;
+  const top = Math.ceil(max / step) * step;
+  return Array.from({ length: Math.round(top / step) + 1 }, (_, i) => i * step);
+};
+
+export const yearOf = (date) => Number(String(date).slice(0, 4));
+
+export const decade = (date) => `${Math.floor(yearOf(date) / 10) * 10}s`;
+
+const KEEP = new Set(['NIH', 'FED']);
+
+export const labelize = (value) => {
+  if (value === 'NA') return 'Not applicable';
+  if (KEEP.has(value)) return value;
+  const words = value.replace(/([A-Z])(\d)/g, '$1 $2').replace(/_/g, ' ').toLowerCase();
+  return words.charAt(0).toUpperCase() + words.slice(1);
+};
+
+export const stamp = (iso) => `${iso.slice(0, 10)} ${iso.slice(11, 16)} UTC`;
