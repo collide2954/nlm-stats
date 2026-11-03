@@ -206,3 +206,15 @@ test('enumLabels maps each field piece to official labels', async () => {
     OtherPhase: { NA: 'Not Applicable', PHASE2: 'Phase 2' },
   });
 });
+
+test('parseTaxonNames reads scientific and common names', async () => {
+  const { parseTaxonNames } = await import('../../scripts/parsers.mjs');
+  const json = {
+    result: {
+      uids: ['4565', '9606'],
+      4565: { uid: '4565', scientificname: 'Triticum aestivum', commonname: 'bread wheat' },
+      9606: { uid: '9606', scientificname: 'Homo sapiens', commonname: 'human' },
+    },
+  };
+  assert.deepEqual(parseTaxonNames(json), { 'Triticum aestivum': 'bread wheat', 'Homo sapiens': 'human' });
+});

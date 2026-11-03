@@ -71,3 +71,9 @@ test('findings work on the real snapshot', () => {
     assert.doesNotMatch(text, /undefined|NaN|null/, key);
   }
 });
+
+test('findings use a common name when one is known', () => {
+  const named = structuredClone(fixture);
+  named.genbank.organisms[0].common = 'bread wheat';
+  assert.equal(findings(named).genbank, 'Bread wheat tops GenBank by bases. Humans rank 3rd');
+});
