@@ -42,6 +42,25 @@
     <dl class="ticker" id="ticker"></dl>
   </section>
 
+  <aside class="readme wrap" id="readme" aria-labelledby="readme-title">
+    <h2 class="readme-title" id="readme-title">How to read these numbers</h2>
+    <ul>
+      <li><b>Live queries.</b> Every count comes from a public API and is rebuilt each Sunday. Tap a mark for its numbers and, where there is one, the query behind it.</li>
+      <li><b>Records, not papers.</b> PubMed counts include reviews, letters, errata and comments as well as research papers.</li>
+      <li><b>MeSH moves.</b> Subject counts depend on indexing. A heading counts only from the year MeSH adds it, and MEDLINE indexing has been automated since April 2022.</li>
+      <li><b>Partial citations.</b> Citing records are PubMed’s “Cited by” links, which PubMed calls incomplete. Other citation indexes count more.</li>
+      <li><b>Awards, not budgets.</b> Dollars are award amounts NIH RePORTER lists for a fiscal year, not appropriations.</li>
+      <li><b>Trials and studies.</b> ClinicalTrials.gov also registers observational studies. “Trials” here means interventional studies.</li>
+      <li><b>Keyword sorting.</b> Reasons trials stop are sorted by keyword from free text, so they are approximate.</li>
+    </ul>
+  </aside>
+
+  <div class="chapter wrap" id="ch-collections" data-chapter="collections">
+    <p class="chapter-no">Part 1</p>
+    <h2 class="chapter-title">Collections</h2>
+    <p class="chapter-dek">What NCBI holds, how fast it grows, and the biggest and smallest of it.</p>
+  </div>
+
   <section class="story wrap" id="entrez" data-lens="bioinfo" data-nav="Entrez">
     <header class="head"><p class="label">Entrez</p><h2 data-finding="entrez">Entrez databases</h2><p class="dek" id="entrez-dek"></p></header>
     <figure class="fig">
@@ -62,6 +81,68 @@
       <figcaption>Records now in each database, counted by the year in its own date field, each on its own scale. Records later withdrawn are not counted. Source: E-utilities esearch.</figcaption>
     </figure>
   </section>
+
+  <section class="story wrap" id="seqdata" data-lens="bioinfo" data-nav="Sequences">
+    <header class="head"><p class="label">Sequence data</p><h2 data-finding="genbank">GenBank</h2><p class="dek" id="gb-dek"></p></header>
+    <figure class="fig">
+      <div class="chart" id="genbank-chart"></div>
+      <figcaption>Bases in GenBank at each year's last release, log scale. Source: GenBank release notes.</figcaption>
+    </figure>
+    <div class="pair">
+      <figure class="fig">
+        <div class="chart" id="organisms-chart"></div>
+        <figcaption>The 20 most sequenced organisms by bases, excluding WGS, organelles and metagenomes. Source: GenBank release notes.</figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="chart" id="divisions-chart"></div>
+        <figcaption>Bases by GenBank division in this release.</figcaption>
+      </figure>
+    </div>
+    <h3 class="subhead" data-finding="seqdata">SRA and assemblies</h3>
+    <div class="trio">
+      <figure class="fig"><div class="chart" id="sra-strategy-chart"></div><figcaption>SRA experiments by library strategy.</figcaption></figure>
+      <figure class="fig"><div class="chart" id="sra-platform-chart"></div><figcaption>SRA experiments by platform.</figcaption></figure>
+      <figure class="fig"><div class="chart" id="assembly-chart"></div><figcaption>Genome assemblies by level.</figcaption></figure>
+    </div>
+    <p class="dek" id="refseq-line"></p>
+  </section>
+
+  <section class="story wrap" id="variants" data-lens="bioinfo stats" data-nav="Variants">
+    <header class="head"><p class="label">Genes and variants</p><h2 data-finding="variants">Genes and variants</h2><p class="dek" id="variants-dek"></p></header>
+    <figure class="fig">
+      <div class="chart" id="review-chart"></div>
+      <figcaption>ClinVar records by review status, the strength of evidence behind the classification. Source: ClinVar review status field.</figcaption>
+    </figure>
+    <div class="pair">
+      <figure class="fig"><div class="chart" id="vtype-chart"></div><figcaption>ClinVar records by variation type, log scale.</figcaption></figure>
+      <figure class="fig"><div class="chart" id="origin-chart"></div><figcaption>ClinVar records by allele origin, log scale. A record can list several origins.</figcaption></figure>
+    </div>
+    <h3 class="subhead" data-finding="genes">Well-known genes</h3>
+    <figure class="fig">
+      <div class="chart" id="genes-chart"></div>
+      <figcaption>PubMed records linked from each human Gene record, log scale. ClinVar variant counts are in the popups. Source: E-utilities elink gene_pubmed.</figcaption>
+    </figure>
+  </section>
+
+  <section class="story wrap" id="extremes" data-lens="bioinfo funding" data-nav="Extremes">
+    <header class="head"><p class="label">Record holders</p><h2 data-finding="extremes">Record holders</h2><p class="dek" id="extremes-dek"></p></header>
+    <dl class="records" id="records"></dl>
+    <figure class="fig">
+      <div class="chart" id="chrom-chart"></div>
+      <figcaption id="chrom-caption"></figcaption>
+    </figure>
+    <h3 class="subhead" data-finding="classics">Most cited methods</h3>
+    <figure class="fig">
+      <div class="chart" id="classics-chart"></div>
+      <figcaption>Citing records in PubMed’s “Cited by” links for classic methods papers, a partial count. Source: E-utilities elink pubmed_pubmed_citedin.</figcaption>
+    </figure>
+  </section>
+
+  <div class="chapter wrap" id="ch-literature" data-chapter="literature">
+    <p class="chapter-no">Part 2</p>
+    <h2 class="chapter-title">Literature</h2>
+    <p class="chapter-dek">PubMed: what gets published, about whom, how openly, and how it gets cited.</p>
+  </div>
 
   <section class="story wrap" id="pubmed" data-lens="stats" data-nav="PubMed">
     <header class="head"><p class="label">PubMed</p><h2 data-finding="pubmed">PubMed by year</h2><p class="dek" id="pubmed-dek"></p></header>
@@ -175,6 +256,12 @@
     </figure>
   </section>
 
+  <div class="chapter wrap" id="ch-clinical" data-chapter="clinical">
+    <p class="chapter-no">Part 3</p>
+    <h2 class="chapter-title">Clinical research</h2>
+    <p class="chapter-dek">ClinicalTrials.gov: what is registered, what reports results, and why trials stop.</p>
+  </div>
+
   <section class="story wrap" id="trials" data-lens="stats funding" data-nav="Trials">
     <header class="head"><p class="label">ClinicalTrials.gov</p><h2 data-finding="trials">ClinicalTrials.gov</h2><p class="dek" id="ct-dek"></p></header>
     <div class="pair">
@@ -220,6 +307,12 @@
     </figure>
   </section>
 
+  <div class="chapter wrap" id="ch-money" data-chapter="money">
+    <p class="chapter-no">Part 4</p>
+    <h2 class="chapter-title">Money</h2>
+    <p class="chapter-dek">What NIH RePORTER lists for NLM, and for NIH as a whole.</p>
+  </div>
+
   <section class="story wrap" id="funding" data-lens="funding" data-nav="Funding">
     <header class="head"><p class="label">NIH funding</p><h2 data-finding="funding">NIH funding</h2><p class="dek" id="funding-dek"></p></header>
     <figure class="fig">
@@ -258,68 +351,11 @@
     </figure>
   </section>
 
-  <section class="story wrap" id="seqdata" data-lens="bioinfo" data-nav="Sequences">
-    <header class="head"><p class="label">Sequence data</p><h2 data-finding="genbank">GenBank</h2><p class="dek" id="gb-dek"></p></header>
-    <figure class="fig">
-      <div class="chart" id="genbank-chart"></div>
-      <figcaption>Bases in GenBank at each year's last release, log scale. Source: GenBank release notes.</figcaption>
-    </figure>
-    <div class="pair">
-      <figure class="fig">
-        <div class="chart" id="organisms-chart"></div>
-        <figcaption>The 20 most sequenced organisms by bases, excluding WGS, organelles and metagenomes. Source: GenBank release notes.</figcaption>
-      </figure>
-      <figure class="fig">
-        <div class="chart" id="divisions-chart"></div>
-        <figcaption>Bases by GenBank division in this release.</figcaption>
-      </figure>
-    </div>
-    <h3 class="subhead" data-finding="seqdata">SRA and assemblies</h3>
-    <div class="trio">
-      <figure class="fig"><div class="chart" id="sra-strategy-chart"></div><figcaption>SRA experiments by library strategy.</figcaption></figure>
-      <figure class="fig"><div class="chart" id="sra-platform-chart"></div><figcaption>SRA experiments by platform.</figcaption></figure>
-      <figure class="fig"><div class="chart" id="assembly-chart"></div><figcaption>Genome assemblies by level.</figcaption></figure>
-    </div>
-    <p class="dek" id="refseq-line"></p>
-  </section>
-
-  <section class="story wrap" id="variants" data-lens="bioinfo stats" data-nav="Variants">
-    <header class="head"><p class="label">Genes and variants</p><h2 data-finding="variants">Genes and variants</h2><p class="dek" id="variants-dek"></p></header>
-    <figure class="fig">
-      <div class="chart" id="review-chart"></div>
-      <figcaption>ClinVar records by review status, the strength of evidence behind the classification. Source: ClinVar review status field.</figcaption>
-    </figure>
-    <div class="pair">
-      <figure class="fig"><div class="chart" id="vtype-chart"></div><figcaption>ClinVar records by variation type, log scale.</figcaption></figure>
-      <figure class="fig"><div class="chart" id="origin-chart"></div><figcaption>ClinVar records by allele origin, log scale. A record can list several origins.</figcaption></figure>
-    </div>
-    <h3 class="subhead" data-finding="genes">Well-known genes</h3>
-    <figure class="fig">
-      <div class="chart" id="genes-chart"></div>
-      <figcaption>PubMed records linked from each human Gene record, log scale. ClinVar variant counts are in the popups. Source: E-utilities elink gene_pubmed.</figcaption>
-    </figure>
-  </section>
-
-  <section class="story wrap" id="extremes" data-lens="bioinfo funding" data-nav="Extremes">
-    <header class="head"><p class="label">Record holders</p><h2 data-finding="extremes">Record holders</h2><p class="dek" id="extremes-dek"></p></header>
-    <dl class="records" id="records"></dl>
-    <figure class="fig">
-      <div class="chart" id="chrom-chart"></div>
-      <figcaption id="chrom-caption"></figcaption>
-    </figure>
-    <h3 class="subhead" data-finding="classics">Most cited methods</h3>
-    <figure class="fig">
-      <div class="chart" id="classics-chart"></div>
-      <figcaption>Citing records in PubMed’s “Cited by” links for classic methods papers, a partial count. Source: E-utilities elink pubmed_pubmed_citedin.</figcaption>
-    </figure>
-  </section>
-
-  <section class="story wrap" id="reference" data-lens="bioinfo funding" data-nav="APIs">
-    <header class="head"><p class="label">Reference</p><h2>Limits, cadences and accession prefixes</h2></header>
-    <div class="scroll"><table id="api-table" class="data"></table></div>
-    <div class="scroll"><table id="cadence-table" class="data"></table></div>
-    <div class="scroll"><table id="refseq-prefixes" class="data"></table></div>
-  </section>
+  <div class="chapter wrap" id="ch-reference" data-chapter="reference">
+    <p class="chapter-no">Part 5</p>
+    <h2 class="chapter-title">History and reference</h2>
+    <p class="chapter-dek">How the library got here, and what you need to query it yourself.</p>
+  </div>
 
   <section class="story wrap" id="history" data-lens="funding" data-nav="Timeline">
     <header class="head"><p class="label">History</p><h2 data-finding="history">History</h2><p class="dek">Drag to pan, use the buttons or Ctrl and scroll to zoom. Tap a mark for details.</p></header>
@@ -355,6 +391,13 @@
     <label class="decoder-input"><span class="sr">Identifier</span><input id="decoder-input" type="text" placeholder="NM_000518.5" autocomplete="off" spellcheck="false"></label>
     <div id="decoder-out" class="decoded" aria-live="polite"></div>
     <div class="chips" id="examples"></div>
+  </section>
+
+  <section class="story wrap" id="reference" data-lens="bioinfo funding" data-nav="APIs">
+    <header class="head"><p class="label">Reference</p><h2>Limits, cadences and accession prefixes</h2></header>
+    <div class="scroll"><table id="api-table" class="data"></table></div>
+    <div class="scroll"><table id="cadence-table" class="data"></table></div>
+    <div class="scroll"><table id="refseq-prefixes" class="data"></table></div>
   </section>
 
   <section class="story wrap" id="sources" data-nav="Sources">

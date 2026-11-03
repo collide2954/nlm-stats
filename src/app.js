@@ -1027,6 +1027,11 @@ const applyLens = (lens, push) => {
   state.lens = lens;
   $$('#lenses button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lens === lens)));
   $$('main > section').forEach((sec) => { sec.hidden = !inLens(sec.dataset.lens, lens); });
+  for (const ch of $$('main > .chapter')) {
+    const members = [];
+    for (let n = ch.nextElementSibling; n && !n.classList.contains('chapter'); n = n.nextElementSibling) members.push(n);
+    ch.hidden = members.every((n) => n.hidden);
+  }
   $$('#jump a').forEach((a) => { a.hidden = $(`#${a.dataset.for}`).hidden; });
   $('#lens-hint').textContent = LENSES.find((l) => l.id === lens).hint;
   if (push) {
@@ -1037,7 +1042,9 @@ const applyLens = (lens, push) => {
 
 const renderLenses = () => {
   fill('#lenses', ...LENSES.map((l) => h('button', { type: 'button', 'data-lens': l.id, 'aria-pressed': 'false', title: l.hint }, l.label)));
-  fill('#jump', ...$$('main > section[data-nav]').map((sec) => h('a', { href: `#${sec.id}`, 'data-for': sec.id }, sec.dataset.nav)));
+  fill('#jump', ...$$('main > .chapter, main > section[data-nav]').map((n) => (n.classList.contains('chapter')
+    ? h('a', { href: `#${n.id}`, 'data-for': n.id, class: 'jump-ch' }, $('.chapter-title', n).textContent)
+    : h('a', { href: `#${n.id}`, 'data-for': n.id }, n.dataset.nav))));
   $('#lenses').addEventListener('click', (event) => {
     const btn = event.target.closest('button[data-lens]');
     if (btn) applyLens(btn.dataset.lens, true);

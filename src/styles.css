@@ -274,6 +274,77 @@ button {
   color: var(--ink);
 }
 
+.jump a.jump-ch {
+  margin-left: 6px;
+  padding-left: 12px;
+  border-left: 1px solid var(--rule);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.jump a.jump-ch:first-child {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: 0;
+}
+
+.readme {
+  margin-top: 28px;
+  padding-top: 14px;
+  padding-bottom: 6px;
+  border-top: 1px solid var(--rule);
+}
+
+.readme-title {
+  margin: 0 0 10px;
+  font: 700 0.75rem var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.readme ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 10px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.86rem;
+  color: var(--ink-2);
+}
+
+.readme b {
+  color: var(--ink);
+}
+
+.chapter {
+  margin-top: 88px;
+  padding-top: 18px;
+  border-top: 6px solid var(--ink);
+}
+
+.chapter-no {
+  margin: 0;
+  font: 700 0.75rem var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.chapter-title {
+  margin: 4px 0 6px;
+  font: 600 clamp(2.2rem, 6vw, 3.6rem) / 1 var(--serif);
+  letter-spacing: -0.02em;
+}
+
+.chapter-dek {
+  max-width: 42rem;
+  margin: 0;
+  font: 1.15rem / 1.45 var(--serif);
+  color: var(--ink-2);
+}
+
 .lede {
   padding-top: clamp(28px, 6vw, 72px);
   padding-bottom: 24px;
