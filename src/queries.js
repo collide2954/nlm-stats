@@ -477,8 +477,8 @@ export const CLASSICS = [
 ];
 
 export const EXTREMES = {
-  protein: 'Homo sapiens[orgn] AND refseq[filter] AND 30000:100000[slen]',
-  genes: 'Homo sapiens[orgn] AND "genetype protein coding"[prop] AND alive[prop]',
+  protein: 'txid9606[orgn:noexp] AND refseq[filter] AND 30000:100000[slen]',
+  genes: 'txid9606[orgn:noexp] AND "genetype protein coding"[prop] AND alive[prop]',
   uncultured: '"uncultured bacterium"[orgn]',
   stopword: 'however',
   farFuture: 2090,
