@@ -511,7 +511,7 @@ const renderFunding = () => {
     statBox(`${rank} of ${f.ics.length}`, 'NLM rank by dollars'),
     statBox(pct(d.dollars / nih), 'of listed NIH dollars'),
     statBox(usd(f.years[0].dollars), `FY${f.years[0].fy} in RePORTER`),
-    statBox(`×${(d.dollars / f.years.find((y) => y.fy === 2000).dollars).toFixed(1)}`, 'growth since FY2000'));
+    statBox(pct((d.byMechanism.find((m) => m.key === 'Intramural Research')?.dollars ?? 0) / d.dollars), 'intramural, by RePORTER funding mechanism'));
   barChart({
     mount: '#funding-chart',
     tip: '#funding-tip',
