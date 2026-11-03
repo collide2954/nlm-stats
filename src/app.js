@@ -86,6 +86,7 @@ const renderEntrez = () => {
     rowH: 22,
     aria: 'Records per Entrez database, log scale',
     href: (r) => searchUrl(r.key),
+    linkText: (r) => `Open ${r.label}`,
     describe: (r) => tipLines(exact(r.value), r.label, r.d.description, `Updated ${r.d.updated} · ${r.d.fields} search fields · ${r.d.links} link types`),
   });
   fill('#entrez-table',
@@ -118,7 +119,8 @@ const renderPubmed = () => {
     highlight: (r) => r.year === peak.year,
     annotations: notes,
     aria: 'PubMed citations by publication year',
-    describe: (r, prev) => tipLines(exact(r.count), `${r.year}${r.partial ? ' so far' : ''}`, prev ? `${r.count >= prev.count ? '+' : ''}${exact(r.count - prev.count)} on ${prev.year}` : null),
+    describe: (r, prev) => tipLines(exact(r.count), `${r.year}${r.partial ? ' so far' : ''}`, prev ? `${r.count >= prev.count ? '+' : ''}${exact(r.count - prev.count)} on ${prev.year}` : null,
+      { href: searchUrl('pubmed', `${r.year}[dp]`), text: 'Open in PubMed' }),
   });
   columns({
     mount: $('#eras-chart'),
@@ -172,6 +174,7 @@ const groupPlot = (mount, group, labelShare = 0.34) => {
     rows: sortRows(group.items, 'count', 'desc').map((i) => ({ key: i.id, label: i.label, value: i.count, term: i.term, db: i.db })),
     labelShare,
     href: (r) => searchUrl(r.db, r.term),
+    linkText: () => 'Run this query',
     aria: group.title,
     describe: (r) => tipLines(exact(r.value), r.label, same && total ? `${pct(r.value / total)} of ${db(r.db).name}` : null, r.term),
   });
@@ -211,6 +214,7 @@ const renderPapers = () => {
     rows: sortRows(snapshot.papers, 'citedBy', 'desc').map((p) => ({ key: p.pmid, label: `${p.topic} (${p.date.slice(0, 4)})`, value: p.citedBy, hi: p.topic === 'BLAST', p })),
     attr: 'pmid',
     href: (r) => `https://pubmed.ncbi.nlm.nih.gov/${r.key}/`,
+    linkText: () => 'Open in PubMed',
     aria: 'Citing records per landmark paper',
     describe: (r) => tipLines(exact(r.value), r.p.title, `${r.p.journal} · ${r.p.date}`, `${r.p.authors.join(', ')}${r.p.authorCount > 3 ? ` +${r.p.authorCount - 3}` : ''}`),
   });
@@ -243,6 +247,7 @@ const renderCtTab = (key) => {
     rows: field.top.map((v) => ({ key: v.value, label: free ? v.value : ctLabel(key, v.value), value: v.count })),
     scale: 'linear',
     href: free ? (r) => `https://clinicaltrials.gov/search?${key === 'Condition' ? 'cond' : 'country'}=${encodeURIComponent(r.key)}` : null,
+    linkText: () => 'Search ClinicalTrials.gov',
     aria: `Studies by ${key}`,
     describe: (r) => tipLines(exact(r.value), r.label, `${pct(r.value / ct.total)} of all studies`, `${exact(field.unique)} distinct values`),
   });
