@@ -35,22 +35,29 @@ export const pct = (ratio) => {
 const NCBI = 'https://www.ncbi.nlm.nih.gov';
 
 const REFSEQ = {
-  AC: ['RefSeq alternate genomic', 'nuccore', 'Complete genomic molecule from an alternate assembly'],
-  NC: ['RefSeq chromosome', 'nuccore', 'Complete genomic molecule, reference assembly'],
-  NG: ['RefSeq genomic region', 'nuccore', 'Incomplete genomic region'],
-  NT: ['RefSeq contig', 'nuccore', 'Genomic contig or scaffold, clone-based'],
-  NW: ['RefSeq WGS contig', 'nuccore', 'Genomic contig or scaffold, primarily WGS'],
-  NZ: ['RefSeq WGS genome', 'nuccore', 'Complete genome or unfinished WGS collection'],
-  NM: ['RefSeq mRNA', 'nuccore', 'Curated or known transcript'],
-  NR: ['RefSeq non-coding RNA', 'nuccore', 'Curated or known non-coding transcript'],
-  XM: ['RefSeq predicted mRNA', 'nuccore', 'Computed by the eukaryotic annotation pipeline'],
-  XR: ['RefSeq predicted ncRNA', 'nuccore', 'Computed by the eukaryotic annotation pipeline'],
-  AP: ['RefSeq alternate protein', 'protein', 'Protein on an alternate assembly'],
-  NP: ['RefSeq protein', 'protein', 'Curated or known protein'],
-  YP: ['RefSeq genome-annotated protein', 'protein', 'Protein annotated on a genome without a transcript record'],
-  XP: ['RefSeq predicted protein', 'protein', 'Computed by the eukaryotic annotation pipeline'],
-  WP: ['RefSeq non-redundant protein', 'protein', 'One protein record shared by many prokaryotic genomes'],
+  NC: ['RefSeq chromosome', 'nuccore', 'DNA', 'Chromosomes; linkage groups'],
+  AC: ['RefSeq chromosome (AC_)', 'nuccore', 'DNA', 'Chromosomes; linkage groups'],
+  NZ: ['RefSeq WGS genome', 'nuccore', 'DNA', 'Chromosomes and scaffolds, mostly prokaryotic genomes'],
+  NT: ['RefSeq scaffold', 'nuccore', 'DNA', 'Scaffolds'],
+  NW: ['RefSeq scaffold (NW_)', 'nuccore', 'DNA', 'Scaffolds'],
+  NG: ['RefSeq genomic region', 'nuccore', 'DNA', 'Genomic regions such as RefSeqGene and rRNA loci'],
+  NM: ['RefSeq mRNA', 'nuccore', 'mRNA', 'Protein-coding transcripts, curated ("known")'],
+  XM: ['RefSeq predicted mRNA', 'nuccore', 'mRNA', 'Protein-coding transcripts from the annotation pipeline ("model")'],
+  NR: ['RefSeq non-coding RNA', 'nuccore', 'RNA', 'Non-protein-coding transcripts, curated ("known")'],
+  XR: ['RefSeq predicted ncRNA', 'nuccore', 'RNA', 'Non-protein-coding transcripts from the pipeline ("model")'],
+  NP: ['RefSeq protein', 'protein', 'protein', 'Proteins on NM_ transcripts ("known")'],
+  AP: ['RefSeq protein (AP_)', 'protein', 'protein', 'Proteins on AC_ genomic accessions'],
+  XP: ['RefSeq predicted protein', 'protein', 'protein', 'Proteins on XM_ transcripts ("model")'],
+  YP: ['RefSeq protein (YP_)', 'protein', 'protein', 'Proteins on genomic molecules with no transcript record'],
+  WP: ['RefSeq non-redundant protein', 'protein', 'protein', 'Non-redundant across strains and species; always version .1'],
 };
+
+export const REFSEQ_PREFIXES = Object.entries(REFSEQ).map(([code, [type, , molecule, use]]) => ({
+  prefix: `${code}_`,
+  type,
+  molecule,
+  use,
+}));
 
 const SRA_KIND = { R: 'run', X: 'experiment', S: 'sample', P: 'study' };
 const GEO_KIND = { SE: 'series', SM: 'sample', PL: 'platform', DS: 'dataset' };
@@ -80,7 +87,7 @@ const RULES = [
   })),
   rule(/^(AC|NC|NG|NT|NW|NZ|NM|NR|XM|XR|AP|NP|YP|XP|WP)_(\d+(?:\.\d+)?)$/i, (m) => {
     const prefix = m[1].toUpperCase();
-    const [type, db, note] = REFSEQ[prefix];
+    const [type, db, , note] = REFSEQ[prefix];
     const id = `${prefix}_${m[2]}`;
     return { type, id, db: `RefSeq (${db})`, url: `${NCBI}/${db}/${id}`, note };
   }),
