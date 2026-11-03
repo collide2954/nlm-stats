@@ -724,6 +724,42 @@ h2,
   vertical-align: -1px;
 }
 
+.records {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 20px 0;
+  margin: 28px 0 8px;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+
+.records div {
+  padding: 0 16px;
+  border-left: 1px solid var(--hair);
+}
+
+.records dt {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.records dd {
+  margin: 0;
+}
+
+.records .big {
+  display: block;
+  font: 700 1.55rem/1.15 var(--sans);
+  letter-spacing: -0.02em;
+}
+
+.records .what {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+}
+
 .multiples {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
