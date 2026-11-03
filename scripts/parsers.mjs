@@ -104,3 +104,22 @@ export const uniqueBy = (items, key) => {
     return true;
   });
 };
+
+export const parseSummaries = (json) =>
+  json.result.uids.map((uid) => {
+    const d = json.result[uid];
+    const authors = (d.authors ?? []).map((a) => a.name);
+    return {
+      pmid: uid,
+      date: d.pubdate,
+      journal: d.source,
+      title: d.title,
+      authors: authors.slice(0, 3),
+      authorCount: authors.length,
+    };
+  });
+
+export const parseCitedIn = (json) =>
+  (json.linksets?.[0]?.linksetdbs ?? [])
+    .filter((l) => l.linkname === 'pubmed_pubmed_citedin')
+    .reduce((sum, l) => sum + l.links.length, 0);

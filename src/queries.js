@@ -94,6 +94,17 @@ export const QUERY_GROUPS = [
     ],
   },
   {
+    id: 'mesh',
+    title: 'MeSH records by type',
+    items: [
+      q('mesh-mh', 'mesh', 'Main headings (descriptors)', '"main heading"[TYPE]'),
+      q('mesh-sh', 'mesh', 'Subheadings (qualifiers)', '"subheading"[TYPE]'),
+      q('mesh-pt', 'mesh', 'Publication types', '"publication type"[TYPE]'),
+      q('mesh-pa', 'mesh', 'Pharmacological actions', '"pharmacological action"[TYPE]'),
+      q('mesh-sn', 'mesh', 'Substance names (supplementary)', '"substance name"[TYPE]'),
+    ],
+  },
+  {
     id: 'molecular',
     title: 'Genes, taxa and variants',
     items: [
@@ -116,6 +127,21 @@ export const QUERY_GROUPS = [
       q('cv-ben', 'clinvar', 'Benign', '"clinsig benign"[Properties]'),
     ],
   },
+];
+
+export const PAPERS = [
+  { pmid: '1', topic: 'PMID 1' },
+  { pmid: '2231712', topic: 'BLAST' },
+  { pmid: '9254694', topic: 'Gapped BLAST / PSI-BLAST' },
+  { pmid: '8743683', topic: 'Entrez' },
+  { pmid: '8412823', topic: 'UMLS' },
+  { pmid: '10928714', topic: 'MeSH' },
+  { pmid: '11125122', topic: 'dbSNP' },
+  { pmid: '11752295', topic: 'GEO' },
+  { pmid: '15608248', topic: 'RefSeq' },
+  { pmid: '17898773', topic: 'dbGaP' },
+  { pmid: '24234437', topic: 'ClinVar' },
+  { pmid: '26400175', topic: 'PubChem' },
 ];
 
 export const yearRange = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => from + i);
