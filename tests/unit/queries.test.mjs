@@ -130,3 +130,48 @@ test('variant and access groups exist', () => {
   const review = QUERY_GROUPS.find((g) => g.id === 'cv-review');
   assert.ok(review.items.every((i) => i.db === 'clinvar' && /\[RVST\]$/.test(i.term)));
 });
+
+test('VOCAB tracks LLM-favoured words against a stable control word', async () => {
+  const { VOCAB } = await import('../../src/queries.js');
+  assert.ok(VOCAB.words.length >= 6);
+  assert.equal(new Set(VOCAB.words.map((w) => w.id)).size, VOCAB.words.length);
+  for (const w of VOCAB.words) assert.match(w.term, /^[a-z*]+\[tiab\]$/);
+  assert.match(VOCAB.control.term, /^[a-z]+\[tiab\]$/);
+  assert.ok(VOCAB.words.some((w) => w.id === 'delve'));
+  assert.equal(VOCAB.base, 2019);
+  assert.ok(VOCAB.from <= 2015);
+});
+
+test('SUBJECTS cover animals, sex, ages and outbreaks', async () => {
+  const { SUBJECTS } = await import('../../src/queries.js');
+  for (const key of ['animals', 'sex', 'ages', 'outbreaks']) assert.ok(SUBJECTS[key].list.length >= 2, key);
+  for (const a of SUBJECTS.animals.list) assert.match(a.term, /\[mh\]$/);
+  assert.ok(SUBJECTS.animals.list.some((a) => a.id === 'mice') && SUBJECTS.animals.list.some((a) => a.id === 'rats'));
+  assert.deepEqual(SUBJECTS.sex.list.map((s) => s.id), ['women', 'men']);
+  assert.equal(SUBJECTS.ages.years.length, 2);
+  for (const o of SUBJECTS.outbreaks.list) assert.match(o.term, /\[tiab\]/);
+  assert.ok(SUBJECTS.animals.from <= 1980 && SUBJECTS.outbreaks.from <= 2005);
+});
+
+test('RETRACTED and CLASSICS are labelled PMIDs', async () => {
+  const { RETRACTED, CLASSICS } = await import('../../src/queries.js');
+  for (const list of [RETRACTED, CLASSICS]) {
+    assert.ok(list.length >= 6);
+    assert.equal(new Set(list.map((p) => p.pmid)).size, list.length);
+    for (const p of list) {
+      assert.match(p.pmid, /^\d+$/);
+      assert.match(p.label, /\d{4}$/);
+    }
+  }
+  assert.ok(RETRACTED.some((p) => p.pmid === '9500320'));
+  assert.ok(CLASSICS.some((p) => p.pmid === '2231712'));
+});
+
+test('EXTREMES holds the queries for record holders', async () => {
+  const { EXTREMES } = await import('../../src/queries.js');
+  assert.match(EXTREMES.protein, /refseq\[filter\]/);
+  assert.match(EXTREMES.genes, /protein coding/);
+  assert.match(EXTREMES.uncultured, /\[orgn\]$/);
+  assert.equal(EXTREMES.stopword, 'however');
+  assert.ok(EXTREMES.farFuture >= 2050 && EXTREMES.longAgo <= 1960);
+});
