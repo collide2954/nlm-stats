@@ -366,7 +366,7 @@ const renderTimeline = () => {
     h('ol', { class: 'events' }, items.map((item) => {
       const li = h('li', { 'data-tag': item.tag, 'data-org': item.org },
         h('time', { datetime: item.date }, item.date),
-        h('span', { class: `org ${item.org}` }, item.org),
+        h('span', { class: `org ${item.org.toLowerCase()}` }, item.org),
         h('span', {}, item.text, cite(item.src)));
       timelineNodes.set(item, li);
       return li;
@@ -413,7 +413,7 @@ const renderPeople = () => {
     const to = p.to ?? AXIS[1];
     return h('li', { 'data-org': p.org, 'data-search': `${p.name} ${p.role} ${p.org} ${p.from} ${p.to ?? ''} ${p.note}` },
       h('span', { class: 'who' }, h('b', {}, p.name), h('small', {}, `${p.role} · ${p.note} `), cite(p.src)),
-      h('span', { class: `org ${p.org}` }, p.org),
+      h('span', { class: `org ${p.org.toLowerCase()}` }, p.org),
       h('span', { class: 'span', title: `${p.from}–${p.to ?? 'present'}` }, h('i', { style: `left:${pos(p.from).toFixed(2)}%;width:${(pos(to) - pos(p.from)).toFixed(2)}%` })),
       h('span', { class: 'yrs' }, `${p.from}–${p.to ?? 'now'}`));
   }));
