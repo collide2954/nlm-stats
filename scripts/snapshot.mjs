@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises';
 import { eutilsUrl, retry } from '../src/lib.js';
 import {
-  ENTREZ_DBS, QUERY_GROUPS, ERAS, PAPERS, METHODS, METHOD_YEARS, ICS, ENROLLMENT_BANDS, CT_DESIGN, yearRange,
+  ENTREZ_DBS, QUERY_GROUPS, ERAS, PAPERS, METHODS, METHOD_YEARS, ICS, ENROLLMENT_BANDS, CT_DESIGN, TYPE_SERIES, yearRange,
 } from '../src/queries.js';
 import {
   parseEinfo,
@@ -295,19 +295,39 @@ const refseq = async () => {
   return parseRefseqHeader(text);
 };
 
-const now = new Date();
-const snapshot = {
-  generated: now.toISOString(),
-  entrez: await entrez(),
-  groups: await groups(),
-  papers: await papers(),
-  pubmed: await pubmedTimeline(now.getUTCFullYear()),
-  methods: await methods(now.getUTCFullYear() - 1),
-  genbank: await genbank(),
-  refseq: await refseq(),
-  clinicaltrials: await clinicaltrials(),
-  funding: await funding(now),
+const types = async (lastYear) => {
+  const out = [];
+  for (const series of [...TYPE_SERIES.stacked, ...TYPE_SERIES.multiples]) {
+    step(`type ${series.id}`);
+    const years = [];
+    for (const year of yearRange(TYPE_SERIES.from, lastYear)) {
+      years.push({ year, count: await count('pubmed', `${series.term} AND ${year}[dp]`) });
+    }
+    out.push({ id: series.id, years });
+  }
+  return out;
 };
+
+const now = new Date();
+const SECTIONS = {
+  entrez: () => entrez(),
+  groups: () => groups(),
+  papers: () => papers(),
+  pubmed: () => pubmedTimeline(now.getUTCFullYear()),
+  types: () => types(now.getUTCFullYear() - 1),
+  methods: () => methods(now.getUTCFullYear() - 1),
+  genbank: () => genbank(),
+  refseq: () => refseq(),
+  clinicaltrials: () => clinicaltrials(),
+  funding: () => funding(now),
+};
+
+const only = process.argv.slice(2).filter((a) => SECTIONS[a]);
+const base = only.length ? (await import(`${OUT.href}?t=${now.getTime()}`)).default : {};
+const snapshot = { ...base, generated: now.toISOString() };
+for (const [key, build] of Object.entries(SECTIONS)) {
+  if (!only.length || only.includes(key)) snapshot[key] = await build();
+}
 
 await writeFile(OUT, toModule(snapshot));
 step(`wrote ${OUT.pathname}`);
