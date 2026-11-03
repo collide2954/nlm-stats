@@ -1,12 +1,12 @@
 export default {
-  "generated": "2026-11-03T04:57:27.502Z",
+  "generated": "2026-11-03T05:26:58.343Z",
   "entrez": [
     {
       "db": "pubmed",
       "name": "PubMed",
       "description": "PubMed bibliographic record",
-      "build": "Build-2026.11.02.19.23",
-      "count": 41381383,
+      "build": "Build-2026.11.02.23.33",
+      "count": 41382526,
       "updated": "2026-11-02",
       "fields": 48,
       "links": 47
@@ -125,9 +125,9 @@ export default {
       "db": "blastdbinfo",
       "name": "BlastdbInfo",
       "description": "BlastdbInfo Database",
-      "build": "Build261101-1227.1",
+      "build": "Build261102-1232.1",
       "count": 4734462,
-      "updated": "2026-11-01",
+      "updated": "2026-11-02",
       "fields": 15,
       "links": 0
     },
@@ -255,7 +255,7 @@ export default {
       "db": "pmc",
       "name": "PMC",
       "description": "PubMed Central",
-      "build": "Build-2026.11.02.23.33",
+      "build": "Build-2026.11.02.23.38",
       "count": 12758449,
       "updated": "2026-11-02",
       "fields": 45,
@@ -335,8 +335,8 @@ export default {
       "db": "sra",
       "name": "SRA",
       "description": "SRA Database",
-      "build": "Build261102-0119.1",
-      "count": 47490763,
+      "build": "Build261102-2013m.1",
+      "count": 47513012,
       "updated": "2026-11-02",
       "fields": 22,
       "links": 9
@@ -818,6 +818,47 @@ export default {
       ]
     },
     {
+      "id": "mesh",
+      "title": "MeSH records by type",
+      "items": [
+        {
+          "id": "mesh-mh",
+          "db": "mesh",
+          "label": "Main headings (descriptors)",
+          "term": "\"main heading\"[TYPE]",
+          "count": 30916
+        },
+        {
+          "id": "mesh-sh",
+          "db": "mesh",
+          "label": "Subheadings (qualifiers)",
+          "term": "\"subheading\"[TYPE]",
+          "count": 76
+        },
+        {
+          "id": "mesh-pt",
+          "db": "mesh",
+          "label": "Publication types",
+          "term": "\"publication type\"[TYPE]",
+          "count": 194
+        },
+        {
+          "id": "mesh-pa",
+          "db": "mesh",
+          "label": "Pharmacological actions",
+          "term": "\"pharmacological action\"[TYPE]",
+          "count": 567
+        },
+        {
+          "id": "mesh-sn",
+          "db": "mesh",
+          "label": "Substance names (supplementary)",
+          "term": "\"substance name\"[TYPE]",
+          "count": 324046
+        }
+      ]
+    },
+    {
       "id": "molecular",
       "title": "Genes, taxa and variants",
       "items": [
@@ -905,6 +946,174 @@ export default {
           "count": 281422
         }
       ]
+    }
+  ],
+  "papers": [
+    {
+      "pmid": "1",
+      "topic": "PMID 1",
+      "date": "1975 Jun",
+      "journal": "Biochem Med",
+      "title": "Formate assay in body fluids: application in methanol poisoning.",
+      "authors": [
+        "Makar AB",
+        "McMartin KE",
+        "Palese M"
+      ],
+      "authorCount": 4,
+      "citedBy": 47
+    },
+    {
+      "pmid": "2231712",
+      "topic": "BLAST",
+      "date": "1990 Oct 5",
+      "journal": "J Mol Biol",
+      "title": "Basic local alignment search tool.",
+      "authors": [
+        "Altschul SF",
+        "Gish W",
+        "Miller W"
+      ],
+      "authorCount": 5,
+      "citedBy": 40937
+    },
+    {
+      "pmid": "9254694",
+      "topic": "Gapped BLAST / PSI-BLAST",
+      "date": "1997 Sep 1",
+      "journal": "Nucleic Acids Res",
+      "title": "Gapped BLAST and PSI-BLAST: a new generation of protein database search programs.",
+      "authors": [
+        "Altschul SF",
+        "Madden TL",
+        "Schäffer AA"
+      ],
+      "authorCount": 7,
+      "citedBy": 28739
+    },
+    {
+      "pmid": "8743683",
+      "topic": "Entrez",
+      "date": "1996",
+      "journal": "Methods Enzymol",
+      "title": "Entrez: molecular biology database and retrieval system.",
+      "authors": [
+        "Schuler GD",
+        "Epstein JA",
+        "Ohkawa H"
+      ],
+      "authorCount": 4,
+      "citedBy": 158
+    },
+    {
+      "pmid": "8412823",
+      "topic": "UMLS",
+      "date": "1993 Aug",
+      "journal": "Methods Inf Med",
+      "title": "The Unified Medical Language System.",
+      "authors": [
+        "Lindberg DA",
+        "Humphreys BL",
+        "McCray AT"
+      ],
+      "authorCount": 3,
+      "citedBy": 386
+    },
+    {
+      "pmid": "10928714",
+      "topic": "MeSH",
+      "date": "2000 Jul",
+      "journal": "Bull Med Libr Assoc",
+      "title": "Medical Subject Headings (MeSH).",
+      "authors": [
+        "Lipscomb CE"
+      ],
+      "authorCount": 1,
+      "citedBy": 385
+    },
+    {
+      "pmid": "11125122",
+      "topic": "dbSNP",
+      "date": "2001 Jan 1",
+      "journal": "Nucleic Acids Res",
+      "title": "dbSNP: the NCBI database of genetic variation.",
+      "authors": [
+        "Sherry ST",
+        "Ward MH",
+        "Kholodov M"
+      ],
+      "authorCount": 7,
+      "citedBy": 4220
+    },
+    {
+      "pmid": "11752295",
+      "topic": "GEO",
+      "date": "2002 Jan 1",
+      "journal": "Nucleic Acids Res",
+      "title": "Gene Expression Omnibus: NCBI gene expression and hybridization array data repository.",
+      "authors": [
+        "Edgar R",
+        "Domrachev M",
+        "Lash AE"
+      ],
+      "authorCount": 3,
+      "citedBy": 8211
+    },
+    {
+      "pmid": "15608248",
+      "topic": "RefSeq",
+      "date": "2005 Jan 1",
+      "journal": "Nucleic Acids Res",
+      "title": "NCBI Reference Sequence (RefSeq): a curated non-redundant sequence database of genomes, transcripts and proteins.",
+      "authors": [
+        "Pruitt KD",
+        "Tatusova T",
+        "Maglott DR"
+      ],
+      "authorCount": 3,
+      "citedBy": 1000
+    },
+    {
+      "pmid": "17898773",
+      "topic": "dbGaP",
+      "date": "2007 Oct",
+      "journal": "Nat Genet",
+      "title": "The NCBI dbGaP database of genotypes and phenotypes.",
+      "authors": [
+        "Mailman MD",
+        "Feolo M",
+        "Jin Y"
+      ],
+      "authorCount": 28,
+      "citedBy": 718
+    },
+    {
+      "pmid": "24234437",
+      "topic": "ClinVar",
+      "date": "2014 Jan",
+      "journal": "Nucleic Acids Res",
+      "title": "ClinVar: public archive of relationships among sequence variation and human phenotype.",
+      "authors": [
+        "Landrum MJ",
+        "Lee JM",
+        "Riley GR"
+      ],
+      "authorCount": 7,
+      "citedBy": 2255
+    },
+    {
+      "pmid": "26400175",
+      "topic": "PubChem",
+      "date": "2016 Jan 4",
+      "journal": "Nucleic Acids Res",
+      "title": "PubChem Substance and Compound databases.",
+      "authors": [
+        "Kim S",
+        "Thiessen PA",
+        "Bolton EE"
+      ],
+      "authorCount": 14,
+      "citedBy": 2028
     }
   ],
   "pubmed": {
@@ -2133,29 +2342,44 @@ export default {
   },
   "clinicaltrials": {
     "dataTimestamp": "2026-11-02T10:00:05",
+    "first": {
+      "id": "NCT00000102",
+      "title": "Congenital Adrenal Hyperplasia: Calcium Channels as Therapeutic Targets",
+      "posted": "1999-11-04"
+    },
     "total": 609811,
     "averageBytes": 17315,
     "medianBytes": 9875,
     "largest": [
       {
         "id": "NCT02723955",
-        "sizeBytes": 3596767
+        "title": "Dose Escalation and Expansion Study of GSK3359609 in Participants With Selected Advanced Solid Tumors (INDUCE-1)",
+        "posted": "2016-03-31",
+        "bytes": 3596767
       },
       {
         "id": "NCT03688620",
-        "sizeBytes": 2865033
+        "title": "Enhanced Safety Surveillance of GlaxoSmithKline's (GSK's) Quadrivalent Seasonal Influenza Vaccines During the 2018/19 Influenza Season",
+        "posted": "2018-09-28",
+        "bytes": 2865033
       },
       {
         "id": "NCT03278067",
-        "sizeBytes": 2814054
+        "title": "Post-authorisation Passive Enhanced Safety Surveillance of Seasonal Influenza Vaccines: Pilot Study in England",
+        "posted": "2017-09-11",
+        "bytes": 2814054
       },
       {
         "id": "NCT01772004",
-        "sizeBytes": 2734466
+        "title": "Avelumab in Metastatic or Locally Advanced Solid Tumors (JAVELIN Solid Tumor)",
+        "posted": "2013-01-21",
+        "bytes": 2734466
       },
       {
         "id": "NCT04403880",
-        "sizeBytes": 2520867
+        "title": "Characterizing SARS-CoV-2-specific Immunity in Individuals Who Have Recovered From COVID-19",
+        "posted": "2020-05-27",
+        "bytes": 2520867
       }
     ],
     "fields": {
