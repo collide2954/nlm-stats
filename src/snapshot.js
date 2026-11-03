@@ -1,11 +1,11 @@
 export default {
-  "generated": "2026-11-03T04:55:10.229Z",
+  "generated": "2026-11-03T04:57:27.502Z",
   "entrez": [
     {
       "db": "pubmed",
       "name": "PubMed",
       "description": "PubMed bibliographic record",
-      "build": "Build-2026.11.02.19.06",
+      "build": "Build-2026.11.02.19.23",
       "count": 41381383,
       "updated": "2026-11-02",
       "fields": 48,
@@ -40,16 +40,6 @@ export default {
       "updated": "2026-11-01",
       "fields": 20,
       "links": 2
-    },
-    {
-      "db": "nuccore",
-      "name": "Nucleotide",
-      "description": "Core Nucleotide db",
-      "build": "Build261101-0445m.1",
-      "count": 744786483,
-      "updated": "2026-11-02",
-      "fields": 34,
-      "links": 0
     },
     {
       "db": "structure",
@@ -125,8 +115,8 @@ export default {
       "db": "biosample",
       "name": "BioSample",
       "description": "BioSample Database",
-      "build": "Build261102-0306m.1",
-      "count": 60728040,
+      "build": "Build261102-1616m.1",
+      "count": 60736974,
       "updated": "2026-11-02",
       "fields": 14,
       "links": 11
@@ -135,9 +125,9 @@ export default {
       "db": "blastdbinfo",
       "name": "BlastdbInfo",
       "description": "BlastdbInfo Database",
-      "build": "Build261102-1232.1",
+      "build": "Build261101-1227.1",
       "count": 4734462,
-      "updated": "2026-11-02",
+      "updated": "2026-11-01",
       "fields": 15,
       "links": 0
     },
@@ -265,7 +255,7 @@ export default {
       "db": "pmc",
       "name": "PMC",
       "description": "PubMed Central",
-      "build": "Build-2026.11.02.23.38",
+      "build": "Build-2026.11.02.23.33",
       "count": 12758449,
       "updated": "2026-11-02",
       "fields": 45,
@@ -345,8 +335,8 @@ export default {
       "db": "sra",
       "name": "SRA",
       "description": "SRA Database",
-      "build": "Build261102-2013m.1",
-      "count": 47513012,
+      "build": "Build261102-0119.1",
+      "count": 47490763,
       "updated": "2026-11-02",
       "fields": 22,
       "links": 9
@@ -1342,1806 +1332,804 @@ export default {
       "sequences": 6736062960,
       "bases": 56003937587326
     },
+    "firstRelease": {
+      "release": 3,
+      "date": "Dec 1982",
+      "bases": 680338,
+      "entries": 606
+    },
     "growth": {
       "traditional": [
         {
+          "year": 1982,
           "release": 3,
-          "date": "Dec 1982",
           "bases": 680338,
           "entries": 606
         },
         {
+          "year": 1983,
           "release": 14,
-          "date": "Nov 1983",
           "bases": 2274029,
           "entries": 2427
         },
         {
-          "release": 20,
-          "date": "May 1984",
-          "bases": 3002088,
-          "entries": 3665
-        },
-        {
-          "release": 24,
-          "date": "Sep 1984",
-          "bases": 3323270,
-          "entries": 4135
-        },
-        {
-          "release": 25,
-          "date": "Oct 1984",
-          "bases": 3368765,
-          "entries": 4175
-        },
-        {
+          "year": 1984,
           "release": 26,
-          "date": "Nov 1984",
           "bases": 3689752,
           "entries": 4393
         },
         {
-          "release": 32,
-          "date": "May 1985",
-          "bases": 4211931,
-          "entries": 4954
-        },
-        {
+          "year": 1985,
           "release": 36,
-          "date": "Sep 1985",
           "bases": 5204420,
           "entries": 5700
         },
         {
-          "release": 40,
-          "date": "Feb 1986",
-          "bases": 5925429,
-          "entries": 6642
-        },
-        {
-          "release": 42,
-          "date": "May 1986",
-          "bases": 6765476,
-          "entries": 7416
-        },
-        {
-          "release": 44,
-          "date": "Aug 1986",
-          "bases": 8442357,
-          "entries": 8823
-        },
-        {
+          "year": 1986,
           "release": 46,
-          "date": "Nov 1986",
           "bases": 9615371,
           "entries": 9978
         },
         {
-          "release": 48,
-          "date": "Feb 1987",
-          "bases": 10961380,
-          "entries": 10913
-        },
-        {
-          "release": 50,
-          "date": "May 1987",
-          "bases": 13048473,
-          "entries": 12534
-        },
-        {
-          "release": 52,
-          "date": "Aug 1987",
-          "bases": 14855145,
-          "entries": 14020
-        },
-        {
-          "release": 53,
-          "date": "Sep 1987",
-          "bases": 15514776,
-          "entries": 14584
-        },
-        {
+          "year": 1987,
           "release": 54,
-          "date": "Dec 1987",
           "bases": 16752872,
           "entries": 15465
         },
         {
-          "release": 55,
-          "date": "Mar 1988",
-          "bases": 19156002,
-          "entries": 17047
+          "year": 1988,
+          "release": 58,
+          "bases": 24690876,
+          "entries": 21248
         },
         {
-          "release": 56,
-          "date": "Jun 1988",
-          "bases": 20795279,
-          "entries": 18226
+          "year": 1989,
+          "release": 62,
+          "bases": 37183950,
+          "entries": 31229
         },
         {
-          "release": 57,
-          "date": "Sep 1988",
-          "bases": 22019698,
-          "entries": 19044
+          "year": 1990,
+          "release": 66,
+          "bases": 51306092,
+          "entries": 41057
+        },
+        {
+          "year": 1991,
+          "release": 70,
+          "bases": 77337678,
+          "entries": 58952
+        },
+        {
+          "year": 1992,
+          "release": 74,
+          "bases": 120242234,
+          "entries": 97084
+        },
+        {
+          "year": 1993,
+          "release": 80,
+          "bases": 163802597,
+          "entries": 150744
+        },
+        {
+          "year": 1994,
+          "release": 86,
+          "bases": 230485928,
+          "entries": 237775
+        },
+        {
+          "year": 1995,
+          "release": 92,
+          "bases": 425860958,
+          "entries": 620765
+        },
+        {
+          "year": 1996,
+          "release": 98,
+          "bases": 730552938,
+          "entries": 1114581
+        },
+        {
+          "year": 1997,
+          "release": 104,
+          "bases": 1258290513,
+          "entries": 1891953
+        },
+        {
+          "year": 1998,
+          "release": 110,
+          "bases": 2162067871,
+          "entries": 3043729
+        },
+        {
+          "year": 1999,
+          "release": 115,
+          "bases": 4653932745,
+          "entries": 5354511
+        },
+        {
+          "year": 2000,
+          "release": 121,
+          "bases": 11101066288,
+          "entries": 10106023
+        },
+        {
+          "year": 2001,
+          "release": 127,
+          "bases": 15849921438,
+          "entries": 14976310
+        },
+        {
+          "year": 2002,
+          "release": 133,
+          "bases": 28507990166,
+          "entries": 22318883
+        },
+        {
+          "year": 2003,
+          "release": 139,
+          "bases": 36553368485,
+          "entries": 30968418
+        },
+        {
+          "year": 2004,
+          "release": 145,
+          "bases": 44575745176,
+          "entries": 40604319
+        },
+        {
+          "year": 2005,
+          "release": 151,
+          "bases": 56037734462,
+          "entries": 52016762
+        },
+        {
+          "year": 2006,
+          "release": 157,
+          "bases": 69019290705,
+          "entries": 64893747
+        },
+        {
+          "year": 2007,
+          "release": 163,
+          "bases": 83874179730,
+          "entries": 80388382
+        },
+        {
+          "year": 2008,
+          "release": 169,
+          "bases": 99116431942,
+          "entries": 98868465
+        },
+        {
+          "year": 2009,
+          "release": 175,
+          "bases": 110118557163,
+          "entries": 112910950
+        },
+        {
+          "year": 2010,
+          "release": 181,
+          "bases": 122082812719,
+          "entries": 129902276
+        },
+        {
+          "year": 2011,
+          "release": 187,
+          "bases": 135117731375,
+          "entries": 146413798
+        },
+        {
+          "year": 2012,
+          "release": 193,
+          "bases": 148390863904,
+          "entries": 161140325
+        },
+        {
+          "year": 2013,
+          "release": 199,
+          "bases": 156230531562,
+          "entries": 169331407
+        },
+        {
+          "year": 2014,
+          "release": 205,
+          "bases": 184938063614,
+          "entries": 179295769
+        },
+        {
+          "year": 2015,
+          "release": 211,
+          "bases": 203939111071,
+          "entries": 189232925
+        },
+        {
+          "year": 2016,
+          "release": 217,
+          "bases": 224973060433,
+          "entries": 198565475
+        },
+        {
+          "year": 2017,
+          "release": 223,
+          "bases": 249722163594,
+          "entries": 206293625
+        },
+        {
+          "year": 2018,
+          "release": 229,
+          "bases": 285688542186,
+          "entries": 211281415
+        },
+        {
+          "year": 2019,
+          "release": 235,
+          "bases": 388417258009,
+          "entries": 215333020
+        },
+        {
+          "year": 2020,
+          "release": 241,
+          "bases": 723003822007,
+          "entries": 221467827
+        },
+        {
+          "year": 2021,
+          "release": 247,
+          "bases": 1053275115030,
+          "entries": 234557297
+        },
+        {
+          "year": 2022,
+          "release": 253,
+          "bases": 1635594138493,
+          "entries": 241015745
+        },
+        {
+          "year": 2023,
+          "release": 259,
+          "bases": 2570711588044,
+          "entries": 249060436
+        },
+        {
+          "year": 2024,
+          "release": 264,
+          "bases": 5085904976338,
+          "entries": 254365075
+        },
+        {
+          "year": 2025,
+          "release": 269,
+          "bases": 6651459875408,
+          "entries": 259677058
+        },
+        {
+          "year": 2026,
+          "release": 274,
+          "bases": 9384961284424,
+          "entries": 269895537
         }
       ],
       "wgs": [
         {
-          "release": 129,
-          "date": "Apr 2002",
-          "bases": 692266338,
-          "entries": 172768
-        },
-        {
-          "release": 130,
-          "date": "Jun 2002",
-          "bases": 3267608441,
-          "entries": 397502
-        },
-        {
-          "release": 131,
-          "date": "Aug 2002",
-          "bases": 3848375582,
-          "entries": 427771
-        },
-        {
-          "release": 132,
-          "date": "Oct 2002",
-          "bases": 3892435593,
-          "entries": 434224
-        },
-        {
+          "year": 2002,
           "release": 133,
-          "date": "Dec 2002",
           "bases": 6702372564,
           "entries": 597042
         },
         {
-          "release": 134,
-          "date": "Feb 2003",
-          "bases": 6705740844,
-          "entries": 597345
-        },
-        {
-          "release": 135,
-          "date": "Apr 2003",
-          "bases": 6897080355,
-          "entries": 596818
-        },
-        {
-          "release": 136,
-          "date": "Jun 2003",
-          "bases": 6992663962,
-          "entries": 607155
-        },
-        {
-          "release": 137,
-          "date": "Aug 2003",
-          "bases": 7144761762,
-          "entries": 593801
-        },
-        {
-          "release": 138,
-          "date": "Oct 2003",
-          "bases": 8662242833,
-          "entries": 1683437
-        },
-        {
+          "year": 2003,
           "release": 139,
-          "date": "Dec 2003",
           "bases": 14523454868,
           "entries": 2547094
         },
         {
-          "release": 140,
-          "date": "Feb 2004",
-          "bases": 22804145885,
-          "entries": 3188754
-        },
-        {
-          "release": 141,
-          "date": "Apr 2004",
-          "bases": 24758556215,
-          "entries": 4112532
-        },
-        {
-          "release": 142,
-          "date": "Jun 2004",
-          "bases": 25592758366,
-          "entries": 4353890
-        },
-        {
-          "release": 143,
-          "date": "Aug 2004",
-          "bases": 28128611847,
-          "entries": 4427773
-        },
-        {
-          "release": 144,
-          "date": "Oct 2004",
-          "bases": 30871590379,
-          "entries": 5285276
-        },
-        {
+          "year": 2004,
           "release": 145,
-          "date": "Dec 2004",
           "bases": 35009256228,
           "entries": 5410415
         },
         {
-          "release": 146,
-          "date": "Feb 2005",
-          "bases": 38076300084,
-          "entries": 6111782
-        },
-        {
-          "release": 147,
-          "date": "Apr 2005",
-          "bases": 39523208346,
-          "entries": 6685746
-        },
-        {
-          "release": 148,
-          "date": "Jun 2005",
-          "bases": 46767232565,
-          "entries": 8711924
-        },
-        {
-          "release": 149,
-          "date": "Aug 2005",
-          "bases": 53346605784,
-          "entries": 10276161
-        },
-        {
-          "release": 150,
-          "date": "Oct 2005",
-          "bases": 56162807647,
-          "entries": 11169448
-        },
-        {
+          "year": 2005,
           "release": 151,
-          "date": "Dec 2005",
           "bases": 59638900034,
           "entries": 12088491
         },
         {
-          "release": 152,
-          "date": "Feb 2006",
-          "bases": 63183065091,
-          "entries": 12465546
-        },
-        {
-          "release": 153,
-          "date": "Apr 2006",
-          "bases": 67488612571,
-          "entries": 13573144
-        },
-        {
-          "release": 154,
-          "date": "Jun 2006",
-          "bases": 78858635822,
-          "entries": 17733973
-        },
-        {
-          "release": 155,
-          "date": "Aug 2006",
-          "bases": 80369977826,
-          "entries": 17960667
-        },
-        {
-          "release": 156,
-          "date": "Oct 2006",
-          "bases": 81127502509,
-          "entries": 18500772
-        },
-        {
+          "year": 2006,
           "release": 157,
-          "date": "Dec 2006",
           "bases": 81611376856,
           "entries": 18540918
         },
         {
-          "release": 158,
-          "date": "Feb 2007",
-          "bases": 86043478524,
-          "entries": 19421576
-        },
-        {
-          "release": 159,
-          "date": "Apr 2007",
-          "bases": 93022691867,
-          "entries": 23446831
-        },
-        {
-          "release": 160,
-          "date": "Jun 2007",
-          "bases": 97102606459,
-          "entries": 23718400
-        },
-        {
-          "release": 161,
-          "date": "Aug 2007",
-          "bases": 101964323738,
-          "entries": 25384475
-        },
-        {
-          "release": 162,
-          "date": "Oct 2007",
-          "bases": 102003045298,
-          "entries": 25354041
-        },
-        {
+          "year": 2007,
           "release": 163,
-          "date": "Dec 2007",
           "bases": 106505691578,
           "entries": 26177471
         },
         {
-          "release": 164,
-          "date": "Feb 2008",
-          "bases": 108635736141,
-          "entries": 27439206
-        },
-        {
-          "release": 165,
-          "date": "Apr 2008",
-          "bases": 110500961400,
-          "entries": 26931049
-        },
-        {
-          "release": 166,
-          "date": "Jun 2008",
-          "bases": 113639291344,
-          "entries": 39163548
-        },
-        {
-          "release": 167,
-          "date": "Aug 2008",
-          "bases": 118593509342,
-          "entries": 40214247
-        },
-        {
-          "release": 168,
-          "date": "Oct 2008",
-          "bases": 136085973423,
-          "entries": 46108952
-        },
-        {
+          "year": 2008,
           "release": 169,
-          "date": "Dec 2008",
           "bases": 141374971004,
           "entries": 48394838
         },
         {
-          "release": 170,
-          "date": "Feb 2009",
-          "bases": 143797800446,
-          "entries": 49036947
-        },
-        {
-          "release": 171,
-          "date": "Apr 2009",
-          "bases": 144522542010,
-          "entries": 48948309
-        },
-        {
-          "release": 172,
-          "date": "Jun 2009",
-          "bases": 145959997864,
-          "entries": 49063546
-        },
-        {
-          "release": 173,
-          "date": "Aug 2009",
-          "bases": 148165117763,
-          "entries": 48443067
-        },
-        {
-          "release": 174,
-          "date": "Oct 2009",
-          "bases": 149348923035,
-          "entries": 48119301
-        },
-        {
+          "year": 2009,
           "release": 175,
-          "date": "Dec 2009",
           "bases": 158317168385,
           "entries": 54076973
         },
         {
-          "release": 176,
-          "date": "Feb 2010",
-          "bases": 163991858015,
-          "entries": 57134273
-        },
-        {
-          "release": 177,
-          "date": "Apr 2010",
-          "bases": 165536009514,
-          "entries": 58361599
-        },
-        {
-          "release": 178,
-          "date": "Jun 2010",
-          "bases": 167725292032,
-          "entries": 58592700
-        },
-        {
-          "release": 179,
-          "date": "Aug 2010",
-          "bases": 169253846128,
-          "entries": 58994334
-        },
-        {
-          "release": 180,
-          "date": "Oct 2010",
-          "bases": 175339059129,
-          "entries": 59397637
-        },
-        {
+          "year": 2010,
           "release": 181,
-          "date": "Dec 2010",
           "bases": 177385297156,
           "entries": 59608311
         },
         {
-          "release": 182,
-          "date": "Feb 2011",
-          "bases": 190034462797,
-          "entries": 62349795
-        },
-        {
-          "release": 183,
-          "date": "Apr 2011",
-          "bases": 191401393188,
-          "entries": 62715288
-        },
-        {
-          "release": 184,
-          "date": "Jun 2011",
-          "bases": 200487078184,
-          "entries": 63735078
-        },
-        {
-          "release": 185,
-          "date": "Aug 2011",
-          "bases": 208315831132,
-          "entries": 64997137
-        },
-        {
-          "release": 186,
-          "date": "Oct 2011",
-          "bases": 218666368056,
-          "entries": 68330215
-        },
-        {
+          "year": 2011,
           "release": 187,
-          "date": "Dec 2011",
           "bases": 239868309609,
           "entries": 73729553
         },
         {
-          "release": 188,
-          "date": "Feb 2012",
-          "bases": 261370512675,
-          "entries": 78656704
-        },
-        {
-          "release": 189,
-          "date": "Apr 2012",
-          "bases": 272693351548,
-          "entries": 80905298
-        },
-        {
-          "release": 190,
-          "date": "Jun 2012",
-          "bases": 287577367116,
-          "entries": 82076779
-        },
-        {
-          "release": 191,
-          "date": "Aug 2012",
-          "bases": 308196411905,
-          "entries": 84020064
-        },
-        {
-          "release": 192,
-          "date": "Oct 2012",
-          "bases": 333881846451,
-          "entries": 86480509
-        },
-        {
+          "year": 2012,
           "release": 193,
-          "date": "Dec 2012",
           "bases": 356002922838,
           "entries": 92767765
         },
         {
-          "release": 194,
-          "date": "Feb 2013",
-          "bases": 390900990416,
-          "entries": 103101291
-        },
-        {
-          "release": 195,
-          "date": "Apr 2013",
-          "bases": 418026593606,
-          "entries": 110509314
-        },
-        {
-          "release": 196,
-          "date": "Jun 2013",
-          "bases": 453829752320,
-          "entries": 112488036
-        },
-        {
-          "release": 197,
-          "date": "Aug 2013",
-          "bases": 500420412665,
-          "entries": 124812020
-        },
-        {
-          "release": 198,
-          "date": "Oct 2013",
-          "bases": 535842167741,
-          "entries": 130203205
-        },
-        {
+          "year": 2013,
           "release": 199,
-          "date": "Dec 2013",
           "bases": 556764321498,
           "entries": 133818570
         },
         {
-          "release": 200,
-          "date": "Feb 2014",
-          "bases": 591378698544,
-          "entries": 139725795
-        },
-        {
-          "release": 201,
-          "date": "Apr 2014",
-          "bases": 621015432437,
-          "entries": 143446790
-        },
-        {
-          "release": 202,
-          "date": "Jun 2014",
-          "bases": 719581958743,
-          "entries": 175779064
-        },
-        {
-          "release": 203,
-          "date": "Aug 2014",
-          "bases": 774052098731,
-          "entries": 189080419
-        },
-        {
-          "release": 204,
-          "date": "Oct 2014",
-          "bases": 805549167708,
-          "entries": 196049974
-        },
-        {
+          "year": 2014,
           "release": 205,
-          "date": "Dec 2014",
           "bases": 848977922022,
           "entries": 200301550
         },
         {
-          "release": 206,
-          "date": "Feb 2015",
-          "bases": 873281414087,
-          "entries": 205465046
-        },
-        {
-          "release": 207,
-          "date": "Apr 2015",
-          "bases": 969102906813,
-          "entries": 243779199
-        },
-        {
-          "release": 208,
-          "date": "Jun 2015",
-          "bases": 1038937210221,
-          "entries": 258702138
-        },
-        {
-          "release": 209,
-          "date": "Aug 2015",
-          "bases": 1163275601001,
-          "entries": 302955543
-        },
-        {
-          "release": 210,
-          "date": "Oct 2015",
-          "bases": 1222635267498,
-          "entries": 309198943
-        },
-        {
+          "year": 2015,
           "release": 211,
-          "date": "Dec 2015",
           "bases": 1297865618365,
           "entries": 317122157
         },
         {
-          "release": 212,
-          "date": "Feb 2016",
-          "bases": 1399865495608,
-          "entries": 333012760
-        },
-        {
-          "release": 213,
-          "date": "Apr 2016",
-          "bases": 1452207704949,
-          "entries": 338922537
-        },
-        {
-          "release": 214,
-          "date": "Jun 2016",
-          "bases": 1556175944648,
-          "entries": 350278081
-        },
-        {
-          "release": 215,
-          "date": "Aug 2016",
-          "bases": 1637224970324,
-          "entries": 359796497
-        },
-        {
-          "release": 216,
-          "date": "Oct 2016",
-          "bases": 1676238489250,
-          "entries": 363213315
-        },
-        {
+          "year": 2016,
           "release": 217,
-          "date": "Dec 2016",
           "bases": 1817189565845,
           "entries": 395301176
         },
         {
-          "release": 218,
-          "date": "Feb 2017",
-          "bases": 1892966308635,
-          "entries": 409490397
-        },
-        {
-          "release": 219,
-          "date": "Apr 2017",
-          "bases": 2035032639807,
-          "entries": 451840147
-        },
-        {
-          "release": 220,
-          "date": "Jun 2017",
-          "bases": 2164683993369,
-          "entries": 487891767
-        },
-        {
-          "release": 221,
-          "date": "Aug 2017",
-          "bases": 2242294609510,
-          "entries": 499965722
-        },
-        {
-          "release": 222,
-          "date": "Oct 2017",
-          "bases": 2318156361999,
-          "entries": 508825331
-        },
-        {
+          "year": 2017,
           "release": 223,
-          "date": "Dec 2017",
           "bases": 2466098053327,
           "entries": 551063065
         },
         {
-          "release": 224,
-          "date": "Feb 2018",
-          "bases": 2608532210351,
-          "entries": 564286852
-        },
-        {
-          "release": 225,
-          "date": "Apr 2018",
-          "bases": 2784740996536,
-          "entries": 621379029
-        },
-        {
-          "release": 226,
-          "date": "Jun 2018",
-          "bases": 2944617324086,
-          "entries": 639804105
-        },
-        {
-          "release": 227,
-          "date": "Aug 2018",
-          "bases": 3204855013281,
-          "entries": 665309765
-        },
-        {
-          "release": 228,
-          "date": "Oct 2018",
-          "bases": 3444172142207,
-          "entries": 722438528
-        },
-        {
+          "year": 2018,
           "release": 229,
-          "date": "Dec 2018",
           "bases": 3656719423096,
           "entries": 773773190
         },
         {
-          "release": 230,
-          "date": "Feb 2019",
-          "bases": 4164513961679,
-          "entries": 945019312
-        },
-        {
-          "release": 231,
-          "date": "Apr 2019",
-          "bases": 4421986382065,
-          "entries": 993732214
-        },
-        {
-          "release": 232,
-          "date": "Jun 2019",
-          "bases": 4847677297950,
-          "entries": 1022913321
-        },
-        {
-          "release": 233,
-          "date": "Aug 2019",
-          "bases": 5585922333160,
-          "entries": 1075272215
-        },
-        {
-          "release": 234,
-          "date": "Oct 2019",
-          "bases": 5985250251028,
-          "entries": 1097629174
-        },
-        {
+          "year": 2019,
           "release": 235,
-          "date": "Dec 2019",
           "bases": 6277551200690,
           "entries": 1127023870
         },
         {
-          "release": 236,
-          "date": "Feb 2020",
-          "bases": 6968991265752,
-          "entries": 1206720688
-        },
-        {
-          "release": 237,
-          "date": "Apr 2020",
-          "bases": 7788133221338,
-          "entries": 1267547429
-        },
-        {
-          "release": 238,
-          "date": "Jun 2020",
-          "bases": 8114046262158,
-          "entries": 1302852615
-        },
-        {
-          "release": 239,
-          "date": "Aug 2020",
-          "bases": 8841649410652,
-          "entries": 1408122887
-        },
-        {
-          "release": 240,
-          "date": "Oct 2020",
-          "bases": 9215815569509,
-          "entries": 1432874252
-        },
-        {
+          "year": 2020,
           "release": 241,
-          "date": "Dec 2020",
           "bases": 11830842428018,
           "entries": 1517995689
         },
         {
-          "release": 242,
-          "date": "Feb 2021",
-          "bases": 12270717209612,
-          "entries": 1563938043
-        },
-        {
-          "release": 243,
-          "date": "Apr 2021",
-          "bases": 12732048052023,
-          "entries": 1590670459
-        },
-        {
-          "release": 244,
-          "date": "Jun 2021",
-          "bases": 13442974346437,
-          "entries": 1632796606
-        },
-        {
-          "release": 245,
-          "date": "Aug 2021",
-          "bases": 13888187863722,
-          "entries": 1653427055
-        },
-        {
-          "release": 246,
-          "date": "Oct 2021",
-          "bases": 14599101574547,
-          "entries": 1721064101
-        },
-        {
+          "year": 2021,
           "release": 247,
-          "date": "Dec 2021",
           "bases": 14922033922302,
           "entries": 1734664952
         },
         {
-          "release": 248,
-          "date": "Feb 2022",
-          "bases": 15428122140820,
-          "entries": 1750505007
-        },
-        {
-          "release": 249,
-          "date": "Apr 2022",
-          "bases": 16071520702170,
-          "entries": 1781374217
-        },
-        {
-          "release": 250,
-          "date": "Jun 2022",
-          "bases": 16710373006600,
-          "entries": 1796349114
-        },
-        {
-          "release": 251,
-          "date": "Aug 2022",
-          "bases": 17511809676629,
-          "entries": 2024099677
-        },
-        {
-          "release": 252,
-          "date": "Oct 2022",
-          "bases": 18231960808828,
-          "entries": 2167900306
-        },
-        {
+          "year": 2022,
           "release": 253,
-          "date": "Dec 2022",
           "bases": 19086596616569,
           "entries": 2241439349
         },
         {
-          "release": 254,
-          "date": "Feb 2023",
-          "bases": 20116642176263,
-          "entries": 2337838461
-        },
-        {
-          "release": 255,
-          "date": "Apr 2023",
-          "bases": 20926504760221,
-          "entries": 2440470464
-        },
-        {
-          "release": 256,
-          "date": "Jun 2023",
-          "bases": 21791125594114,
-          "entries": 2611654455
-        },
-        {
-          "release": 257,
-          "date": "Aug 2023",
-          "bases": 22294446104543,
-          "entries": 2631493489
-        },
-        {
-          "release": 258,
-          "date": "Oct 2023",
-          "bases": 23600199887231,
-          "entries": 2775205599
-        },
-        {
+          "year": 2023,
           "release": 259,
-          "date": "Dec 2023",
           "bases": 24651580464335,
           "entries": 2863228552
         },
         {
-          "release": 260,
-          "date": "Apr 2024",
-          "bases": 27225116587937,
-          "entries": 3333621823
-        },
-        {
-          "release": 261,
-          "date": "Jun 2024",
-          "bases": 27900199328333,
-          "entries": 3380877515
-        },
-        {
-          "release": 262,
-          "date": "Aug 2024",
-          "bases": 29643594176326,
-          "entries": 3569715357
-        },
-        {
-          "release": 263,
-          "date": "Oct 2024",
-          "bases": 31362454467668,
-          "entries": 3745772758
-        },
-        {
+          "year": 2024,
           "release": 264,
-          "date": "Dec 2024",
           "bases": 32983029087303,
           "entries": 3957195833
         },
         {
-          "release": 265,
-          "date": "Feb 2025",
-          "bases": 35643977584264,
-          "entries": 4152691448
-        },
-        {
-          "release": 266,
-          "date": "Apr 2025",
-          "bases": 37294058110495,
-          "entries": 4234652334
-        },
-        {
-          "release": 267,
-          "date": "Jun 2025",
-          "bases": 38384788365670,
-          "entries": 4294972923
-        },
-        {
-          "release": 268,
-          "date": "Aug 2025",
-          "bases": 40390433406298,
-          "entries": 4441331387
-        },
-        {
+          "year": 2025,
           "release": 269,
-          "date": "Dec 2025",
           "bases": 42125323988215,
           "entries": 4540323299
         },
         {
-          "release": 270,
-          "date": "Feb 2026",
-          "bases": 43580847616334,
-          "entries": 4620211924
-        },
-        {
-          "release": 271,
-          "date": "Apr 2026",
-          "bases": 45628511953497,
-          "entries": 4756526485
-        },
-        {
-          "release": 272,
-          "date": "Jun 2026",
-          "bases": 49077283722255,
-          "entries": 4994330522
-        },
-        {
-          "release": 273,
-          "date": "Aug 2026",
-          "bases": 50829714144609,
-          "entries": 5132699813
-        },
-        {
+          "year": 2026,
           "release": 274,
-          "date": "Oct 2026",
           "bases": 54988213343520,
           "entries": 5440961876
         }
       ],
       "tsa": [
         {
-          "release": 201,
-          "date": "Apr 2014",
-          "bases": 23632325832,
-          "entries": 29734989
-        },
-        {
-          "release": 202,
-          "date": "Jun 2014",
-          "bases": 31707343431,
-          "entries": 38011942
-        },
-        {
-          "release": 203,
-          "date": "Aug 2014",
-          "bases": 33676182560,
-          "entries": 40556905
-        },
-        {
-          "release": 204,
-          "date": "Oct 2014",
-          "bases": 36279458440,
-          "entries": 43567759
-        },
-        {
+          "year": 2014,
           "release": 205,
-          "date": "Dec 2014",
           "bases": 46056420903,
           "entries": 62635617
         },
         {
-          "release": 206,
-          "date": "Feb 2015",
-          "bases": 49765340047,
-          "entries": 66706014
-        },
-        {
-          "release": 207,
-          "date": "Apr 2015",
-          "bases": 55796332435,
-          "entries": 71989588
-        },
-        {
-          "release": 208,
-          "date": "Jun 2015",
-          "bases": 60697472570,
-          "entries": 76974601
-        },
-        {
-          "release": 209,
-          "date": "Aug 2015",
-          "bases": 69360654413,
-          "entries": 87827013
-        },
-        {
-          "release": 210,
-          "date": "Oct 2015",
-          "bases": 70917172944,
-          "entries": 81790031
-        },
-        {
+          "year": 2015,
           "release": 211,
-          "date": "Dec 2015",
           "bases": 77583339176,
           "entries": 87488539
         },
         {
-          "release": 212,
-          "date": "Feb 2016",
-          "bases": 81932555094,
-          "entries": 92132318
-        },
-        {
-          "release": 213,
-          "date": "Apr 2016",
-          "bases": 87811163676,
-          "entries": 98147566
-        },
-        {
-          "release": 214,
-          "date": "Jun 2016",
-          "bases": 94413958919,
-          "entries": 104677061
-        },
-        {
-          "release": 215,
-          "date": "Aug 2016",
-          "bases": 103399742586,
-          "entries": 113179607
-        },
-        {
-          "release": 216,
-          "date": "Oct 2016",
-          "bases": 113209225762,
-          "entries": 124199597
-        },
-        {
+          "year": 2016,
           "release": 217,
-          "date": "Dec 2016",
           "bases": 125328824508,
           "entries": 142094337
         },
         {
-          "release": 218,
-          "date": "Feb 2017",
-          "bases": 133517212104,
-          "entries": 151431485
-        },
-        {
-          "release": 219,
-          "date": "Apr 2017",
-          "bases": 149038907599,
-          "entries": 165068542
-        },
-        {
-          "release": 220,
-          "date": "Jun 2017",
-          "bases": 158112969073,
-          "entries": 176812130
-        },
-        {
-          "release": 221,
-          "date": "Aug 2017",
-          "bases": 167045663417,
-          "entries": 186777106
-        },
-        {
-          "release": 222,
-          "date": "Oct 2017",
-          "bases": 172909268535,
-          "entries": 192754804
-        },
-        {
+          "year": 2017,
           "release": 223,
-          "date": "Dec 2017",
           "bases": 181394660188,
           "entries": 201559502
         },
         {
-          "release": 224,
-          "date": "Feb 2018",
-          "bases": 193940551226,
-          "entries": 214324264
-        },
-        {
-          "release": 225,
-          "date": "Apr 2018",
-          "bases": 205232396043,
-          "entries": 227364990
-        },
-        {
-          "release": 226,
-          "date": "Jun 2018",
-          "bases": 216556686631,
-          "entries": 238788334
-        },
-        {
-          "release": 227,
-          "date": "Aug 2018",
-          "bases": 225520004678,
-          "entries": 249295386
-        },
-        {
-          "release": 228,
-          "date": "Oct 2018",
-          "bases": 235875573598,
-          "entries": 259927414
-        },
-        {
+          "year": 2018,
           "release": 229,
-          "date": "Dec 2018",
           "bases": 248592892188,
           "entries": 274845473
         },
         {
-          "release": 230,
-          "date": "Feb 2019",
-          "bases": 263936885705,
-          "entries": 294772430
-        },
-        {
-          "release": 231,
-          "date": "Apr 2019",
-          "bases": 277118019688,
-          "entries": 311247136
-        },
-        {
-          "release": 232,
-          "date": "Jun 2019",
-          "bases": 285390240861,
-          "entries": 319927264
-        },
-        {
-          "release": 233,
-          "date": "Aug 2019",
-          "bases": 294727165179,
-          "entries": 331347807
-        },
-        {
-          "release": 234,
-          "date": "Oct 2019",
-          "bases": 305371891408,
-          "entries": 342811151
-        },
-        {
+          "year": 2019,
           "release": 235,
-          "date": "Dec 2019",
           "bases": 325433016129,
           "entries": 367193844
         },
         {
-          "release": 236,
-          "date": "Feb 2020",
-          "bases": 340994289065,
-          "entries": 386644871
-        },
-        {
-          "release": 237,
-          "date": "Apr 2020",
-          "bases": 349692751528,
-          "entries": 396392280
-        },
-        {
-          "release": 238,
-          "date": "Jun 2020",
-          "bases": 359947709062,
-          "entries": 409725050
-        },
-        {
-          "release": 239,
-          "date": "Aug 2020",
-          "bases": 366968951160,
-          "entries": 417524567
-        },
-        {
-          "release": 240,
-          "date": "Oct 2020",
-          "bases": 382996662270,
-          "entries": 435968379
-        },
-        {
+          "year": 2020,
           "release": 241,
-          "date": "Dec 2020",
           "bases": 392206975386,
           "entries": 446397378
         },
         {
-          "release": 242,
-          "date": "Feb 2021",
-          "bases": 407605409948,
-          "entries": 463151000
-        },
-        {
-          "release": 243,
-          "date": "Apr 2021",
-          "bases": 425076483459,
-          "entries": 481154920
-        },
-        {
-          "release": 244,
-          "date": "Jun 2021",
-          "bases": 436594941165,
-          "entries": 494641358
-        },
-        {
-          "release": 245,
-          "date": "Aug 2021",
-          "bases": 440578422611,
-          "entries": 498305045
-        },
-        {
-          "release": 246,
-          "date": "Oct 2021",
-          "bases": 449891016597,
-          "entries": 508319391
-        },
-        {
+          "year": 2021,
           "release": 247,
-          "date": "Dec 2021",
           "bases": 455870853358,
           "entries": 514158576
         },
         {
-          "release": 248,
-          "date": "Feb 2022",
-          "bases": 465013156502,
-          "entries": 524464601
-        },
-        {
-          "release": 249,
-          "date": "Apr 2022",
-          "bases": 474421076448,
-          "entries": 534770586
-        },
-        {
-          "release": 250,
-          "date": "Jun 2022",
-          "bases": 485056129761,
-          "entries": 546991572
-        },
-        {
-          "release": 251,
-          "date": "Aug 2022",
-          "bases": 497501380386,
-          "entries": 560196830
-        },
-        {
-          "release": 252,
-          "date": "Oct 2022",
-          "bases": 511476787957,
-          "entries": 574020080
-        },
-        {
+          "year": 2022,
           "release": 253,
-          "date": "Dec 2022",
           "bases": 611850391049,
           "entries": 649918843
         },
         {
-          "release": 254,
-          "date": "Feb 2023",
-          "bases": 630615054587,
-          "entries": 672261981
-        },
-        {
-          "release": 255,
-          "date": "Apr 2023",
-          "bases": 636291358227,
-          "entries": 678332682
-        },
-        {
-          "release": 256,
-          "date": "Jun 2023",
-          "bases": 643127590034,
-          "entries": 683922756
-        },
-        {
-          "release": 257,
-          "date": "Aug 2023",
-          "bases": 646176166908,
-          "entries": 686271945
-        },
-        {
-          "release": 258,
-          "date": "Oct 2023",
-          "bases": 659924904311,
-          "entries": 701336089
-        },
-        {
+          "year": 2023,
           "release": 259,
-          "date": "Dec 2023",
           "bases": 668807109326,
           "entries": 715803123
         },
         {
-          "release": 260,
-          "date": "Apr 2024",
-          "bases": 689648317082,
-          "entries": 741066498
-        },
-        {
-          "release": 261,
-          "date": "Jun 2024",
-          "bases": 695405769319,
-          "entries": 746753803
-        },
-        {
-          "release": 262,
-          "date": "Aug 2024",
-          "bases": 706085554263,
-          "entries": 755907377
-        },
-        {
-          "release": 263,
-          "date": "Oct 2024",
-          "bases": 812661461811,
-          "entries": 948733596
-        },
-        {
+          "year": 2024,
           "release": 264,
-          "date": "Dec 2024",
           "bases": 820128973511,
           "entries": 957403887
         },
         {
-          "release": 265,
-          "date": "Feb 2025",
-          "bases": 824439978941,
-          "entries": 961491801
-        },
-        {
-          "release": 266,
-          "date": "Apr 2025",
-          "bases": 852869986922,
-          "entries": 996759705
-        },
-        {
-          "release": 267,
-          "date": "Jun 2025",
-          "bases": 859712036434,
-          "entries": 1006416037
-        },
-        {
-          "release": 268,
-          "date": "Aug 2025",
-          "bases": 864483775194,
-          "entries": 1010159820
-        },
-        {
+          "year": 2025,
           "release": 269,
-          "date": "Dec 2025",
           "bases": 878730431459,
           "entries": 1033885396
         },
         {
-          "release": 270,
-          "date": "Feb 2026",
-          "bases": 889101948297,
-          "entries": 1046996602
-        },
-        {
-          "release": 271,
-          "date": "Apr 2026",
-          "bases": 898651493967,
-          "entries": 1058643373
-        },
-        {
-          "release": 272,
-          "date": "Apr 2026",
-          "bases": 911401958809,
-          "entries": 1068667478
-        },
-        {
-          "release": 273,
-          "date": "Aug 2026",
-          "bases": 923937913366,
-          "entries": 1082802170
-        },
-        {
+          "year": 2026,
           "release": 274,
-          "date": "Oct 2026",
           "bases": 929599978566,
           "entries": 1087551042
         }
       ],
       "tls": [
         {
+          "year": 2016,
           "release": 217,
-          "date": "Dec 2016",
           "bases": 584697919,
           "entries": 1268690
         },
         {
-          "release": 218,
-          "date": "Feb 2017",
-          "bases": 636923295,
-          "entries": 1438349
-        },
-        {
-          "release": 219,
-          "date": "Apr 2017",
-          "bases": 636923295,
-          "entries": 1438349
-        },
-        {
-          "release": 220,
-          "date": "Jun 2017",
-          "bases": 824191338,
-          "entries": 1628475
-        },
-        {
-          "release": 221,
-          "date": "Aug 2017",
-          "bases": 824191338,
-          "entries": 1628475
-        },
-        {
-          "release": 222,
-          "date": "Oct 2017",
-          "bases": 2993818315,
-          "entries": 9479460
-        },
-        {
+          "year": 2017,
           "release": 223,
-          "date": "Dec 2017",
           "bases": 4458042616,
           "entries": 12695198
         },
         {
-          "release": 224,
-          "date": "Feb 2018",
-          "bases": 4531966831,
-          "entries": 12819978
-        },
-        {
-          "release": 225,
-          "date": "Apr 2018",
-          "bases": 5612769448,
-          "entries": 14782654
-        },
-        {
-          "release": 226,
-          "date": "Jun 2018",
-          "bases": 5896511468,
-          "entries": 15393041
-        },
-        {
-          "release": 227,
-          "date": "Aug 2018",
-          "bases": 6077824493,
-          "entries": 15822538
-        },
-        {
-          "release": 228,
-          "date": "Oct 2018",
-          "bases": 8435112913,
-          "entries": 20752288
-        },
-        {
+          "year": 2018,
           "release": 229,
-          "date": "Dec 2018",
           "bases": 8511829281,
           "entries": 20924588
         },
         {
-          "release": 230,
-          "date": "Feb 2019",
-          "bases": 9146836085,
-          "entries": 23259929
-        },
-        {
-          "release": 231,
-          "date": "Apr 2019",
-          "bases": 9623321565,
-          "entries": 24240761
-        },
-        {
-          "release": 232,
-          "date": "Jun 2019",
-          "bases": 10182427815,
-          "entries": 25530139
-        },
-        {
-          "release": 233,
-          "date": "Aug 2019",
-          "bases": 10531800829,
-          "entries": 26363945
-        },
-        {
-          "release": 234,
-          "date": "Oct 2019",
-          "bases": 10848455369,
-          "entries": 27460978
-        },
-        {
+          "year": 2019,
           "release": 235,
-          "date": "Dec 2019",
           "bases": 11280596614,
           "entries": 28227180
         },
         {
-          "release": 236,
-          "date": "Feb 2020",
-          "bases": 13669678196,
-          "entries": 34037371
-        },
-        {
-          "release": 237,
-          "date": "Apr 2020",
-          "bases": 24615270313,
-          "entries": 65521132
-        },
-        {
-          "release": 238,
-          "date": "Jun 2020",
-          "bases": 27500635128,
-          "entries": 75063181
-        },
-        {
-          "release": 239,
-          "date": "Aug 2020",
-          "bases": 27825059498,
-          "entries": 75682157
-        },
-        {
-          "release": 240,
-          "date": "Oct 2020",
-          "bases": 28814798868,
-          "entries": 78177358
-        },
-        {
+          "year": 2020,
           "release": 241,
-          "date": "Dec 2020",
           "bases": 33036509446,
           "entries": 88039152
         },
         {
-          "release": 242,
-          "date": "Feb 2021",
-          "bases": 33634122995,
-          "entries": 90130561
-        },
-        {
-          "release": 243,
-          "date": "Apr 2021",
-          "bases": 37998534461,
-          "entries": 102395753
-        },
-        {
-          "release": 244,
-          "date": "Jun 2021",
-          "bases": 38198113354,
-          "entries": 102662929
-        },
-        {
-          "release": 245,
-          "date": "Aug 2021",
-          "bases": 39930167315,
-          "entries": 106995218
-        },
-        {
-          "release": 246,
-          "date": "Oct 2021",
-          "bases": 40168874815,
-          "entries": 107569935
-        },
-        {
+          "year": 2021,
           "release": 247,
-          "date": "Dec 2021",
           "bases": 41143480750,
           "entries": 109379021
         },
         {
-          "release": 248,
-          "date": "Feb 2022",
-          "bases": 41321107981,
-          "entries": 109809966
-        },
-        {
-          "release": 249,
-          "date": "Apr 2022",
-          "bases": 41324192343,
-          "entries": 109820387
-        },
-        {
-          "release": 250,
-          "date": "Jun 2022",
-          "bases": 41999358847,
-          "entries": 111142107
-        },
-        {
-          "release": 251,
-          "date": "Aug 2022",
-          "bases": 43852280645,
-          "entries": 115103527
-        },
-        {
-          "release": 252,
-          "date": "Oct 2022",
-          "bases": 43860512749,
-          "entries": 115123306
-        },
-        {
+          "year": 2022,
           "release": 253,
-          "date": "Dec 2022",
           "bases": 44009657455,
           "entries": 115552377
         },
         {
-          "release": 254,
-          "date": "Feb 2023",
-          "bases": 46465508548,
-          "entries": 121067644
-        },
-        {
-          "release": 255,
-          "date": "Apr 2023",
-          "bases": 46567924833,
-          "entries": 121186672
-        },
-        {
-          "release": 256,
-          "date": "Jun 2023",
-          "bases": 47302831210,
-          "entries": 122798571
-        },
-        {
-          "release": 257,
-          "date": "Aug 2023",
-          "bases": 48289699026,
-          "entries": 124421006
-        },
-        {
-          "release": 258,
-          "date": "Oct 2023",
-          "bases": 50868407906,
-          "entries": 130654568
-        },
-        {
+          "year": 2023,
           "release": 259,
-          "date": "Dec 2023",
           "bases": 51568356978,
           "entries": 132355132
         },
         {
-          "release": 260,
-          "date": "Apr 2024",
-          "bases": 53492243256,
-          "entries": 135115766
-        },
-        {
-          "release": 261,
-          "date": "Jun 2024",
-          "bases": 54512778803,
-          "entries": 135446337
-        },
-        {
-          "release": 262,
-          "date": "Aug 2024",
-          "bases": 77026446552,
-          "entries": 187321998
-        },
-        {
-          "release": 263,
-          "date": "Oct 2024",
-          "bases": 77037504468,
-          "entries": 187349395
-        },
-        {
+          "year": 2024,
           "release": 264,
-          "date": "Dec 2024",
           "bases": 77038271475,
           "entries": 187349466
         },
         {
-          "release": 265,
-          "date": "Feb 2025",
-          "bases": 78062322564,
-          "entries": 189703939
-        },
-        {
-          "release": 266,
-          "date": "Apr 2025",
-          "bases": 78390585331,
-          "entries": 190122348
-        },
-        {
-          "release": 267,
-          "date": "Jun 2025",
-          "bases": 78505522921,
-          "entries": 190342492
-        },
-        {
-          "release": 268,
-          "date": "Aug 2025",
-          "bases": 78568415110,
-          "entries": 190505830
-        },
-        {
+          "year": 2025,
           "release": 269,
-          "date": "Dec 2025",
           "bases": 78916795339,
           "entries": 190904203
         },
         {
-          "release": 270,
-          "date": "Feb 2026",
-          "bases": 79162820303,
-          "entries": 191365090
-        },
-        {
-          "release": 271,
-          "date": "Apr 2026",
-          "bases": 79162820303,
-          "entries": 191365090
-        },
-        {
-          "release": 272,
-          "date": "Apr 2026",
-          "bases": 79604775262,
-          "entries": 192425204
-        },
-        {
-          "release": 273,
-          "date": "Aug 2026",
-          "bases": 80213567020,
-          "entries": 193606949
-        },
-        {
+          "year": 2026,
           "release": 274,
-          "date": "Oct 2026",
           "bases": 86124265240,
           "entries": 207550042
         }
       ]
     },
-    "organisms": [],
-    "divisions": []
+    "organisms": [
+      {
+        "species": "Triticum aestivum",
+        "entries": 1949031,
+        "bases": 419236647828
+      },
+      {
+        "species": "Hordeum vulgare",
+        "entries": 113964,
+        "bases": 394376791066
+      },
+      {
+        "species": "Severe acute respiratory syndrome coronavirus 2",
+        "entries": 9219597,
+        "bases": 274022013072
+      },
+      {
+        "species": "Avena sativa",
+        "entries": 30572,
+        "bases": 273192746340
+      },
+      {
+        "species": "Hordeum bulbosum",
+        "entries": 753,
+        "bases": 212675690135
+      },
+      {
+        "species": "Hordeum vulgare subsp. vulgare",
+        "entries": 1347128,
+        "bases": 125991720014
+      },
+      {
+        "species": "Viscum album",
+        "entries": 164,
+        "bases": 93011095388
+      },
+      {
+        "species": "Hordeum vulgare subsp. spontaneum",
+        "entries": 30006,
+        "bases": 92980413381
+      },
+      {
+        "species": "Escherichia coli",
+        "entries": 206478,
+        "bases": 47008834838
+      },
+      {
+        "species": "Mus musculus",
+        "entries": 10128325,
+        "bases": 46342747762
+      },
+      {
+        "species": "Taxus baccata",
+        "entries": 656,
+        "bases": 40050691233
+      },
+      {
+        "species": "Homo sapiens",
+        "entries": 29108547,
+        "bases": 39122845109
+      },
+      {
+        "species": "Solanum melongena",
+        "entries": 4900,
+        "bases": 37408232171
+      },
+      {
+        "species": "Arabidopsis thaliana",
+        "entries": 2645722,
+        "bases": 33869576260
+      },
+      {
+        "species": "Bos taurus",
+        "entries": 2247541,
+        "bases": 33009040131
+      },
+      {
+        "species": "Klebsiella pneumoniae",
+        "entries": 46468,
+        "bases": 28805498191
+      },
+      {
+        "species": "Zea mays",
+        "entries": 4225701,
+        "bases": 24919427048
+      },
+      {
+        "species": "Lissotriton montandoni",
+        "entries": 690,
+        "bases": 23795651964
+      },
+      {
+        "species": "Vicia faba",
+        "entries": 28789,
+        "bases": 23037494648
+      },
+      {
+        "species": "Humulus lupulus",
+        "entries": 30910,
+        "bases": 22926207909
+      }
+    ],
+    "divisions": [
+      {
+        "code": "PLN",
+        "files": 3808,
+        "entries": 8624398,
+        "bases": 3613916836054
+      },
+      {
+        "code": "INV",
+        "files": 2920,
+        "entries": 13521467,
+        "bases": 3269002579196
+      },
+      {
+        "code": "VRT",
+        "files": 945,
+        "entries": 4133211,
+        "bases": 1061613438514
+      },
+      {
+        "code": "BCT",
+        "files": 536,
+        "entries": 3115714,
+        "bases": 372336601989
+      },
+      {
+        "code": "VRL",
+        "files": 346,
+        "entries": 14601495,
+        "bases": 287656572131
+      },
+      {
+        "code": "MAM",
+        "files": 253,
+        "entries": 782257,
+        "bases": 278788775780
+      },
+      {
+        "code": "ROD",
+        "files": 148,
+        "entries": 705923,
+        "bases": 163520424502
+      },
+      {
+        "code": "ENV",
+        "files": 138,
+        "entries": 10523075,
+        "bases": 143362990139
+      },
+      {
+        "code": "EST",
+        "files": 164,
+        "entries": 78202766,
+        "bases": 43668112423
+      },
+      {
+        "code": "PAT",
+        "files": 97,
+        "entries": 73750975,
+        "bases": 42100322533
+      },
+      {
+        "code": "PRI",
+        "files": 28,
+        "entries": 1243300,
+        "bases": 28060266972
+      },
+      {
+        "code": "HTG",
+        "files": 25,
+        "entries": 176688,
+        "bases": 27727065463
+      },
+      {
+        "code": "GSS",
+        "files": 79,
+        "entries": 41103736,
+        "bases": 26390262337
+      },
+      {
+        "code": "TSA",
+        "files": 37,
+        "entries": 17018808,
+        "bases": 14179570073
+      },
+      {
+        "code": "SYN",
+        "files": 10,
+        "entries": 334981,
+        "bases": 9022638030
+      },
+      {
+        "code": "PHG",
+        "files": 4,
+        "entries": 57092,
+        "bases": 2227713976
+      },
+      {
+        "code": "HTC",
+        "files": 3,
+        "entries": 651565,
+        "bases": 741270168
+      },
+      {
+        "code": "STS",
+        "files": 3,
+        "entries": 1346988,
+        "bases": 640923137
+      },
+      {
+        "code": "UNA",
+        "files": 1,
+        "entries": 1098,
+        "bases": 4921007
+      }
+    ]
   },
   "clinicaltrials": {
     "dataTimestamp": "2026-11-02T10:00:05",
