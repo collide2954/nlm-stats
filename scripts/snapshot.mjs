@@ -87,7 +87,7 @@ const groups = async () => {
       step(`count ${item.id}`);
       items.push({ ...item, count: await count(item.db, item.term) });
     }
-    out.push({ id: group.id, title: group.title, items });
+    out.push({ id: group.id, title: group.title, panel: group.panel ?? null, items });
   }
   return out;
 };
@@ -226,7 +226,7 @@ const allProjects = async (criteria, fields) => {
 
 const DETAIL_FIELDS = [
   'ApplId', 'SubprojectId', 'AwardAmount', 'ActivityCode', 'FundingMechanism', 'Organization', 'ProjectStartDate',
-  'ProjectEndDate', 'IsNew', 'SpendingCategoriesDesc', 'FiscalYear', 'ProjectTitle', 'ProjectNum',
+  'ProjectEndDate', 'AwardType', 'SpendingCategoriesDesc', 'FiscalYear', 'ProjectTitle', 'ProjectNum',
 ];
 const LEAN_FIELDS = ['ApplId', 'SubprojectId', 'AwardAmount'];
 
@@ -260,7 +260,7 @@ const funding = async (now) => {
     ics: ics.sort((a, b) => b.dollars - a.dollars),
     detail: {
       ...summarizeAwards(detailRows),
-      newProjects: main.filter((r) => r.is_new).length,
+      newProjects: main.filter((r) => r.award_type === '1').length,
       medianYears: medianYears(detailRows),
       byActivity: groupAwards(detailRows, (r) => r.activity_code).slice(0, 15),
       byMechanism: groupAwards(detailRows, (r) => r.funding_mechanism),
