@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NLM &amp; NCBI by the Numbers</title>
+<meta name="description" content="Exact counts, dates and oddities from the U.S. National Library of Medicine and the National Center for Biotechnology Information.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23123a63'/%3E%3Cpath d='M8 23V9h3l6 9V9h3v14h-3l-6-9v9z' fill='%23f2b84b'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="src/styles.css">
+<script type="module" src="src/app.js"></script>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap mast-row">
+    <div class="brand">
+      <p class="kicker">U.S. National Library of Medicine · National Center for Biotechnology Information</p>
+      <h1>NLM <span>&amp;</span> NCBI <em>by the numbers</em></h1>
+      <p class="stamp" id="stamp"></p>
+    </div>
+    <div class="tools">
+      <label class="search"><span class="sr">Filter the page</span><input id="q" type="search" placeholder="Filter: blast, 1956, retired…" autocomplete="off"></label>
+      <button id="refresh" type="button" class="btn">Refresh live</button>
+      <button id="theme" type="button" class="btn ghost" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+  <p class="wrap live-status" id="live-status" aria-live="polite"></p>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <div class="wrap">
+    <a href="#counts">Counts</a><a href="#entrez">Entrez</a><a href="#pubmed">PubMed</a><a href="#facets">Facets</a><a href="#papers">Papers</a><a href="#genbank">GenBank</a><a href="#trials">Trials</a><a href="#history">Timeline</a><a href="#projects-sec">Projects</a><a href="#people-sec">People</a><a href="#odd">Oddities</a><a href="#decoder">Decoder</a><a href="#sources">Sources</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="counts" aria-label="Headline counts">
+    <div class="hero" id="hero"></div>
+  </section>
+
+  <section id="entrez">
+    <h2>Entrez, every database</h2>
+    <p class="dek" id="entrez-dek"></p>
+    <div class="scroll"><table id="db-table" class="grid"></table></div>
+  </section>
+
+  <section id="pubmed">
+    <h2>PubMed records by publication year</h2>
+    <p class="dek" id="pubmed-dek"></p>
+    <div class="chart" id="pubmed-chart"></div>
+    <p class="tip" id="pubmed-tip" aria-live="polite"></p>
+    <h3>Before 1945</h3>
+    <ul class="bars" id="eras"></ul>
+  </section>
+
+  <section id="facets">
+    <h2>PubMed, sliced</h2>
+    <p class="dek">Each bar is an exact E-utilities count. Click a row to run the query.</p>
+    <div class="tabs" role="tablist" id="facet-tabs"></div>
+    <div role="tabpanel" id="facet-panel"></div>
+  </section>
+
+  <section id="papers">
+    <h2>Landmark papers</h2>
+    <p class="dek">Citing records counted in PubMed.</p>
+    <ol class="papers" id="paper-list"></ol>
+    <h3>PubMed Central, fiscal years</h3>
+    <ul class="bars" id="pmc-years"></ul>
+  </section>
+
+  <section id="genbank">
+    <h2>GenBank</h2>
+    <p class="dek" id="gb-dek"></p>
+    <div class="facts-row" id="gb-stats"></div>
+    <div class="chart" id="gb-chart"></div>
+    <p class="tip" id="gb-tip" aria-live="polite"></p>
+    <div class="cols">
+      <div><h3>Most sequenced organisms</h3><ol class="bars" id="gb-organisms"></ol></div>
+      <div><h3>Divisions</h3><ul class="bars" id="gb-divisions"></ul></div>
+    </div>
+  </section>
+
+  <section id="trials">
+    <h2>ClinicalTrials.gov</h2>
+    <p class="dek" id="ct-dek"></p>
+    <div class="facts-row" id="ct-stats"></div>
+    <div class="cols three" id="ct-fields"></div>
+    <h3>Largest records</h3>
+    <ol class="plain" id="ct-largest"></ol>
+  </section>
+
+  <section id="history">
+    <h2>Timeline</h2>
+    <div class="chips" id="timeline-tags" aria-label="Filter by topic"></div>
+    <div class="chips" id="timeline-orgs" aria-label="Filter by organization"></div>
+    <div id="timeline"></div>
+  </section>
+
+  <section id="projects-sec">
+    <h2>Projects</h2>
+    <div class="cards" id="projects"></div>
+  </section>
+
+  <section id="people-sec">
+    <h2>Who ran it</h2>
+    <ul class="people" id="people"></ul>
+  </section>
+
+  <section id="odd">
+    <h2>Oddly specific</h2>
+    <button id="shuffle" type="button" class="btn ghost">Shuffle</button>
+    <ol class="oddities" id="oddities"></ol>
+  </section>
+
+  <section id="decoder">
+    <h2>Identifier decoder</h2>
+    <p class="dek">Paste a PMID, PMCID, NCT, rs, RefSeq, GCF, PRJNA, SRR, GSE, MeSH, CID, txid…</p>
+    <label class="search wide"><span class="sr">Identifier</span><input id="decoder-input" type="text" placeholder="e.g. NM_000518.5" autocomplete="off" spellcheck="false"></label>
+    <div id="decoder-out" class="decoded" aria-live="polite"></div>
+    <div class="chips" id="examples"></div>
+  </section>
+
+  <section id="sources">
+    <h2>Sources</h2>
+    <ul class="sources" id="source-list"></ul>
+  </section>
+</main>
+
+<footer class="wrap foot" id="foot"></footer>
+</body>
+</html>
