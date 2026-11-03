@@ -208,3 +208,20 @@ export const identify = (input) => {
   }
   return null;
 };
+
+const SEARCH_HOME = {
+  pubmed: 'https://pubmed.ncbi.nlm.nih.gov/',
+  pmc: 'https://pmc.ncbi.nlm.nih.gov/search/',
+};
+
+export const searchUrl = (db, term) => {
+  const home = SEARCH_HOME[db] ?? `${NCBI}/${db}/`;
+  return term ? `${home}?term=${encodeURIComponent(term)}` : db === 'pmc' ? 'https://pmc.ncbi.nlm.nih.gov/' : home;
+};
+
+export const eutilsUrl = (tool, params) => {
+  const query = Object.entries({ ...params, retmode: 'json' })
+    .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
+    .join('&');
+  return `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/${tool}.fcgi?${query}`;
+};
