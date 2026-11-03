@@ -3,27 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NLM &amp; NCBI by the Numbers</title>
-<meta name="description" content="Exact counts, dates, funding and oddities from the U.S. National Library of Medicine, NCBI and NIH.">
+<title>NLM &amp; NCBI in Numbers</title>
+<meta name="description" content="What the National Library of Medicine and NCBI hold, what NIH pays for, and the odd corners in between. Exact counts from public APIs, rebuilt weekly.">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23123a63'/%3E%3Cpath d='M8 23V9h3l6 9V9h3v14h-3l-6-9v9z' fill='%23f2b84b'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f4f1ea'/%3E%3Crect x='6' y='18' width='4' height='8' fill='%231a1a1a'/%3E%3Crect x='14' y='12' width='4' height='14' fill='%231a1a1a'/%3E%3Crect x='22' y='6' width='4' height='20' fill='%23d93a1f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&amp;family=Schibsted+Grotesk:wght@400;500;700&amp;display=swap">
 <link rel="stylesheet" href="src/styles.css">
 <script type="module" src="src/app.js"></script>
 </head>
 <body>
-<header class="mast">
-  <div class="wrap mast-row">
-    <div class="brand">
-      <p class="kicker">U.S. National Library of Medicine · National Center for Biotechnology Information</p>
-      <h1>NLM <span>&amp;</span> NCBI <em>by the numbers</em></h1>
-      <p class="stamp" id="stamp"></p>
-    </div>
-    <div class="tools">
-      <label class="search"><span class="sr">Filter the page</span><input id="q" type="search" placeholder="Filter: blast, 1956, retired…" autocomplete="off"></label>
-      <button id="theme" type="button" class="btn ghost" aria-label="Toggle dark mode">Dark</button>
+<header class="masthead">
+  <div class="wrap mast">
+    <a class="wordmark" href="./">NLM<i>/</i>NCBI <em>in numbers</em></a>
+    <p class="dateline" id="stamp"></p>
+    <div class="controls">
+      <label class="filter"><span class="sr">Filter lists on this page</span><input id="q" type="search" placeholder="Filter: blast, 1956, retired" autocomplete="off"></label>
+      <button id="theme" type="button" class="textbtn" aria-label="Toggle dark mode">Dark</button>
     </div>
   </div>
-  <div class="wrap lens-row">
+  <div class="wrap lensbar">
+    <span class="readas">Read as</span>
     <div class="lenses" id="lenses" role="group" aria-label="Audience lens"></div>
     <p class="lens-hint" id="lens-hint"></p>
   </div>
@@ -33,151 +34,207 @@
   <div class="wrap" id="jump"></div>
 </nav>
 
-<main class="wrap">
-  <section id="counts" aria-label="Headline counts">
-    <div class="hero" id="hero"></div>
+<main>
+  <section class="lede wrap" id="lede" aria-label="Headline numbers">
+    <p class="kicker">The National Library of Medicine, counted</p>
+    <h1><span class="hero" data-hero="pubmed">0</span> <span class="hero-unit">citations in PubMed</span></h1>
+    <p class="standfirst" id="lede-text"></p>
+    <dl class="ticker" id="ticker"></dl>
   </section>
 
-  <section id="entrez" data-lens="bioinfo" data-nav="Entrez">
-    <h2>Entrez, every database</h2>
-    <p class="dek" id="entrez-dek"></p>
-    <div class="scroll"><table id="db-table" class="grid"></table></div>
+  <section class="story wrap" id="entrez" data-lens="bioinfo" data-nav="Entrez">
+    <header class="head"><p class="label">Entrez</p><h2 data-finding="entrez">Entrez databases</h2><p class="dek" id="entrez-dek"></p></header>
+    <figure class="fig">
+      <div class="figtools" id="entrez-sort" role="group" aria-label="Sort databases">Sort by
+        <button type="button" data-sort="count" aria-pressed="true">size</button>
+        <button type="button" data-sort="name" aria-pressed="false">name</button>
+        <button type="button" data-sort="updated" aria-pressed="false">last update</button>
+      </div>
+      <div class="chart" id="entrez-chart"></div>
+      <figcaption>Records in each of NCBI's Entrez databases, log scale. Source: E-utilities einfo. <details><summary>Table</summary><div class="scroll"><table id="entrez-table" class="data"></table></div></details></figcaption>
+    </figure>
   </section>
 
-  <section id="seqdata" data-lens="bioinfo" data-nav="Sequences">
-    <h2>Sequence data</h2>
-    <p class="dek" id="seq-dek"></p>
-    <div class="facts-row" id="refseq-stats"></div>
-    <div class="cols three" id="seq-groups"></div>
-    <h3>RefSeq accession prefixes</h3>
-    <div class="scroll"><table id="refseq-prefixes" class="grid"></table></div>
+  <section class="story wrap" id="pubmed" data-lens="stats" data-nav="PubMed">
+    <header class="head"><p class="label">PubMed</p><h2 data-finding="pubmed">PubMed by year</h2><p class="dek" id="pubmed-dek"></p></header>
+    <figure class="fig">
+      <div class="chart" id="pubmed-chart"></div>
+      <figcaption>Citations by publication year, 1945 onward. The current year is still filling. Source: E-utilities esearch.</figcaption>
+    </figure>
+    <figure class="fig narrow">
+      <div class="chart" id="eras-chart"></div>
+      <figcaption>Before 1945, by decade. The oldest records are dated 1781.</figcaption>
+    </figure>
   </section>
 
-  <section id="genbank" data-lens="bioinfo" data-nav="GenBank">
-    <h2>GenBank</h2>
-    <p class="dek" id="gb-dek"></p>
-    <div class="facts-row" id="gb-stats"></div>
-    <div class="chart" id="gb-chart"></div>
-    <p class="tip" id="gb-tip" aria-live="polite"></p>
-    <div class="cols">
-      <div><h3>Most sequenced organisms</h3><ol class="bars" id="gb-organisms"></ol></div>
-      <div><h3>Divisions</h3><ul class="bars" id="gb-divisions"></ul></div>
+  <section class="story wrap" id="types" data-lens="stats" data-nav="Types">
+    <header class="head"><p class="label">Publication types</p><h2 data-finding="types">Publication types over time</h2><p class="dek">How the mix of what gets published has shifted since 1950.</p></header>
+    <figure class="fig">
+      <div class="chart" id="types-chart"></div>
+      <figcaption>Five common publication types per year, stacked. Hover for the year's counts. Source: PubMed publication type tags.</figcaption>
+    </figure>
+    <figure class="fig">
+      <div class="multiples" id="types-multiples"></div>
+      <figcaption>Smaller types, each on its own scale. Preprints and retraction notices are recent tags.</figcaption>
+    </figure>
+  </section>
+
+  <section class="story wrap" id="facets" data-lens="stats" data-nav="Slices">
+    <header class="head"><p class="label">PubMed, sliced</p><h2 data-finding="facets">PubMed by type, language and organism</h2><p class="dek">Exact counts for one query each. Click a label to run it in PubMed or Entrez.</p></header>
+    <figure class="fig">
+      <div class="tabs" role="tablist" id="facet-tabs"></div>
+      <div role="tabpanel" id="facet-panel" class="chart"></div>
+      <figcaption>Log scale. One record can carry several tags. Source: E-utilities esearch.</figcaption>
+    </figure>
+  </section>
+
+  <section class="story wrap" id="methods" data-lens="stats" data-nav="Methods">
+    <header class="head"><p class="label">Statistical methods</p><h2 data-finding="methods">Statistical methods in PubMed</h2><p class="dek" id="methods-dek"></p></header>
+    <figure class="fig">
+      <ul class="sparks" id="methods-list"></ul>
+      <figcaption>PubMed records tagged with each method per publication year, each on its own scale. Source: MeSH terms and publication types.</figcaption>
+    </figure>
+  </section>
+
+  <section class="story wrap" id="papers" data-lens="bioinfo stats" data-nav="Papers">
+    <header class="head"><p class="label">Landmark papers</p><h2 data-finding="papers">Landmark papers</h2><p class="dek">Records in PubMed that cite each paper.</p></header>
+    <figure class="fig">
+      <div class="chart" id="papers-chart"></div>
+      <figcaption>Citing records, log scale. Source: E-utilities elink, pubmed_pubmed_citedin.</figcaption>
+    </figure>
+    <figure class="fig narrow">
+      <div class="chart" id="pmc-chart"></div>
+      <figcaption>Full-text articles available in PubMed Central at the end of each fiscal year. Source: PMC.</figcaption>
+    </figure>
+  </section>
+
+  <section class="story wrap" id="trials" data-lens="stats funding" data-nav="Trials">
+    <header class="head"><p class="label">ClinicalTrials.gov</p><h2 data-finding="trials">ClinicalTrials.gov</h2><p class="dek" id="ct-dek"></p></header>
+    <div class="pair">
+      <figure class="fig">
+        <div class="chart" id="results-waffle"></div>
+        <figcaption>Completed interventional studies, by whether results are posted. Each square is 1%.</figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="chart" id="masking-waffle"></div>
+        <figcaption data-finding-caption="design"></figcaption>
+      </figure>
     </div>
+    <figure class="fig">
+      <div class="chart" id="design-chart"></div>
+      <figcaption>Studies first posted, and results first posted, per year. Source: ClinicalTrials.gov API.</figcaption>
+    </figure>
+    <figure class="fig narrow">
+      <div class="chart" id="enrollment-chart"></div>
+      <figcaption id="enrollment-caption"></figcaption>
+    </figure>
+    <figure class="fig">
+      <div class="tabs" role="tablist" id="ct-tabs"></div>
+      <div id="ct-panel" class="chart" role="tabpanel"></div>
+      <figcaption>Studies by registered field value. Source: ClinicalTrials.gov API field statistics.</figcaption>
+    </figure>
+    <ol class="notes" id="ct-largest"></ol>
   </section>
 
-  <section id="apis" data-lens="bioinfo funding" data-nav="APIs">
-    <h2>APIs, limits and release cadence</h2>
-    <p class="dek">Published limits for programmatic access, and how often each resource changes.</p>
-    <div class="scroll"><table id="api-table" class="grid"></table></div>
-    <h3>Release cadence</h3>
-    <div class="scroll"><table id="cadence-table" class="grid"></table></div>
-  </section>
-
-  <section id="pubmed" data-lens="stats" data-nav="PubMed">
-    <h2>PubMed records by publication year</h2>
-    <p class="dek" id="pubmed-dek"></p>
-    <div class="chart" id="pubmed-chart"></div>
-    <p class="tip" id="pubmed-tip" aria-live="polite"></p>
-    <h3>Before 1945</h3>
-    <ul class="bars" id="eras"></ul>
-  </section>
-
-  <section id="facets" data-lens="stats" data-nav="Facets">
-    <h2>PubMed, sliced</h2>
-    <p class="dek">Each bar is an exact E-utilities count. Click a row to run the query.</p>
-    <div class="tabs" role="tablist" id="facet-tabs"></div>
-    <div role="tabpanel" id="facet-panel"></div>
-  </section>
-
-  <section id="methods" data-lens="stats" data-nav="Methods">
-    <h2>Statistical methods in PubMed</h2>
-    <p class="dek" id="methods-dek"></p>
-    <ul class="spark-list" id="methods-list"></ul>
-  </section>
-
-  <section id="papers" data-lens="bioinfo stats" data-nav="Papers">
-    <h2>Landmark papers</h2>
-    <p class="dek">Citing records counted in PubMed.</p>
-    <ol class="papers" id="paper-list"></ol>
-    <h3>PubMed Central, fiscal years</h3>
-    <ul class="bars" id="pmc-years"></ul>
-  </section>
-
-  <section id="trials" data-lens="stats" data-nav="Trials">
-    <h2>ClinicalTrials.gov</h2>
-    <p class="dek" id="ct-dek"></p>
-    <div class="facts-row" id="ct-stats"></div>
-    <div class="cols three" id="ct-fields"></div>
-    <h3>Largest records</h3>
-    <ol class="plain" id="ct-largest"></ol>
-  </section>
-
-  <section id="design" data-lens="stats funding" data-nav="Design">
-    <h2>Trial design and timing</h2>
-    <p class="dek" id="design-dek"></p>
-    <div class="facts-row" id="design-stats"></div>
-    <div class="chart" id="design-chart"></div>
-    <p class="tip" id="design-tip" aria-live="polite"></p>
-    <h3>Enrollment size</h3>
-    <ul class="bars" id="enrollment"></ul>
-    <div class="cols three" id="design-fields"></div>
-  </section>
-
-  <section id="funding" data-lens="funding" data-nav="Funding">
-    <h2>NIH funding</h2>
-    <p class="dek" id="funding-dek"></p>
-    <div class="facts-row" id="funding-stats"></div>
-    <div class="chart" id="funding-chart"></div>
-    <p class="tip" id="funding-tip" aria-live="polite"></p>
-    <div class="cols">
-      <div><h3 id="ics-title">Institutes and centers</h3><ol class="bars" id="funding-ics"></ol></div>
-      <div><h3 id="activity-title">NLM by activity code</h3><ul class="bars" id="funding-activity"></ul></div>
+  <section class="story wrap" id="funding" data-lens="funding" data-nav="Funding">
+    <header class="head"><p class="label">NIH funding</p><h2 data-finding="funding">NIH funding</h2><p class="dek" id="funding-dek"></p></header>
+    <figure class="fig">
+      <div class="chart" id="ic-treemap"></div>
+      <figcaption id="ic-caption"></figcaption>
+    </figure>
+    <figure class="fig">
+      <div class="chart" id="funding-chart"></div>
+      <figcaption>NLM-administered award dollars per fiscal year. Source: NIH RePORTER API, primary projects only.</figcaption>
+    </figure>
+    <div class="pair">
+      <figure class="fig">
+        <div class="chart" id="intramural-waffle"></div>
+        <figcaption>NLM award dollars by RePORTER funding mechanism. Each square is 1%.</figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="tabs" role="tablist" id="funding-tabs"></div>
+        <div id="funding-panel" class="chart" role="tabpanel"></div>
+        <figcaption id="funding-caption"></figcaption>
+      </figure>
     </div>
-    <div class="cols">
-      <div><h3>NLM by spending category <small>awards; one award can carry several</small></h3><ul class="bars alt" id="funding-categories"></ul></div>
-      <div><h3>Recipient organizations</h3><ol class="bars alt" id="funding-orgs"></ol></div>
+    <ol class="notes" id="funding-largest"></ol>
+  </section>
+
+  <section class="story wrap" id="seqdata" data-lens="bioinfo" data-nav="Sequences">
+    <header class="head"><p class="label">Sequence data</p><h2 data-finding="genbank">GenBank</h2><p class="dek" id="gb-dek"></p></header>
+    <figure class="fig">
+      <div class="chart" id="genbank-chart"></div>
+      <figcaption>Bases in GenBank at each year's last release, log scale. Source: GenBank release notes.</figcaption>
+    </figure>
+    <div class="pair">
+      <figure class="fig">
+        <div class="chart" id="organisms-chart"></div>
+        <figcaption>The 20 most sequenced organisms by bases, excluding WGS, organelles and metagenomes. Source: GenBank release notes.</figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="chart" id="divisions-chart"></div>
+        <figcaption>Bases by GenBank division in this release.</figcaption>
+      </figure>
     </div>
-    <h3>Largest NLM awards</h3>
-    <ol class="plain" id="funding-largest"></ol>
+    <h3 class="subhead" data-finding="seqdata">SRA and assemblies</h3>
+    <div class="trio">
+      <figure class="fig"><div class="chart" id="sra-strategy-chart"></div><figcaption>SRA experiments by library strategy.</figcaption></figure>
+      <figure class="fig"><div class="chart" id="sra-platform-chart"></div><figcaption>SRA experiments by platform.</figcaption></figure>
+      <figure class="fig"><div class="chart" id="assembly-chart"></div><figcaption>Genome assemblies by level.</figcaption></figure>
+    </div>
+    <p class="dek" id="refseq-line"></p>
   </section>
 
-  <section id="history" data-lens="funding" data-nav="Timeline">
-    <h2>Timeline</h2>
-    <div class="chips" id="timeline-tags" role="group" aria-label="Filter by topic"></div>
-    <div class="chips" id="timeline-orgs" role="group" aria-label="Filter by organization"></div>
-    <div id="timeline"></div>
+  <section class="story wrap" id="reference" data-lens="bioinfo funding" data-nav="APIs">
+    <header class="head"><p class="label">Reference</p><h2>Limits, cadences and accession prefixes</h2></header>
+    <div class="scroll"><table id="api-table" class="data"></table></div>
+    <div class="scroll"><table id="cadence-table" class="data"></table></div>
+    <div class="scroll"><table id="refseq-prefixes" class="data"></table></div>
   </section>
 
-  <section id="people-sec" data-lens="funding" data-nav="People">
-    <h2>Who ran it</h2>
-    <ul class="people" id="people"></ul>
+  <section class="story wrap" id="history" data-lens="funding" data-nav="Timeline">
+    <header class="head"><p class="label">History</p><h2 data-finding="history">History</h2><p class="dek">Drag to pan, use the buttons or Ctrl and scroll to zoom. Tap a mark for details.</p></header>
+    <figure class="fig">
+      <div class="figtools">
+        <span id="timeline-range"></span>
+        <span class="eras" id="timeline-eras"></span>
+        <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+        <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+        <button type="button" id="zoom-reset">All</button>
+      </div>
+      <div class="chart timeline" id="timeline-svg"></div>
+      <p class="tl-detail" id="timeline-detail" aria-live="polite"></p>
+      <figcaption>Events, directors and launches on one axis.</figcaption>
+    </figure>
+    <div class="chips" id="timeline-tags" role="group" aria-label="Filter events by topic"></div>
+    <ol class="events" id="timeline-list"></ol>
   </section>
 
-  <section id="projects-sec" data-nav="Projects">
-    <h2>Projects</h2>
-    <div class="cards" id="projects"></div>
+  <section class="story wrap" id="projects" data-nav="Projects">
+    <header class="head"><p class="label">Projects</p><h2>Fifteen resources, by start year</h2></header>
+    <div class="scroll"><table id="projects-table" class="data"></table></div>
   </section>
 
-  <section id="odd" data-nav="Oddities">
-    <h2>Oddly specific</h2>
-    <button id="shuffle" type="button" class="btn ghost">Shuffle</button>
+  <section class="story wrap" id="odd" data-nav="Oddities">
+    <header class="head"><p class="label">Oddly specific</p><h2>Things we did not expect to find</h2></header>
+    <button id="shuffle" type="button" class="textbtn">Pick one at random</button>
     <ol class="oddities" id="oddities"></ol>
   </section>
 
-  <section id="decoder" data-lens="bioinfo" data-nav="Decoder">
-    <h2>Identifier decoder</h2>
-    <p class="dek">Paste a PMID, PMCID, NCT, rs, RefSeq, GCF, PRJNA, SRR, GSE, MeSH, CID, txid…</p>
-    <label class="search wide"><span class="sr">Identifier</span><input id="decoder-input" type="text" placeholder="e.g. NM_000518.5" autocomplete="off" spellcheck="false"></label>
+  <section class="story wrap" id="decoder" data-lens="bioinfo" data-nav="Decoder">
+    <header class="head"><p class="label">Identifier decoder</p><h2>What is NM_000518.5?</h2><p class="dek">Paste a PMID, PMCID, NCT, rs, RefSeq, GCF, PRJNA, SRR, GSE, MeSH, CID or txid.</p></header>
+    <label class="decoder-input"><span class="sr">Identifier</span><input id="decoder-input" type="text" placeholder="NM_000518.5" autocomplete="off" spellcheck="false"></label>
     <div id="decoder-out" class="decoded" aria-live="polite"></div>
     <div class="chips" id="examples"></div>
   </section>
 
-  <section id="sources" data-nav="Sources">
-    <h2>Sources</h2>
-    <ul class="sources" id="source-list"></ul>
+  <section class="story wrap" id="sources" data-nav="Sources">
+    <header class="head"><p class="label">Sources</p><h2>Where every number comes from</h2></header>
+    <ol class="sources" id="source-list"></ol>
   </section>
 </main>
 
 <footer class="wrap foot" id="foot"></footer>
+<div id="tip" class="tip" role="status" hidden></div>
 </body>
 </html>
