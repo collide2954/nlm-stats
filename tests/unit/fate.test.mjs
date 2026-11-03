@@ -67,7 +67,7 @@ test('resultsLag bins months from completion to results and finds the pile-up', 
     { pc: '2019-01-01', submit: '2023-06-01', cls: 'OTHER' },
     { pc: '2019-01-01', submit: '2018-12-01', cls: 'OTHER' },
     { pc: '2016-01-01', submit: '2016-12-01', cls: 'OTHER' },
-    { pc: '2019-05', submit: '2020-05-10', cls: 'OTHER' },
+    { pc: '2019-05', submit: '2020-06-10', cls: 'OTHER' },
   ];
   const out = resultsLag(rows, { from: 2018, to: 2022, cap: 48, minClass: 1 });
   assert.equal(out.n, 5);
