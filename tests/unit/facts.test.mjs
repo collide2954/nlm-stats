@@ -47,8 +47,8 @@ test('projects are unique with several facts each', () => {
   }
 });
 
-test('oddities are plentiful and sourced', () => {
-  assert.ok(ODDITIES.length >= 20);
+test('oddities are few, sharp and sourced', () => {
+  assert.ok(ODDITIES.length >= 15 && ODDITIES.length <= 20, `${ODDITIES.length}`);
   for (const o of ODDITIES) {
     assert.ok(o.text.length > 10);
     assert.ok(SOURCES[o.src], o.text);
@@ -76,5 +76,23 @@ test('PMC growth runs FY13 to FY25 in order', async () => {
   for (let i = 1; i < PMC_YEARS.length; i += 1) {
     assert.equal(PMC_YEARS[i].fy, PMC_YEARS[i - 1].fy + 1);
     assert.ok(PMC_YEARS[i].articles > PMC_YEARS[i - 1].articles);
+  }
+});
+
+test('API limits are sourced and specific', async () => {
+  const { APIS } = await import('../../src/facts.js');
+  assert.ok(APIS.length >= 5);
+  for (const a of APIS) {
+    assert.ok(a.service && a.limit && a.note, a.service);
+    assert.ok(SOURCES[a.src], a.service);
+  }
+});
+
+test('release cadences are sourced', async () => {
+  const { CADENCES } = await import('../../src/facts.js');
+  assert.ok(CADENCES.length >= 6);
+  for (const c of CADENCES) {
+    assert.ok(c.resource && c.cadence, c.resource);
+    assert.ok(SOURCES[c.src], c.resource);
   }
 });
