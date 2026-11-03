@@ -46,6 +46,16 @@ export const SOURCES = {
   cid2244: 'https://pubchem.ncbi.nlm.nih.gov/compound/2244',
   tax9606: 'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=9606',
   eutils: 'https://www.ncbi.nlm.nih.gov/books/NBK25497/',
+  apiKeys: 'https://ncbiinsights.ncbi.nlm.nih.gov/2017/11/02/new-api-keys-for-the-e-utilities/',
+  datasetsKeys: 'https://www.ncbi.nlm.nih.gov/datasets/docs/v2/api/api-keys/',
+  blastDev: 'https://blast.ncbi.nlm.nih.gov/doc/blast-help/developerinfo.html',
+  reporterApi: 'https://api.reporter.nih.gov/',
+  ctApi: 'https://clinicaltrials.gov/data-api/api',
+  pubmedHelp: 'https://pubmed.ncbi.nlm.nih.gov/help/',
+  meshDownload: 'https://www.nlm.nih.gov/databases/download/mesh.html',
+  umlsReleases: 'https://lhncbc.nlm.nih.gov/LSG/Projects/lexicon/current/docs/designDoc/UDF/umls/index.html',
+  refseqNotes: 'https://ftp.ncbi.nlm.nih.gov/refseq/release/release-notes/',
+  workflow: 'https://github.com/collide2954/nlm-stats/blob/master/.github/workflows/snapshot.yml',
 };
 
 export const TAGS = ['origins', 'literature', 'molecular', 'clinical', 'law', 'people', 'retired'];
@@ -242,34 +252,22 @@ const o = (text, src) => ({ text, src });
 export const ODDITIES = [
   o("The library spent 21 years inside Ford's Theatre, where Lincoln was shot.", 'brief'),
   o('In 1840 the entire collection fit on one four-shelf bookcase, shoulder high, 7 to 8 feet wide.', 'brief'),
-  o('The Bethesda building sits on a former golf course and was built with a collapsible roof.', 'brief'),
-  o('It has over 50 miles of subterranean bookshelves.', 'brief'),
-  o('In 1942, 952 boxes weighing 75 tons went to Cleveland to escape World War II.', 'collection'),
-  o('They came back in May 1962 with armed Pinkerton guards.', 'collection'),
+  o('The Bethesda building sits on a former golf course, with 50+ miles of underground shelves and a collapsible roof.', 'brief'),
+  o('In 1942, 952 boxes weighing 75 tons went to Cleveland to escape the war. They came back under armed Pinkerton guard.', 'collection'),
   o('Modern manuscripts fill 16,000 linear feet, which NLM likens to 53 football fields.', 'collection'),
   o('Billings bought 6,000 medical portraits from collector Cornelius Wilhelm Hendrik van Kaathoven.', 'collection'),
-  o('Billings kept indexing at home, 84 Gay Street in Georgetown, after full days at the library.', 'collection'),
   o('Index-Catalogue Series 4 covers A to "Mn". The second half was never published.', 'indexcat'),
   o('The Hirshhorn Museum stands where the library stood from 1887 to 1962.', 'brief'),
   o('PMID 1 is "Formate assay in body fluids: application in methanol poisoning" (1975).', 'pmid1'),
   o('The oldest PubMed records are dated 1781.', 'pm1781'),
-  o("By bases, wheat is GenBank's most sequenced organism. Humans rank 12th.", 'gbrel'),
-  o('European mistletoe ranks 7th in GenBank by bases, from just 164 entries.', 'gbrel'),
   o('MeSH descriptor D000001 is Calcimycin.', 'meshD1'),
-  o('PubChem compound 2244 is aspirin.', 'cid2244'),
-  o('NCBI Taxonomy ID 1 is "root". 9606 is Homo sapiens.', 'tax9606'),
   o('NCT00000102 was posted 1999-11-04, before ClinicalTrials.gov went public.', 'nct102'),
   o('A 1994 GenBank paper abstract in PubMed spells MEDLINE as "MIDLINE".', 'gb1994'),
   o("NLM's toll-free number is (888) FIND-NLM.", 'about'),
-  o('E-utilities allows 3 requests per second without an API key.', 'eutils'),
   o('UMLS holds 485 concept names in Hebrew and 695 in Basque.', 'umlsStats'),
   o('The Visible Woman was sliced at 0.33 mm so every voxel is a cube.', 'vhp'),
-  o('GenBank 274.0 includes data processed up to Sunday, October 4, 2026, 9:32 PM EDT.', 'gbrel'),
-  o('GenBank stops distributing base quality score files from October 2026.', 'gbrel'),
-  o('The Board of Regents has 10 appointed members and 9 ex officio. Michael DeBakey chaired the first.', 'law'),
-  o('Medical film collecting began in the 1950s. NLM now holds more than 12,000 titles.', 'collection'),
-  o('In 2020 NCBI had about 700 staff serving more than 7 million users a day.', 'ostell'),
-  o('The Lister Hill Center was established by Congress in 1968.', 'lhc'),
+  o('GenBank, ENA and DDBJ accessions never contain an underscore. RefSeq accessions always do.', 'refseqNotes'),
+  o('Every WP_ protein accession is version .1 forever: those records are never updated.', 'refseqNotes'),
 ];
 
 const e = (id, is) => ({ id, is });
@@ -334,4 +332,26 @@ export const PMC_YEARS = [
   fy(2023, 9407149, 3800000),
   fy(2024, 10307502, 4400000),
   fy(2025, 11327616, 3800000),
+];
+
+const api = (service, limit, keyed, note, src) => ({ service, limit, keyed, note, src });
+
+export const APIS = [
+  api('E-utilities', '3 requests/s per IP', '10 requests/s', 'Over the limit returns an error, since May 1, 2018', 'apiKeys'),
+  api('NCBI Datasets v2', '5 requests/s', '10 requests/s', 'Applies to the API and the datasets command-line tool', 'datasetsKeys'),
+  api('BLAST URL API', '1 request per 10 s', '—', 'Poll a single RID no more than once a minute', 'blastDev'),
+  api('NIH RePORTER API', '1 request/s', '—', 'Large jobs on weekends or 9 PM–5 AM Eastern; 500 records per page', 'reporterApi'),
+  api('ClinicalTrials.gov API v2', 'pageSize up to 1,000', '—', 'Data refreshed Monday to Friday, generally by 9 a.m. ET', 'ctApi'),
+];
+
+const cad = (resource, cadence, src) => ({ resource, cadence, src });
+
+export const CADENCES = [
+  cad('PubMed', 'Annual baseline, daily update files', 'pubmedHelp'),
+  cad('MeSH descriptors and qualifiers', 'Annual', 'meshDownload'),
+  cad('MeSH supplementary concepts', 'Daily, Monday to Friday', 'meshDownload'),
+  cad('UMLS Metathesaurus', 'Twice a year: AA in May, AB in November', 'umlsReleases'),
+  cad('GenBank', 'A full release every two months', 'genbank'),
+  cad('ClinicalTrials.gov', 'Daily, Monday to Friday', 'ctApi'),
+  cad('This page', 'Snapshot rebuilt weekly, Sundays 06:17 UTC', 'workflow'),
 ];
