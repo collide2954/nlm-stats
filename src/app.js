@@ -6,10 +6,12 @@ import {
   exact, compact, pct, identify, searchUrl, matches, filterTimeline, sortRows, labelize, liveOddities,
   LENSES, readLens, inLens, lensSearch, REFSEQ_PREFIXES, wordy, yearOf,
 } from './lib.js';
-import { TYPE_SERIES } from './queries.js';
+import { TYPE_SERIES, ACCESS } from './queries.js';
+import { US_TILES } from './tiles.js';
 import { findings } from './findings.js';
 import {
   columns, dotplot, stackedArea, miniArea, waffle, treemap, lines, timeline, observeFigures, countUp, tipLines,
+  tileMap, dumbbell,
 } from './charts.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -42,7 +44,9 @@ const ct = snapshot.clinicaltrials;
 const fund = snapshot.funding;
 const ctLabel = (piece, value) => ct.labels?.[piece]?.[value] ?? labelize(value);
 
-const state = { query: '', tags: new Set(), lens: 'all', entrezSort: 'count', facet: null, ctField: 'OverallStatus', fundTab: 'activity' };
+const state = {
+  query: '', tags: new Set(), lens: 'all', entrezSort: 'count', facet: null, ctField: 'OverallStatus', fundTab: 'activity', geo: 'nih',
+};
 
 const renderHead = () => {
   const day = new Date(snapshot.generated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -166,13 +170,14 @@ const FACET_LABELS = {
 
 const facetGroups = () => snapshot.groups.filter((g) => !g.panel);
 
-const groupPlot = (mount, group, labelShare = 0.34) => {
+const groupPlot = (mount, group, labelShare = 0.34, scale = 'log') => {
   const total = db(group.items[0].db)?.count;
   const same = group.items.every((i) => i.db === group.items[0].db);
   return dotplot({
     mount,
     rows: sortRows(group.items, 'count', 'desc').map((i) => ({ key: i.id, label: i.label, value: i.count, term: i.term, db: i.db })),
     labelShare,
+    scale,
     href: (r) => searchUrl(r.db, r.term),
     linkText: () => 'Run this query',
     aria: group.title,
@@ -416,6 +421,132 @@ const renderSeq = () => {
   $('#refseq-line').textContent = `RefSeq release ${r.release} (${r.date}) holds ${exact(r.records)} records from ${exact(r.organisms)} organisms.`;
 };
 
+const renderGrowth = () => {
+  const list = snapshot.growth;
+  const first = list[0].years[0].year;
+  const last = list[0].years.at(-1).year;
+  $('#growth-dek').textContent = `How many records in ${list.length} NCBI databases carry each year from ${first} to ${last}. Each database dates records its own way: SRA by publication, BioProject by registration, Assembly by sequence release.`;
+  fill('#growth-multiples', ...list.map((d) => {
+    const values = d.years.map((y) => y.count);
+    const peak = d.years.reduce((a, b) => (b.count > a.count ? b : a));
+    return h('div', { class: 'panel', 'data-search': `${d.label} ${d.what}` },
+      h('h4', {}, ext(searchUrl(d.db), d.label)),
+      h('p', {}, `${exact(values.at(-1))} in ${last} · peak ${peak.year} · ${d.what}`),
+      miniArea({
+        years: d.years.map((y) => y.year),
+        values,
+        describe: (yr, v) => tipLines(exact(v), `${d.label}, ${yr}`, d.what, { href: searchUrl(d.db, `${yr}/01/01:${yr}/12/31[${d.field}]`), text: `Open ${d.label} for ${yr}` }),
+      }));
+  }));
+};
+
+const renderAccess = () => {
+  const totals = new Map(snapshot.pubmed.years.map((y) => [y.year, y.count]));
+  const yearsOf = (id) => snapshot.access.find((a) => a.id === id).years;
+  const share = (years) => years.map((y) => ({ x: y.year, y: (y.count / totals.get(y.year)) * 100, n: y.count }));
+  const free = share(yearsOf('free'));
+  const pmcLinked = share(yearsOf('pmc'));
+  $('#access-dek').textContent = `In ${free[0].x}, ${free[0].y.toFixed(1)}% of new PubMed records were free to read. In ${free.at(-1).x} it was ${free.at(-1).y.toFixed(1)}%.`;
+  lines({
+    mount: $('#access-chart'),
+    scale: 'linear',
+    yFormat: (v) => `${v}%`,
+    labelW: 112,
+    height: 260,
+    series: [{ label: 'Free full text', rows: free, alt: true }, { label: 'Linked to PMC', rows: pmcLinked }],
+    aria: 'Share of PubMed records free to read by year',
+    describe: (yr) => {
+      const f = free.find((p) => p.x === yr);
+      const m = pmcLinked.find((p) => p.x === yr);
+      return tipLines(`${f.y.toFixed(1)}% free`, `${yr}, ${exact(totals.get(yr))} records`, `${exact(f.n)} free full text`,
+        `${m.y.toFixed(1)}% linked to PMC (${exact(m.n)})`, { href: searchUrl('pubmed', `free full text[sb] AND ${yr}[dp]`), text: 'Open in PubMed' });
+    },
+  });
+  const per10k = (years) => years.filter((y) => y.year >= ACCESS.from && totals.get(y.year)).map((y) => ({ x: y.year, y: (y.count / totals.get(y.year)) * 10000, n: y.count }));
+  const typeYears = (id) => snapshot.types.find((t) => t.id === id).years;
+  const series = [
+    { label: 'Errata', rows: per10k(yearsOf('erratum')), cls: 'soft' },
+    { label: 'Retracted', rows: per10k(typeYears('retracted')), alt: true },
+    { label: 'Retraction notices', rows: per10k(typeYears('retraction')), cls: 'mid' },
+    { label: 'Concerns', rows: per10k(yearsOf('concern')) },
+  ];
+  lines({
+    mount: $('#integrity-chart'),
+    scale: 'linear',
+    yFormat: (v) => String(v),
+    labelW: 112,
+    height: 260,
+    series,
+    aria: 'Corrections and retractions per 10,000 PubMed records',
+    describe: (yr) => tipLines(String(yr), 'per 10,000 records', ...series.map((ser) => {
+      const p = ser.rows.find((r) => r.x === yr);
+      return p ? `${ser.label} ${p.y.toFixed(1)} (${exact(p.n)})` : null;
+    })),
+  });
+  const pre = snapshot.groups.find((g) => g.id === 'preprints');
+  groupPlot($('#preprints-chart'), pre, 0.34, 'linear');
+  $('#preprints-caption').textContent = `${exact(pre.items.reduce((n, i) => n + i.count, 0))} preprint records in PubMed, by server. Source: PubMed journal field.`;
+};
+
+const STATE_TABS = [['nih', 'All NIH'], ['nlm', 'NLM only']];
+
+const renderStates = (scope) => {
+  state.geo = scope;
+  $$('#state-tabs [role="tab"]').forEach((t) => t.setAttribute('aria-selected', String(t.dataset.scope === scope)));
+  const list = scope === 'nih' ? fund.nihStates : fund.detail.byState;
+  const byKey = new Map(list.map((x) => [x.key, x]));
+  const total = list.reduce((n, x) => n + x.dollars, 0);
+  const values = Object.fromEntries(list.filter((x) => US_TILES[x.key]).map((x) => [x.key, x.dollars]));
+  const who = scope === 'nih' ? 'NIH' : 'NLM';
+  tileMap({
+    mount: $('#state-map'),
+    tiles: US_TILES,
+    values,
+    aria: `${who} award dollars by state`,
+    describe: (code, v) => tipLines(v ? `$${exact(v)}` : 'No awards listed', US_TILES[code].name,
+      byKey.get(code) ? `${exact(byKey.get(code).projects)} awards` : null,
+      v ? `${pct(v / total)} of the ${who} total` : null),
+  });
+  const outside = byKey.get('Outside U.S.');
+  $('#state-caption').textContent = `${scope === 'nih' ? 'All NIH' : 'NLM'} award dollars by the recipient organization's state, FY${fund.detailFy}, log color scale.${outside ? ` ${usd(outside.dollars)} went to organizations outside the U.S.` : ''} Source: NIH RePORTER API.`;
+};
+
+const renderGeography = () => {
+  const nlmTop = fund.detail.byState.filter((x) => US_TILES[x.key])[0];
+  $('#geo-dek').textContent = `NIH RePORTER records the state of each award's recipient. For NLM alone, ${US_TILES[nlmTop.key].name} takes ${pct(nlmTop.dollars / fund.detail.dollars)}, because NLM's intramural programs sit in Bethesda.`;
+  fill('#state-tabs', ...STATE_TABS.map(([key, label]) => h('button', {
+    type: 'button', role: 'tab', 'data-scope': key, 'aria-controls': 'state-map', 'aria-selected': 'false', onclick: () => renderStates(key),
+  }, label)));
+  renderStates(state.geo);
+  const [y0, y1] = Object.keys(snapshot.countries[0].counts).map(Number);
+  dumbbell({
+    mount: $('#countries-chart'),
+    rows: sortRows(snapshot.countries.map((c) => ({ key: c.name, label: c.name, a: c.counts[y0], b: c.counts[y1], term: c.term })), 'b', 'desc'),
+    years: [y0, y1],
+    aria: 'PubMed records by author country',
+    describe: (r) => tipLines(exact(r.b), `${r.label}, ${y1}`, `${exact(r.a)} in ${y0}`, `${(r.b / r.a).toFixed(1)}× in ten years`,
+      { href: searchUrl('pubmed', `${r.term} AND ${y1}[dp]`), text: 'Run this query' }),
+  });
+};
+
+const renderVariants = () => {
+  const review = snapshot.groups.find((g) => g.id === 'cv-review');
+  const count = (id) => review.items.find((i) => i.id === id).count;
+  $('#variants-dek').textContent = `ClinVar holds ${exact(db('clinvar').count)} records. ${exact(count('rv-guideline'))} rest on practice guidelines and ${exact(count('rv-panel'))} on expert panels; ${exact(count('rv-conflict'))} carry conflicting classifications.`;
+  groupPlot($('#review-chart'), review, 0.36);
+  groupPlot($('#vtype-chart'), snapshot.groups.find((g) => g.id === 'cv-type'), 0.42);
+  groupPlot($('#origin-chart'), snapshot.groups.find((g) => g.id === 'cv-origin'), 0.42);
+  dotplot({
+    mount: $('#genes-chart'),
+    rows: sortRows(snapshot.genes, 'pubmed', 'desc').map((gn) => ({ key: gn.symbol, label: gn.symbol, value: gn.pubmed, gn })),
+    labelShare: 0.18,
+    href: (r) => `https://www.ncbi.nlm.nih.gov/gene/${r.gn.id}`,
+    linkText: () => 'Open in Gene',
+    aria: 'PubMed records linked to well-known genes',
+    describe: (r) => tipLines(`${exact(r.value)} PubMed records`, `${r.gn.symbol}, ${r.gn.description}`, `Chromosome ${r.gn.chromosome}`, `${exact(r.gn.clinvar)} ClinVar records`),
+  });
+};
+
 const table = (sel, caption, head, rows) => fill(sel,
   h('caption', {}, caption),
   h('thead', {}, h('tr', {}, head.map((t) => h('th', { scope: 'col' }, t)))),
@@ -566,7 +697,7 @@ const renderSources = () => {
 
 const SEARCHABLE = [
   '#projects-table tbody tr', '#oddities li', '#entrez-table tbody tr', '#source-list li', '#api-table tbody tr',
-  '#cadence-table tbody tr', '#refseq-prefixes tbody tr', '#methods-list li', '#types-multiples .panel',
+  '#cadence-table tbody tr', '#refseq-prefixes tbody tr', '#methods-list li', '#types-multiples .panel', '#growth-multiples .panel',
 ];
 
 const applySearch = () => {
@@ -609,6 +740,10 @@ const store = {
 
 const drawCharts = () => {
   renderEntrez();
+  renderGrowth();
+  renderAccess();
+  renderGeography();
+  renderVariants();
   renderPubmed();
   renderTypes();
   renderFacets();
