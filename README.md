@@ -11,7 +11,7 @@ Lenses at the top filter the page: `?lens=bioinfo`, `?lens=stats` or `?lens=fund
 | `npm run serve` | Serves the page at http://127.0.0.1:8080/ |
 | `npm run lint` | ESLint, Stylelint and html-validate, each with a no-comments rule |
 | `npm test` | Lint, unit tests, and Playwright end-to-end tests at desktop and mobile widths |
-| `npm run snapshot` | Rebuilds `src/snapshot.js` from E-utilities, ClinicalTrials.gov, NIH RePORTER, GenBank and RefSeq (about 20 minutes) |
+| `npm run snapshot` | Rebuilds `src/snapshot.js` from E-utilities, ClinicalTrials.gov, NIH RePORTER, GenBank and RefSeq (about 35 minutes) |
 | `npm run snapshot -- types genbank` | Rebuilds only the named sections |
 
 ## Publish it
