@@ -4,7 +4,7 @@ import {
 } from './facts.js';
 import {
   exact, compact, pct, identify, searchUrl, matches, filterTimeline, sortRows,
-  logShare, share, niceTicks, decade, labelize, stamp, liveOddities,
+  logShare, share, niceTicks, decade, labelize, stamp, liveOddities, labelStep,
   LENSES, readLens, inLens, lensSearch, REFSEQ_PREFIXES,
 } from './lib.js';
 import { CT_DESIGN } from './queries.js';
@@ -140,10 +140,14 @@ const renderEntrezDek = () => {
 
 const tipLink = (text, href, linkText) => [text, ' ', ext(href, linkText)];
 
-const CHART = { W: 820, H: 230, L: 54, B: 22, T: 8 };
+const CHART = { H: 230, L: 54, B: 22, T: 8 };
 
-const barChart = ({ mount, tip, rows, attr, key, value, overlay, axis, every, aria, describe }) => {
-  const { W, H, L, B, T } = CHART;
+const widthOf = (mount) => Math.round(Math.min(Math.max($(mount).clientWidth || 820, 300), 1240));
+
+const barChart = ({ mount, tip, rows, attr, key, value, overlay, axis, aria, describe, legend }) => {
+  const { H, L, B, T } = CHART;
+  const W = widthOf(mount);
+  const step = labelStep(rows.length, W - L);
   const ticks = niceTicks(Math.max(...rows.map(value)), 4);
   const top = ticks.at(-1) || 1;
   const bw = (W - L) / rows.length;
@@ -168,7 +172,7 @@ const barChart = ({ mount, tip, rows, attr, key, value, overlay, axis, every, ar
       width: Math.max(bw * 0.5, 1).toFixed(2),
       height: (H - B - y(overlay(r))).toFixed(2),
     })) : []),
-    ...rows.map((r, i) => (every(key(r)) ? s('text', { x: (x(i) + bw / 2).toFixed(2), y: H - 6, 'text-anchor': 'middle' }, key(r)) : null)).filter(Boolean));
+    ...rows.map((r, i) => (key(r) % step === 0 ? s('text', { x: (x(i) + bw / 2).toFixed(2), y: H - 6, 'text-anchor': 'middle' }, key(r)) : null)).filter(Boolean));
   const show = (event) => {
     const rect = event.target.closest(`[data-${attr}]`);
     if (!rect) return;
@@ -179,9 +183,11 @@ const barChart = ({ mount, tip, rows, attr, key, value, overlay, axis, every, ar
   };
   svgEl.addEventListener('pointerover', show);
   svgEl.addEventListener('click', show);
-  fill(mount, svgEl);
+  fill(mount, ...(legend ? [legend] : []), svgEl);
   fill(tip, 'Hover or tap a bar.');
 };
+
+const legendOf = (items) => h('div', { class: 'legend' }, items.map(([name, color]) => h('span', {}, h('i', { style: `background:var(${color})` }), name)));
 
 const signed = (n) => `${n >= 0 ? '+' : ''}${exact(n)}`;
 
@@ -196,7 +202,6 @@ const renderPubmedChart = () => {
     key: (r) => r.year,
     value: (r) => r.count,
     axis: compact,
-    every: (k) => k % 10 === 0,
     aria: 'PubMed records per publication year, 1945 onward',
     describe: (d, prev) => tipLink(
       `${d.year}${d.partial ? ' so far' : ''}: ${exact(d.count)} records${prev ? ` (${signed(d.count - prev.count)} vs ${prev.year})` : ''}.`,
@@ -262,11 +267,8 @@ const renderPapers = () => {
 };
 
 const lineChart = ({ series, id, tip, label }) => {
-  const W = 820;
-  const H = 230;
-  const L = 46;
-  const B = 22;
-  const T = 8;
+  const { H, L, B, T } = CHART;
+  const W = widthOf(id);
   const years = [...new Set(series.flatMap((x) => x.rows.map((r) => r.year)))].sort((a, b) => a - b);
   const values = series.flatMap((x) => x.rows.map((r) => r.bases));
   const lo = Math.floor(Math.log10(Math.min(...values)));
@@ -278,7 +280,7 @@ const lineChart = ({ series, id, tip, label }) => {
     ...Array.from({ length: hi - lo + 1 }, (_, i) => lo + i).filter((p) => p % 3 === 0 || hi - lo < 6).map((p) => s('g', {},
       s('line', { class: 'axis', x1: L, x2: W, y1: y(10 ** p), y2: y(10 ** p) }),
       s('text', { x: L - 6, y: y(10 ** p) + 3, 'text-anchor': 'end' }, compact(10 ** p)))),
-    ...years.filter((yr) => yr % 5 === 0).map((yr) => s('text', { x: x(yr), y: H - 6, 'text-anchor': 'middle' }, yr)),
+    ...years.filter((yr) => yr % labelStep(years.length, W - L) === 0).map((yr) => s('text', { x: x(yr), y: H - 6, 'text-anchor': 'middle' }, yr)),
     ...series.map((ser) => s('polyline', { class: `line ${ser.cls}`, points: ser.rows.map((r) => `${x(r.year).toFixed(1)},${y(r.bases).toFixed(1)}`).join(' ') })),
     ...years.map((yr) => s('rect', { class: 'hit', 'data-year': yr, x: (x(yr) - step / 2).toFixed(1), y: T, width: step.toFixed(1), height: H - T - B })));
   const show = (event) => {
@@ -293,8 +295,7 @@ const lineChart = ({ series, id, tip, label }) => {
   };
   svgEl.addEventListener('pointerover', show);
   svgEl.addEventListener('click', show);
-  const legend = h('div', { class: 'legend' }, series.map((ser) => h('span', {}, h('i', { style: `background:var(${ser.cls === 'l1' ? '--bar' : '--bar-2'})` }), ser.name)));
-  fill(id, legend, svgEl);
+  fill(id, legendOf(series.map((ser) => [ser.name, ser.cls === 'l1' ? '--bar' : '--bar-2'])), svgEl);
 };
 
 const renderGenbank = () => {
@@ -480,13 +481,10 @@ const renderDesign = () => {
     value: (r) => r.registered,
     overlay: (r) => r.results,
     axis: compact,
-    every: (k) => k % 5 === 0,
     aria: 'Studies first posted and results first posted per year',
     describe: (d) => [`${d.year}${d.partial ? ' so far' : ''}: ${exact(d.registered)} studies first posted, ${exact(d.results)} first posted results.`],
+    legend: legendOf([['Studies first posted', '--bar'], ['Results first posted', '--bar-2']]),
   });
-  $('#design-chart').prepend(h('div', { class: 'legend' },
-    h('span', {}, h('i', { style: 'background:var(--bar)' }), 'Studies first posted'),
-    h('span', {}, h('i', { style: 'background:var(--bar-2)' }), 'Results first posted')));
   const bandMax = Math.max(...ct.enrollmentBands.map((b) => b.count));
   fill('#enrollment', ...ct.enrollmentBands.map((b) => h('li', {},
     h('span', {}, b.to === 'MAX' ? `${exact(b.from)}+` : b.from === b.to ? exact(b.from) : `${exact(b.from)}–${exact(b.to)}`),
@@ -522,7 +520,6 @@ const renderFunding = () => {
     key: (r) => r.fy,
     value: (r) => r.dollars,
     axis: usd,
-    every: (k) => k % 5 === 0,
     aria: 'NLM award dollars per fiscal year in NIH RePORTER',
     describe: (r, prev) => [`FY${r.fy}: $${exact(r.dollars)} across ${exact(r.projects)} NLM awards${prev ? ` (${signed(r.dollars - prev.dollars)} vs FY${prev.fy})` : ''}${r.partial ? '. Data still arriving' : ''}.`],
   });
@@ -560,7 +557,29 @@ const applyLens = (lens, push) => {
   $$('main > section').forEach((sec) => { sec.hidden = !inLens(sec.dataset.lens, lens); });
   $$('#jump a').forEach((a) => { a.hidden = $(`#${a.dataset.for}`).hidden; });
   $('#lens-hint').textContent = current.hint;
-  if (push) history.replaceState(null, '', `${location.pathname}${lensSearch(location.search, lens)}${location.hash}`);
+  if (push) {
+    history.replaceState(null, '', `${location.pathname}${lensSearch(location.search, lens)}${location.hash}`);
+    drawCharts();
+  }
+};
+
+const drawCharts = () => {
+  renderPubmedChart();
+  renderGenbank();
+  renderDesign();
+  renderFunding();
+  applySearch();
+};
+
+let resizeTimer;
+let lastWidth = 0;
+const onResize = () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    drawCharts();
+  }, 150);
 };
 
 const timelineNodes = new Map();
@@ -794,6 +813,8 @@ const init = () => {
   renderSources();
   applySearch();
   applyLens(readLens(location.search), false);
+  lastWidth = window.innerWidth;
+  window.addEventListener('resize', onResize);
   $('#db-table').addEventListener('click', onSort);
   $('#q').addEventListener('input', onSearch);
   $('#timeline-tags').addEventListener('click', toggleChip(state.tags, 'data-tag'));
