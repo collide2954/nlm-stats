@@ -508,12 +508,15 @@ const renderStates = (scope) => {
       v ? `${pct(v / total)} of the ${who} total` : null),
   });
   const outside = byKey.get('Outside U.S.');
-  $('#state-caption').textContent = `${scope === 'nih' ? 'All NIH' : 'NLM'} award dollars by the recipient organization's state, FY${fund.detailFy}, log color scale.${outside ? ` ${usd(outside.dollars)} went to organizations outside the U.S.` : ''} Source: NIH RePORTER API.`;
+  const all = scope === 'nih' ? fund.ics.reduce((n, i) => n + i.dollars, 0) : fund.detail.dollars;
+  const stateless = all - total;
+  $('#state-caption').textContent = `${scope === 'nih' ? 'All NIH' : 'NLM'} award dollars by the recipient organization's state, FY${fund.detailFy}, log color scale.${outside ? ` ${usd(outside.dollars)} went to organizations outside the U.S.` : ''} ${usd(stateless)} with no state, mostly intramural, is left out. Source: NIH RePORTER API.`;
 };
 
 const renderGeography = () => {
   const nlmTop = fund.detail.byState.filter((x) => US_TILES[x.key])[0];
-  $('#geo-dek').textContent = `NIH RePORTER records the state of each award's recipient. For NLM alone, ${US_TILES[nlmTop.key].name} takes ${pct(nlmTop.dollars / fund.detail.dollars)}, because NLM's intramural programs sit in Bethesda.`;
+  const nlmStateless = fund.detail.dollars - fund.detail.byState.reduce((n, x) => n + x.dollars, 0);
+  $('#geo-dek').textContent = `NIH RePORTER records the state of each award's recipient organization. Intramural awards carry no state, so ${usd(nlmStateless)} of NLM's ${usd(fund.detail.dollars)} is not on the NLM map; of the rest, ${US_TILES[nlmTop.key].name} draws the most, ${usd(nlmTop.dollars)}.`;
   fill('#state-tabs', ...STATE_TABS.map(([key, label]) => h('button', {
     type: 'button', role: 'tab', 'data-scope': key, 'aria-controls': 'state-map', 'aria-selected': 'false', onclick: () => renderStates(key),
   }, label)));
