@@ -533,3 +533,27 @@ export const wordy = (n) => {
 };
 
 export const easeOut = (t) => 1 - (1 - t) ** 3;
+
+export const spread = (positions, gap, lo, hi) => {
+  const order = positions.map((p, i) => ({ p, i })).sort((a, b) => a.p - b.p);
+  let blocks = order.map((o) => ({ items: [o], top: o.p }));
+  const fit = (b) => Math.min(Math.max(b.top, lo), hi - (b.items.length - 1) * gap);
+  let merged = true;
+  while (merged) {
+    merged = false;
+    const next = [];
+    for (const b of blocks) {
+      const prev = next.at(-1);
+      if (prev && fit(prev) + prev.items.length * gap > fit(b)) {
+        const items = [...prev.items, ...b.items];
+        const mean = items.reduce((n, o) => n + o.p, 0) / items.length;
+        next[next.length - 1] = { items, top: mean - ((items.length - 1) * gap) / 2 };
+        merged = true;
+      } else next.push(b);
+    }
+    blocks = next;
+  }
+  const out = [];
+  for (const b of blocks) b.items.forEach((o, k) => { out[o.i] = fit(b) + k * gap; });
+  return out;
+};

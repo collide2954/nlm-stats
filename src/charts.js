@@ -1,6 +1,6 @@
 import {
   exact, compact, niceTicks, scaleLinear, scaleLog, logTicks, labelStep, squarify, waffle as waffleCells,
-  stack, zoomDomain, panDomain, easeOut,
+  stack, zoomDomain, panDomain, easeOut, spread,
 } from './lib.js';
 
 const NS = 'http://www.w3.org/2000/svg';
@@ -441,6 +441,7 @@ export const lines = ({
   const y = log ? scaleLog([lo, hi], [H - B, T]) : scaleLinear([0, hi], [H - B, T]);
   const ticks = log ? logTicks(lo, hi).filter((t) => Math.round(Math.log10(t)) % 3 === 0) : niceTicks(Math.max(...ys), 4);
   const step = labelStep(xs.length, W - L - R, 40);
+  const labelY = spread(series.map((s) => y(s.rows.at(-1).y)), 14, T, H - B);
   const cross = el('line', { class: 'cross', y1: T, y2: H - B, x1: 0, x2: 0, visibility: 'hidden' });
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
     ticks.map((t) => el('g', {},
@@ -448,11 +449,14 @@ export const lines = ({
       el('text', { x: L - 8, y: y(t) + 4, 'text-anchor': 'end' }, yFormat(t)))),
     el('line', { class: 'base', x1: L, x2: W - R, y1: H - B, y2: H - B }),
     xs.map((v) => (v % step === 0 ? el('text', { x: x(v), y: H - 6, 'text-anchor': 'middle' }, v) : null)),
-    series.map((s) => {
+    series.map((s, n) => {
       const last = s.rows.at(-1);
+      const ly = labelY[n];
+      const moved = Math.abs(ly - y(last.y)) > 2;
       return el('g', {},
         el('path', { class: `line${s.alt ? ' alt' : ''}${s.cls ? ` ${s.cls}` : ''}`, d: `M${s.rows.filter((r) => !log || r.y > 0).map((r) => `${x(r.x).toFixed(1)},${y(r.y).toFixed(1)}`).join('L')}` }),
-        el('text', { class: 'lab', x: x(last.x) + 8, y: y(last.y) + 4 }, s.label));
+        moved ? el('path', { class: 'leader', d: `M${x(last.x) + 2},${y(last.y)}L${x(last.x) + 7},${ly}` }) : null,
+        el('text', { class: 'lab', x: x(last.x) + (moved ? 10 : 8), y: ly + 4 }, s.label));
     }),
     annotations.map((a, n) => {
       const s = series[a.series ?? 0];

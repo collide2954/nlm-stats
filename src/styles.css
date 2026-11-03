@@ -474,6 +474,12 @@ h2,
   font: italic 13.5px var(--serif);
 }
 
+.chart .leader {
+  stroke: var(--muted);
+  stroke-width: 1;
+  fill: none;
+}
+
 .chart .note-line {
   stroke: var(--ink);
   stroke-width: 1;
