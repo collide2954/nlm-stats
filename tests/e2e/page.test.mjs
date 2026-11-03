@@ -436,3 +436,14 @@ test('vocabulary chart stops at the last complete year and sponsor classes read 
   assert.ok(labels.every((l) => !/^[A-Z_]+$/.test(l) || l === 'NIH'), labels.join());
   await page.close();
 });
+
+test('chart annotations stay inside their charts on a phone', async () => {
+  const { page } = await open({ width: 375 });
+  const outside = await page.$$eval('.chart svg', (svgs) => svgs.flatMap((svg) => {
+    const width = svg.viewBox.baseVal.width;
+    return [...svg.querySelectorAll('text.note')].map((t) => ({ id: svg.closest('[id]')?.id, text: t.textContent, b: t.getBBox() }))
+      .filter((n) => n.b.x < -1 || n.b.x + n.b.width > width + 1).map((n) => `${n.id}: ${n.text}`);
+  }));
+  assert.deepEqual(outside, []);
+  await page.close();
+});
