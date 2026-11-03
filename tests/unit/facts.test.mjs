@@ -107,3 +107,14 @@ test('projects are listed by start year', () => {
   const years = PROJECTS.map((p) => p.since);
   assert.deepEqual(years, [...years].sort((a, b) => a - b));
 });
+
+test('every source has a readable title in a known group', async () => {
+  const { SOURCE_TITLES, SOURCE_GROUPS } = await import('../../src/facts.js');
+  for (const key of Object.keys(SOURCES)) {
+    const entry = SOURCE_TITLES[key];
+    assert.ok(entry, key);
+    const [group, title] = entry;
+    assert.ok(SOURCE_GROUPS.includes(group), `${key}: ${group}`);
+    assert.ok(title.length > 5 && !/^https?:|^www\./.test(title), key);
+  }
+});

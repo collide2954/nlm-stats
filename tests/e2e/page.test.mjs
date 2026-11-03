@@ -548,3 +548,12 @@ test('a lens hides chapters that have nothing left to show', async () => {
   assert.equal(await page.isVisible('#jump a[data-for="ch-literature"]'), false);
   await page.close();
 });
+
+test('sources are titled and grouped, not bare URLs', async () => {
+  const { page } = await open();
+  assert.ok(await page.locator('#sources .srcgroup').count() >= 5);
+  const texts = await page.$$eval('#sources .srcgroup a', (as) => as.map((a) => a.textContent.trim()));
+  assert.ok(texts.length >= 50);
+  assert.deepEqual(texts.filter((t) => /^(https?:|www\.|[a-z0-9.-]+\.(gov|org|com)\/)/.test(t)), []);
+  await page.close();
+});
