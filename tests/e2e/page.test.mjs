@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { start } from '../../scripts/serve.mjs';
 import snapshot from '../../src/snapshot.js';
-import { TIMELINE, PROJECTS, ODDITIES, PEOPLE } from '../../src/facts.js';
-import { exact } from '../../src/lib.js';
+import { TIMELINE, PROJECTS, ODDITIES, PEOPLE, APIS, CADENCES } from '../../src/facts.js';
+import { exact, liveOddities } from '../../src/lib.js';
+import { ICS } from '../../src/queries.js';
 
 const { chromium } = createRequire(import.meta.url)('playwright');
 
@@ -16,13 +17,13 @@ const blockNetwork = async (page) => {
   await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) => route.abort());
 };
 
-const open = async (viewport = { width: 1280, height: 900 }) => {
+const open = async (viewport = { width: 1280, height: 900 }, search = '') => {
   const page = await browser.newPage({ viewport });
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('console', (m) => m.type() === 'error' && !/net::ERR_FAILED/.test(m.text()) && errors.push(m.text()));
   await blockNetwork(page);
-  await page.goto(base);
+  await page.goto(`${base}${search}`);
   await page.waitForSelector('#db-table tbody tr');
   return { page, errors };
 };
@@ -66,7 +67,7 @@ test('renders timeline, projects, people and oddities', async () => {
   assert.equal(await page.locator('#timeline li').count(), TIMELINE.length);
   assert.equal(await page.locator('#projects article').count(), PROJECTS.length);
   assert.equal(await page.locator('#people li').count(), PEOPLE.length);
-  assert.equal(await page.locator('#oddities li').count(), ODDITIES.length);
+  assert.equal(await page.locator('#oddities li').count(), ODDITIES.length + liveOddities(snapshot).length);
   await page.close();
 });
 
@@ -155,6 +156,65 @@ test('data comes from the weekly snapshot only', async () => {
   assert.equal(await page.locator('#refresh').count(), 0);
   assert.match(await page.textContent('#stamp'), /Snapshot \d{4}-\d{2}-\d{2}/);
   assert.match(await page.textContent('#stamp'), /weekly/i);
+  await page.close();
+});
+
+test('lens buttons hide sections outside the lens and update the URL', async () => {
+  const { page } = await open();
+  await page.click('#lenses button[data-lens="stats"]');
+  assert.equal(await page.isVisible('#entrez'), false);
+  assert.equal(await page.isVisible('#methods'), true);
+  assert.equal(await page.isVisible('#counts'), true);
+  assert.equal(await page.isVisible('.jump a[href="#entrez"]'), false);
+  assert.match(page.url(), /\?lens=stats$/);
+  assert.equal(await page.getAttribute('#lenses button[data-lens="stats"]', 'aria-pressed'), 'true');
+  await page.click('#lenses button[data-lens="all"]');
+  assert.equal(await page.isVisible('#entrez'), true);
+  assert.doesNotMatch(page.url(), /lens=/);
+  await page.close();
+});
+
+test('a lens in the URL is applied on load', async () => {
+  const { page } = await open(undefined, '?lens=funding');
+  assert.equal(await page.isVisible('#funding'), true);
+  assert.equal(await page.isVisible('#decoder'), false);
+  assert.equal(await page.getAttribute('#lenses button[data-lens="funding"]', 'aria-pressed'), 'true');
+  await page.close();
+});
+
+test('funding section charts NLM by fiscal year and compares institutes', async () => {
+  const { page } = await open();
+  assert.equal(await page.locator('#funding-chart [data-fy]').count(), snapshot.funding.years.length);
+  assert.equal(await page.locator('#funding-ics li').count(), ICS.length);
+  assert.equal(await page.locator('#funding-ics li.me').count(), 1);
+  assert.match(await page.textContent('#funding-dek'), new RegExp(exact(snapshot.funding.detail.projects)));
+  await page.hover(`#funding-chart [data-fy="${snapshot.funding.detailFy}"]`);
+  assert.match(await page.textContent('#funding-tip'), new RegExp(`FY${snapshot.funding.detailFy}`));
+  await page.close();
+});
+
+test('methods section draws one sparkline per method', async () => {
+  const { page } = await open();
+  assert.equal(await page.locator('#methods-list li').count(), snapshot.methods.length);
+  assert.equal(await page.locator('#methods-list li svg').count(), snapshot.methods.length);
+  await page.close();
+});
+
+test('trial design and timing render', async () => {
+  const { page } = await open();
+  assert.ok(await page.locator('#design-fields li').count() > 20);
+  assert.equal(await page.locator('#design-chart [data-year]').count(), snapshot.clinicaltrials.timing.length);
+  assert.equal(await page.locator('#enrollment li').count(), snapshot.clinicaltrials.enrollmentBands.length);
+  await page.close();
+});
+
+test('sequence data, RefSeq prefixes, API limits and cadences render', async () => {
+  const { page } = await open();
+  const seqItems = snapshot.groups.filter((g) => g.panel === 'seqdata').reduce((n, g) => n + g.items.length, 0);
+  assert.equal(await page.locator('#seq-groups li').count(), seqItems);
+  assert.equal(await page.locator('#refseq-prefixes tbody tr').count(), 15);
+  assert.equal(await page.locator('#api-table tbody tr').count(), APIS.length);
+  assert.equal(await page.locator('#cadence-table tbody tr').count(), CADENCES.length);
   await page.close();
 });
 
