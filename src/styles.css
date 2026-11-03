@@ -691,9 +691,9 @@ h2,
 }
 
 .tip {
-  position: fixed;
+  position: absolute;
   z-index: 50;
-  max-width: 280px;
+  max-width: min(300px, calc(100vw - 16px));
   padding: 8px 11px;
   background: var(--ink);
   color: var(--paper);
@@ -701,6 +701,58 @@ h2,
   line-height: 1.35;
   pointer-events: none;
   box-shadow: 0 6px 22px rgb(0 0 0 / 18%);
+}
+
+.tip[data-pinned="true"] {
+  pointer-events: auto;
+  padding-right: 34px;
+}
+
+.tip a {
+  display: block;
+  margin-top: 6px;
+  color: var(--paper);
+  text-decoration-color: var(--accent);
+  font-weight: 600;
+}
+
+.tip-close {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: none;
+  color: var(--paper);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.chart .bar.sel {
+  fill: var(--ink);
+}
+
+.chart g.sel .dot {
+  fill: var(--accent);
+}
+
+.chart g.sel .tile {
+  fill: var(--ink-2);
+}
+
+.chart g.me.sel .tile {
+  fill: var(--accent-text);
+}
+
+.chart .cell.sel {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.chart [data-k] {
+  cursor: pointer;
 }
 
 .tip b {

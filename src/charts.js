@@ -32,51 +32,141 @@ const html = (tag, props = {}, ...kids) => {
 
 const tipNode = () => document.getElementById('tip');
 
+const clearMarks = () => {
+  document.querySelectorAll('.chart .sel').forEach((n) => n.classList.remove('sel'));
+  document.querySelectorAll('.chart .cross').forEach((c) => c.setAttribute('visibility', 'hidden'));
+};
+
+const place = (node, pageX, pageY) => {
+  const w = node.offsetWidth;
+  const h = node.offsetHeight;
+  const vw = document.documentElement.clientWidth;
+  const minX = window.scrollX + 8;
+  const maxX = window.scrollX + vw - w - 8;
+  const maxY = window.scrollY + window.innerHeight - h - 8;
+  let left = pageX + 14;
+  if (left > maxX) left = pageX - w - 14;
+  let top = pageY + 14;
+  if (top > maxY) top = pageY - h - 14;
+  node.style.left = `${Math.max(minX, Math.min(left, maxX))}px`;
+  node.style.top = `${Math.max(window.scrollY + 8, top)}px`;
+};
+
 export const tip = {
-  show(lines, x, y) {
+  show(lines, pageX, pageY, pinned = false) {
     const node = tipNode();
-    node.replaceChildren(...lines);
+    const close = pinned ? html('button', { type: 'button', class: 'tip-close', 'aria-label': 'Close' }, '×') : null;
+    close?.addEventListener('click', () => tip.hide());
+    node.replaceChildren(...lines, close);
     node.hidden = false;
-    const w = node.offsetWidth;
-    const h = node.offsetHeight;
-    const left = x + 16 + w > window.innerWidth - 8 ? x - w - 16 : x + 16;
-    const top = y + 16 + h > window.innerHeight - 8 ? y - h - 16 : y + 16;
-    node.style.left = `${Math.max(8, left)}px`;
-    node.style.top = `${Math.max(8, top)}px`;
+    node.dataset.pinned = String(pinned);
+    place(node, pageX, pageY);
   },
   hide() {
-    tipNode().hidden = true;
+    const node = tipNode();
+    node.hidden = true;
+    node.dataset.pinned = 'false';
+    clearMarks();
+  },
+  get pinned() {
+    const node = tipNode();
+    return !node.hidden && node.dataset.pinned === 'true';
   },
 };
+
+const installGlobal = () => {
+  if (document.body.dataset.tipReady) return;
+  document.body.dataset.tipReady = '1';
+  document.addEventListener('click', (event) => {
+    if (tip.pinned && !event.target.closest('#tip')) tip.hide();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') tip.hide();
+  });
+};
+
+const tipLink = (href, text) => html('a', { href, target: '_blank', rel: 'noopener' }, `${text ?? 'Open the source'} ↗`);
 
 export const tipLines = (value, label, ...extra) => [
   html('b', {}, value),
   html('span', {}, label),
-  ...extra.filter(Boolean).map((e) => (e.nodeType ? e : html('span', {}, e))),
+  ...extra.filter(Boolean).map((e) => {
+    if (e.nodeType) return e;
+    if (e.href) return tipLink(e.href, e.text);
+    return html('span', {}, e);
+  }),
 ];
 
-const hover = (root, lookup) => {
-  const show = (event) => {
-    const target = event.target.closest('[data-k]');
-    if (!target || !root.contains(target)) {
+export const nearestMark = (root, cx, cy, axis) => {
+  let best = null;
+  let bestD = Infinity;
+  for (const m of root.querySelectorAll('[data-k]')) {
+    if (m.classList.contains('hit')) continue;
+    const r = m.getBoundingClientRect();
+    if (!r.width && !r.height) continue;
+    const d = axis === 'x'
+      ? Math.abs(r.left + r.width / 2 - cx)
+      : Math.hypot(r.left + r.width / 2 - cx, r.top + r.height / 2 - cy);
+    if (d < bestD) {
+      bestD = d;
+      best = m;
+    }
+  }
+  return bestD <= (axis === 'x' ? 40 : 36) ? best : null;
+};
+
+const hover = (root, lookup, { axis } = {}) => {
+  installGlobal();
+  const resolve = (event) => {
+    const direct = event.target.closest?.('[data-k]');
+    if (direct && root.contains(direct)) return direct;
+    return Number.isFinite(event.clientX) ? nearestMark(root, event.clientX, event.clientY, axis) : null;
+  };
+  const select = (mark) => {
+    clearMarks();
+    mark.classList.add('sel');
+  };
+  root.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'mouse' || tip.pinned) return;
+    const mark = resolve(event);
+    if (!mark) {
       tip.hide();
       return;
     }
-    tip.show(lookup(target.dataset.k, event), event.clientX, event.clientY);
-  };
-  root.addEventListener('pointermove', show);
-  root.addEventListener('pointerdown', show);
-  root.addEventListener('pointerleave', () => {
-    tip.hide();
-    root.querySelectorAll('.cross').forEach((c) => c.setAttribute('visibility', 'hidden'));
+    tip.show(lookup(mark.dataset.k, event, mark), event.pageX, event.pageY);
+  });
+  root.addEventListener('pointerleave', (event) => {
+    if (event.pointerType === 'mouse' && !tip.pinned) tip.hide();
+  });
+  root.addEventListener('click', (event) => {
+    if (root.dataset.dragged === '1') {
+      root.dataset.dragged = '';
+      return;
+    }
+    const mark = resolve(event);
+    if (!mark) return;
+    event.stopPropagation();
+    event.preventDefault();
+    select(mark);
+    tip.show(lookup(mark.dataset.k, event, mark), event.pageX, event.pageY, true);
   });
   root.addEventListener('focusin', (event) => {
-    const target = event.target.closest('[data-k]');
-    if (!target) return;
-    const r = target.getBoundingClientRect();
-    tip.show(lookup(target.dataset.k, event), r.right, r.top);
+    const mark = event.target.closest('[data-k]');
+    if (!mark || tip.pinned) return;
+    const r = mark.getBoundingClientRect();
+    tip.show(lookup(mark.dataset.k, event, mark), r.right + window.scrollX, r.top + window.scrollY);
   });
-  root.addEventListener('focusout', () => tip.hide());
+  root.addEventListener('keydown', (event) => {
+    const mark = event.target.closest('[data-k]');
+    if (!mark || (event.key !== 'Enter' && event.key !== ' ')) return;
+    event.preventDefault();
+    const r = mark.getBoundingClientRect();
+    select(mark);
+    tip.show(lookup(mark.dataset.k, event, mark), r.right + window.scrollX, r.top + window.scrollY, true);
+  });
+  root.addEventListener('focusout', () => {
+    if (!tip.pinned) tip.hide();
+  });
 };
 
 const widthOf = (mount) => Math.round(Math.min(Math.max(mount.clientWidth || 800, 280), 1120));
@@ -145,7 +235,7 @@ export const columns = ({
         el('path', { class: 'note-line', d: `M${cx},${ty + 4}V${y(value(rows[i])) - 5}` }),
         el('text', { class: 'note', x: right ? cx - 6 : cx + 6, y: ty + 4, 'text-anchor': right ? 'end' : 'start' }, a.text));
     }));
-  hover(svg, (k) => describe(rows[Number(k)], rows[Number(k) - 1]));
+  hover(svg, (k) => describe(rows[Number(k)], rows[Number(k) - 1]), { axis: 'x' });
   return mountSvg(mount, svg);
 };
 
@@ -155,7 +245,7 @@ const truncate = (text, px) => {
 };
 
 export const dotplot = ({
-  mount, rows, attr = 'row', scale = 'log', format = exact, describe, rowH = 24, href, labelShare = 0.34, aria,
+  mount, rows, attr = 'row', scale = 'log', format = exact, describe, rowH = 24, href, linkText, labelShare = 0.34, aria,
 }) => {
   const W = widthOf(mount);
   const labelW = Math.min(240, Math.max(96, W * labelShare));
@@ -183,7 +273,6 @@ export const dotplot = ({
       el('circle', { class: `dot${r.hi ? ' hi' : ''}`, cx: at(r.value), cy: 0, r: 4.5, style: `--i:${i}` }),
       el('text', { x: at(r.value) + 9, y: 4 }, format(r.value)),
     ];
-    const link = href?.(r);
     return el('g', {
       [`data-${attr}`]: r.key,
       'data-row': attr === 'row' ? r.key : null,
@@ -191,14 +280,18 @@ export const dotplot = ({
       'data-rank': i,
       tabindex: 0,
       transform: `translate(0 ${T + i * rowH + rowH / 2})`,
-    }, link ? el('a', { href: link, target: '_blank', rel: 'noopener' }, content) : content);
+    }, content);
   }));
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': aria },
     ticks.map((t) => el('g', {},
       el('line', { class: 'grid', x1: x(t), x2: x(t), y1: T - 6, y2: H }),
       el('text', { x: x(t), y: 10, 'text-anchor': 'middle' }, compact(t)))),
     rowsG);
-  hover(svg, (k) => describe(rows[Number(k)]));
+  hover(svg, (k) => {
+    const r = rows[Number(k)];
+    const out = describe(r);
+    return href ? [...out, tipLink(href(r), linkText?.(r))] : out;
+  });
   mountSvg(mount, svg);
   const groups = [...rowsG.children];
   return {
@@ -469,8 +562,9 @@ export const timeline = ({ mount, events, people, projects, limits, onSelect, on
     svg.addEventListener('pointermove', (event) => {
       if (!drag) return;
       const dx = event.clientX - drag.x;
-      if (Math.abs(dx) > 3) drag.moved = true;
+      if (Math.abs(dx) > 6) drag.moved = true;
       if (!drag.moved) return;
+      svg.dataset.dragged = '1';
       const perPx = (drag.d[1] - drag.d[0]) / svg.getBoundingClientRect().width;
       domain = panDomain(drag.d, -dx * perPx, limits);
       tip.hide();
@@ -480,7 +574,7 @@ export const timeline = ({ mount, events, people, projects, limits, onSelect, on
       const moved = drag?.moved;
       drag = null;
       if (moved) return;
-      const hit = document.elementFromPoint(event.clientX, event.clientY)?.closest('[data-k]');
+      const hit = nearestMark(svg, event.clientX, event.clientY);
       if (!hit) return;
       const [type, i] = hit.dataset.k.split(':');
       selected = { type, i: Number(i) };
