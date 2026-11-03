@@ -181,3 +181,14 @@ test('EXTREMES counts modern humans only, not Neanderthal or Denisovan records',
   assert.match(EXTREMES.genes, /^txid9606\[orgn:noexp\]/);
   assert.match(EXTREMES.protein, /^txid9606\[orgn:noexp\]/);
 });
+
+test('TRIALFATE studies interventional trials only', async () => {
+  const { TRIALFATE } = await import('../../src/queries.js');
+  for (const term of [TRIALFATE.terminated, TRIALFATE.stopped]) assert.match(term, /AREA\[StudyType\]INTERVENTIONAL/);
+  assert.match(TRIALFATE.stopped, /AREA\[WhyStopped\]NOT MISSING/);
+});
+
+test('the sex comparison leaves out single-patient case reports', async () => {
+  const { SUBJECTS } = await import('../../src/queries.js');
+  for (const s of SUBJECTS.sex.list) assert.match(s.term, /NOT case reports\[pt\]$/);
+});
