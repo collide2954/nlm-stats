@@ -144,3 +144,12 @@ export const parseRefseqHeader = (text) => ({
   organisms: Number(text.match(/(\d+) organisms/)[1]),
   records: Number(text.match(/(\d+) records/)[1]),
 });
+
+export const enumLabels = (json) => {
+  const out = {};
+  for (const e of json) {
+    const map = Object.fromEntries(e.values.map((v) => [v.value, v.legacyValue]));
+    for (const piece of e.pieces) out[piece] = { ...(out[piece] ?? {}), ...map };
+  }
+  return out;
+};

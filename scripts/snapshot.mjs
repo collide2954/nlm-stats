@@ -20,6 +20,7 @@ import {
   medianYears,
   detailFiscalYear,
   parseRefseqHeader,
+  enumLabels,
 } from './parsers.mjs';
 
 const OUT = new URL('../src/snapshot.js', import.meta.url);
@@ -173,6 +174,7 @@ const clinicaltrials = async () => {
   for (const s of size.largestStudies.slice(0, 5)) largest.push({ ...(await title(s.id)), bytes: s.sizeBytes });
   return {
     dataTimestamp: version.dataTimestamp,
+    labels: enumLabels(await ctget('studies/enums')),
     first: await title('NCT00000102'),
     total: size.totalStudies,
     averageBytes: size.averageSizeBytes,
