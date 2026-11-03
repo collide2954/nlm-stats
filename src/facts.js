@@ -3,7 +3,7 @@ export const SOURCES = {
   law: 'https://www.nlm.nih.gov/about/legislation.html',
   admin: 'https://www.nlm.nih.gov/about/administration.html',
   about: 'https://www.nlm.nih.gov/about/index.html',
-  embi: 'https://www.hcinnovationgroup.com/clinical-it/learning-health-systems-research/news/55402958/vanderbilts-peter-embi-to-lead-national-library-of-medicine',
+  embi: 'https://www.nih.gov/news-events/news-releases/physician-scientist-informatics-leader-dr-peter-embi-helm-nihs-national-library-medicine',
   orgChart: 'https://www.nlm.nih.gov/about/NLMorg_chart_Apr_2026.pdf',
   collection: 'https://www.nlm.nih.gov/hmd/about/collection-history.html',
   indexcat: 'https://www.nlm.nih.gov/hmd/indexcat/index.html',
@@ -135,7 +135,7 @@ export const TIMELINE = [
   t('2023-09-30', 'NLM', 'people', 'Patricia Flatley Brennan retires.', 'ncbiLead'),
   t('2023-10-04', 'NCBI', 'people', 'Kim Pruitt named acting NCBI director. Sherry becomes acting NLM director.', 'ncbiLead'),
   t('2024-04-29', 'NLM', 'literature', 'MTIX, a neural network, replaces MTIA for indexing and applies 50% more correct terms.', 'mtix'),
-  t('2026-09-10', 'NLM', 'people', "Peter Embí's scheduled start as NLM's fifth director since 1956.", 'embi'),
+  t('2026-09-10', 'NLM', 'people', "Peter Embí's announced start as NLM's fifth director since 1956.", 'embi'),
   t('2026-10-15', 'NCBI', 'molecular', 'GenBank Release 274.0: 269,895,537 traditional records.', 'gbrel'),
 ];
 

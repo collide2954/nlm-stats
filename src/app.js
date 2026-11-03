@@ -4,7 +4,7 @@ import {
 } from './facts.js';
 import {
   exact, compact, pct, identify, searchUrl, matches, filterTimeline, sortRows, labelize, liveOddities,
-  LENSES, readLens, inLens, lensSearch, REFSEQ_PREFIXES, wordy, yearOf, dbHome,
+  LENSES, readLens, inLens, lensSearch, REFSEQ_PREFIXES, wordy, yearOf, dbHome, doublingMonths, medianBand,
 } from './lib.js';
 import { TYPE_SERIES, ACCESS, EXTREMES } from './queries.js';
 import { US_TILES } from './tiles.js';
@@ -309,7 +309,8 @@ const renderTrials = () => {
     describe: (r) => tipLines(exact(r.count), `studies enrolling ${bandLabel(r)}`),
   });
   const enr = ct.fields.EnrollmentCount;
-  $('#enrollment-caption').textContent = `Studies by stated enrollment. The mean is ${exact(Math.round(enr.mean))}; the largest claims ${exact(enr.max)} (${ct.biggestEnrollment.id}).`;
+  const mid = medianBand(ct.enrollmentBands);
+  $('#enrollment-caption').textContent = `Studies by stated enrollment. The median study plans ${mid.from} to ${mid.to} participants. The mean, ${exact(Math.round(enr.mean))}, is pulled up by a few enormous registries; the largest claims ${exact(enr.max)} (${ct.biggestEnrollment.id}).`;
   fill('#ct-tabs', ...CT_TABS.map(([key, label]) => h('button', {
     type: 'button', role: 'tab', 'data-field': key, 'aria-controls': 'ct-panel', 'aria-selected': 'false', onclick: () => renderCtTab(key),
   }, label)));
@@ -390,7 +391,7 @@ const renderFunding = () => {
 const renderSeq = () => {
   const gb = snapshot.genbank;
   const first = gb.firstRelease;
-  $('#gb-dek').textContent = `GenBank release ${gb.release}, ${gb.date}: ${exact(gb.traditional.sequences)} traditional records and ${wordy(gb.traditional.bases)} bases, plus ${wordy(gb.sets.bases)} bases in WGS, TSA and TLS sets. Bases have doubled about every 18 months since 1982.`;
+  $('#gb-dek').textContent = `GenBank release ${gb.release}, ${gb.date}: ${exact(gb.traditional.sequences)} traditional records and ${wordy(gb.traditional.bases)} bases, plus ${wordy(gb.sets.bases)} bases in WGS, TSA and TLS sets. Traditional bases have doubled about every ${Math.round(doublingMonths(Date.parse(first.date), first.bases, Date.parse(gb.date), gb.traditional.bases))} months since ${first.date.slice(-4)}.`;
   const trad = gb.growth.traditional.map((r) => ({ x: r.year, y: r.bases, r }));
   const wgs = gb.growth.wgs.map((r) => ({ x: r.year, y: r.bases, r }));
   lines({
@@ -895,8 +896,8 @@ const renderStops = () => {
   const tf = snapshot.trialfate;
   const st = tf.stops;
   const safety = st.reasons.find((r) => r.id === 'safety')?.count ?? 0;
-  $('#stops-dek').textContent = `${exact(st.total)} of ${exact(tf.terminated)} terminated studies on ClinicalTrials.gov give a reason. ${exact(st.notSafety)} say safety was not it; ${exact(safety)} name safety.`;
-  $('#stop-caption').textContent = `Terminated studies by stated reason, sorted by keyword from the free-text “why stopped” field. A study can name several reasons; ${exact(st.unclassified)} fit none of these.`;
+  $('#stops-dek').textContent = `${exact(st.total)} of ${exact(tf.terminated)} terminated interventional trials on ClinicalTrials.gov give a reason. ${exact(st.notSafety)} say safety was not it; ${exact(safety)} name safety.`;
+  $('#stop-caption').textContent = `Terminated interventional trials by stated reason, sorted by keyword from the free-text “why stopped” field. A study can name several reasons; ${exact(st.unclassified)} fit none of these.`;
   dotplot({
     mount: $('#stop-chart'),
     rows: st.reasons.map((r) => ({ key: r.id, label: r.label, value: r.count, r })),
@@ -950,7 +951,7 @@ const renderExtremes = () => {
     record('Most exons', exact(g.mostExons.exons), `${g.mostExons.symbol}, ${g.mostExons.description}`, gene(g.mostExons)),
     record('Shortest protein-coding gene', `${exact(g.shortest.span)} bp`, `${g.shortest.symbol}, ${g.shortest.description}`, gene(g.shortest)),
     record('Single-exon genes', exact(g.singleExon), `${pct(g.singleExon / g.placed)} of placed protein-coding genes`, searchUrl('gene', EXTREMES.genes)),
-    record('Largest NIH award line', usd(aw.largest.dollars), `${aw.largest.title}, ${aw.largest.ic} ${aw.largest.activity}, FY${aw.fy}`, `https://reporter.nih.gov/project-details/${aw.largest.appl}`));
+    record('Largest NIH award line', usd(aw.largest.dollars), `${aw.largest.title}, ${aw.largest.ic} ${aw.largest.activity}, FY${aw.fy}${aw.largest.activity?.startsWith('Z') ? ': an intramural line, not a competitive grant' : ''}`, `https://reporter.nih.gov/project-details/${aw.largest.appl}`));
   const top = g.byChromosome.reduce((a, b) => (b.genes > a.genes ? b : a));
   const y = g.byChromosome.find((c) => c.chr === 'Y');
   columns({

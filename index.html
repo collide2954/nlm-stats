@@ -100,7 +100,7 @@
     <header class="head"><p class="label">Statistical methods</p><h2 data-finding="methods">Statistical methods in PubMed</h2><p class="dek" id="methods-dek"></p></header>
     <figure class="fig">
       <ul class="sparks" id="methods-list"></ul>
-      <figcaption>PubMed records tagged with each method per publication year, each on its own scale. Source: MeSH terms and publication types.</figcaption>
+      <figcaption>PubMed records tagged with each method per publication year, each on its own scale. MEDLINE indexing became automated in April 2022, so recent years may not compare cleanly with earlier ones. Source: MeSH terms and publication types.</figcaption>
     </figure>
   </section>
 
@@ -118,7 +118,7 @@
     <div class="pair">
       <figure class="fig">
         <div class="chart" id="sex-chart"></div>
-        <figcaption>Human studies indexed Female but not Male, and Male but not Female, per 10,000 MEDLINE records. Years from 2022 on use automated indexing.</figcaption>
+        <figcaption>Human studies indexed Female but not Male, and Male but not Female, per 10,000 MEDLINE records. Case reports are left out. Years from 2022 on use automated indexing.</figcaption>
       </figure>
       <figure class="fig">
         <div class="chart" id="ages-chart"></div>
@@ -159,12 +159,12 @@
     <h3 class="subhead" data-finding="zombies">Retracted, still cited</h3>
     <figure class="fig">
       <div class="chart" id="zombie-chart"></div>
-      <figcaption>Citing records in PubMed dated after the year of each paper's latest retraction notice. Source: E-utilities efetch and elink pubmed_pubmed_citedin.</figcaption>
+      <figcaption>Citing records in PubMed dated after the year of each paper's latest retraction notice. Citing is not endorsing: some of these papers discuss the retraction itself. Source: E-utilities efetch and elink pubmed_pubmed_citedin.</figcaption>
     </figure>
   </section>
 
   <section class="story wrap" id="papers" data-lens="bioinfo stats" data-nav="Papers">
-    <header class="head"><p class="label">Landmark papers</p><h2 data-finding="papers">Landmark papers</h2><p class="dek">Records in PubMed that cite each paper.</p></header>
+    <header class="head"><p class="label">Landmark papers</p><h2 data-finding="papers">Landmark papers</h2><p class="dek">PubMed’s “Cited by” links for each paper. PubMed builds them from publisher and NCBI data and says the list may be incomplete, so these counts run well below Web of Science or Google Scholar.</p></header>
     <figure class="fig">
       <div class="chart" id="papers-chart"></div>
       <figcaption>Citing records, log scale. Source: E-utilities elink, pubmed_pubmed_citedin.</figcaption>
@@ -180,7 +180,7 @@
     <div class="pair">
       <figure class="fig">
         <div class="chart" id="results-waffle"></div>
-        <figcaption>Completed interventional studies, by whether results are posted. Each square is 1%.</figcaption>
+        <figcaption>Completed interventional studies, by whether results are posted. Only applicable clinical trials must post results, so this is not a compliance rate. Each square is 1%.</figcaption>
       </figure>
       <figure class="fig">
         <div class="chart" id="masking-waffle"></div>
@@ -310,7 +310,7 @@
     <h3 class="subhead" data-finding="classics">Most cited methods</h3>
     <figure class="fig">
       <div class="chart" id="classics-chart"></div>
-      <figcaption>Citing records in PubMed for classic methods papers. Source: E-utilities elink pubmed_pubmed_citedin.</figcaption>
+      <figcaption>Citing records in PubMed’s “Cited by” links for classic methods papers, a partial count. Source: E-utilities elink pubmed_pubmed_citedin.</figcaption>
     </figure>
   </section>
 
