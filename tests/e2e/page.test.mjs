@@ -583,3 +583,28 @@ test('shared links get a title, description and preview image', async () => {
   assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], [1200, 630]);
   await page.close();
 });
+
+test('each chart is one tab stop and arrow keys step through its marks', async () => {
+  const { page } = await open();
+  const stops = await page.evaluate(() => ({
+    marks: document.querySelectorAll('.chart [data-k][tabindex="0"]').length,
+    charts: document.querySelectorAll('.chart svg[tabindex="0"]').length,
+  }));
+  assert.equal(stops.marks, 0);
+  assert.ok(stops.charts >= 30, `${stops.charts}`);
+  const reasons = snapshot.trialfate.stops.reasons;
+  await page.focus('#stop-chart svg');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  assert.match(await page.textContent('#tip'), new RegExp(reasons[2].label));
+  await page.keyboard.press('Enter');
+  assert.equal(await page.getAttribute('#tip', 'data-pinned'), 'true');
+  await page.keyboard.press('Escape');
+  await page.focus('#access-chart svg');
+  await page.keyboard.press('End');
+  const last = snapshot.access[0].years.at(-1).year;
+  assert.match(await page.textContent('#tip'), new RegExp(`${last}`));
+  await page.keyboard.press('ArrowLeft');
+  assert.match(await page.textContent('#tip'), new RegExp(`${last - 1}`));
+  await page.close();
+});
