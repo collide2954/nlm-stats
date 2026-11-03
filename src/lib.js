@@ -414,3 +414,8 @@ export const liveOddities = (snap) => {
   }
   return out;
 };
+
+const STEPS = [1, 2, 5, 10, 20, 25, 50, 100];
+
+export const labelStep = (count, width, gap = 32) =>
+  STEPS.find((step) => Math.ceil(count / step) * gap <= width) ?? STEPS.at(-1);
