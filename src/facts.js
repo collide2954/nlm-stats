@@ -251,23 +251,9 @@ const o = (text, src) => ({ text, src });
 
 export const ODDITIES = [
   o("The library spent 21 years inside Ford's Theatre, where Lincoln was shot.", 'brief'),
-  o('In 1840 the entire collection fit on one four-shelf bookcase, shoulder high, 7 to 8 feet wide.', 'brief'),
-  o('The Bethesda building sits on a former golf course, with 50+ miles of underground shelves and a collapsible roof.', 'brief'),
   o('In 1942, 952 boxes weighing 75 tons went to Cleveland to escape the war. They came back under armed Pinkerton guard.', 'collection'),
-  o('Modern manuscripts fill 16,000 linear feet, which NLM likens to 53 football fields.', 'collection'),
-  o('Billings bought 6,000 medical portraits from collector Cornelius Wilhelm Hendrik van Kaathoven.', 'collection'),
   o('Index-Catalogue Series 4 covers A to "Mn". The second half was never published.', 'indexcat'),
-  o('The Hirshhorn Museum stands where the library stood from 1887 to 1962.', 'brief'),
-  o('PMID 1 is "Formate assay in body fluids: application in methanol poisoning" (1975).', 'pmid1'),
-  o('The oldest PubMed records are dated 1781.', 'pm1781'),
-  o('MeSH descriptor D000001 is Calcimycin.', 'meshD1'),
-  o('NCT00000102 was posted 1999-11-04, before ClinicalTrials.gov went public.', 'nct102'),
-  o('A 1994 GenBank paper abstract in PubMed spells MEDLINE as "MIDLINE".', 'gb1994'),
-  o("NLM's toll-free number is (888) FIND-NLM.", 'about'),
-  o('UMLS holds 485 concept names in Hebrew and 695 in Basque.', 'umlsStats'),
-  o('The Visible Woman was sliced at 0.33 mm so every voxel is a cube.', 'vhp'),
   o('GenBank, ENA and DDBJ accessions never contain an underscore. RefSeq accessions always do.', 'refseqNotes'),
-  o('Every WP_ protein accession is version .1 forever: those records are never updated.', 'refseqNotes'),
 ];
 
 const e = (id, is) => ({ id, is });

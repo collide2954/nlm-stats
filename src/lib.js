@@ -366,50 +366,64 @@ export const ordinal = (n) => {
 const itemCount = (snap, group, id) =>
   snap.groups?.find((g) => g.id === group)?.items.find((i) => i.id === id)?.count ?? null;
 
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+export const longDate = (text) => {
+  const [y, m, d] = text.split('-');
+  const month = MONTHS[Number(m) - 1];
+  return d ? `${Number(d)} ${month} ${y}` : `${month} ${y}`;
+};
+
+const CT = 'https://clinicaltrials.gov';
+
 export const liveOddities = (snap) => {
   const out = [];
   const add = (text, href) => out.push({ text, href });
-  const orgs = snap.genbank?.organisms ?? [];
-  const human = orgs.findIndex((o) => o.species === 'Homo sapiens');
-  if (orgs.length && human > 0) {
-    const top = orgs[0].common ? `${orgs[0].common} (${orgs[0].species})` : orgs[0].species;
-    add(`By bases, ${top} is GenBank's most sequenced organism. Homo sapiens ranks ${ordinal(human + 1)}.`,
-      'https://ftp.ncbi.nlm.nih.gov/genbank/gbrel.txt');
+  const ex = snap.extremes;
+  const stop = ex?.stopword;
+  if (stop?.ignored) {
+    add(`Search PubMed for “${stop.word}” and you get ${exact(stop.count)} results. It is a stopword, dropped from every query.`,
+      searchUrl('pubmed', stop.word));
+  }
+  const stops = snap.trialfate?.stops;
+  const safety = stops?.reasons.find((r) => r.id === 'safety')?.count;
+  if (stops && safety && stops.notSafety > safety) {
+    add(`${exact(stops.notSafety)} terminated trials say safety was not the reason. ${exact(safety)} say it was.`,
+      `${CT}/search?aggFilters=status:ter`);
+  }
+  const early = ex?.trials?.earliest;
+  if (early && yearOf(early.date) < ex.trials.longAgo.year) {
+    add(`${early.id}, a ${early.status.toLowerCase()} study, gives its start date as ${longDate(early.date)}. It was first posted in ${yearOf(early.posted)}.`,
+      `${CT}/study/${early.id}`);
+  }
+  const late = ex?.trials;
+  if (late?.farFuture?.count) {
+    add(`${exact(late.farFuture.count)} studies plan to finish in ${late.farFuture.year} or later. ${late.latest.id} runs to ${longDate(late.latest.date)}.`,
+      `${CT}/study/${late.latest.id}`);
+  }
+  const awards = ex?.awards;
+  if (awards?.exactlyOne) {
+    add(`${exact(awards.exactlyOne)} NIH awards in FY${awards.fy} were for exactly $1.`, 'https://reporter.nih.gov/');
+  }
+  if (ex?.uncultured) {
+    add(`${exact(ex.uncultured)} GenBank sequences come from “uncultured bacterium”: microbes known only from their DNA.`,
+      searchUrl('nuccore', '"uncultured bacterium"[orgn]'));
   }
   const ct = snap.clinicaltrials ?? {};
   if (ct.biggestEnrollment) {
     add(`The largest stated enrollment on ClinicalTrials.gov is ${exact(ct.biggestEnrollment.count)} people, in ${ct.biggestEnrollment.id}.`,
-      `https://clinicaltrials.gov/study/${ct.biggestEnrollment.id}`);
+      `${CT}/study/${ct.biggestEnrollment.id}`);
   }
   const topCondition = ct.fields?.Condition?.top?.[0];
   if (topCondition?.value === 'Healthy') {
     add(`"Healthy" is the most listed condition on ClinicalTrials.gov, in ${exact(topCondition.count)} studies.`,
-      'https://clinicaltrials.gov/search?cond=Healthy');
+      `${CT}/search?cond=Healthy`);
   }
   const vus = itemCount(snap, 'clinvar', 'cv-vus');
   const path = itemCount(snap, 'clinvar', 'cv-path');
   if (vus && path && vus > path) {
     add(`ClinVar holds ${(vus / path).toFixed(1)} variants of uncertain significance for every pathogenic one.`,
       'https://www.ncbi.nlm.nih.gov/clinvar/');
-  }
-  const amplicon = itemCount(snap, 'sra-strategy', 'sra-amplicon');
-  const wgs = itemCount(snap, 'sra-strategy', 'sra-wgs');
-  if (amplicon && wgs && amplicon > wgs) {
-    add(`In SRA, Amplicon experiments outnumber WGS: ${exact(amplicon)} vs ${exact(wgs)}.`, 'https://www.ncbi.nlm.nih.gov/sra/');
-  }
-  const fund = snap.funding;
-  const top = fund?.detail?.largest?.[0];
-  if (top && fund.detail.dollars && top.dollars / fund.detail.dollars > 0.5) {
-    add(`${pct(top.dollars / fund.detail.dollars)} of NLM's FY${fund.detailFy} award dollars in RePORTER sit in one project: "${top.title}".`,
-      `https://reporter.nih.gov/project-details/${top.appl}`);
-  }
-  const dated = (snap.entrez ?? []).filter((d) => d.updated);
-  if (dated.length > 1) {
-    const stale = dated.reduce((a, b) => (b.updated < a.updated ? b : a));
-    const fresh = dated.reduce((a, b) => (b.updated > a.updated ? b : a));
-    if (yearOf(fresh.updated) - yearOf(stale.updated) >= 2) {
-      add(`${stale.name} was last updated ${stale.updated} and is still searchable in Entrez.`, `https://www.ncbi.nlm.nih.gov/${stale.db}/`);
-    }
   }
   return out;
 };
