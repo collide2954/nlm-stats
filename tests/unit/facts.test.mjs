@@ -48,7 +48,13 @@ test('projects are unique with several facts each', () => {
 });
 
 test('oddities are few, sharp and sourced', () => {
-  assert.ok(ODDITIES.length >= 15 && ODDITIES.length <= 20, `${ODDITIES.length}`);
+  assert.ok(ODDITIES.length >= 3 && ODDITIES.length <= 6, `${ODDITIES.length}`);
+  const text = ODDITIES.map((o) => o.text).join('\n');
+  assert.match(text, /Ford's Theatre/);
+  assert.match(text, /75 tons/);
+  assert.match(text, /Index-Catalogue/);
+  assert.match(text, /underscore/);
+  assert.doesNotMatch(text, /FIND-NLM|D000001|PMID 1 |1781|Basque|golf/);
   for (const o of ODDITIES) {
     assert.ok(o.text.length > 10);
     assert.ok(SOURCES[o.src], o.text);
