@@ -61,7 +61,8 @@ const ics = (snap) => {
 const genbank = (snap) => {
   const orgs = snap.genbank.organisms;
   const human = orgs.findIndex((o) => o.species === 'Homo sapiens');
-  const lead = `${orgs[0].species} tops GenBank by bases`;
+  const name = orgs[0].common ? orgs[0].common.charAt(0).toUpperCase() + orgs[0].common.slice(1) : orgs[0].species;
+  const lead = `${name} tops GenBank by bases`;
   return human > 0 ? `${lead}. Humans rank ${ordinal(human + 1)}` : lead;
 };
 

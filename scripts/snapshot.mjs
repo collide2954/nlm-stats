@@ -21,6 +21,7 @@ import {
   detailFiscalYear,
   parseRefseqHeader,
   enumLabels,
+  parseTaxonNames,
 } from './parsers.mjs';
 
 const OUT = new URL('../src/snapshot.js', import.meta.url);
@@ -110,11 +111,19 @@ const genbank = async () => {
   const text = await fetchWithRetry(GBREL, 'text');
   const tables = parseGrowth(text);
   const [traditional, wgs, tsa, tls] = tables.map(lastPerYear);
+  const organisms = parseOrganisms(text);
+  const ids = [];
+  for (const o of organisms) {
+    step(`taxon ${o.species}`);
+    const json = await eutils('esearch', { db: 'taxonomy', term: `"${o.species}"[Scientific Name]`, retmax: 1 });
+    ids.push(...(json.esearchresult?.idlist ?? []));
+  }
+  const names = ids.length ? parseTaxonNames(await eutils('esummary', { db: 'taxonomy', id: ids.join(',') })) : {};
   return {
     ...parseGenbankHeader(text),
     firstRelease: tables[0][0],
     growth: { traditional, wgs, tsa, tls },
-    organisms: parseOrganisms(text),
+    organisms: organisms.map((o) => ({ ...o, common: names[o.species] ?? null })),
     divisions: parseDivisions(text).sort((a, b) => b.bases - a.bases),
   };
 };
