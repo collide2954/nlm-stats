@@ -6,7 +6,7 @@ import {
   exact, compact, pct, identify, searchUrl, matches, filterTimeline, sortRows, labelize, liveOddities,
   LENSES, readLens, inLens, lensSearch, REFSEQ_PREFIXES, wordy, yearOf,
 } from './lib.js';
-import { TYPE_SERIES, ACCESS } from './queries.js';
+import { TYPE_SERIES, ACCESS, EXTREMES } from './queries.js';
 import { US_TILES } from './tiles.js';
 import { findings } from './findings.js';
 import {
@@ -42,7 +42,14 @@ const NOW = new Date(snapshot.generated).getUTCFullYear();
 const db = (name) => snapshot.entrez.find((d) => d.db === name);
 const ct = snapshot.clinicaltrials;
 const fund = snapshot.funding;
-const ctLabel = (piece, value) => ct.labels?.[piece]?.[value] ?? labelize(value);
+const SPONSOR_CLASS = {
+  INDUSTRY: 'Industry', NIH: 'NIH', FED: 'Other U.S. federal', OTHER_GOV: 'Other government', NETWORK: 'Network', INDIV: 'Individual', OTHER: 'Other', UNKNOWN: 'Unknown', AMBIG: 'Ambiguous',
+};
+const ctLabel = (piece, value) => {
+  const legacy = ct.labels?.[piece]?.[value];
+  if (legacy && legacy !== value) return legacy;
+  return /SponsorClass|CollaboratorClass/.test(piece) ? SPONSOR_CLASS[value] ?? labelize(value) : legacy ?? labelize(value);
+};
 
 const state = {
   query: '', tags: new Set(), lens: 'all', entrezSort: 'count', facet: null, ctField: 'OverallStatus', fundTab: 'activity', geo: 'nih',
@@ -701,6 +708,7 @@ const renderSources = () => {
 const SEARCHABLE = [
   '#projects-table tbody tr', '#oddities li', '#entrez-table tbody tr', '#source-list li', '#api-table tbody tr',
   '#cadence-table tbody tr', '#refseq-prefixes tbody tr', '#methods-list li', '#types-multiples .panel', '#growth-multiples .panel',
+  '#animal-multiples .panel', '#records > div',
 ];
 
 const applySearch = () => {
@@ -741,12 +749,245 @@ const store = {
   },
 };
 
+const yearMap = (years) => new Map(years.map((y) => [y.year, y.count]));
+const per = (n, d, k = 1e4) => (d ? (n / d) * k : 0);
+const BLAST_PMIDS = new Set(['2231712', '9254694']);
+
+const renderMachine = () => {
+  const v = snapshot.vocab;
+  const totals = yearMap(v.totals);
+  const rate = (w, yr) => per(yearMap(w.years).get(yr) ?? 0, totals.get(yr), 1e5);
+  const series = [...v.words, v.control].map((w) => {
+    const base = rate(w, v.base);
+    return {
+      w,
+      label: w.label,
+      rows: w.years.filter((y) => y.year < v.partial).map((y) => ({ x: y.year, y: base ? rate(w, y.year) / base : 0, n: y.count })),
+    };
+  });
+  const ranked = series.slice(0, -1).sort((a, b) => Math.max(...b.rows.map((r) => r.y)) - Math.max(...a.rows.map((r) => r.y)));
+  ranked.forEach((ser, i) => {
+    if (i === 0) ser.alt = true;
+    else if (i > 2) ser.cls = 'mid';
+  });
+  series.at(-1).cls = 'soft';
+  const delve = v.words.find((w) => w.id === 'delve') ?? v.words[0];
+  const done = v.partial - 1;
+  const peak = delve.years.filter((y) => y.year < v.partial).reduce((a, b) => (rate(delve, b.year) > rate(delve, a.year) ? b : a));
+  const control = series.at(-1).rows.find((r) => r.x === done);
+  $('#machine-dek').textContent = `In ${v.base}, ${exact(yearMap(delve.years).get(v.base))} PubMed abstracts used ‘${delve.label}’. In ${peak.year}, ${exact(peak.count)} did. ‘${v.control.label}’, the control word, sat at ${control.y.toFixed(2)} times its ${v.base} rate in ${done}.`;
+  fill('#vocab-caption', `Abstracts using each word per 100,000 PubMed records with an abstract, divided by the ${v.base} rate, complete years only. Kobak and colleagues measured this excess vocabulary across PubMed: `,
+    ext('https://pubmed.ncbi.nlm.nih.gov/40601754/', 'Sci Adv 2025'), '.');
+  lines({
+    mount: $('#vocab-chart'),
+    scale: 'linear',
+    yFormat: (n) => `${n}×`,
+    labelW: 104,
+    height: 320,
+    series,
+    aria: 'LLM-favoured words in PubMed abstracts relative to 2019',
+    describe: (yr) => tipLines(String(yr), `times the ${v.base} rate`,
+      ...series.map((ser) => ({ ser, p: ser.rows.find((r) => r.x === yr) })).filter((o) => o.p).sort((a, b) => b.p.y - a.p.y)
+        .map((o) => `${o.ser.label} ${o.p.y.toFixed(1)}× · ${exact(o.p.n)}`),
+      { href: searchUrl('pubmed', `${delve.term} AND ${yr}[dp]`), text: `‘${delve.label}’ papers from ${yr}` }),
+  });
+  dotplot({
+    mount: $('#zombie-chart'),
+    rows: sortRows(snapshot.zombies.map((z) => ({ ...z, rank: z.after ?? 0 })), 'rank', 'desc').map((z) => ({ key: z.pmid, label: z.label, value: z.after ?? 0, z })),
+    scale: 'linear',
+    labelShare: 0.4,
+    href: (r) => `https://pubmed.ncbi.nlm.nih.gov/${r.z.pmid}/`,
+    linkText: () => 'Open in PubMed',
+    aria: 'Retracted papers and the citing records dated after their retraction',
+    describe: (r) => tipLines(`${exact(r.value)} citing records after ${r.z.retracted}`, r.z.title, `Published ${r.z.date}, retracted ${r.z.retracted}`, `${exact(r.z.citedBy)} citing records in all`),
+  });
+};
+
+const crossYear = (a, b) => {
+  const other = yearMap(b);
+  const passes = a.filter((y, i) => i > 0 && y.count > (other.get(y.year) ?? 0) && a[i - 1].count <= (other.get(a[i - 1].year) ?? 0));
+  return passes.at(-1)?.year ?? null;
+};
+
+const renderSubjects = () => {
+  const sub = snapshot.subjects;
+  const med = yearMap(sub.medline);
+  const rates = (years) => years.map((y) => ({ x: y.year, y: per(y.count, med.get(y.year)), n: y.count }));
+  const animal = (id) => sub.animals.find((a) => a.id === id);
+  const [mice, rats] = [animal('mice'), animal('rats')];
+  const cross = crossYear(mice.years, rats.years);
+  lines({
+    mount: $('#mice-rats'),
+    scale: 'linear',
+    labelW: 56,
+    height: 260,
+    series: [{ label: 'Mice', alt: true, rows: mice.years.map((y) => ({ x: y.year, y: y.count })) }, { label: 'Rats', rows: rats.years.map((y) => ({ x: y.year, y: y.count })) }],
+    annotations: cross ? [{ x: cross, text: `${cross}: mice pass rats` }] : [],
+    aria: 'Mice and rats in MEDLINE by year',
+    describe: (yr) => tipLines(String(yr), `Mice ${exact(yearMap(mice.years).get(yr))}`, `Rats ${exact(yearMap(rats.years).get(yr))}`,
+      { href: searchUrl('pubmed', `mice[mh] AND ${yr}[dp]`), text: `Mice papers from ${yr}` }),
+  });
+  const sex = sub.sex.map((x) => ({ label: x.label, alt: x.id === 'women', rows: rates(x.years) }));
+  lines({
+    mount: $('#sex-chart'),
+    scale: 'linear',
+    yFormat: (n) => String(n),
+    labelW: 86,
+    height: 260,
+    series: sex,
+    aria: 'Women-only and men-only human studies per 10,000 MEDLINE records',
+    describe: (yr) => tipLines(String(yr), 'per 10,000 MEDLINE records', ...sex.map((x) => {
+      const p = x.rows.find((r) => r.x === yr);
+      return p ? `${x.label} ${p.y.toFixed(0)} (${exact(p.n)})` : null;
+    })),
+  });
+  const first = sub.medline[0].year;
+  const last = sub.medline.at(-1).year;
+  const ends = sub.animals.map((a) => {
+    const r = rates(a.years);
+    return { a, r, from: r[0].y, to: r.at(-1).y };
+  });
+  const fall = ends.filter((e) => e.to > 0).reduce((a, b) => (b.from / b.to > a.from / a.to ? b : a));
+  const rise = ends.reduce((a, b) => (b.to / Math.max(b.from, 1) > a.to / Math.max(a.from, 1) ? b : a));
+  fill('#mice-caption', 'MEDLINE records indexed with the MeSH headings Mice and Rats, by publication year. MEDLINE indexing became automated in April 2022 and changed algorithm in 2024, so recent years may not compare cleanly. ',
+    ext('https://www.nlm.nih.gov/bsd/indexfaq.html', 'NLM indexing FAQ'), '.');
+  $('#subjects-dek').textContent = `Per 10,000 MEDLINE records, ${fall.a.label.toLowerCase()} fell from ${fall.from.toFixed(0)} in ${first} to ${fall.to.toFixed(0)} in ${last}. ${rise.a.label} rose from ${rise.from.toFixed(0)} to ${rise.to.toFixed(0)}.`;
+  fill('#animal-multiples', ...ends.map(({ a, r }) => {
+    const peak = r.reduce((x, y) => (y.y > x.y ? y : x));
+    return h('div', { class: 'panel', 'data-search': `${a.label} ${a.term}` },
+      h('h4', {}, ext(searchUrl('pubmed', a.term), a.label)),
+      h('p', {}, `${r.at(-1).y.toFixed(0)} per 10,000 in ${last} · peak ${peak.x}`),
+      miniArea({
+        years: r.map((p) => p.x),
+        values: r.map((p) => p.y),
+        describe: (yr, value) => tipLines(`${value.toFixed(1)} per 10,000`, `${a.label}, ${yr}`, `${exact(r.find((p) => p.x === yr).n)} records`,
+          { href: searchUrl('pubmed', `${a.term} AND ${yr}[dp]`), text: 'Open in PubMed' }),
+      }));
+  }));
+  const [y0, y1] = sub.ages.years;
+  dumbbell({
+    mount: $('#ages-chart'),
+    years: sub.ages.years,
+    format: (n) => n.toFixed(0),
+    rows: sub.ages.list.map((x) => ({ key: x.id, label: x.label, a: per(x.counts[y0], med.get(y0)), b: per(x.counts[y1], med.get(y1)), x })),
+    aria: 'MeSH age groups per 10,000 MEDLINE records',
+    describe: (r) => tipLines(`${r.b.toFixed(0)} per 10,000 in ${y1}`, r.label, `${r.a.toFixed(0)} per 10,000 in ${y0}`, `${exact(r.x.counts[y1])} records in ${y1}`,
+      { href: searchUrl('pubmed', `${r.x.term} AND ${y1}[dp]`), text: 'Open in PubMed' }),
+  });
+  $('#ages-caption').textContent = `MEDLINE records per 10,000 indexed with each MeSH age group, ${y0} and ${y1}, log scale. A record can carry several age groups. Young adult entered MeSH in 2009.`;
+  const totals = yearMap(snapshot.pubmed.years);
+  fill('#outbreak-multiples', ...sub.outbreaks.map((o) => {
+    const r = o.years.map((y) => ({ x: y.year, y: per(y.count, totals.get(y.year)), n: y.count }));
+    const peak = r.reduce((x, y) => (y.y > x.y ? y : x));
+    return h('div', { class: 'panel', 'data-search': `${o.label} ${o.term}` },
+      h('h4', {}, ext(searchUrl('pubmed', o.term), o.label)),
+      h('p', {}, `peak ${peak.x} · ${peak.y.toFixed(peak.y >= 10 ? 0 : 1)} per 10,000 · ${exact(peak.n)} records`),
+      miniArea({
+        years: r.map((p) => p.x),
+        values: r.map((p) => p.y),
+        describe: (yr, value) => tipLines(`${value.toFixed(1)} per 10,000`, `${o.label}, ${yr}`, `${exact(r.find((p) => p.x === yr).n)} records`,
+          { href: searchUrl('pubmed', `${o.term} AND ${yr}[dp]`), text: 'Open in PubMed' }),
+      }));
+  }));
+};
+
+const renderStops = () => {
+  const tf = snapshot.trialfate;
+  const st = tf.stops;
+  const safety = st.reasons.find((r) => r.id === 'safety')?.count ?? 0;
+  $('#stops-dek').textContent = `${exact(st.total)} of ${exact(tf.terminated)} terminated studies on ClinicalTrials.gov give a reason. ${exact(st.notSafety)} say safety was not it; ${exact(safety)} name safety.`;
+  $('#stop-caption').textContent = `Terminated studies by stated reason, sorted by keyword from the free-text “why stopped” field. A study can name several reasons; ${exact(st.unclassified)} fit none of these.`;
+  dotplot({
+    mount: $('#stop-chart'),
+    rows: st.reasons.map((r) => ({ key: r.id, label: r.label, value: r.count, r })),
+    scale: 'linear',
+    labelShare: 0.36,
+    href: () => 'https://clinicaltrials.gov/search?aggFilters=status:ter',
+    linkText: () => 'Terminated studies',
+    aria: 'Terminated trials by stated reason',
+    describe: (row) => tipLines(exact(row.value), row.label, `${pct(row.value / st.total)} of studies that give a reason`, `${pct(row.r.industry / row.value)} industry-sponsored`),
+  });
+  const lag = tf.lag;
+  const cap = lag.months.length - 1;
+  columns({
+    mount: $('#lag-chart'),
+    rows: lag.months.map((count, m) => ({ m, count })),
+    key: (r) => r.m,
+    attr: 'month',
+    label: (r) => (r.m === cap ? `${cap}+` : r.m),
+    value: (r) => r.count,
+    yFormat: compact,
+    highlight: (r) => r.m === lag.peak,
+    annotations: [{ key: lag.peak, text: `${pct(lag.months[lag.peak] / lag.n)} arrive ${lag.peak} to ${lag.peak + 1} months after completion` }],
+    aria: 'Months from primary completion to results submission',
+    describe: (r) => tipLines(exact(r.count), r.m === cap ? `${cap} months or more` : `${r.m} to ${r.m + 1} months after completion`, `${pct(r.count / lag.n)} of results`),
+  });
+  $('#lag-caption').textContent = `Months from primary completion to first results submission, ${exact(lag.n)} interventional studies completed ${lag.from} to ${lag.to}. Median ${lag.median} months. The one-year deadline applies to applicable clinical trials; certifications and extensions can push it later. ${exact(lag.negative)} studies that submitted before their stated completion date are left out.`;
+  dotplot({
+    mount: $('#sponsor-lag'),
+    rows: sortRows(lag.byClass, 'within12', 'desc').map((c) => ({ key: c.cls, label: ctLabel('LeadSponsorClass', c.cls), value: c.within12 * 100, c })),
+    scale: 'linear',
+    format: (n) => `${n.toFixed(0)}%`,
+    labelShare: 0.3,
+    aria: 'Share of results submitted within 12 months by sponsor class',
+    describe: (r) => tipLines(pct(r.c.within12), r.label, `${exact(r.c.n)} studies`, `median ${r.c.median} months`),
+  });
+};
+
+const record = (label, big, what, href) => h('div', { 'data-search': `${label} ${what}` },
+  h('dt', {}, label),
+  h('dd', {}, h('span', { class: 'big' }, href ? ext(href, big) : big), h('span', { class: 'what' }, what)));
+
+const renderExtremes = () => {
+  const ex = snapshot.extremes;
+  const g = ex.genes;
+  const gene = (x) => `https://www.ncbi.nlm.nih.gov/gene/${x.id}`;
+  const aw = ex.awards;
+  $('#extremes-dek').textContent = `NCBI Gene lists ${exact(g.genes)} human protein-coding genes; ${exact(g.placed)} sit on the reference chromosomes.`;
+  fill('#records',
+    record('Largest human protein', `${exact(ex.protein.length)} aa`, `${ex.protein.title.replace(' [Homo sapiens]', '')}, ${ex.protein.accession}`, `https://www.ncbi.nlm.nih.gov/protein/${ex.protein.accession}`),
+    record('Longest human gene', `${(g.longest.span / 1e6).toFixed(2)} Mb`, `${g.longest.symbol}, chromosome ${g.longest.chr}, ${g.longest.description}`, gene(g.longest)),
+    record('Most exons', exact(g.mostExons.exons), `${g.mostExons.symbol}, ${g.mostExons.description}`, gene(g.mostExons)),
+    record('Shortest protein-coding gene', `${exact(g.shortest.span)} bp`, `${g.shortest.symbol}, ${g.shortest.description}`, gene(g.shortest)),
+    record('Single-exon genes', exact(g.singleExon), `${pct(g.singleExon / g.placed)} of placed protein-coding genes`, searchUrl('gene', EXTREMES.genes)),
+    record('Largest NIH award line', usd(aw.largest.dollars), `${aw.largest.title}, ${aw.largest.ic} ${aw.largest.activity}, FY${aw.fy}`, `https://reporter.nih.gov/project-details/${aw.largest.appl}`));
+  const top = g.byChromosome.reduce((a, b) => (b.genes > a.genes ? b : a));
+  const y = g.byChromosome.find((c) => c.chr === 'Y');
+  columns({
+    mount: $('#chrom-chart'),
+    rows: g.byChromosome,
+    key: (r) => r.chr,
+    attr: 'chr',
+    value: (r) => r.genes,
+    highlight: (r) => r === top,
+    height: 200,
+    aria: 'Human protein-coding genes per chromosome',
+    describe: (r) => tipLines(`${exact(r.genes)} genes`, `Chromosome ${r.chr}`, `${pct(r.genes / g.placed)} of placed genes`,
+      { href: searchUrl('gene', `${EXTREMES.genes} AND ${r.chr}[chr]`), text: 'Open in Gene' }),
+  });
+  $('#chrom-caption').textContent = `Human protein-coding genes per chromosome in NCBI Gene. Chromosome ${top.chr} holds ${exact(top.genes)}${y ? `; Y holds ${exact(y.genes)}` : ''}.`;
+  dotplot({
+    mount: $('#classics-chart'),
+    rows: sortRows(snapshot.classics, 'citedBy', 'desc').map((c) => ({ key: c.pmid, label: c.label, value: c.citedBy, hi: BLAST_PMIDS.has(c.pmid), c })),
+    scale: 'linear',
+    labelShare: 0.42,
+    href: (r) => `https://pubmed.ncbi.nlm.nih.gov/${r.c.pmid}/`,
+    linkText: () => 'Open in PubMed',
+    aria: 'Citing records for classic methods papers',
+    describe: (r) => tipLines(`${exact(r.value)} citing records`, r.c.title, `${r.c.journal}, ${r.c.date}`),
+  });
+};
+
 const drawCharts = () => {
   renderEntrez();
   renderGrowth();
   renderAccess();
   renderGeography();
   renderVariants();
+  renderMachine();
+  renderSubjects();
+  renderStops();
+  renderExtremes();
   renderPubmed();
   renderTypes();
   renderFacets();
