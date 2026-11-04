@@ -1290,6 +1290,15 @@ table.data {
   color: var(--muted);
 }
 
+.foot p {
+  margin: 0 0 6px;
+}
+
+.foot .made {
+  font: italic 0.95rem / 1.4 var(--serif);
+  color: var(--ink-2);
+}
+
 [hidden] {
   display: none !important;
 }
