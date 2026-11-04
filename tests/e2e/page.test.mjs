@@ -608,3 +608,12 @@ test('each chart is one tab stop and arrow keys step through its marks', async (
   assert.match(await page.textContent('#tip'), new RegExp(`${last - 1}`));
   await page.close();
 });
+
+test('the footer says AI helped and that a person reviewed the work', async () => {
+  const { page } = await open();
+  const note = await page.textContent('#foot .made');
+  assert.match(note, /^Made by a person, with help from AI tools\./);
+  assert.match(note, /reviewed before publishing/);
+  assert.match(await page.textContent('#foot'), /Not an official NLM or NCBI site/);
+  await page.close();
+});
