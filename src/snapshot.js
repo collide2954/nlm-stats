@@ -1,13 +1,13 @@
 export default {
-  "generated": "2026-11-03T23:45:30.968Z",
+  "generated": "2026-11-08T13:31:45.259Z",
   "entrez": [
     {
       "db": "pubmed",
       "name": "PubMed",
       "description": "PubMed bibliographic record",
-      "build": "Build-2026.11.03.06.10",
-      "count": 41384131,
-      "updated": "2026-11-03",
+      "build": "Build-2026.11.07.00.26",
+      "count": 41405128,
+      "updated": "2026-11-07",
       "fields": 48,
       "links": 47
     },
@@ -15,9 +15,9 @@ export default {
       "db": "protein",
       "name": "Protein",
       "description": "Protein sequence record",
-      "build": "Build261102-0901m.1",
-      "count": 1663443902,
-      "updated": "2026-11-03",
+      "build": "Build261106-1026m.1",
+      "count": 1662422025,
+      "updated": "2026-11-07",
       "fields": 33,
       "links": 39
     },
@@ -25,9 +25,9 @@ export default {
       "db": "nuccore",
       "name": "Nucleotide",
       "description": "Core Nucleotide db",
-      "build": "Build261101-0445m.1",
-      "count": 744786483,
-      "updated": "2026-11-02",
+      "build": "Build261106-0840m.1",
+      "count": 745088158,
+      "updated": "2026-11-07",
       "fields": 34,
       "links": 37
     },
@@ -35,9 +35,9 @@ export default {
       "db": "ipg",
       "name": "Identical Protein Groups",
       "description": "Identical Protein Groups DB",
-      "build": "Build261030-1508.1",
-      "count": 1253562571,
-      "updated": "2026-11-01",
+      "build": "Build261104-1358.1",
+      "count": 1258599433,
+      "updated": "2026-11-06",
       "fields": 20,
       "links": 2
     },
@@ -45,9 +45,9 @@ export default {
       "db": "structure",
       "name": "Structure",
       "description": "Three-dimensional molecular model",
-      "build": "Build261021-2200.1",
-      "count": 261144,
-      "updated": "2026-10-21",
+      "build": "Build261104-1900.1",
+      "count": 262518,
+      "updated": "2026-11-05",
       "fields": 53,
       "links": 16
     },
@@ -85,9 +85,9 @@ export default {
       "db": "annotinfo",
       "name": "AnnotInfo",
       "description": "Annotinfo Database",
-      "build": "Build261102-1445.1",
-      "count": 2771,
-      "updated": "2026-11-02",
+      "build": "Build261107-1445.1",
+      "count": 2776,
+      "updated": "2026-11-07",
       "fields": 14,
       "links": 0
     },
@@ -95,9 +95,9 @@ export default {
       "db": "assembly",
       "name": "Assembly",
       "description": "Genome Assembly Database",
-      "build": "Build261102-1900.1",
-      "count": 4035447,
-      "updated": "2026-11-02",
+      "build": "Build261107-1700.1",
+      "count": 4062109,
+      "updated": "2026-11-07",
       "fields": 51,
       "links": 10
     },
@@ -105,9 +105,9 @@ export default {
       "db": "bioproject",
       "name": "BioProject",
       "description": "BioProject Database",
-      "build": "Build261103-0620.1",
-      "count": 1113414,
-      "updated": "2026-11-03",
+      "build": "Build261107-1505.1",
+      "count": 1115334,
+      "updated": "2026-11-07",
       "fields": 31,
       "links": 26
     },
@@ -115,9 +115,9 @@ export default {
       "db": "biosample",
       "name": "BioSample",
       "description": "BioSample Database",
-      "build": "Build261103-0301m.1",
-      "count": 60740537,
-      "updated": "2026-11-03",
+      "build": "Build261104-2006m.1",
+      "count": 60783656,
+      "updated": "2026-11-05",
       "fields": 14,
       "links": 11
     },
@@ -125,9 +125,9 @@ export default {
       "db": "blastdbinfo",
       "name": "BlastdbInfo",
       "description": "BlastdbInfo Database",
-      "build": "Build261102-1232.1",
-      "count": 4734462,
-      "updated": "2026-11-02",
+      "build": "Build261107-1237.1",
+      "count": 4758340,
+      "updated": "2026-11-07",
       "fields": 15,
       "links": 0
     },
@@ -135,9 +135,9 @@ export default {
       "db": "books",
       "name": "Books",
       "description": "Books Database",
-      "build": "Build261103-0230.1",
-      "count": 1338940,
-      "updated": "2026-11-03",
+      "build": "Build261106-0230.1",
+      "count": 1339349,
+      "updated": "2026-11-06",
       "fields": 33,
       "links": 9
     },
@@ -175,9 +175,9 @@ export default {
       "db": "gene",
       "name": "Gene",
       "description": "Gene database",
-      "build": "Build261102-2240m.1",
-      "count": 101415589,
-      "updated": "2026-11-03",
+      "build": "Build261106-2210m.1",
+      "count": 101751818,
+      "updated": "2026-11-07",
       "fields": 36,
       "links": 33
     },
@@ -185,9 +185,9 @@ export default {
       "db": "gds",
       "name": "GEO DataSets",
       "description": "GEO DataSets",
-      "build": "Build261102-2002.1",
-      "count": 9155229,
-      "updated": "2026-11-02",
+      "build": "Build261107-1927.1",
+      "count": 9163529,
+      "updated": "2026-11-07",
       "fields": 31,
       "links": 10
     },
@@ -205,9 +205,9 @@ export default {
       "db": "medgen",
       "name": "MedGen",
       "description": "Medgen Database",
-      "build": "Build261102-2227.1",
-      "count": 236621,
-      "updated": "2026-11-02",
+      "build": "Build261107-2227.1",
+      "count": 236620,
+      "updated": "2026-11-07",
       "fields": 24,
       "links": 15
     },
@@ -215,9 +215,9 @@ export default {
       "db": "mesh",
       "name": "MeSH",
       "description": "MeSH Database",
-      "build": "Build261103-0310.1",
+      "build": "Build261107-0310.1",
       "count": 355819,
-      "updated": "2026-11-03",
+      "updated": "2026-11-07",
       "fields": 14,
       "links": 3
     },
@@ -225,9 +225,9 @@ export default {
       "db": "nlmcatalog",
       "name": "NLM Catalog",
       "description": "NLM Catalog Database",
-      "build": "Build261103-0855.1",
-      "count": 1974607,
-      "updated": "2026-11-03",
+      "build": "Build261107-0615.1",
+      "count": 1974860,
+      "updated": "2026-11-07",
       "fields": 42,
       "links": 1
     },
@@ -235,9 +235,9 @@ export default {
       "db": "omim",
       "name": "OMIM",
       "description": "OMIM records",
-      "build": "Build261103-0305.1",
-      "count": 29753,
-      "updated": "2026-11-03",
+      "build": "Build261107-0305.1",
+      "count": 29764,
+      "updated": "2026-11-07",
       "fields": 22,
       "links": 18
     },
@@ -245,9 +245,9 @@ export default {
       "db": "orgtrack",
       "name": "Orgtrack",
       "description": "Orgtrack Database",
-      "build": "Build261103-0100.1",
-      "count": 9574,
-      "updated": "2026-11-03",
+      "build": "Build261107-0035.1",
+      "count": 9584,
+      "updated": "2026-11-07",
       "fields": 37,
       "links": 3
     },
@@ -255,9 +255,9 @@ export default {
       "db": "pmc",
       "name": "PMC",
       "description": "PubMed Central",
-      "build": "Build-2026.11.03.09.40",
-      "count": 12761718,
-      "updated": "2026-11-03",
+      "build": "Build-2026.11.07.18.15",
+      "count": 12773973,
+      "updated": "2026-11-07",
       "fields": 45,
       "links": 18
     },
@@ -275,9 +275,9 @@ export default {
       "db": "pcassay",
       "name": "PubChem BioAssay",
       "description": "PubChem BioAssay Database",
-      "build": "Build261031-0432m.1",
+      "build": "Build261104-0452m.1",
       "count": 1886723,
-      "updated": "2026-10-31",
+      "updated": "2026-11-04",
       "fields": 41,
       "links": 33
     },
@@ -285,9 +285,9 @@ export default {
       "db": "protfam",
       "name": "Protein Family Models",
       "description": "protfam DB",
-      "build": "Build261030-2315.1",
-      "count": 159281,
-      "updated": "2026-10-30",
+      "build": "Build261106-2315.1",
+      "count": 159464,
+      "updated": "2026-11-06",
       "fields": 24,
       "links": 5
     },
@@ -295,9 +295,9 @@ export default {
       "db": "pccompound",
       "name": "PubChem Compound",
       "description": "PubChem Compound Database",
-      "build": "Build261102-0805m.1",
-      "count": 124859499,
-      "updated": "2026-11-02",
+      "build": "Build261107-0615m.1",
+      "count": 124861302,
+      "updated": "2026-11-07",
       "fields": 41,
       "links": 28
     },
@@ -305,9 +305,9 @@ export default {
       "db": "pcsubstance",
       "name": "PubChem Substance",
       "description": "PubChem Substance Database",
-      "build": "Build261103-0425m.1",
-      "count": 351536217,
-      "updated": "2026-11-03",
+      "build": "Build261107-0615m.1",
+      "count": 351548247,
+      "updated": "2026-11-07",
       "fields": 21,
       "links": 19
     },
@@ -315,9 +315,9 @@ export default {
       "db": "seqannot",
       "name": "SeqAnnot",
       "description": "SeqAnnot Database",
-      "build": "Build261103-0749.1",
-      "count": 557003,
-      "updated": "2026-11-03",
+      "build": "Build261106-0839.1",
+      "count": 557786,
+      "updated": "2026-11-06",
       "fields": 14,
       "links": 2
     },
@@ -335,9 +335,9 @@ export default {
       "db": "sra",
       "name": "SRA",
       "description": "SRA Database",
-      "build": "Build261103-0423m.1",
-      "count": 47523459,
-      "updated": "2026-11-03",
+      "build": "Build261107-1958m.1",
+      "count": 47630864,
+      "updated": "2026-11-07",
       "fields": 22,
       "links": 9
     },
@@ -345,9 +345,9 @@ export default {
       "db": "taxonomy",
       "name": "Taxonomy",
       "description": "Taxonomy db",
-      "build": "Build261103-0835.1",
-      "count": 3160573,
-      "updated": "2026-11-03",
+      "build": "Build261107-2030.1",
+      "count": 3170509,
+      "updated": "2026-11-07",
       "fields": 21,
       "links": 20
     },
@@ -365,9 +365,9 @@ export default {
       "db": "gtr",
       "name": "GTR",
       "description": "GTR Database",
-      "build": "Build261103-0100.1",
+      "build": "Build261104-0050.1",
       "count": 63471,
-      "updated": "2026-11-03",
+      "updated": "2026-11-04",
       "fields": 65,
       "links": 4
     }
@@ -383,98 +383,98 @@ export default {
           "db": "pubmed",
           "label": "Journal Article",
           "term": "journal article[pt]",
-          "count": 38751035
+          "count": 38772221
         },
         {
           "id": "pt-review",
           "db": "pubmed",
           "label": "Review",
           "term": "review[pt]",
-          "count": 4096084
+          "count": 4099426
         },
         {
           "id": "pt-case",
           "db": "pubmed",
           "label": "Case Reports",
           "term": "case reports[pt]",
-          "count": 2588615
+          "count": 2589823
         },
         {
           "id": "pt-letter",
           "db": "pubmed",
           "label": "Letter",
           "term": "letter[pt]",
-          "count": 1371256
+          "count": 1371895
         },
         {
           "id": "pt-comment",
           "db": "pubmed",
           "label": "Comment",
           "term": "comment[pt]",
-          "count": 1073487
+          "count": 1073686
         },
         {
           "id": "pt-trial",
           "db": "pubmed",
           "label": "Clinical Trial",
           "term": "clinical trial[pt]",
-          "count": 1063678
+          "count": 1064109
         },
         {
           "id": "pt-editorial",
           "db": "pubmed",
           "label": "Editorial",
           "term": "editorial[pt]",
-          "count": 782190
+          "count": 782687
         },
         {
           "id": "pt-rct",
           "db": "pubmed",
           "label": "Randomized Controlled Trial",
           "term": "randomized controlled trial[pt]",
-          "count": 674155
+          "count": 674517
         },
         {
           "id": "pt-historical",
           "db": "pubmed",
           "label": "Historical Article",
           "term": "historical article[pt]",
-          "count": 421203
+          "count": 421251
         },
         {
           "id": "pt-systematic",
           "db": "pubmed",
           "label": "Systematic Review",
           "term": "systematic review[pt]",
-          "count": 350791
+          "count": 351335
         },
         {
           "id": "pt-meta",
           "db": "pubmed",
           "label": "Meta-Analysis",
           "term": "meta-analysis[pt]",
-          "count": 246648
+          "count": 246946
         },
         {
           "id": "pt-biography",
           "db": "pubmed",
           "label": "Biography",
           "term": "biography[pt]",
-          "count": 219343
+          "count": 219351
         },
         {
           "id": "pt-erratum",
           "db": "pubmed",
           "label": "Published Erratum",
           "term": "published erratum[pt]",
-          "count": 215315
+          "count": 215722
         },
         {
           "id": "pt-preprint",
           "db": "pubmed",
           "label": "Preprint",
           "term": "preprint[pt]",
-          "count": 70563
+          "count": 71656
         },
         {
           "id": "pt-portrait",
@@ -488,21 +488,21 @@ export default {
           "db": "pubmed",
           "label": "Retracted Publication",
           "term": "retracted publication[pt]",
-          "count": 35408
+          "count": 35540
         },
         {
           "id": "pt-retraction",
           "db": "pubmed",
           "label": "Retraction Notice",
           "term": "retraction notice[pt]",
-          "count": 34170
+          "count": 34304
         },
         {
           "id": "pt-concern",
           "db": "pubmed",
           "label": "Expression of Concern",
           "term": "\"expression of concern\"[pt]",
-          "count": 4088
+          "count": 4100
         },
         {
           "id": "pt-duplicate",
@@ -523,21 +523,21 @@ export default {
           "db": "pubmed",
           "label": "English",
           "term": "english[la]",
-          "count": 36466124
+          "count": 36488444
         },
         {
           "id": "la-ger",
           "db": "pubmed",
           "label": "German",
           "term": "german[la]",
-          "count": 921741
+          "count": 921854
         },
         {
           "id": "la-fre",
           "db": "pubmed",
           "label": "French",
           "term": "french[la]",
-          "count": 780910
+          "count": 780998
         },
         {
           "id": "la-rus",
@@ -551,49 +551,49 @@ export default {
           "db": "pubmed",
           "label": "Japanese",
           "term": "japanese[la]",
-          "count": 442008
+          "count": 442118
         },
         {
           "id": "la-spa",
           "db": "pubmed",
           "label": "Spanish",
           "term": "spanish[la]",
-          "count": 396881
+          "count": 396936
         },
         {
           "id": "la-chi",
           "db": "pubmed",
           "label": "Chinese",
           "term": "chinese[la]",
-          "count": 393334
+          "count": 393375
         },
         {
           "id": "la-ita",
           "db": "pubmed",
           "label": "Italian",
           "term": "italian[la]",
-          "count": 309619
+          "count": 309653
         },
         {
           "id": "la-pol",
           "db": "pubmed",
           "label": "Polish",
           "term": "polish[la]",
-          "count": 174246
+          "count": 174247
         },
         {
           "id": "la-por",
           "db": "pubmed",
           "label": "Portuguese",
           "term": "portuguese[la]",
-          "count": 123560
+          "count": 123599
         },
         {
           "id": "la-dut",
           "db": "pubmed",
           "label": "Dutch",
           "term": "dutch[la]",
-          "count": 71293
+          "count": 71323
         },
         {
           "id": "la-cze",
@@ -614,7 +614,7 @@ export default {
           "db": "pubmed",
           "label": "Swedish",
           "term": "swedish[la]",
-          "count": 57079
+          "count": 57080
         },
         {
           "id": "la-dan",
@@ -628,14 +628,14 @@ export default {
           "db": "pubmed",
           "label": "Turkish",
           "term": "turkish[la]",
-          "count": 11633
+          "count": 11645
         },
         {
           "id": "la-kor",
           "db": "pubmed",
           "label": "Korean",
           "term": "korean[la]",
-          "count": 9500
+          "count": 9504
         },
         {
           "id": "la-lat",
@@ -656,98 +656,98 @@ export default {
           "db": "pubmed",
           "label": "Humans",
           "term": "humans[mh]",
-          "count": 23824827
+          "count": 23836010
         },
         {
           "id": "mh-mice",
           "db": "pubmed",
           "label": "Mice",
           "term": "mice[mh]",
-          "count": 2039496
+          "count": 2040755
         },
         {
           "id": "mh-rats",
           "db": "pubmed",
           "label": "Rats",
           "term": "rats[mh]",
-          "count": 1774048
+          "count": 1774366
         },
         {
           "id": "mh-dogs",
           "db": "pubmed",
           "label": "Dogs",
           "term": "dogs[mh]",
-          "count": 358360
+          "count": 358441
         },
         {
           "id": "mh-cattle",
           "db": "pubmed",
           "label": "Cattle",
           "term": "cattle[mh]",
-          "count": 394232
+          "count": 394315
         },
         {
           "id": "mh-swine",
           "db": "pubmed",
           "label": "Swine",
           "term": "swine[mh]",
-          "count": 263962
+          "count": 264048
         },
         {
           "id": "mh-rabbits",
           "db": "pubmed",
           "label": "Rabbits",
           "term": "rabbits[mh]",
-          "count": 354146
+          "count": 354172
         },
         {
           "id": "mh-ecoli",
           "db": "pubmed",
           "label": "Escherichia coli",
           "term": "\"escherichia coli\"[mh]",
-          "count": 329156
+          "count": 329272
         },
         {
           "id": "mh-yeast",
           "db": "pubmed",
           "label": "Saccharomyces cerevisiae",
           "term": "\"saccharomyces cerevisiae\"[mh]",
-          "count": 120679
+          "count": 120710
         },
         {
           "id": "mh-fly",
           "db": "pubmed",
           "label": "Drosophila",
           "term": "drosophila[mh]",
-          "count": 97471
+          "count": 97513
         },
         {
           "id": "mh-zebrafish",
           "db": "pubmed",
           "label": "Zebrafish",
           "term": "zebrafish[mh]",
-          "count": 51739
+          "count": 51780
         },
         {
           "id": "mh-arabidopsis",
           "db": "pubmed",
           "label": "Arabidopsis",
           "term": "arabidopsis[mh]",
-          "count": 74663
+          "count": 74714
         },
         {
           "id": "mh-worm",
           "db": "pubmed",
           "label": "Caenorhabditis elegans",
           "term": "\"caenorhabditis elegans\"[mh]",
-          "count": 31498
+          "count": 31528
         },
         {
           "id": "mh-macaque",
           "db": "pubmed",
           "label": "Macaca mulatta",
           "term": "\"macaca mulatta\"[mh]",
-          "count": 45725
+          "count": 45734
         }
       ]
     },
@@ -761,35 +761,35 @@ export default {
           "db": "pubmed",
           "label": "MEDLINE-indexed",
           "term": "medline[sb]",
-          "count": 33801076
+          "count": 33815348
         },
         {
           "id": "sb-abstract",
           "db": "pubmed",
           "label": "Has an abstract",
           "term": "hasabstract",
-          "count": 29693827
+          "count": 29713961
         },
         {
           "id": "sb-free",
           "db": "pubmed",
           "label": "Free full text",
           "term": "free full text[sb]",
-          "count": 14963164
+          "count": 14972164
         },
         {
           "id": "sb-pmc",
           "db": "pubmed",
           "label": "Linked to PMC",
           "term": "pubmed pmc[sb]",
-          "count": 11671351
+          "count": 11683983
         },
         {
           "id": "sb-covid",
           "db": "pubmed",
           "label": "Mentions COVID-19",
           "term": "covid-19",
-          "count": 523738
+          "count": 524072
         },
         {
           "id": "sb-pre1900",
@@ -810,14 +810,14 @@ export default {
           "db": "nlmcatalog",
           "label": "Journals currently indexed for MEDLINE",
           "term": "currentlyindexed[All]",
-          "count": 5220
+          "count": 5222
         },
         {
           "id": "pmc-oa",
           "db": "pmc",
           "label": "PMC open access articles",
           "term": "\"open access\"[filter]",
-          "count": 8363539
+          "count": 8376949
         }
       ]
     },
@@ -873,7 +873,7 @@ export default {
           "db": "gene",
           "label": "Live Gene records, all species",
           "term": "alive[prop]",
-          "count": 73755385
+          "count": 74079890
         },
         {
           "id": "gene-human",
@@ -894,21 +894,21 @@ export default {
           "db": "taxonomy",
           "label": "Taxonomy nodes at species rank",
           "term": "species[rank]",
-          "count": 2497712
+          "count": 2506306
         },
         {
           "id": "tax-genus",
           "db": "taxonomy",
           "label": "Taxonomy nodes at genus rank",
           "term": "genus[rank]",
-          "count": 133708
+          "count": 134106
         },
         {
           "id": "sra-human",
           "db": "sra",
           "label": "Human SRA experiments",
           "term": "\"homo sapiens\"[orgn]",
-          "count": 7306169
+          "count": 7311629
         }
       ]
     },
@@ -964,35 +964,35 @@ export default {
           "db": "assembly",
           "label": "Complete genome",
           "term": "\"complete genome\"[Assembly Level]",
-          "count": 349470
+          "count": 349949
         },
         {
           "id": "asm-chromosome",
           "db": "assembly",
           "label": "Chromosome",
           "term": "chromosome[Assembly Level]",
-          "count": 53531
+          "count": 53592
         },
         {
           "id": "asm-scaffold",
           "db": "assembly",
           "label": "Scaffold",
           "term": "scaffold[Assembly Level]",
-          "count": 640265
+          "count": 655149
         },
         {
           "id": "asm-contig",
           "db": "assembly",
           "label": "Contig",
           "term": "contig[Assembly Level]",
-          "count": 2988415
+          "count": 2999651
         },
         {
           "id": "asm-refseq",
           "db": "assembly",
           "label": "Latest RefSeq assemblies",
           "term": "\"latest refseq\"[filter]",
-          "count": 569845
+          "count": 569258
         }
       ]
     },
@@ -1006,28 +1006,28 @@ export default {
           "db": "sra",
           "label": "Illumina",
           "term": "illumina[Platform]",
-          "count": 38226224
+          "count": 38289931
         },
         {
           "id": "sra-ont",
           "db": "sra",
           "label": "Oxford Nanopore",
           "term": "\"oxford nanopore\"[Platform]",
-          "count": 1123885
+          "count": 1125395
         },
         {
           "id": "sra-pacbio",
           "db": "sra",
           "label": "PacBio SMRT",
           "term": "\"pacbio smrt\"[Platform]",
-          "count": 943343
+          "count": 943809
         },
         {
           "id": "sra-ion",
           "db": "sra",
           "label": "Ion Torrent",
           "term": "\"ion torrent\"[Platform]",
-          "count": 552558
+          "count": 552676
         },
         {
           "id": "sra-454",
@@ -1041,28 +1041,28 @@ export default {
           "db": "sra",
           "label": "Capillary",
           "term": "capillary[Platform]",
-          "count": 368552
+          "count": 368601
         },
         {
           "id": "sra-bgi",
           "db": "sra",
           "label": "BGISEQ / DNBSEQ",
           "term": "bgiseq[Platform]",
-          "count": 264415
+          "count": 264969
         },
         {
           "id": "sra-element",
           "db": "sra",
           "label": "Element",
           "term": "element[Platform]",
-          "count": 94215
+          "count": 94511
         },
         {
           "id": "sra-ultima",
           "db": "sra",
           "label": "Ultima",
           "term": "ultima[Platform]",
-          "count": 2350
+          "count": 2647
         }
       ]
     },
@@ -1076,49 +1076,49 @@ export default {
           "db": "sra",
           "label": "Amplicon",
           "term": "amplicon[Strategy]",
-          "count": 18423418
+          "count": 18443517
         },
         {
           "id": "sra-wgs",
           "db": "sra",
           "label": "WGS",
           "term": "wgs[Strategy]",
-          "count": 9299624
+          "count": 9326856
         },
         {
           "id": "sra-rnaseq",
           "db": "sra",
           "label": "RNA-Seq",
           "term": "\"rna seq\"[Strategy]",
-          "count": 7183729
+          "count": 7200576
         },
         {
           "id": "sra-wxs",
           "db": "sra",
           "label": "Whole exome (WXS)",
           "term": "wxs[Strategy]",
-          "count": 559821
+          "count": 560166
         },
         {
           "id": "sra-chip",
           "db": "sra",
           "label": "ChIP-Seq",
           "term": "\"chip seq\"[Strategy]",
-          "count": 413381
+          "count": 413878
         },
         {
           "id": "sra-bisulfite",
           "db": "sra",
           "label": "Bisulfite-Seq",
           "term": "\"bisulfite seq\"[Strategy]",
-          "count": 338021
+          "count": 338287
         },
         {
           "id": "sra-atac",
           "db": "sra",
           "label": "ATAC-seq",
           "term": "\"atac seq\"[Strategy]",
-          "count": 229544
+          "count": 229742
         }
       ]
     },
@@ -1314,28 +1314,28 @@ export default {
           "db": "pubmed",
           "label": "bioRxiv",
           "term": "\"biorxiv\"[ta]",
-          "count": 48443
+          "count": 49197
         },
         {
           "id": "pp-medrxiv",
           "db": "pubmed",
           "label": "medRxiv",
           "term": "\"medrxiv\"[ta]",
-          "count": 11827
+          "count": 12032
         },
         {
           "id": "pp-resq",
           "db": "pubmed",
           "label": "Research Square",
           "term": "\"res sq\"[ta]",
-          "count": 7822
+          "count": 7922
         },
         {
           "id": "pp-arxiv",
           "db": "pubmed",
           "label": "arXiv",
           "term": "\"arxiv\"[ta]",
-          "count": 2420
+          "count": 2454
         }
       ]
     }
@@ -1367,7 +1367,7 @@ export default {
         "Miller W"
       ],
       "authorCount": 5,
-      "citedBy": 40945
+      "citedBy": 41027
     },
     {
       "pmid": "9254694",
@@ -1381,7 +1381,7 @@ export default {
         "Schäffer AA"
       ],
       "authorCount": 7,
-      "citedBy": 28741
+      "citedBy": 28763
     },
     {
       "pmid": "8743683",
@@ -1421,7 +1421,7 @@ export default {
         "Lipscomb CE"
       ],
       "authorCount": 1,
-      "citedBy": 385
+      "citedBy": 386
     },
     {
       "pmid": "11125122",
@@ -1435,7 +1435,7 @@ export default {
         "Kholodov M"
       ],
       "authorCount": 7,
-      "citedBy": 4220
+      "citedBy": 4225
     },
     {
       "pmid": "11752295",
@@ -1449,7 +1449,7 @@ export default {
         "Lash AE"
       ],
       "authorCount": 3,
-      "citedBy": 8211
+      "citedBy": 8222
     },
     {
       "pmid": "15608248",
@@ -1463,7 +1463,7 @@ export default {
         "Maglott DR"
       ],
       "authorCount": 3,
-      "citedBy": 1000
+      "citedBy": 1001
     },
     {
       "pmid": "17898773",
@@ -1491,7 +1491,7 @@ export default {
         "Riley GR"
       ],
       "authorCount": 7,
-      "citedBy": 2256
+      "citedBy": 2270
     },
     {
       "pmid": "26400175",
@@ -1505,7 +1505,7 @@ export default {
         "Bolton EE"
       ],
       "authorCount": 14,
-      "citedBy": 2028
+      "citedBy": 2033
     }
   ],
   "pubmed": {
@@ -1786,7 +1786,7 @@ export default {
       },
       {
         "year": 1993,
-        "count": 427790
+        "count": 427791
       },
       {
         "year": 1994,
@@ -1834,11 +1834,11 @@ export default {
       },
       {
         "year": 2005,
-        "count": 700540
+        "count": 700542
       },
       {
         "year": 2006,
-        "count": 750408
+        "count": 750409
       },
       {
         "year": 2007,
@@ -1854,80 +1854,3481 @@ export default {
       },
       {
         "year": 2010,
-        "count": 942372
+        "count": 942305
       },
       {
         "year": 2011,
-        "count": 1020845
+        "count": 1020836
       },
       {
         "year": 2012,
-        "count": 1090513
+        "count": 1090477
       },
       {
         "year": 2013,
-        "count": 1150127
+        "count": 1150052
       },
       {
         "year": 2014,
-        "count": 1205917
+        "count": 1205839
       },
       {
         "year": 2015,
-        "count": 1258194
+        "count": 1258053
       },
       {
         "year": 2016,
-        "count": 1285545
+        "count": 1285489
       },
       {
         "year": 2017,
-        "count": 1304357
+        "count": 1304355
       },
       {
         "year": 2018,
-        "count": 1351740
+        "count": 1351721
       },
       {
         "year": 2019,
-        "count": 1418982
+        "count": 1418985
       },
       {
         "year": 2020,
-        "count": 1641282
+        "count": 1641277
       },
       {
         "year": 2021,
-        "count": 1787519
+        "count": 1787547
       },
       {
         "year": 2022,
-        "count": 1783673
+        "count": 1783672
       },
       {
         "year": 2023,
-        "count": 1697707
+        "count": 1697783
       },
       {
         "year": 2024,
-        "count": 1740230
+        "count": 1740267
       },
       {
         "year": 2025,
-        "count": 1882376
+        "count": 1882495
       },
       {
         "year": 2026,
-        "count": 1636618
+        "count": 1664029
       }
     ]
   },
+  "types": [
+    {
+      "id": "review",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 0
+        },
+        {
+          "year": 1952,
+          "count": 2
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 2
+        },
+        {
+          "year": 1957,
+          "count": 2
+        },
+        {
+          "year": 1958,
+          "count": 4
+        },
+        {
+          "year": 1959,
+          "count": 2
+        },
+        {
+          "year": 1960,
+          "count": 0
+        },
+        {
+          "year": 1961,
+          "count": 0
+        },
+        {
+          "year": 1962,
+          "count": 20
+        },
+        {
+          "year": 1963,
+          "count": 2667
+        },
+        {
+          "year": 1964,
+          "count": 4093
+        },
+        {
+          "year": 1965,
+          "count": 4461
+        },
+        {
+          "year": 1966,
+          "count": 4885
+        },
+        {
+          "year": 1967,
+          "count": 5035
+        },
+        {
+          "year": 1968,
+          "count": 4705
+        },
+        {
+          "year": 1969,
+          "count": 4954
+        },
+        {
+          "year": 1970,
+          "count": 5201
+        },
+        {
+          "year": 1971,
+          "count": 5719
+        },
+        {
+          "year": 1972,
+          "count": 6099
+        },
+        {
+          "year": 1973,
+          "count": 6301
+        },
+        {
+          "year": 1974,
+          "count": 6905
+        },
+        {
+          "year": 1975,
+          "count": 6228
+        },
+        {
+          "year": 1976,
+          "count": 6547
+        },
+        {
+          "year": 1977,
+          "count": 6264
+        },
+        {
+          "year": 1978,
+          "count": 7197
+        },
+        {
+          "year": 1979,
+          "count": 7822
+        },
+        {
+          "year": 1980,
+          "count": 8435
+        },
+        {
+          "year": 1981,
+          "count": 8887
+        },
+        {
+          "year": 1982,
+          "count": 9134
+        },
+        {
+          "year": 1983,
+          "count": 10862
+        },
+        {
+          "year": 1984,
+          "count": 11449
+        },
+        {
+          "year": 1985,
+          "count": 12025
+        },
+        {
+          "year": 1986,
+          "count": 14193
+        },
+        {
+          "year": 1987,
+          "count": 21677
+        },
+        {
+          "year": 1988,
+          "count": 32467
+        },
+        {
+          "year": 1989,
+          "count": 36931
+        },
+        {
+          "year": 1990,
+          "count": 40640
+        },
+        {
+          "year": 1991,
+          "count": 41895
+        },
+        {
+          "year": 1992,
+          "count": 43099
+        },
+        {
+          "year": 1993,
+          "count": 45645
+        },
+        {
+          "year": 1994,
+          "count": 49028
+        },
+        {
+          "year": 1995,
+          "count": 49894
+        },
+        {
+          "year": 1996,
+          "count": 53811
+        },
+        {
+          "year": 1997,
+          "count": 56340
+        },
+        {
+          "year": 1998,
+          "count": 58618
+        },
+        {
+          "year": 1999,
+          "count": 62060
+        },
+        {
+          "year": 2000,
+          "count": 67348
+        },
+        {
+          "year": 2001,
+          "count": 68195
+        },
+        {
+          "year": 2002,
+          "count": 72289
+        },
+        {
+          "year": 2003,
+          "count": 77228
+        },
+        {
+          "year": 2004,
+          "count": 84500
+        },
+        {
+          "year": 2005,
+          "count": 86061
+        },
+        {
+          "year": 2006,
+          "count": 92382
+        },
+        {
+          "year": 2007,
+          "count": 92408
+        },
+        {
+          "year": 2008,
+          "count": 91936
+        },
+        {
+          "year": 2009,
+          "count": 92583
+        },
+        {
+          "year": 2010,
+          "count": 97400
+        },
+        {
+          "year": 2011,
+          "count": 104876
+        },
+        {
+          "year": 2012,
+          "count": 114481
+        },
+        {
+          "year": 2013,
+          "count": 123439
+        },
+        {
+          "year": 2014,
+          "count": 135898
+        },
+        {
+          "year": 2015,
+          "count": 140826
+        },
+        {
+          "year": 2016,
+          "count": 146122
+        },
+        {
+          "year": 2017,
+          "count": 151031
+        },
+        {
+          "year": 2018,
+          "count": 156719
+        },
+        {
+          "year": 2019,
+          "count": 163750
+        },
+        {
+          "year": 2020,
+          "count": 197253
+        },
+        {
+          "year": 2021,
+          "count": 226231
+        },
+        {
+          "year": 2022,
+          "count": 225107
+        },
+        {
+          "year": 2023,
+          "count": 216911
+        },
+        {
+          "year": 2024,
+          "count": 226745
+        },
+        {
+          "year": 2025,
+          "count": 247785
+        }
+      ]
+    },
+    {
+      "id": "case",
+      "years": [
+        {
+          "year": 1950,
+          "count": 3
+        },
+        {
+          "year": 1951,
+          "count": 62
+        },
+        {
+          "year": 1952,
+          "count": 61
+        },
+        {
+          "year": 1953,
+          "count": 46
+        },
+        {
+          "year": 1954,
+          "count": 52
+        },
+        {
+          "year": 1955,
+          "count": 499
+        },
+        {
+          "year": 1956,
+          "count": 2884
+        },
+        {
+          "year": 1957,
+          "count": 4135
+        },
+        {
+          "year": 1958,
+          "count": 4311
+        },
+        {
+          "year": 1959,
+          "count": 3954
+        },
+        {
+          "year": 1960,
+          "count": 4175
+        },
+        {
+          "year": 1961,
+          "count": 4998
+        },
+        {
+          "year": 1962,
+          "count": 3084
+        },
+        {
+          "year": 1963,
+          "count": 25
+        },
+        {
+          "year": 1964,
+          "count": 541
+        },
+        {
+          "year": 1965,
+          "count": 12594
+        },
+        {
+          "year": 1966,
+          "count": 13227
+        },
+        {
+          "year": 1967,
+          "count": 6964
+        },
+        {
+          "year": 1968,
+          "count": 4992
+        },
+        {
+          "year": 1969,
+          "count": 4214
+        },
+        {
+          "year": 1970,
+          "count": 4527
+        },
+        {
+          "year": 1971,
+          "count": 3889
+        },
+        {
+          "year": 1972,
+          "count": 3765
+        },
+        {
+          "year": 1973,
+          "count": 3532
+        },
+        {
+          "year": 1974,
+          "count": 4844
+        },
+        {
+          "year": 1975,
+          "count": 14841
+        },
+        {
+          "year": 1976,
+          "count": 25372
+        },
+        {
+          "year": 1977,
+          "count": 27469
+        },
+        {
+          "year": 1978,
+          "count": 28597
+        },
+        {
+          "year": 1979,
+          "count": 29885
+        },
+        {
+          "year": 1980,
+          "count": 30991
+        },
+        {
+          "year": 1981,
+          "count": 32485
+        },
+        {
+          "year": 1982,
+          "count": 33651
+        },
+        {
+          "year": 1983,
+          "count": 35151
+        },
+        {
+          "year": 1984,
+          "count": 36429
+        },
+        {
+          "year": 1985,
+          "count": 36902
+        },
+        {
+          "year": 1986,
+          "count": 37021
+        },
+        {
+          "year": 1987,
+          "count": 37935
+        },
+        {
+          "year": 1988,
+          "count": 39035
+        },
+        {
+          "year": 1989,
+          "count": 39874
+        },
+        {
+          "year": 1990,
+          "count": 39476
+        },
+        {
+          "year": 1991,
+          "count": 38125
+        },
+        {
+          "year": 1992,
+          "count": 38732
+        },
+        {
+          "year": 1993,
+          "count": 39639
+        },
+        {
+          "year": 1994,
+          "count": 39180
+        },
+        {
+          "year": 1995,
+          "count": 39797
+        },
+        {
+          "year": 1996,
+          "count": 40130
+        },
+        {
+          "year": 1997,
+          "count": 40092
+        },
+        {
+          "year": 1998,
+          "count": 41672
+        },
+        {
+          "year": 1999,
+          "count": 41438
+        },
+        {
+          "year": 2000,
+          "count": 42535
+        },
+        {
+          "year": 2001,
+          "count": 43412
+        },
+        {
+          "year": 2002,
+          "count": 43809
+        },
+        {
+          "year": 2003,
+          "count": 45908
+        },
+        {
+          "year": 2004,
+          "count": 46683
+        },
+        {
+          "year": 2005,
+          "count": 50959
+        },
+        {
+          "year": 2006,
+          "count": 55779
+        },
+        {
+          "year": 2007,
+          "count": 59058
+        },
+        {
+          "year": 2008,
+          "count": 62351
+        },
+        {
+          "year": 2009,
+          "count": 64382
+        },
+        {
+          "year": 2010,
+          "count": 66633
+        },
+        {
+          "year": 2011,
+          "count": 70962
+        },
+        {
+          "year": 2012,
+          "count": 72392
+        },
+        {
+          "year": 2013,
+          "count": 73518
+        },
+        {
+          "year": 2014,
+          "count": 74801
+        },
+        {
+          "year": 2015,
+          "count": 73686
+        },
+        {
+          "year": 2016,
+          "count": 71093
+        },
+        {
+          "year": 2017,
+          "count": 73255
+        },
+        {
+          "year": 2018,
+          "count": 73357
+        },
+        {
+          "year": 2019,
+          "count": 76210
+        },
+        {
+          "year": 2020,
+          "count": 86345
+        },
+        {
+          "year": 2021,
+          "count": 85948
+        },
+        {
+          "year": 2022,
+          "count": 75904
+        },
+        {
+          "year": 2023,
+          "count": 73238
+        },
+        {
+          "year": 2024,
+          "count": 83313
+        },
+        {
+          "year": 2025,
+          "count": 79301
+        }
+      ]
+    },
+    {
+      "id": "letter",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 0
+        },
+        {
+          "year": 1952,
+          "count": 0
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 0
+        },
+        {
+          "year": 1957,
+          "count": 0
+        },
+        {
+          "year": 1958,
+          "count": 0
+        },
+        {
+          "year": 1959,
+          "count": 0
+        },
+        {
+          "year": 1960,
+          "count": 0
+        },
+        {
+          "year": 1961,
+          "count": 1
+        },
+        {
+          "year": 1962,
+          "count": 0
+        },
+        {
+          "year": 1963,
+          "count": 0
+        },
+        {
+          "year": 1964,
+          "count": 0
+        },
+        {
+          "year": 1965,
+          "count": 11
+        },
+        {
+          "year": 1966,
+          "count": 171
+        },
+        {
+          "year": 1967,
+          "count": 272
+        },
+        {
+          "year": 1968,
+          "count": 71
+        },
+        {
+          "year": 1969,
+          "count": 6
+        },
+        {
+          "year": 1970,
+          "count": 125
+        },
+        {
+          "year": 1971,
+          "count": 176
+        },
+        {
+          "year": 1972,
+          "count": 50
+        },
+        {
+          "year": 1973,
+          "count": 17
+        },
+        {
+          "year": 1974,
+          "count": 84
+        },
+        {
+          "year": 1975,
+          "count": 212
+        },
+        {
+          "year": 1976,
+          "count": 3041
+        },
+        {
+          "year": 1977,
+          "count": 9274
+        },
+        {
+          "year": 1978,
+          "count": 10136
+        },
+        {
+          "year": 1979,
+          "count": 11335
+        },
+        {
+          "year": 1980,
+          "count": 9748
+        },
+        {
+          "year": 1981,
+          "count": 8805
+        },
+        {
+          "year": 1982,
+          "count": 9876
+        },
+        {
+          "year": 1983,
+          "count": 11575
+        },
+        {
+          "year": 1984,
+          "count": 12373
+        },
+        {
+          "year": 1985,
+          "count": 13213
+        },
+        {
+          "year": 1986,
+          "count": 14656
+        },
+        {
+          "year": 1987,
+          "count": 16291
+        },
+        {
+          "year": 1988,
+          "count": 17599
+        },
+        {
+          "year": 1989,
+          "count": 18970
+        },
+        {
+          "year": 1990,
+          "count": 19956
+        },
+        {
+          "year": 1991,
+          "count": 21410
+        },
+        {
+          "year": 1992,
+          "count": 23951
+        },
+        {
+          "year": 1993,
+          "count": 24385
+        },
+        {
+          "year": 1994,
+          "count": 23879
+        },
+        {
+          "year": 1995,
+          "count": 24847
+        },
+        {
+          "year": 1996,
+          "count": 24406
+        },
+        {
+          "year": 1997,
+          "count": 23991
+        },
+        {
+          "year": 1998,
+          "count": 23887
+        },
+        {
+          "year": 1999,
+          "count": 24533
+        },
+        {
+          "year": 2000,
+          "count": 24801
+        },
+        {
+          "year": 2001,
+          "count": 25150
+        },
+        {
+          "year": 2002,
+          "count": 24661
+        },
+        {
+          "year": 2003,
+          "count": 25505
+        },
+        {
+          "year": 2004,
+          "count": 26796
+        },
+        {
+          "year": 2005,
+          "count": 29012
+        },
+        {
+          "year": 2006,
+          "count": 32010
+        },
+        {
+          "year": 2007,
+          "count": 33012
+        },
+        {
+          "year": 2008,
+          "count": 34791
+        },
+        {
+          "year": 2009,
+          "count": 35125
+        },
+        {
+          "year": 2010,
+          "count": 36065
+        },
+        {
+          "year": 2011,
+          "count": 36592
+        },
+        {
+          "year": 2012,
+          "count": 37409
+        },
+        {
+          "year": 2013,
+          "count": 47003
+        },
+        {
+          "year": 2014,
+          "count": 46985
+        },
+        {
+          "year": 2015,
+          "count": 47740
+        },
+        {
+          "year": 2016,
+          "count": 45263
+        },
+        {
+          "year": 2017,
+          "count": 44001
+        },
+        {
+          "year": 2018,
+          "count": 45866
+        },
+        {
+          "year": 2019,
+          "count": 47937
+        },
+        {
+          "year": 2020,
+          "count": 64746
+        },
+        {
+          "year": 2021,
+          "count": 58912
+        },
+        {
+          "year": 2022,
+          "count": 48637
+        },
+        {
+          "year": 2023,
+          "count": 45154
+        },
+        {
+          "year": 2024,
+          "count": 48866
+        },
+        {
+          "year": 2025,
+          "count": 50289
+        }
+      ]
+    },
+    {
+      "id": "comment",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 0
+        },
+        {
+          "year": 1952,
+          "count": 1
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 0
+        },
+        {
+          "year": 1957,
+          "count": 0
+        },
+        {
+          "year": 1958,
+          "count": 0
+        },
+        {
+          "year": 1959,
+          "count": 0
+        },
+        {
+          "year": 1960,
+          "count": 0
+        },
+        {
+          "year": 1961,
+          "count": 0
+        },
+        {
+          "year": 1962,
+          "count": 0
+        },
+        {
+          "year": 1963,
+          "count": 0
+        },
+        {
+          "year": 1964,
+          "count": 0
+        },
+        {
+          "year": 1965,
+          "count": 0
+        },
+        {
+          "year": 1966,
+          "count": 24
+        },
+        {
+          "year": 1967,
+          "count": 16
+        },
+        {
+          "year": 1968,
+          "count": 5
+        },
+        {
+          "year": 1969,
+          "count": 0
+        },
+        {
+          "year": 1970,
+          "count": 97
+        },
+        {
+          "year": 1971,
+          "count": 79
+        },
+        {
+          "year": 1972,
+          "count": 3
+        },
+        {
+          "year": 1973,
+          "count": 1
+        },
+        {
+          "year": 1974,
+          "count": 3
+        },
+        {
+          "year": 1975,
+          "count": 18
+        },
+        {
+          "year": 1976,
+          "count": 14
+        },
+        {
+          "year": 1977,
+          "count": 15
+        },
+        {
+          "year": 1978,
+          "count": 7
+        },
+        {
+          "year": 1979,
+          "count": 9
+        },
+        {
+          "year": 1980,
+          "count": 2
+        },
+        {
+          "year": 1981,
+          "count": 7
+        },
+        {
+          "year": 1982,
+          "count": 24
+        },
+        {
+          "year": 1983,
+          "count": 12
+        },
+        {
+          "year": 1984,
+          "count": 10
+        },
+        {
+          "year": 1985,
+          "count": 18
+        },
+        {
+          "year": 1986,
+          "count": 27
+        },
+        {
+          "year": 1987,
+          "count": 38
+        },
+        {
+          "year": 1988,
+          "count": 91
+        },
+        {
+          "year": 1989,
+          "count": 5718
+        },
+        {
+          "year": 1990,
+          "count": 10647
+        },
+        {
+          "year": 1991,
+          "count": 11934
+        },
+        {
+          "year": 1992,
+          "count": 14064
+        },
+        {
+          "year": 1993,
+          "count": 15748
+        },
+        {
+          "year": 1994,
+          "count": 15506
+        },
+        {
+          "year": 1995,
+          "count": 16611
+        },
+        {
+          "year": 1996,
+          "count": 15848
+        },
+        {
+          "year": 1997,
+          "count": 17092
+        },
+        {
+          "year": 1998,
+          "count": 17628
+        },
+        {
+          "year": 1999,
+          "count": 18836
+        },
+        {
+          "year": 2000,
+          "count": 19492
+        },
+        {
+          "year": 2001,
+          "count": 19893
+        },
+        {
+          "year": 2002,
+          "count": 22209
+        },
+        {
+          "year": 2003,
+          "count": 25028
+        },
+        {
+          "year": 2004,
+          "count": 25430
+        },
+        {
+          "year": 2005,
+          "count": 27124
+        },
+        {
+          "year": 2006,
+          "count": 29623
+        },
+        {
+          "year": 2007,
+          "count": 30434
+        },
+        {
+          "year": 2008,
+          "count": 32010
+        },
+        {
+          "year": 2009,
+          "count": 32778
+        },
+        {
+          "year": 2010,
+          "count": 35170
+        },
+        {
+          "year": 2011,
+          "count": 38315
+        },
+        {
+          "year": 2012,
+          "count": 38992
+        },
+        {
+          "year": 2013,
+          "count": 49113
+        },
+        {
+          "year": 2014,
+          "count": 48920
+        },
+        {
+          "year": 2015,
+          "count": 50583
+        },
+        {
+          "year": 2016,
+          "count": 48432
+        },
+        {
+          "year": 2017,
+          "count": 52643
+        },
+        {
+          "year": 2018,
+          "count": 54044
+        },
+        {
+          "year": 2019,
+          "count": 55773
+        },
+        {
+          "year": 2020,
+          "count": 62178
+        },
+        {
+          "year": 2021,
+          "count": 57671
+        },
+        {
+          "year": 2022,
+          "count": 49588
+        },
+        {
+          "year": 2023,
+          "count": 42018
+        },
+        {
+          "year": 2024,
+          "count": 23461
+        },
+        {
+          "year": 2025,
+          "count": 10405
+        }
+      ]
+    },
+    {
+      "id": "editorial",
+      "years": [
+        {
+          "year": 1950,
+          "count": 18
+        },
+        {
+          "year": 1951,
+          "count": 19
+        },
+        {
+          "year": 1952,
+          "count": 18
+        },
+        {
+          "year": 1953,
+          "count": 18
+        },
+        {
+          "year": 1954,
+          "count": 26
+        },
+        {
+          "year": 1955,
+          "count": 12
+        },
+        {
+          "year": 1956,
+          "count": 6
+        },
+        {
+          "year": 1957,
+          "count": 3
+        },
+        {
+          "year": 1958,
+          "count": 6
+        },
+        {
+          "year": 1959,
+          "count": 5
+        },
+        {
+          "year": 1960,
+          "count": 4
+        },
+        {
+          "year": 1961,
+          "count": 5
+        },
+        {
+          "year": 1962,
+          "count": 9
+        },
+        {
+          "year": 1963,
+          "count": 10
+        },
+        {
+          "year": 1964,
+          "count": 10
+        },
+        {
+          "year": 1965,
+          "count": 13
+        },
+        {
+          "year": 1966,
+          "count": 47
+        },
+        {
+          "year": 1967,
+          "count": 66
+        },
+        {
+          "year": 1968,
+          "count": 27
+        },
+        {
+          "year": 1969,
+          "count": 16
+        },
+        {
+          "year": 1970,
+          "count": 18
+        },
+        {
+          "year": 1971,
+          "count": 32
+        },
+        {
+          "year": 1972,
+          "count": 37
+        },
+        {
+          "year": 1973,
+          "count": 113
+        },
+        {
+          "year": 1974,
+          "count": 83
+        },
+        {
+          "year": 1975,
+          "count": 373
+        },
+        {
+          "year": 1976,
+          "count": 1441
+        },
+        {
+          "year": 1977,
+          "count": 3178
+        },
+        {
+          "year": 1978,
+          "count": 3366
+        },
+        {
+          "year": 1979,
+          "count": 3365
+        },
+        {
+          "year": 1980,
+          "count": 2615
+        },
+        {
+          "year": 1981,
+          "count": 2196
+        },
+        {
+          "year": 1982,
+          "count": 1921
+        },
+        {
+          "year": 1983,
+          "count": 2204
+        },
+        {
+          "year": 1984,
+          "count": 2280
+        },
+        {
+          "year": 1985,
+          "count": 2402
+        },
+        {
+          "year": 1986,
+          "count": 2830
+        },
+        {
+          "year": 1987,
+          "count": 3258
+        },
+        {
+          "year": 1988,
+          "count": 3320
+        },
+        {
+          "year": 1989,
+          "count": 3798
+        },
+        {
+          "year": 1990,
+          "count": 4920
+        },
+        {
+          "year": 1991,
+          "count": 6597
+        },
+        {
+          "year": 1992,
+          "count": 6987
+        },
+        {
+          "year": 1993,
+          "count": 7385
+        },
+        {
+          "year": 1994,
+          "count": 7620
+        },
+        {
+          "year": 1995,
+          "count": 8066
+        },
+        {
+          "year": 1996,
+          "count": 8437
+        },
+        {
+          "year": 1997,
+          "count": 8696
+        },
+        {
+          "year": 1998,
+          "count": 9111
+        },
+        {
+          "year": 1999,
+          "count": 9790
+        },
+        {
+          "year": 2000,
+          "count": 10530
+        },
+        {
+          "year": 2001,
+          "count": 11188
+        },
+        {
+          "year": 2002,
+          "count": 11770
+        },
+        {
+          "year": 2003,
+          "count": 12874
+        },
+        {
+          "year": 2004,
+          "count": 13492
+        },
+        {
+          "year": 2005,
+          "count": 14617
+        },
+        {
+          "year": 2006,
+          "count": 15190
+        },
+        {
+          "year": 2007,
+          "count": 15924
+        },
+        {
+          "year": 2008,
+          "count": 19706
+        },
+        {
+          "year": 2009,
+          "count": 20481
+        },
+        {
+          "year": 2010,
+          "count": 21227
+        },
+        {
+          "year": 2011,
+          "count": 22374
+        },
+        {
+          "year": 2012,
+          "count": 23539
+        },
+        {
+          "year": 2013,
+          "count": 24875
+        },
+        {
+          "year": 2014,
+          "count": 26074
+        },
+        {
+          "year": 2015,
+          "count": 28334
+        },
+        {
+          "year": 2016,
+          "count": 30105
+        },
+        {
+          "year": 2017,
+          "count": 32327
+        },
+        {
+          "year": 2018,
+          "count": 33447
+        },
+        {
+          "year": 2019,
+          "count": 34923
+        },
+        {
+          "year": 2020,
+          "count": 42172
+        },
+        {
+          "year": 2021,
+          "count": 41524
+        },
+        {
+          "year": 2022,
+          "count": 42026
+        },
+        {
+          "year": 2023,
+          "count": 42693
+        },
+        {
+          "year": 2024,
+          "count": 39503
+        },
+        {
+          "year": 2025,
+          "count": 36552
+        }
+      ]
+    },
+    {
+      "id": "rct",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 0
+        },
+        {
+          "year": 1952,
+          "count": 0
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 0
+        },
+        {
+          "year": 1957,
+          "count": 0
+        },
+        {
+          "year": 1958,
+          "count": 0
+        },
+        {
+          "year": 1959,
+          "count": 0
+        },
+        {
+          "year": 1960,
+          "count": 1
+        },
+        {
+          "year": 1961,
+          "count": 1
+        },
+        {
+          "year": 1962,
+          "count": 0
+        },
+        {
+          "year": 1963,
+          "count": 0
+        },
+        {
+          "year": 1964,
+          "count": 0
+        },
+        {
+          "year": 1965,
+          "count": 39
+        },
+        {
+          "year": 1966,
+          "count": 194
+        },
+        {
+          "year": 1967,
+          "count": 217
+        },
+        {
+          "year": 1968,
+          "count": 271
+        },
+        {
+          "year": 1969,
+          "count": 289
+        },
+        {
+          "year": 1970,
+          "count": 355
+        },
+        {
+          "year": 1971,
+          "count": 378
+        },
+        {
+          "year": 1972,
+          "count": 476
+        },
+        {
+          "year": 1973,
+          "count": 569
+        },
+        {
+          "year": 1974,
+          "count": 649
+        },
+        {
+          "year": 1975,
+          "count": 930
+        },
+        {
+          "year": 1976,
+          "count": 1241
+        },
+        {
+          "year": 1977,
+          "count": 1248
+        },
+        {
+          "year": 1978,
+          "count": 1468
+        },
+        {
+          "year": 1979,
+          "count": 1786
+        },
+        {
+          "year": 1980,
+          "count": 2071
+        },
+        {
+          "year": 1981,
+          "count": 2282
+        },
+        {
+          "year": 1982,
+          "count": 2550
+        },
+        {
+          "year": 1983,
+          "count": 3050
+        },
+        {
+          "year": 1984,
+          "count": 2861
+        },
+        {
+          "year": 1985,
+          "count": 3534
+        },
+        {
+          "year": 1986,
+          "count": 3893
+        },
+        {
+          "year": 1987,
+          "count": 4447
+        },
+        {
+          "year": 1988,
+          "count": 4534
+        },
+        {
+          "year": 1989,
+          "count": 5647
+        },
+        {
+          "year": 1990,
+          "count": 6760
+        },
+        {
+          "year": 1991,
+          "count": 7170
+        },
+        {
+          "year": 1992,
+          "count": 7591
+        },
+        {
+          "year": 1993,
+          "count": 8262
+        },
+        {
+          "year": 1994,
+          "count": 9490
+        },
+        {
+          "year": 1995,
+          "count": 10365
+        },
+        {
+          "year": 1996,
+          "count": 10174
+        },
+        {
+          "year": 1997,
+          "count": 10353
+        },
+        {
+          "year": 1998,
+          "count": 10767
+        },
+        {
+          "year": 1999,
+          "count": 11525
+        },
+        {
+          "year": 2000,
+          "count": 11160
+        },
+        {
+          "year": 2001,
+          "count": 11998
+        },
+        {
+          "year": 2002,
+          "count": 12238
+        },
+        {
+          "year": 2003,
+          "count": 13457
+        },
+        {
+          "year": 2004,
+          "count": 15172
+        },
+        {
+          "year": 2005,
+          "count": 16324
+        },
+        {
+          "year": 2006,
+          "count": 17326
+        },
+        {
+          "year": 2007,
+          "count": 19064
+        },
+        {
+          "year": 2008,
+          "count": 19504
+        },
+        {
+          "year": 2009,
+          "count": 20566
+        },
+        {
+          "year": 2010,
+          "count": 22446
+        },
+        {
+          "year": 2011,
+          "count": 25280
+        },
+        {
+          "year": 2012,
+          "count": 27379
+        },
+        {
+          "year": 2013,
+          "count": 29577
+        },
+        {
+          "year": 2014,
+          "count": 29735
+        },
+        {
+          "year": 2015,
+          "count": 29471
+        },
+        {
+          "year": 2016,
+          "count": 28528
+        },
+        {
+          "year": 2017,
+          "count": 28259
+        },
+        {
+          "year": 2018,
+          "count": 26686
+        },
+        {
+          "year": 2019,
+          "count": 26154
+        },
+        {
+          "year": 2020,
+          "count": 28103
+        },
+        {
+          "year": 2021,
+          "count": 29411
+        },
+        {
+          "year": 2022,
+          "count": 28455
+        },
+        {
+          "year": 2023,
+          "count": 25620
+        },
+        {
+          "year": 2024,
+          "count": 27559
+        },
+        {
+          "year": 2025,
+          "count": 30852
+        }
+      ]
+    },
+    {
+      "id": "meta",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 0
+        },
+        {
+          "year": 1952,
+          "count": 0
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 0
+        },
+        {
+          "year": 1957,
+          "count": 0
+        },
+        {
+          "year": 1958,
+          "count": 0
+        },
+        {
+          "year": 1959,
+          "count": 0
+        },
+        {
+          "year": 1960,
+          "count": 0
+        },
+        {
+          "year": 1961,
+          "count": 0
+        },
+        {
+          "year": 1962,
+          "count": 0
+        },
+        {
+          "year": 1963,
+          "count": 0
+        },
+        {
+          "year": 1964,
+          "count": 0
+        },
+        {
+          "year": 1965,
+          "count": 0
+        },
+        {
+          "year": 1966,
+          "count": 1
+        },
+        {
+          "year": 1967,
+          "count": 0
+        },
+        {
+          "year": 1968,
+          "count": 0
+        },
+        {
+          "year": 1969,
+          "count": 0
+        },
+        {
+          "year": 1970,
+          "count": 0
+        },
+        {
+          "year": 1971,
+          "count": 0
+        },
+        {
+          "year": 1972,
+          "count": 0
+        },
+        {
+          "year": 1973,
+          "count": 0
+        },
+        {
+          "year": 1974,
+          "count": 0
+        },
+        {
+          "year": 1975,
+          "count": 0
+        },
+        {
+          "year": 1976,
+          "count": 0
+        },
+        {
+          "year": 1977,
+          "count": 0
+        },
+        {
+          "year": 1978,
+          "count": 0
+        },
+        {
+          "year": 1979,
+          "count": 0
+        },
+        {
+          "year": 1980,
+          "count": 0
+        },
+        {
+          "year": 1981,
+          "count": 0
+        },
+        {
+          "year": 1982,
+          "count": 1
+        },
+        {
+          "year": 1983,
+          "count": 0
+        },
+        {
+          "year": 1984,
+          "count": 0
+        },
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 0
+        },
+        {
+          "year": 1988,
+          "count": 1
+        },
+        {
+          "year": 1989,
+          "count": 0
+        },
+        {
+          "year": 1990,
+          "count": 271
+        },
+        {
+          "year": 1991,
+          "count": 332
+        },
+        {
+          "year": 1992,
+          "count": 370
+        },
+        {
+          "year": 1993,
+          "count": 322
+        },
+        {
+          "year": 1994,
+          "count": 383
+        },
+        {
+          "year": 1995,
+          "count": 420
+        },
+        {
+          "year": 1996,
+          "count": 476
+        },
+        {
+          "year": 1997,
+          "count": 588
+        },
+        {
+          "year": 1998,
+          "count": 629
+        },
+        {
+          "year": 1999,
+          "count": 729
+        },
+        {
+          "year": 2000,
+          "count": 836
+        },
+        {
+          "year": 2001,
+          "count": 932
+        },
+        {
+          "year": 2002,
+          "count": 1068
+        },
+        {
+          "year": 2003,
+          "count": 1284
+        },
+        {
+          "year": 2004,
+          "count": 1590
+        },
+        {
+          "year": 2005,
+          "count": 2099
+        },
+        {
+          "year": 2006,
+          "count": 2470
+        },
+        {
+          "year": 2007,
+          "count": 2617
+        },
+        {
+          "year": 2008,
+          "count": 2904
+        },
+        {
+          "year": 2009,
+          "count": 3528
+        },
+        {
+          "year": 2010,
+          "count": 4386
+        },
+        {
+          "year": 2011,
+          "count": 5635
+        },
+        {
+          "year": 2012,
+          "count": 7510
+        },
+        {
+          "year": 2013,
+          "count": 9243
+        },
+        {
+          "year": 2014,
+          "count": 10855
+        },
+        {
+          "year": 2015,
+          "count": 12039
+        },
+        {
+          "year": 2016,
+          "count": 12657
+        },
+        {
+          "year": 2017,
+          "count": 13416
+        },
+        {
+          "year": 2018,
+          "count": 14409
+        },
+        {
+          "year": 2019,
+          "count": 16221
+        },
+        {
+          "year": 2020,
+          "count": 19802
+        },
+        {
+          "year": 2021,
+          "count": 22896
+        },
+        {
+          "year": 2022,
+          "count": 23643
+        },
+        {
+          "year": 2023,
+          "count": 23129
+        },
+        {
+          "year": 2024,
+          "count": 24155
+        },
+        {
+          "year": 2025,
+          "count": 26268
+        }
+      ]
+    },
+    {
+      "id": "systematic",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 0
+        },
+        {
+          "year": 1952,
+          "count": 0
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 0
+        },
+        {
+          "year": 1957,
+          "count": 1
+        },
+        {
+          "year": 1958,
+          "count": 0
+        },
+        {
+          "year": 1959,
+          "count": 0
+        },
+        {
+          "year": 1960,
+          "count": 0
+        },
+        {
+          "year": 1961,
+          "count": 0
+        },
+        {
+          "year": 1962,
+          "count": 1
+        },
+        {
+          "year": 1963,
+          "count": 0
+        },
+        {
+          "year": 1964,
+          "count": 0
+        },
+        {
+          "year": 1965,
+          "count": 0
+        },
+        {
+          "year": 1966,
+          "count": 0
+        },
+        {
+          "year": 1967,
+          "count": 1
+        },
+        {
+          "year": 1968,
+          "count": 0
+        },
+        {
+          "year": 1969,
+          "count": 0
+        },
+        {
+          "year": 1970,
+          "count": 0
+        },
+        {
+          "year": 1971,
+          "count": 0
+        },
+        {
+          "year": 1972,
+          "count": 1
+        },
+        {
+          "year": 1973,
+          "count": 0
+        },
+        {
+          "year": 1974,
+          "count": 0
+        },
+        {
+          "year": 1975,
+          "count": 0
+        },
+        {
+          "year": 1976,
+          "count": 1
+        },
+        {
+          "year": 1977,
+          "count": 0
+        },
+        {
+          "year": 1978,
+          "count": 1
+        },
+        {
+          "year": 1979,
+          "count": 1
+        },
+        {
+          "year": 1980,
+          "count": 2
+        },
+        {
+          "year": 1981,
+          "count": 1
+        },
+        {
+          "year": 1982,
+          "count": 1
+        },
+        {
+          "year": 1983,
+          "count": 2
+        },
+        {
+          "year": 1984,
+          "count": 1
+        },
+        {
+          "year": 1985,
+          "count": 1
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 2
+        },
+        {
+          "year": 1988,
+          "count": 2
+        },
+        {
+          "year": 1989,
+          "count": 2
+        },
+        {
+          "year": 1990,
+          "count": 4
+        },
+        {
+          "year": 1991,
+          "count": 7
+        },
+        {
+          "year": 1992,
+          "count": 2
+        },
+        {
+          "year": 1993,
+          "count": 8
+        },
+        {
+          "year": 1994,
+          "count": 24
+        },
+        {
+          "year": 1995,
+          "count": 37
+        },
+        {
+          "year": 1996,
+          "count": 70
+        },
+        {
+          "year": 1997,
+          "count": 135
+        },
+        {
+          "year": 1998,
+          "count": 222
+        },
+        {
+          "year": 1999,
+          "count": 298
+        },
+        {
+          "year": 2000,
+          "count": 1413
+        },
+        {
+          "year": 2001,
+          "count": 1062
+        },
+        {
+          "year": 2002,
+          "count": 1204
+        },
+        {
+          "year": 2003,
+          "count": 1404
+        },
+        {
+          "year": 2004,
+          "count": 1712
+        },
+        {
+          "year": 2005,
+          "count": 2031
+        },
+        {
+          "year": 2006,
+          "count": 2500
+        },
+        {
+          "year": 2007,
+          "count": 3338
+        },
+        {
+          "year": 2008,
+          "count": 3643
+        },
+        {
+          "year": 2009,
+          "count": 4428
+        },
+        {
+          "year": 2010,
+          "count": 5287
+        },
+        {
+          "year": 2011,
+          "count": 6545
+        },
+        {
+          "year": 2012,
+          "count": 8292
+        },
+        {
+          "year": 2013,
+          "count": 10176
+        },
+        {
+          "year": 2014,
+          "count": 11985
+        },
+        {
+          "year": 2015,
+          "count": 13804
+        },
+        {
+          "year": 2016,
+          "count": 15441
+        },
+        {
+          "year": 2017,
+          "count": 17804
+        },
+        {
+          "year": 2018,
+          "count": 20604
+        },
+        {
+          "year": 2019,
+          "count": 24877
+        },
+        {
+          "year": 2020,
+          "count": 30325
+        },
+        {
+          "year": 2021,
+          "count": 36068
+        },
+        {
+          "year": 2022,
+          "count": 37707
+        },
+        {
+          "year": 2023,
+          "count": 35052
+        },
+        {
+          "year": 2024,
+          "count": 38089
+        },
+        {
+          "year": 2025,
+          "count": 43908
+        }
+      ]
+    },
+    {
+      "id": "preprint",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 0
+        },
+        {
+          "year": 1952,
+          "count": 0
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 0
+        },
+        {
+          "year": 1957,
+          "count": 0
+        },
+        {
+          "year": 1958,
+          "count": 0
+        },
+        {
+          "year": 1959,
+          "count": 0
+        },
+        {
+          "year": 1960,
+          "count": 0
+        },
+        {
+          "year": 1961,
+          "count": 0
+        },
+        {
+          "year": 1962,
+          "count": 0
+        },
+        {
+          "year": 1963,
+          "count": 0
+        },
+        {
+          "year": 1964,
+          "count": 0
+        },
+        {
+          "year": 1965,
+          "count": 0
+        },
+        {
+          "year": 1966,
+          "count": 0
+        },
+        {
+          "year": 1967,
+          "count": 0
+        },
+        {
+          "year": 1968,
+          "count": 0
+        },
+        {
+          "year": 1969,
+          "count": 0
+        },
+        {
+          "year": 1970,
+          "count": 0
+        },
+        {
+          "year": 1971,
+          "count": 0
+        },
+        {
+          "year": 1972,
+          "count": 0
+        },
+        {
+          "year": 1973,
+          "count": 0
+        },
+        {
+          "year": 1974,
+          "count": 0
+        },
+        {
+          "year": 1975,
+          "count": 0
+        },
+        {
+          "year": 1976,
+          "count": 0
+        },
+        {
+          "year": 1977,
+          "count": 0
+        },
+        {
+          "year": 1978,
+          "count": 0
+        },
+        {
+          "year": 1979,
+          "count": 0
+        },
+        {
+          "year": 1980,
+          "count": 0
+        },
+        {
+          "year": 1981,
+          "count": 0
+        },
+        {
+          "year": 1982,
+          "count": 0
+        },
+        {
+          "year": 1983,
+          "count": 0
+        },
+        {
+          "year": 1984,
+          "count": 0
+        },
+        {
+          "year": 1985,
+          "count": 0
+        },
+        {
+          "year": 1986,
+          "count": 0
+        },
+        {
+          "year": 1987,
+          "count": 0
+        },
+        {
+          "year": 1988,
+          "count": 0
+        },
+        {
+          "year": 1989,
+          "count": 0
+        },
+        {
+          "year": 1990,
+          "count": 0
+        },
+        {
+          "year": 1991,
+          "count": 0
+        },
+        {
+          "year": 1992,
+          "count": 0
+        },
+        {
+          "year": 1993,
+          "count": 0
+        },
+        {
+          "year": 1994,
+          "count": 0
+        },
+        {
+          "year": 1995,
+          "count": 0
+        },
+        {
+          "year": 1996,
+          "count": 0
+        },
+        {
+          "year": 1997,
+          "count": 0
+        },
+        {
+          "year": 1998,
+          "count": 0
+        },
+        {
+          "year": 1999,
+          "count": 0
+        },
+        {
+          "year": 2000,
+          "count": 0
+        },
+        {
+          "year": 2001,
+          "count": 0
+        },
+        {
+          "year": 2002,
+          "count": 0
+        },
+        {
+          "year": 2003,
+          "count": 0
+        },
+        {
+          "year": 2004,
+          "count": 0
+        },
+        {
+          "year": 2005,
+          "count": 0
+        },
+        {
+          "year": 2006,
+          "count": 0
+        },
+        {
+          "year": 2007,
+          "count": 0
+        },
+        {
+          "year": 2008,
+          "count": 0
+        },
+        {
+          "year": 2009,
+          "count": 0
+        },
+        {
+          "year": 2010,
+          "count": 0
+        },
+        {
+          "year": 2011,
+          "count": 0
+        },
+        {
+          "year": 2012,
+          "count": 0
+        },
+        {
+          "year": 2013,
+          "count": 0
+        },
+        {
+          "year": 2014,
+          "count": 0
+        },
+        {
+          "year": 2015,
+          "count": 0
+        },
+        {
+          "year": 2016,
+          "count": 0
+        },
+        {
+          "year": 2017,
+          "count": 0
+        },
+        {
+          "year": 2018,
+          "count": 0
+        },
+        {
+          "year": 2019,
+          "count": 0
+        },
+        {
+          "year": 2020,
+          "count": 1481
+        },
+        {
+          "year": 2021,
+          "count": 1401
+        },
+        {
+          "year": 2022,
+          "count": 822
+        },
+        {
+          "year": 2023,
+          "count": 13200
+        },
+        {
+          "year": 2024,
+          "count": 16058
+        },
+        {
+          "year": 2025,
+          "count": 20949
+        }
+      ]
+    },
+    {
+      "id": "retracted",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 1
+        },
+        {
+          "year": 1952,
+          "count": 0
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 0
+        },
+        {
+          "year": 1957,
+          "count": 0
+        },
+        {
+          "year": 1958,
+          "count": 0
+        },
+        {
+          "year": 1959,
+          "count": 1
+        },
+        {
+          "year": 1960,
+          "count": 0
+        },
+        {
+          "year": 1961,
+          "count": 0
+        },
+        {
+          "year": 1962,
+          "count": 0
+        },
+        {
+          "year": 1963,
+          "count": 1
+        },
+        {
+          "year": 1964,
+          "count": 0
+        },
+        {
+          "year": 1965,
+          "count": 0
+        },
+        {
+          "year": 1966,
+          "count": 0
+        },
+        {
+          "year": 1967,
+          "count": 0
+        },
+        {
+          "year": 1968,
+          "count": 1
+        },
+        {
+          "year": 1969,
+          "count": 0
+        },
+        {
+          "year": 1970,
+          "count": 0
+        },
+        {
+          "year": 1971,
+          "count": 0
+        },
+        {
+          "year": 1972,
+          "count": 0
+        },
+        {
+          "year": 1973,
+          "count": 3
+        },
+        {
+          "year": 1974,
+          "count": 0
+        },
+        {
+          "year": 1975,
+          "count": 7
+        },
+        {
+          "year": 1976,
+          "count": 3
+        },
+        {
+          "year": 1977,
+          "count": 2
+        },
+        {
+          "year": 1978,
+          "count": 8
+        },
+        {
+          "year": 1979,
+          "count": 9
+        },
+        {
+          "year": 1980,
+          "count": 12
+        },
+        {
+          "year": 1981,
+          "count": 16
+        },
+        {
+          "year": 1982,
+          "count": 6
+        },
+        {
+          "year": 1983,
+          "count": 14
+        },
+        {
+          "year": 1984,
+          "count": 13
+        },
+        {
+          "year": 1985,
+          "count": 14
+        },
+        {
+          "year": 1986,
+          "count": 10
+        },
+        {
+          "year": 1987,
+          "count": 17
+        },
+        {
+          "year": 1988,
+          "count": 19
+        },
+        {
+          "year": 1989,
+          "count": 35
+        },
+        {
+          "year": 1990,
+          "count": 54
+        },
+        {
+          "year": 1991,
+          "count": 42
+        },
+        {
+          "year": 1992,
+          "count": 36
+        },
+        {
+          "year": 1993,
+          "count": 32
+        },
+        {
+          "year": 1994,
+          "count": 53
+        },
+        {
+          "year": 1995,
+          "count": 64
+        },
+        {
+          "year": 1996,
+          "count": 58
+        },
+        {
+          "year": 1997,
+          "count": 69
+        },
+        {
+          "year": 1998,
+          "count": 98
+        },
+        {
+          "year": 1999,
+          "count": 101
+        },
+        {
+          "year": 2000,
+          "count": 131
+        },
+        {
+          "year": 2001,
+          "count": 173
+        },
+        {
+          "year": 2002,
+          "count": 251
+        },
+        {
+          "year": 2003,
+          "count": 225
+        },
+        {
+          "year": 2004,
+          "count": 308
+        },
+        {
+          "year": 2005,
+          "count": 354
+        },
+        {
+          "year": 2006,
+          "count": 469
+        },
+        {
+          "year": 2007,
+          "count": 497
+        },
+        {
+          "year": 2008,
+          "count": 564
+        },
+        {
+          "year": 2009,
+          "count": 625
+        },
+        {
+          "year": 2010,
+          "count": 728
+        },
+        {
+          "year": 2011,
+          "count": 823
+        },
+        {
+          "year": 2012,
+          "count": 910
+        },
+        {
+          "year": 2013,
+          "count": 1054
+        },
+        {
+          "year": 2014,
+          "count": 1333
+        },
+        {
+          "year": 2015,
+          "count": 1409
+        },
+        {
+          "year": 2016,
+          "count": 1380
+        },
+        {
+          "year": 2017,
+          "count": 1841
+        },
+        {
+          "year": 2018,
+          "count": 2309
+        },
+        {
+          "year": 2019,
+          "count": 2832
+        },
+        {
+          "year": 2020,
+          "count": 2983
+        },
+        {
+          "year": 2021,
+          "count": 3836
+        },
+        {
+          "year": 2022,
+          "count": 7395
+        },
+        {
+          "year": 2023,
+          "count": 2423
+        },
+        {
+          "year": 2024,
+          "count": 2337
+        },
+        {
+          "year": 2025,
+          "count": 1077
+        }
+      ]
+    },
+    {
+      "id": "retraction",
+      "years": [
+        {
+          "year": 1950,
+          "count": 0
+        },
+        {
+          "year": 1951,
+          "count": 0
+        },
+        {
+          "year": 1952,
+          "count": 0
+        },
+        {
+          "year": 1953,
+          "count": 0
+        },
+        {
+          "year": 1954,
+          "count": 0
+        },
+        {
+          "year": 1955,
+          "count": 0
+        },
+        {
+          "year": 1956,
+          "count": 0
+        },
+        {
+          "year": 1957,
+          "count": 0
+        },
+        {
+          "year": 1958,
+          "count": 0
+        },
+        {
+          "year": 1959,
+          "count": 0
+        },
+        {
+          "year": 1960,
+          "count": 0
+        },
+        {
+          "year": 1961,
+          "count": 0
+        },
+        {
+          "year": 1962,
+          "count": 0
+        },
+        {
+          "year": 1963,
+          "count": 0
+        },
+        {
+          "year": 1964,
+          "count": 0
+        },
+        {
+          "year": 1965,
+          "count": 0
+        },
+        {
+          "year": 1966,
+          "count": 1
+        },
+        {
+          "year": 1967,
+          "count": 0
+        },
+        {
+          "year": 1968,
+          "count": 1
+        },
+        {
+          "year": 1969,
+          "count": 0
+        },
+        {
+          "year": 1970,
+          "count": 1
+        },
+        {
+          "year": 1971,
+          "count": 0
+        },
+        {
+          "year": 1972,
+          "count": 0
+        },
+        {
+          "year": 1973,
+          "count": 0
+        },
+        {
+          "year": 1974,
+          "count": 0
+        },
+        {
+          "year": 1975,
+          "count": 3
+        },
+        {
+          "year": 1976,
+          "count": 0
+        },
+        {
+          "year": 1977,
+          "count": 3
+        },
+        {
+          "year": 1978,
+          "count": 0
+        },
+        {
+          "year": 1979,
+          "count": 0
+        },
+        {
+          "year": 1980,
+          "count": 8
+        },
+        {
+          "year": 1981,
+          "count": 2
+        },
+        {
+          "year": 1982,
+          "count": 4
+        },
+        {
+          "year": 1983,
+          "count": 9
+        },
+        {
+          "year": 1984,
+          "count": 7
+        },
+        {
+          "year": 1985,
+          "count": 12
+        },
+        {
+          "year": 1986,
+          "count": 6
+        },
+        {
+          "year": 1987,
+          "count": 10
+        },
+        {
+          "year": 1988,
+          "count": 5
+        },
+        {
+          "year": 1989,
+          "count": 12
+        },
+        {
+          "year": 1990,
+          "count": 20
+        },
+        {
+          "year": 1991,
+          "count": 20
+        },
+        {
+          "year": 1992,
+          "count": 25
+        },
+        {
+          "year": 1993,
+          "count": 19
+        },
+        {
+          "year": 1994,
+          "count": 19
+        },
+        {
+          "year": 1995,
+          "count": 20
+        },
+        {
+          "year": 1996,
+          "count": 14
+        },
+        {
+          "year": 1997,
+          "count": 39
+        },
+        {
+          "year": 1998,
+          "count": 50
+        },
+        {
+          "year": 1999,
+          "count": 32
+        },
+        {
+          "year": 2000,
+          "count": 25
+        },
+        {
+          "year": 2001,
+          "count": 28
+        },
+        {
+          "year": 2002,
+          "count": 44
+        },
+        {
+          "year": 2003,
+          "count": 62
+        },
+        {
+          "year": 2004,
+          "count": 67
+        },
+        {
+          "year": 2005,
+          "count": 76
+        },
+        {
+          "year": 2006,
+          "count": 139
+        },
+        {
+          "year": 2007,
+          "count": 149
+        },
+        {
+          "year": 2008,
+          "count": 244
+        },
+        {
+          "year": 2009,
+          "count": 311
+        },
+        {
+          "year": 2010,
+          "count": 313
+        },
+        {
+          "year": 2011,
+          "count": 485
+        },
+        {
+          "year": 2012,
+          "count": 552
+        },
+        {
+          "year": 2013,
+          "count": 621
+        },
+        {
+          "year": 2014,
+          "count": 545
+        },
+        {
+          "year": 2015,
+          "count": 747
+        },
+        {
+          "year": 2016,
+          "count": 843
+        },
+        {
+          "year": 2017,
+          "count": 678
+        },
+        {
+          "year": 2018,
+          "count": 853
+        },
+        {
+          "year": 2019,
+          "count": 932
+        },
+        {
+          "year": 2020,
+          "count": 1529
+        },
+        {
+          "year": 2021,
+          "count": 2032
+        },
+        {
+          "year": 2022,
+          "count": 2402
+        },
+        {
+          "year": 2023,
+          "count": 8031
+        },
+        {
+          "year": 2024,
+          "count": 4119
+        },
+        {
+          "year": 2025,
+          "count": 4824
+        }
+      ]
+    }
+  ],
   "methods": [
     {
       "id": "meta",
       "label": "Meta-analysis",
       "term": "meta-analysis[pt]",
-      "total": 246586,
+      "total": 246946,
       "years": [
         {
           "year": 1985,
@@ -2031,7 +5432,7 @@ export default {
         },
         {
           "year": 2010,
-          "count": 4385
+          "count": 4386
         },
         {
           "year": 2011,
@@ -2063,7 +5464,7 @@ export default {
         },
         {
           "year": 2018,
-          "count": 14407
+          "count": 14409
         },
         {
           "year": 2019,
@@ -2075,7 +5476,7 @@ export default {
         },
         {
           "year": 2021,
-          "count": 22895
+          "count": 22896
         },
         {
           "year": 2022,
@@ -2091,7 +5492,7 @@ export default {
         },
         {
           "year": 2025,
-          "count": 26253
+          "count": 26268
         }
       ]
     },
@@ -2099,7 +5500,7 @@ export default {
       "id": "survival",
       "label": "Survival analysis",
       "term": "\"survival analysis\"[mh]",
-      "total": 360570,
+      "total": 360730,
       "years": [
         {
           "year": 1985,
@@ -2235,7 +5636,7 @@ export default {
         },
         {
           "year": 2018,
-          "count": 22679
+          "count": 22680
         },
         {
           "year": 2019,
@@ -2263,7 +5664,7 @@ export default {
         },
         {
           "year": 2025,
-          "count": 10772
+          "count": 10773
         }
       ]
     },
@@ -2271,7 +5672,7 @@ export default {
       "id": "cox",
       "label": "Proportional hazards",
       "term": "\"proportional hazards models\"[mh]",
-      "total": 102303,
+      "total": 102383,
       "years": [
         {
           "year": 1985,
@@ -2435,7 +5836,7 @@ export default {
         },
         {
           "year": 2025,
-          "count": 4898
+          "count": 4899
         }
       ]
     },
@@ -2443,7 +5844,7 @@ export default {
       "id": "logistic",
       "label": "Logistic models",
       "term": "\"logistic models\"[mh]",
-      "total": 163867,
+      "total": 163938,
       "years": [
         {
           "year": 1985,
@@ -2607,7 +6008,7 @@ export default {
         },
         {
           "year": 2025,
-          "count": 4820
+          "count": 4823
         }
       ]
     },
@@ -2615,7 +6016,7 @@ export default {
       "id": "bayes",
       "label": "Bayes theorem",
       "term": "\"bayes theorem\"[mh]",
-      "total": 62670,
+      "total": 62731,
       "years": [
         {
           "year": 1985,
@@ -2779,7 +6180,7 @@ export default {
         },
         {
           "year": 2025,
-          "count": 4464
+          "count": 4466
         }
       ]
     },
@@ -2787,7 +6188,7 @@ export default {
       "id": "montecarlo",
       "label": "Monte Carlo",
       "term": "\"monte carlo method\"[mh]",
-      "total": 36467,
+      "total": 36496,
       "years": [
         {
           "year": 1985,
@@ -2939,7 +6340,7 @@ export default {
         },
         {
           "year": 2022,
-          "count": 1081
+          "count": 1080
         },
         {
           "year": 2023,
@@ -2951,7 +6352,7 @@ export default {
         },
         {
           "year": 2025,
-          "count": 1550
+          "count": 1551
         }
       ]
     },
@@ -2959,7 +6360,7 @@ export default {
       "id": "propensity",
       "label": "Propensity score",
       "term": "\"propensity score\"[mh]",
-      "total": 24613,
+      "total": 24674,
       "years": [
         {
           "year": 1985,
@@ -3123,7 +6524,7 @@ export default {
         },
         {
           "year": 2025,
-          "count": 3974
+          "count": 3975
         }
       ]
     },
@@ -3131,7 +6532,7 @@ export default {
       "id": "mr",
       "label": "Mendelian randomization",
       "term": "\"mendelian randomization analysis\"[mh]",
-      "total": 14596,
+      "total": 14619,
       "years": [
         {
           "year": 1985,
@@ -3303,7 +6704,7 @@ export default {
       "id": "ml",
       "label": "Machine learning",
       "term": "\"machine learning\"[mh]",
-      "total": 139505,
+      "total": 139991,
       "years": [
         {
           "year": 1985,
@@ -3463,11 +6864,11 @@ export default {
         },
         {
           "year": 2024,
-          "count": 22184
+          "count": 22185
         },
         {
           "year": 2025,
-          "count": 33192
+          "count": 33206
         }
       ]
     },
@@ -3475,7 +6876,7 @@ export default {
       "id": "dl",
       "label": "Deep learning",
       "term": "\"deep learning\"[mh]",
-      "total": 49222,
+      "total": 49426,
       "years": [
         {
           "year": 1985,
@@ -3639,9 +7040,1957 @@ export default {
         },
         {
           "year": 2025,
-          "count": 13978
+          "count": 13988
         }
       ]
+    }
+  ],
+  "growth": [
+    {
+      "db": "sra",
+      "field": "PDAT",
+      "label": "SRA",
+      "what": "experiments by publication date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 0
+        },
+        {
+          "year": 2001,
+          "count": 0
+        },
+        {
+          "year": 2002,
+          "count": 0
+        },
+        {
+          "year": 2003,
+          "count": 0
+        },
+        {
+          "year": 2004,
+          "count": 0
+        },
+        {
+          "year": 2005,
+          "count": 0
+        },
+        {
+          "year": 2006,
+          "count": 0
+        },
+        {
+          "year": 2007,
+          "count": 2
+        },
+        {
+          "year": 2008,
+          "count": 1452
+        },
+        {
+          "year": 2009,
+          "count": 8150
+        },
+        {
+          "year": 2010,
+          "count": 21193
+        },
+        {
+          "year": 2011,
+          "count": 40869
+        },
+        {
+          "year": 2012,
+          "count": 113554
+        },
+        {
+          "year": 2013,
+          "count": 184318
+        },
+        {
+          "year": 2014,
+          "count": 400022
+        },
+        {
+          "year": 2015,
+          "count": 656498
+        },
+        {
+          "year": 2016,
+          "count": 1062662
+        },
+        {
+          "year": 2017,
+          "count": 1151308
+        },
+        {
+          "year": 2018,
+          "count": 1794378
+        },
+        {
+          "year": 2019,
+          "count": 2121205
+        },
+        {
+          "year": 2020,
+          "count": 3157348
+        },
+        {
+          "year": 2021,
+          "count": 5593190
+        },
+        {
+          "year": 2022,
+          "count": 6307766
+        },
+        {
+          "year": 2023,
+          "count": 5105643
+        },
+        {
+          "year": 2024,
+          "count": 4851710
+        },
+        {
+          "year": 2025,
+          "count": 5128258
+        }
+      ]
+    },
+    {
+      "db": "biosample",
+      "field": "PDAT",
+      "label": "BioSample",
+      "what": "samples by publication date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 20231
+        },
+        {
+          "year": 2001,
+          "count": 3202
+        },
+        {
+          "year": 2002,
+          "count": 6245
+        },
+        {
+          "year": 2003,
+          "count": 7145
+        },
+        {
+          "year": 2004,
+          "count": 8455
+        },
+        {
+          "year": 2005,
+          "count": 16181
+        },
+        {
+          "year": 2006,
+          "count": 22544
+        },
+        {
+          "year": 2007,
+          "count": 36180
+        },
+        {
+          "year": 2008,
+          "count": 43973
+        },
+        {
+          "year": 2009,
+          "count": 75537
+        },
+        {
+          "year": 2010,
+          "count": 242979
+        },
+        {
+          "year": 2011,
+          "count": 318442
+        },
+        {
+          "year": 2012,
+          "count": 1281041
+        },
+        {
+          "year": 2013,
+          "count": 621132
+        },
+        {
+          "year": 2014,
+          "count": 752276
+        },
+        {
+          "year": 2015,
+          "count": 1087030
+        },
+        {
+          "year": 2016,
+          "count": 1293864
+        },
+        {
+          "year": 2017,
+          "count": 1744743
+        },
+        {
+          "year": 2018,
+          "count": 2105007
+        },
+        {
+          "year": 2019,
+          "count": 2684792
+        },
+        {
+          "year": 2020,
+          "count": 3327194
+        },
+        {
+          "year": 2021,
+          "count": 6956019
+        },
+        {
+          "year": 2022,
+          "count": 7287724
+        },
+        {
+          "year": 2023,
+          "count": 6713019
+        },
+        {
+          "year": 2024,
+          "count": 6370601
+        },
+        {
+          "year": 2025,
+          "count": 7990026
+        }
+      ]
+    },
+    {
+      "db": "gds",
+      "field": "PDAT",
+      "label": "GEO DataSets",
+      "what": "records by publication date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 12
+        },
+        {
+          "year": 2001,
+          "count": 698
+        },
+        {
+          "year": 2002,
+          "count": 2274
+        },
+        {
+          "year": 2003,
+          "count": 8870
+        },
+        {
+          "year": 2004,
+          "count": 19673
+        },
+        {
+          "year": 2005,
+          "count": 38140
+        },
+        {
+          "year": 2006,
+          "count": 49170
+        },
+        {
+          "year": 2007,
+          "count": 82495
+        },
+        {
+          "year": 2008,
+          "count": 89614
+        },
+        {
+          "year": 2009,
+          "count": 116782
+        },
+        {
+          "year": 2010,
+          "count": 133280
+        },
+        {
+          "year": 2011,
+          "count": 172287
+        },
+        {
+          "year": 2012,
+          "count": 187942
+        },
+        {
+          "year": 2013,
+          "count": 213627
+        },
+        {
+          "year": 2014,
+          "count": 263223
+        },
+        {
+          "year": 2015,
+          "count": 277132
+        },
+        {
+          "year": 2016,
+          "count": 363055
+        },
+        {
+          "year": 2017,
+          "count": 410212
+        },
+        {
+          "year": 2018,
+          "count": 516422
+        },
+        {
+          "year": 2019,
+          "count": 559596
+        },
+        {
+          "year": 2020,
+          "count": 773622
+        },
+        {
+          "year": 2021,
+          "count": 726683
+        },
+        {
+          "year": 2022,
+          "count": 667809
+        },
+        {
+          "year": 2023,
+          "count": 1513420
+        },
+        {
+          "year": 2024,
+          "count": 651959
+        },
+        {
+          "year": 2025,
+          "count": 681023
+        }
+      ]
+    },
+    {
+      "db": "bioproject",
+      "field": "DATE",
+      "label": "BioProject",
+      "what": "projects by registration date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 0
+        },
+        {
+          "year": 2001,
+          "count": 13
+        },
+        {
+          "year": 2002,
+          "count": 92
+        },
+        {
+          "year": 2003,
+          "count": 735
+        },
+        {
+          "year": 2004,
+          "count": 1925
+        },
+        {
+          "year": 2005,
+          "count": 1956
+        },
+        {
+          "year": 2006,
+          "count": 2632
+        },
+        {
+          "year": 2007,
+          "count": 3706
+        },
+        {
+          "year": 2008,
+          "count": 4657
+        },
+        {
+          "year": 2009,
+          "count": 6316
+        },
+        {
+          "year": 2010,
+          "count": 8428
+        },
+        {
+          "year": 2011,
+          "count": 12843
+        },
+        {
+          "year": 2012,
+          "count": 19638
+        },
+        {
+          "year": 2013,
+          "count": 28514
+        },
+        {
+          "year": 2014,
+          "count": 40333
+        },
+        {
+          "year": 2015,
+          "count": 31699
+        },
+        {
+          "year": 2016,
+          "count": 46640
+        },
+        {
+          "year": 2017,
+          "count": 62557
+        },
+        {
+          "year": 2018,
+          "count": 76003
+        },
+        {
+          "year": 2019,
+          "count": 76437
+        },
+        {
+          "year": 2020,
+          "count": 80353
+        },
+        {
+          "year": 2021,
+          "count": 84360
+        },
+        {
+          "year": 2022,
+          "count": 94792
+        },
+        {
+          "year": 2023,
+          "count": 106168
+        },
+        {
+          "year": 2024,
+          "count": 100905
+        },
+        {
+          "year": 2025,
+          "count": 131557
+        }
+      ]
+    },
+    {
+      "db": "assembly",
+      "field": "SRDT",
+      "label": "Assembly",
+      "what": "assemblies by sequence release date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 483
+        },
+        {
+          "year": 2001,
+          "count": 240
+        },
+        {
+          "year": 2002,
+          "count": 536
+        },
+        {
+          "year": 2003,
+          "count": 482
+        },
+        {
+          "year": 2004,
+          "count": 555
+        },
+        {
+          "year": 2005,
+          "count": 1398
+        },
+        {
+          "year": 2006,
+          "count": 2038
+        },
+        {
+          "year": 2007,
+          "count": 2262
+        },
+        {
+          "year": 2008,
+          "count": 2154
+        },
+        {
+          "year": 2009,
+          "count": 3957
+        },
+        {
+          "year": 2010,
+          "count": 5345
+        },
+        {
+          "year": 2011,
+          "count": 6660
+        },
+        {
+          "year": 2012,
+          "count": 9782
+        },
+        {
+          "year": 2013,
+          "count": 17772
+        },
+        {
+          "year": 2014,
+          "count": 23200
+        },
+        {
+          "year": 2015,
+          "count": 37232
+        },
+        {
+          "year": 2016,
+          "count": 43724
+        },
+        {
+          "year": 2017,
+          "count": 58571
+        },
+        {
+          "year": 2018,
+          "count": 81184
+        },
+        {
+          "year": 2019,
+          "count": 340735
+        },
+        {
+          "year": 2020,
+          "count": 374296
+        },
+        {
+          "year": 2021,
+          "count": 276512
+        },
+        {
+          "year": 2022,
+          "count": 368122
+        },
+        {
+          "year": 2023,
+          "count": 546636
+        },
+        {
+          "year": 2024,
+          "count": 609805
+        },
+        {
+          "year": 2025,
+          "count": 537519
+        }
+      ]
+    },
+    {
+      "db": "clinvar",
+      "field": "CDAT",
+      "label": "ClinVar",
+      "what": "records by creation date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 0
+        },
+        {
+          "year": 2001,
+          "count": 0
+        },
+        {
+          "year": 2002,
+          "count": 0
+        },
+        {
+          "year": 2003,
+          "count": 0
+        },
+        {
+          "year": 2004,
+          "count": 0
+        },
+        {
+          "year": 2005,
+          "count": 0
+        },
+        {
+          "year": 2006,
+          "count": 0
+        },
+        {
+          "year": 2007,
+          "count": 0
+        },
+        {
+          "year": 2008,
+          "count": 0
+        },
+        {
+          "year": 2009,
+          "count": 0
+        },
+        {
+          "year": 2010,
+          "count": 0
+        },
+        {
+          "year": 2011,
+          "count": 0
+        },
+        {
+          "year": 2012,
+          "count": 0
+        },
+        {
+          "year": 2013,
+          "count": 17166
+        },
+        {
+          "year": 2014,
+          "count": 24276
+        },
+        {
+          "year": 2015,
+          "count": 51834
+        },
+        {
+          "year": 2016,
+          "count": 125417
+        },
+        {
+          "year": 2017,
+          "count": 105402
+        },
+        {
+          "year": 2018,
+          "count": 133677
+        },
+        {
+          "year": 2019,
+          "count": 178356
+        },
+        {
+          "year": 2020,
+          "count": 183794
+        },
+        {
+          "year": 2021,
+          "count": 331567
+        },
+        {
+          "year": 2022,
+          "count": 476575
+        },
+        {
+          "year": 2023,
+          "count": 780107
+        },
+        {
+          "year": 2024,
+          "count": 706690
+        },
+        {
+          "year": 2025,
+          "count": 1098653
+        }
+      ]
+    },
+    {
+      "db": "gene",
+      "field": "CDAT",
+      "label": "Gene",
+      "what": "records by creation date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 23876
+        },
+        {
+          "year": 2001,
+          "count": 78804
+        },
+        {
+          "year": 2002,
+          "count": 114877
+        },
+        {
+          "year": 2003,
+          "count": 690387
+        },
+        {
+          "year": 2004,
+          "count": 430422
+        },
+        {
+          "year": 2005,
+          "count": 578168
+        },
+        {
+          "year": 2006,
+          "count": 743230
+        },
+        {
+          "year": 2007,
+          "count": 1183883
+        },
+        {
+          "year": 2008,
+          "count": 1337620
+        },
+        {
+          "year": 2009,
+          "count": 1419327
+        },
+        {
+          "year": 2010,
+          "count": 1291730
+        },
+        {
+          "year": 2011,
+          "count": 1377699
+        },
+        {
+          "year": 2012,
+          "count": 2861249
+        },
+        {
+          "year": 2013,
+          "count": 3420094
+        },
+        {
+          "year": 2014,
+          "count": 3503357
+        },
+        {
+          "year": 2015,
+          "count": 3313727
+        },
+        {
+          "year": 2016,
+          "count": 3967618
+        },
+        {
+          "year": 2017,
+          "count": 4388823
+        },
+        {
+          "year": 2018,
+          "count": 3260448
+        },
+        {
+          "year": 2019,
+          "count": 4316887
+        },
+        {
+          "year": 2020,
+          "count": 10536516
+        },
+        {
+          "year": 2021,
+          "count": 7076193
+        },
+        {
+          "year": 2022,
+          "count": 7781802
+        },
+        {
+          "year": 2023,
+          "count": 9244391
+        },
+        {
+          "year": 2024,
+          "count": 10496842
+        },
+        {
+          "year": 2025,
+          "count": 7837819
+        }
+      ]
+    },
+    {
+      "db": "pmc",
+      "field": "PDAT",
+      "label": "PMC",
+      "what": "articles by publication date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 47305
+        },
+        {
+          "year": 2001,
+          "count": 49279
+        },
+        {
+          "year": 2002,
+          "count": 52574
+        },
+        {
+          "year": 2003,
+          "count": 57658
+        },
+        {
+          "year": 2004,
+          "count": 64547
+        },
+        {
+          "year": 2005,
+          "count": 75914
+        },
+        {
+          "year": 2006,
+          "count": 89774
+        },
+        {
+          "year": 2007,
+          "count": 107473
+        },
+        {
+          "year": 2008,
+          "count": 149575
+        },
+        {
+          "year": 2009,
+          "count": 182869
+        },
+        {
+          "year": 2010,
+          "count": 215779
+        },
+        {
+          "year": 2011,
+          "count": 254244
+        },
+        {
+          "year": 2012,
+          "count": 295811
+        },
+        {
+          "year": 2013,
+          "count": 340910
+        },
+        {
+          "year": 2014,
+          "count": 377599
+        },
+        {
+          "year": 2015,
+          "count": 412408
+        },
+        {
+          "year": 2016,
+          "count": 426495
+        },
+        {
+          "year": 2017,
+          "count": 470796
+        },
+        {
+          "year": 2018,
+          "count": 505036
+        },
+        {
+          "year": 2019,
+          "count": 560443
+        },
+        {
+          "year": 2020,
+          "count": 750112
+        },
+        {
+          "year": 2021,
+          "count": 882142
+        },
+        {
+          "year": 2022,
+          "count": 949887
+        },
+        {
+          "year": 2023,
+          "count": 867790
+        },
+        {
+          "year": 2024,
+          "count": 890642
+        },
+        {
+          "year": 2025,
+          "count": 1020435
+        }
+      ]
+    },
+    {
+      "db": "structure",
+      "field": "DDAT",
+      "label": "Structure",
+      "what": "MMDB entries by entry date",
+      "years": [
+        {
+          "year": 2000,
+          "count": 2383
+        },
+        {
+          "year": 2001,
+          "count": 2463
+        },
+        {
+          "year": 2002,
+          "count": 2211
+        },
+        {
+          "year": 2003,
+          "count": 3407
+        },
+        {
+          "year": 2004,
+          "count": 3873
+        },
+        {
+          "year": 2005,
+          "count": 5321
+        },
+        {
+          "year": 2006,
+          "count": 5316
+        },
+        {
+          "year": 2007,
+          "count": 13924
+        },
+        {
+          "year": 2008,
+          "count": 6488
+        },
+        {
+          "year": 2009,
+          "count": 8763
+        },
+        {
+          "year": 2010,
+          "count": 7903
+        },
+        {
+          "year": 2011,
+          "count": 8215
+        },
+        {
+          "year": 2012,
+          "count": 9307
+        },
+        {
+          "year": 2013,
+          "count": 9320
+        },
+        {
+          "year": 2014,
+          "count": 8541
+        },
+        {
+          "year": 2015,
+          "count": 8970
+        },
+        {
+          "year": 2016,
+          "count": 10530
+        },
+        {
+          "year": 2017,
+          "count": 10663
+        },
+        {
+          "year": 2018,
+          "count": 12667
+        },
+        {
+          "year": 2019,
+          "count": 11309
+        },
+        {
+          "year": 2020,
+          "count": 12650
+        },
+        {
+          "year": 2021,
+          "count": 15413
+        },
+        {
+          "year": 2022,
+          "count": 14465
+        },
+        {
+          "year": 2023,
+          "count": 15512
+        },
+        {
+          "year": 2024,
+          "count": 16165
+        },
+        {
+          "year": 2025,
+          "count": 17710
+        }
+      ]
+    }
+  ],
+  "access": [
+    {
+      "id": "free",
+      "years": [
+        {
+          "year": 1990,
+          "count": 48577
+        },
+        {
+          "year": 1991,
+          "count": 50938
+        },
+        {
+          "year": 1992,
+          "count": 53960
+        },
+        {
+          "year": 1993,
+          "count": 55500
+        },
+        {
+          "year": 1994,
+          "count": 59577
+        },
+        {
+          "year": 1995,
+          "count": 66300
+        },
+        {
+          "year": 1996,
+          "count": 70186
+        },
+        {
+          "year": 1997,
+          "count": 76799
+        },
+        {
+          "year": 1998,
+          "count": 81386
+        },
+        {
+          "year": 1999,
+          "count": 86020
+        },
+        {
+          "year": 2000,
+          "count": 98798
+        },
+        {
+          "year": 2001,
+          "count": 99966
+        },
+        {
+          "year": 2002,
+          "count": 109259
+        },
+        {
+          "year": 2003,
+          "count": 120456
+        },
+        {
+          "year": 2004,
+          "count": 135817
+        },
+        {
+          "year": 2005,
+          "count": 150083
+        },
+        {
+          "year": 2006,
+          "count": 173142
+        },
+        {
+          "year": 2007,
+          "count": 197364
+        },
+        {
+          "year": 2008,
+          "count": 242428
+        },
+        {
+          "year": 2009,
+          "count": 281989
+        },
+        {
+          "year": 2010,
+          "count": 320643
+        },
+        {
+          "year": 2011,
+          "count": 364315
+        },
+        {
+          "year": 2012,
+          "count": 418542
+        },
+        {
+          "year": 2013,
+          "count": 466266
+        },
+        {
+          "year": 2014,
+          "count": 513651
+        },
+        {
+          "year": 2015,
+          "count": 557795
+        },
+        {
+          "year": 2016,
+          "count": 581251
+        },
+        {
+          "year": 2017,
+          "count": 619528
+        },
+        {
+          "year": 2018,
+          "count": 657759
+        },
+        {
+          "year": 2019,
+          "count": 711551
+        },
+        {
+          "year": 2020,
+          "count": 911897
+        },
+        {
+          "year": 2021,
+          "count": 1073865
+        },
+        {
+          "year": 2022,
+          "count": 1139398
+        },
+        {
+          "year": 2023,
+          "count": 1070527
+        },
+        {
+          "year": 2024,
+          "count": 1091553
+        },
+        {
+          "year": 2025,
+          "count": 1218835
+        }
+      ]
+    },
+    {
+      "id": "pmc",
+      "years": [
+        {
+          "year": 1990,
+          "count": 28405
+        },
+        {
+          "year": 1991,
+          "count": 29628
+        },
+        {
+          "year": 1992,
+          "count": 30802
+        },
+        {
+          "year": 1993,
+          "count": 31618
+        },
+        {
+          "year": 1994,
+          "count": 32596
+        },
+        {
+          "year": 1995,
+          "count": 33915
+        },
+        {
+          "year": 1996,
+          "count": 34559
+        },
+        {
+          "year": 1997,
+          "count": 36098
+        },
+        {
+          "year": 1998,
+          "count": 37637
+        },
+        {
+          "year": 1999,
+          "count": 39661
+        },
+        {
+          "year": 2000,
+          "count": 42005
+        },
+        {
+          "year": 2001,
+          "count": 42329
+        },
+        {
+          "year": 2002,
+          "count": 44947
+        },
+        {
+          "year": 2003,
+          "count": 50021
+        },
+        {
+          "year": 2004,
+          "count": 56478
+        },
+        {
+          "year": 2005,
+          "count": 68455
+        },
+        {
+          "year": 2006,
+          "count": 83312
+        },
+        {
+          "year": 2007,
+          "count": 104741
+        },
+        {
+          "year": 2008,
+          "count": 152278
+        },
+        {
+          "year": 2009,
+          "count": 189750
+        },
+        {
+          "year": 2010,
+          "count": 224524
+        },
+        {
+          "year": 2011,
+          "count": 265681
+        },
+        {
+          "year": 2012,
+          "count": 311671
+        },
+        {
+          "year": 2013,
+          "count": 355056
+        },
+        {
+          "year": 2014,
+          "count": 393044
+        },
+        {
+          "year": 2015,
+          "count": 433493
+        },
+        {
+          "year": 2016,
+          "count": 456998
+        },
+        {
+          "year": 2017,
+          "count": 492634
+        },
+        {
+          "year": 2018,
+          "count": 529603
+        },
+        {
+          "year": 2019,
+          "count": 581691
+        },
+        {
+          "year": 2020,
+          "count": 769635
+        },
+        {
+          "year": 2021,
+          "count": 922439
+        },
+        {
+          "year": 2022,
+          "count": 988994
+        },
+        {
+          "year": 2023,
+          "count": 907415
+        },
+        {
+          "year": 2024,
+          "count": 915601
+        },
+        {
+          "year": 2025,
+          "count": 1044948
+        }
+      ]
+    },
+    {
+      "id": "erratum",
+      "years": [
+        {
+          "year": 1990,
+          "count": 30
+        },
+        {
+          "year": 1991,
+          "count": 111
+        },
+        {
+          "year": 1992,
+          "count": 160
+        },
+        {
+          "year": 1993,
+          "count": 161
+        },
+        {
+          "year": 1994,
+          "count": 155
+        },
+        {
+          "year": 1995,
+          "count": 169
+        },
+        {
+          "year": 1996,
+          "count": 103
+        },
+        {
+          "year": 1997,
+          "count": 67
+        },
+        {
+          "year": 1998,
+          "count": 45
+        },
+        {
+          "year": 1999,
+          "count": 30
+        },
+        {
+          "year": 2000,
+          "count": 46
+        },
+        {
+          "year": 2001,
+          "count": 24
+        },
+        {
+          "year": 2002,
+          "count": 31
+        },
+        {
+          "year": 2003,
+          "count": 23
+        },
+        {
+          "year": 2004,
+          "count": 19
+        },
+        {
+          "year": 2005,
+          "count": 40
+        },
+        {
+          "year": 2006,
+          "count": 83
+        },
+        {
+          "year": 2007,
+          "count": 104
+        },
+        {
+          "year": 2008,
+          "count": 133
+        },
+        {
+          "year": 2009,
+          "count": 147
+        },
+        {
+          "year": 2010,
+          "count": 160
+        },
+        {
+          "year": 2011,
+          "count": 224
+        },
+        {
+          "year": 2012,
+          "count": 242
+        },
+        {
+          "year": 2013,
+          "count": 507
+        },
+        {
+          "year": 2014,
+          "count": 827
+        },
+        {
+          "year": 2015,
+          "count": 9952
+        },
+        {
+          "year": 2016,
+          "count": 12259
+        },
+        {
+          "year": 2017,
+          "count": 13554
+        },
+        {
+          "year": 2018,
+          "count": 15588
+        },
+        {
+          "year": 2019,
+          "count": 16545
+        },
+        {
+          "year": 2020,
+          "count": 19097
+        },
+        {
+          "year": 2021,
+          "count": 20662
+        },
+        {
+          "year": 2022,
+          "count": 20068
+        },
+        {
+          "year": 2023,
+          "count": 19944
+        },
+        {
+          "year": 2024,
+          "count": 22681
+        },
+        {
+          "year": 2025,
+          "count": 26453
+        }
+      ]
+    },
+    {
+      "id": "concern",
+      "years": [
+        {
+          "year": 1990,
+          "count": 0
+        },
+        {
+          "year": 1991,
+          "count": 0
+        },
+        {
+          "year": 1992,
+          "count": 0
+        },
+        {
+          "year": 1993,
+          "count": 0
+        },
+        {
+          "year": 1994,
+          "count": 0
+        },
+        {
+          "year": 1995,
+          "count": 0
+        },
+        {
+          "year": 1996,
+          "count": 0
+        },
+        {
+          "year": 1997,
+          "count": 0
+        },
+        {
+          "year": 1998,
+          "count": 0
+        },
+        {
+          "year": 1999,
+          "count": 0
+        },
+        {
+          "year": 2000,
+          "count": 1
+        },
+        {
+          "year": 2001,
+          "count": 0
+        },
+        {
+          "year": 2002,
+          "count": 1
+        },
+        {
+          "year": 2003,
+          "count": 2
+        },
+        {
+          "year": 2004,
+          "count": 0
+        },
+        {
+          "year": 2005,
+          "count": 5
+        },
+        {
+          "year": 2006,
+          "count": 7
+        },
+        {
+          "year": 2007,
+          "count": 0
+        },
+        {
+          "year": 2008,
+          "count": 8
+        },
+        {
+          "year": 2009,
+          "count": 8
+        },
+        {
+          "year": 2010,
+          "count": 10
+        },
+        {
+          "year": 2011,
+          "count": 10
+        },
+        {
+          "year": 2012,
+          "count": 15
+        },
+        {
+          "year": 2013,
+          "count": 20
+        },
+        {
+          "year": 2014,
+          "count": 30
+        },
+        {
+          "year": 2015,
+          "count": 33
+        },
+        {
+          "year": 2016,
+          "count": 59
+        },
+        {
+          "year": 2017,
+          "count": 65
+        },
+        {
+          "year": 2018,
+          "count": 72
+        },
+        {
+          "year": 2019,
+          "count": 139
+        },
+        {
+          "year": 2020,
+          "count": 285
+        },
+        {
+          "year": 2021,
+          "count": 341
+        },
+        {
+          "year": 2022,
+          "count": 433
+        },
+        {
+          "year": 2023,
+          "count": 388
+        },
+        {
+          "year": 2024,
+          "count": 724
+        },
+        {
+          "year": 2025,
+          "count": 768
+        }
+      ]
+    }
+  ],
+  "countries": [
+    {
+      "name": "China",
+      "term": "china[ad]",
+      "counts": {
+        "2015": 146859,
+        "2025": 502435
+      }
+    },
+    {
+      "name": "United States",
+      "term": "(usa[ad] OR \"united states\"[ad])",
+      "counts": {
+        "2015": 226968,
+        "2025": 354029
+      }
+    },
+    {
+      "name": "Japan",
+      "term": "japan[ad]",
+      "counts": {
+        "2015": 59397,
+        "2025": 80660
+      }
+    },
+    {
+      "name": "Germany",
+      "term": "germany[ad]",
+      "counts": {
+        "2015": 69041,
+        "2025": 92130
+      }
+    },
+    {
+      "name": "United Kingdom",
+      "term": "(\"united kingdom\"[ad] OR uk[ad] OR england[ad] OR scotland[ad] OR wales[ad])",
+      "counts": {
+        "2015": 99305,
+        "2025": 133303
+      }
+    },
+    {
+      "name": "India",
+      "term": "india[ad]",
+      "counts": {
+        "2015": 41970,
+        "2025": 89596
+      }
+    },
+    {
+      "name": "Italy",
+      "term": "italy[ad]",
+      "counts": {
+        "2015": 51702,
+        "2025": 81002
+      }
+    },
+    {
+      "name": "South Korea",
+      "term": "korea[ad]",
+      "counts": {
+        "2015": 37315,
+        "2025": 50499
+      }
+    },
+    {
+      "name": "Canada",
+      "term": "canada[ad]",
+      "counts": {
+        "2015": 48486,
+        "2025": 71807
+      }
+    },
+    {
+      "name": "France",
+      "term": "france[ad]",
+      "counts": {
+        "2015": 48468,
+        "2025": 60257
+      }
+    },
+    {
+      "name": "Spain",
+      "term": "spain[ad]",
+      "counts": {
+        "2015": 34892,
+        "2025": 58382
+      }
+    },
+    {
+      "name": "Australia",
+      "term": "australia[ad]",
+      "counts": {
+        "2015": 45031,
+        "2025": 63855
+      }
+    },
+    {
+      "name": "Brazil",
+      "term": "brazil[ad]",
+      "counts": {
+        "2015": 26858,
+        "2025": 42638
+      }
+    },
+    {
+      "name": "Iran",
+      "term": "iran[ad]",
+      "counts": {
+        "2015": 15858,
+        "2025": 32339
+      }
+    },
+    {
+      "name": "Turkey",
+      "term": "(turkey[ad] OR turkiye[ad])",
+      "counts": {
+        "2015": 20549,
+        "2025": 44786
+      }
+    },
+    {
+      "name": "Netherlands",
+      "term": "netherlands[ad]",
+      "counts": {
+        "2015": 33503,
+        "2025": 43470
+      }
+    },
+    {
+      "name": "Saudi Arabia",
+      "term": "\"saudi arabia\"[ad]",
+      "counts": {
+        "2015": 6903,
+        "2025": 29291
+      }
+    },
+    {
+      "name": "Pakistan",
+      "term": "pakistan[ad]",
+      "counts": {
+        "2015": 3339,
+        "2025": 16695
+      }
+    },
+    {
+      "name": "Egypt",
+      "term": "egypt[ad]",
+      "counts": {
+        "2015": 6333,
+        "2025": 20492
+      }
+    },
+    {
+      "name": "Switzerland",
+      "term": "switzerland[ad]",
+      "counts": {
+        "2015": 22295,
+        "2025": 35389
+      }
+    }
+  ],
+  "genes": [
+    {
+      "id": 7157,
+      "symbol": "TP53",
+      "description": "tumor protein p53",
+      "chromosome": "17",
+      "pubmed": 20404,
+      "clinvar": 4071
+    },
+    {
+      "id": 7124,
+      "symbol": "TNF",
+      "description": "tumor necrosis factor",
+      "chromosome": "6",
+      "pubmed": 8291,
+      "clinvar": 36
+    },
+    {
+      "id": 1956,
+      "symbol": "EGFR",
+      "description": "epidermal growth factor receptor",
+      "chromosome": "7",
+      "pubmed": 20323,
+      "clinvar": 4304
+    },
+    {
+      "id": 348,
+      "symbol": "APOE",
+      "description": "apolipoprotein E",
+      "chromosome": "19",
+      "pubmed": 5645,
+      "clinvar": 318
+    },
+    {
+      "id": 7422,
+      "symbol": "VEGFA",
+      "description": "vascular endothelial growth factor A",
+      "chromosome": "6",
+      "pubmed": 16684,
+      "clinvar": 127
+    },
+    {
+      "id": 3569,
+      "symbol": "IL6",
+      "description": "interleukin 6",
+      "chromosome": "7",
+      "pubmed": 13531,
+      "clinvar": 64
+    },
+    {
+      "id": 672,
+      "symbol": "BRCA1",
+      "description": "BRCA1 DNA repair associated",
+      "chromosome": "17",
+      "pubmed": 7221,
+      "clinvar": 16166
+    },
+    {
+      "id": 675,
+      "symbol": "BRCA2",
+      "description": "BRCA2 DNA repair associated",
+      "chromosome": "13",
+      "pubmed": 5269,
+      "clinvar": 22214
+    },
+    {
+      "id": 2099,
+      "symbol": "ESR1",
+      "description": "estrogen receptor 1",
+      "chromosome": "6",
+      "pubmed": 5980,
+      "clinvar": 264
+    },
+    {
+      "id": 207,
+      "symbol": "AKT1",
+      "description": "AKT serine/threonine kinase 1",
+      "chromosome": "14",
+      "pubmed": 7382,
+      "clinvar": 1089
+    },
+    {
+      "id": 4524,
+      "symbol": "MTHFR",
+      "description": "methylenetetrahydrofolate reductase",
+      "chromosome": "1",
+      "pubmed": 4676,
+      "clinvar": 1090
+    },
+    {
+      "id": 1080,
+      "symbol": "CFTR",
+      "description": "CF transmembrane conductance regulator",
+      "chromosome": "7",
+      "pubmed": 7067,
+      "clinvar": 6599
+    },
+    {
+      "id": 3043,
+      "symbol": "HBB",
+      "description": "hemoglobin subunit beta",
+      "chromosome": "11",
+      "pubmed": 881,
+      "clinvar": 1974
+    },
+    {
+      "id": 3845,
+      "symbol": "KRAS",
+      "description": "KRas proto-oncogene, GTPase",
+      "chromosome": "12",
+      "pubmed": 3055,
+      "clinvar": 631
+    },
+    {
+      "id": 673,
+      "symbol": "BRAF",
+      "description": "B-Raf proto-oncogene, serine/threonine kinase",
+      "chromosome": "7",
+      "pubmed": 10152,
+      "clinvar": 1721
+    },
+    {
+      "id": 5728,
+      "symbol": "PTEN",
+      "description": "phosphatase and tensin homolog",
+      "chromosome": "10",
+      "pubmed": 7992,
+      "clinvar": 4318
+    },
+    {
+      "id": 4609,
+      "symbol": "MYC",
+      "description": "MYC proto-oncogene, bHLH transcription factor",
+      "chromosome": "8",
+      "pubmed": 5765,
+      "clinvar": 103
+    },
+    {
+      "id": 1636,
+      "symbol": "ACE",
+      "description": "angiotensin I converting enzyme",
+      "chromosome": "17",
+      "pubmed": 3306,
+      "clinvar": 902
+    },
+    {
+      "id": 3630,
+      "symbol": "INS",
+      "description": "insulin",
+      "chromosome": "11",
+      "pubmed": 1034,
+      "clinvar": 254
+    },
+    {
+      "id": 920,
+      "symbol": "CD4",
+      "description": "CD4 molecule",
+      "chromosome": "12",
+      "pubmed": 2027,
+      "clinvar": 135
+    },
+    {
+      "id": 351,
+      "symbol": "APP",
+      "description": "amyloid beta precursor protein",
+      "chromosome": "21",
+      "pubmed": 4222,
+      "clinvar": 730
+    },
+    {
+      "id": 1029,
+      "symbol": "CDKN2A",
+      "description": "cyclin dependent kinase inhibitor 2A",
+      "chromosome": "9",
+      "pubmed": 4326,
+      "clinvar": 1771
     }
   ],
   "genbank": {
@@ -4481,7 +9830,7 @@ export default {
     "records": 645505406
   },
   "clinicaltrials": {
-    "dataTimestamp": "2026-11-02T10:00:05",
+    "dataTimestamp": "2026-11-06T10:00:05",
     "labels": {
       "OrgStudyIdType": {
         "NIH": "U.S. NIH Grant/Contract",
@@ -4873,9 +10222,9 @@ export default {
       "title": "Congenital Adrenal Hyperplasia: Calcium Channels as Therapeutic Targets",
       "posted": "1999-11-04"
     },
-    "total": 609811,
-    "averageBytes": 17315,
-    "medianBytes": 9875,
+    "total": 610756,
+    "averageBytes": 17319,
+    "medianBytes": 9880,
     "largest": [
       {
         "id": "NCT02723955",
@@ -4915,51 +10264,51 @@ export default {
         "top": [
           {
             "value": "COMPLETED",
-            "count": 333659
+            "count": 334330
           },
           {
             "value": "UNKNOWN",
-            "count": 99034
+            "count": 98873
           },
           {
             "value": "RECRUITING",
-            "count": 64566
+            "count": 64730
           },
           {
             "value": "TERMINATED",
-            "count": 34641
+            "count": 34685
           },
           {
             "value": "NOT_YET_RECRUITING",
-            "count": 29904
+            "count": 30012
           },
           {
             "value": "ACTIVE_NOT_RECRUITING",
-            "count": 22006
+            "count": 22074
           },
           {
             "value": "WITHDRAWN",
-            "count": 16950
+            "count": 16972
           },
           {
             "value": "ENROLLING_BY_INVITATION",
-            "count": 5218
+            "count": 5245
           },
           {
             "value": "SUSPENDED",
-            "count": 1771
+            "count": 1770
           },
           {
             "value": "WITHHELD",
-            "count": 987
+            "count": 989
           },
           {
             "value": "NO_LONGER_AVAILABLE",
-            "count": 543
+            "count": 544
           },
           {
             "value": "AVAILABLE",
-            "count": 249
+            "count": 250
           },
           {
             "value": "APPROVED_FOR_MARKETING",
@@ -4967,221 +10316,221 @@ export default {
           },
           {
             "value": "TEMPORARILY_NOT_AVAILABLE",
-            "count": 38
+            "count": 37
           }
         ]
       },
       "StudyType": {
         "unique": 3,
-        "missing": 987,
+        "missing": 989,
         "top": [
           {
             "value": "INTERVENTIONAL",
-            "count": 465324
+            "count": 466065
           },
           {
             "value": "OBSERVATIONAL",
-            "count": 142425
+            "count": 142626
           },
           {
             "value": "EXPANDED_ACCESS",
-            "count": 1075
+            "count": 1076
           }
         ]
       },
       "Phase": {
         "unique": 6,
-        "missing": 144616,
+        "missing": 144820,
         "top": [
           {
             "value": "NA",
-            "count": 240302
+            "count": 240818
           },
           {
             "value": "PHASE2",
-            "count": 90829
+            "count": 90926
           },
           {
             "value": "PHASE1",
-            "count": 66163
+            "count": 66236
           },
           {
             "value": "PHASE3",
-            "count": 50145
+            "count": 50185
           },
           {
             "value": "PHASE4",
-            "count": 36043
+            "count": 36075
           },
           {
             "value": "EARLY_PHASE1",
-            "count": 6535
+            "count": 6538
           }
         ]
       },
       "LocationCountry": {
         "unique": 226,
-        "missing": 61118,
+        "missing": 61169,
         "top": [
           {
             "value": "United States",
-            "count": 196667
+            "count": 196823
           },
           {
             "value": "China",
-            "count": 54832
+            "count": 54992
           },
           {
             "value": "France",
-            "count": 43237
+            "count": 43283
           },
           {
             "value": "Canada",
-            "count": 32725
+            "count": 32760
           },
           {
             "value": "United Kingdom",
-            "count": 29098
+            "count": 29126
           },
           {
             "value": "Germany",
-            "count": 28709
+            "count": 28728
           },
           {
             "value": "Turkey (Türkiye)",
-            "count": 27073
+            "count": 27203
           },
           {
             "value": "Italy",
-            "count": 26404
+            "count": 26444
           },
           {
             "value": "Spain",
-            "count": 25769
+            "count": 25803
           },
           {
             "value": "South Korea",
-            "count": 17853
+            "count": 17876
           },
           {
             "value": "Egypt",
-            "count": 17709
+            "count": 17779
           },
           {
             "value": "Belgium",
-            "count": 15317
+            "count": 15335
           },
           {
             "value": "Netherlands",
-            "count": 15202
+            "count": 15215
           },
           {
             "value": "Taiwan",
-            "count": 13061
+            "count": 13078
           },
           {
             "value": "Denmark",
-            "count": 12828
+            "count": 12842
           },
           {
             "value": "Australia",
-            "count": 12572
+            "count": 12597
           },
           {
             "value": "Brazil",
-            "count": 11752
+            "count": 11765
           },
           {
             "value": "Poland",
-            "count": 11734
+            "count": 11753
           },
           {
             "value": "Switzerland",
-            "count": 10749
+            "count": 10759
           },
           {
             "value": "Israel",
-            "count": 10735
+            "count": 10747
           }
         ]
       },
       "InterventionType": {
         "unique": 11,
-        "missing": 61927,
+        "missing": 62031,
         "top": [
           {
             "value": "DRUG",
-            "count": 213935
+            "count": 214192
           },
           {
             "value": "OTHER",
-            "count": 125407
+            "count": 125650
           },
           {
             "value": "DEVICE",
-            "count": 76889
+            "count": 77026
           },
           {
             "value": "BEHAVIORAL",
-            "count": 65679
+            "count": 65843
           },
           {
             "value": "PROCEDURE",
-            "count": 61070
+            "count": 61176
           },
           {
             "value": "BIOLOGICAL",
-            "count": 30189
+            "count": 30222
           },
           {
             "value": "DIAGNOSTIC_TEST",
-            "count": 19776
+            "count": 19811
           },
           {
             "value": "DIETARY_SUPPLEMENT",
-            "count": 18439
+            "count": 18469
           },
           {
             "value": "RADIATION",
-            "count": 10797
+            "count": 10813
           },
           {
             "value": "COMBINATION_PRODUCT",
-            "count": 3476
+            "count": 3481
           },
           {
             "value": "GENETIC",
-            "count": 2893
+            "count": 2894
           }
         ]
       },
       "LeadSponsorClass": {
         "unique": 9,
-        "missing": 987,
+        "missing": 989,
         "top": [
           {
             "value": "OTHER",
-            "count": 436853
+            "count": 437610
           },
           {
             "value": "INDUSTRY",
-            "count": 133416
+            "count": 133555
           },
           {
             "value": "OTHER_GOV",
-            "count": 16297
+            "count": 16337
           },
           {
             "value": "NIH",
-            "count": 11587
+            "count": 11590
           },
           {
             "value": "NETWORK",
-            "count": 5063
+            "count": 5066
           },
           {
             "value": "FED",
-            "count": 4954
+            "count": 4955
           },
           {
             "value": "INDIV",
@@ -5199,93 +10548,93 @@ export default {
       },
       "Sex": {
         "unique": 3,
-        "missing": 1401,
+        "missing": 1403,
         "top": [
           {
             "value": "ALL",
-            "count": 524912
+            "count": 525725
           },
           {
             "value": "FEMALE",
-            "count": 58845
+            "count": 58945
           },
           {
             "value": "MALE",
-            "count": 24653
+            "count": 24683
           }
         ]
       },
       "Condition": {
-        "unique": 135090,
-        "missing": 1026,
+        "unique": 135263,
+        "missing": 1028,
         "top": [
           {
             "value": "Healthy",
-            "count": 11129
+            "count": 11133
           },
           {
             "value": "Breast Cancer",
-            "count": 8964
+            "count": 8974
           },
           {
             "value": "Obesity",
-            "count": 7633
+            "count": 7644
           },
           {
             "value": "Stroke",
-            "count": 5454
+            "count": 5467
           },
           {
             "value": "Hypertension",
-            "count": 4699
+            "count": 4707
           },
           {
             "value": "Pain",
-            "count": 4594
+            "count": 4599
           },
           {
             "value": "Depression",
-            "count": 4585
+            "count": 4590
           },
           {
             "value": "Prostate Cancer",
-            "count": 4509
+            "count": 4512
           },
           {
             "value": "Cancer",
-            "count": 4045
+            "count": 4052
           },
           {
             "value": "HIV Infections",
-            "count": 3883
+            "count": 3884
           },
           {
             "value": "Heart Failure",
-            "count": 3823
+            "count": 3826
           },
           {
             "value": "Coronary Artery Disease",
-            "count": 3794
+            "count": 3802
           },
           {
             "value": "Asthma",
-            "count": 3667
+            "count": 3668
           },
           {
             "value": "Colorectal Cancer",
-            "count": 3515
+            "count": 3521
           },
           {
             "value": "Anxiety",
-            "count": 3464
+            "count": 3473
           },
           {
             "value": "Diabetes Mellitus, Type 2",
-            "count": 3326
+            "count": 3331
           },
           {
             "value": "Lung Cancer",
-            "count": 3126
+            "count": 3129
           },
           {
             "value": "Cardiovascular Diseases",
@@ -5293,97 +10642,97 @@ export default {
           },
           {
             "value": "Diabetes",
-            "count": 3032
+            "count": 3031
           },
           {
             "value": "COVID-19",
-            "count": 2963
+            "count": 2964
           }
         ]
       },
       "DesignAllocation": {
         "unique": 3,
-        "missing": 150177,
+        "missing": 150381,
         "top": [
           {
             "value": "RANDOMIZED",
-            "count": 306367
+            "count": 306898
           },
           {
             "value": "NA",
-            "count": 104791
+            "count": 104932
           },
           {
             "value": "NON_RANDOMIZED",
-            "count": 48476
+            "count": 48545
           }
         ]
       },
       "DesignMasking": {
         "unique": 5,
-        "missing": 149896,
+        "missing": 150100,
         "top": [
           {
             "value": "NONE",
-            "count": 255385
+            "count": 255782
           },
           {
             "value": "SINGLE",
-            "count": 70751
+            "count": 70922
           },
           {
             "value": "DOUBLE",
-            "count": 62289
+            "count": 62365
           },
           {
             "value": "QUADRUPLE",
-            "count": 41133
+            "count": 41188
           },
           {
             "value": "TRIPLE",
-            "count": 30357
+            "count": 30399
           }
         ]
       },
       "DesignPrimaryPurpose": {
         "unique": 10,
-        "missing": 151292,
+        "missing": 151496,
         "top": [
           {
             "value": "TREATMENT",
-            "count": 295360
+            "count": 295830
           },
           {
             "value": "PREVENTION",
-            "count": 49129
+            "count": 49190
           },
           {
             "value": "OTHER",
-            "count": 27122
+            "count": 27176
           },
           {
             "value": "SUPPORTIVE_CARE",
-            "count": 26740
+            "count": 26805
           },
           {
             "value": "BASIC_SCIENCE",
-            "count": 22164
+            "count": 22207
           },
           {
             "value": "DIAGNOSTIC",
-            "count": 19653
+            "count": 19667
           },
           {
             "value": "HEALTH_SERVICES_RESEARCH",
-            "count": 12339
+            "count": 12367
           },
           {
             "value": "SCREENING",
-            "count": 4212
+            "count": 4215
           },
           {
             "value": "DEVICE_FEASIBILITY",
-            "count": 1627
+            "count": 1630
           },
           {
             "value": "ECT",
@@ -5393,54 +10742,54 @@ export default {
       },
       "DesignInterventionModel": {
         "unique": 5,
-        "missing": 151080,
+        "missing": 151284,
         "top": [
           {
             "value": "PARALLEL",
-            "count": 277700
+            "count": 278210
           },
           {
             "value": "SINGLE_GROUP",
-            "count": 125156
+            "count": 125313
           },
           {
             "value": "CROSSOVER",
-            "count": 36434
+            "count": 36479
           },
           {
             "value": "SEQUENTIAL",
-            "count": 13432
+            "count": 13453
           },
           {
             "value": "FACTORIAL",
-            "count": 6009
+            "count": 6017
           }
         ]
       },
       "EnrollmentType": {
         "unique": 2,
-        "missing": 17142,
+        "missing": 17145,
         "top": [
           {
             "value": "ACTUAL",
-            "count": 379462
+            "count": 380197
           },
           {
             "value": "ESTIMATED",
-            "count": 213207
+            "count": 213414
           }
         ]
       },
       "HealthyVolunteers": {
-        "missing": 15092,
-        "yes": 161334,
-        "no": 433385
+        "missing": 15110,
+        "yes": 161546,
+        "no": 434100
       },
       "EnrollmentCount": {
-        "missing": 7144,
+        "missing": 7147,
         "min": 0,
         "max": 188814085,
-        "mean": 5430.374401725674
+        "mean": 5424.852277811989
       }
     },
     "biggestEnrollment": {
@@ -5452,47 +10801,47 @@ export default {
       {
         "from": 0,
         "to": 0,
-        "count": 16909
+        "count": 16932
       },
       {
         "from": 1,
         "to": 20,
-        "count": 86449
+        "count": 86546
       },
       {
         "from": 21,
         "to": 50,
-        "count": 143068
+        "count": 143328
       },
       {
         "from": 51,
         "to": 100,
-        "count": 128962
+        "count": 129192
       },
       {
         "from": 101,
         "to": 500,
-        "count": 163410
+        "count": 163663
       },
       {
         "from": 501,
         "to": 1000,
-        "count": 28964
+        "count": 28991
       },
       {
         "from": 1001,
         "to": 10000,
-        "count": 28983
+        "count": 29026
       },
       {
         "from": 10001,
         "to": "MAX",
-        "count": 5922
+        "count": 5931
       }
     ],
-    "completedInterventional": 261165,
-    "completedInterventionalWithResults": 63019,
-    "withResults": 80822,
+    "completedInterventional": 261668,
+    "completedInterventionalWithResults": 63096,
+    "withResults": 80931,
     "timing": [
       {
         "year": 1999,
@@ -5631,8 +10980,8 @@ export default {
       },
       {
         "year": 2026,
-        "registered": 45998,
-        "results": 5075
+        "registered": 46943,
+        "results": 5184
       }
     ]
   },
@@ -5896,7 +11245,7 @@ export default {
       {
         "ic": "NCI",
         "projects": 8878,
-        "dollars": 6659657743
+        "dollars": 6659422212
       },
       {
         "ic": "NIAID",
@@ -5905,13 +11254,13 @@ export default {
       },
       {
         "ic": "NIA",
-        "projects": 4757,
-        "dollars": 4052745981
+        "projects": 4758,
+        "dollars": 4053088297
       },
       {
         "ic": "NHLBI",
-        "projects": 6214,
-        "dollars": 3784408663
+        "projects": 6216,
+        "dollars": 3785441163
       },
       {
         "ic": "NIGMS",
@@ -6068,7 +11417,7 @@ export default {
       {
         "key": "OH",
         "projects": 1845,
-        "dollars": 1015245175
+        "dollars": 1015009644
       },
       {
         "key": "MI",
@@ -6077,8 +11426,8 @@ export default {
       },
       {
         "key": "FL",
-        "projects": 1507,
-        "dollars": 927649765
+        "projects": 1510,
+        "dollars": 929024581
       },
       {
         "key": "MO",
@@ -6775,5767 +12124,57 @@ export default {
       ]
     }
   },
-  "types": [
-    {
-      "id": "review",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 0
-        },
-        {
-          "year": 1952,
-          "count": 2
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 2
-        },
-        {
-          "year": 1957,
-          "count": 2
-        },
-        {
-          "year": 1958,
-          "count": 4
-        },
-        {
-          "year": 1959,
-          "count": 2
-        },
-        {
-          "year": 1960,
-          "count": 0
-        },
-        {
-          "year": 1961,
-          "count": 0
-        },
-        {
-          "year": 1962,
-          "count": 20
-        },
-        {
-          "year": 1963,
-          "count": 2667
-        },
-        {
-          "year": 1964,
-          "count": 4093
-        },
-        {
-          "year": 1965,
-          "count": 4461
-        },
-        {
-          "year": 1966,
-          "count": 4885
-        },
-        {
-          "year": 1967,
-          "count": 5035
-        },
-        {
-          "year": 1968,
-          "count": 4705
-        },
-        {
-          "year": 1969,
-          "count": 4954
-        },
-        {
-          "year": 1970,
-          "count": 5201
-        },
-        {
-          "year": 1971,
-          "count": 5719
-        },
-        {
-          "year": 1972,
-          "count": 6099
-        },
-        {
-          "year": 1973,
-          "count": 6301
-        },
-        {
-          "year": 1974,
-          "count": 6905
-        },
-        {
-          "year": 1975,
-          "count": 6228
-        },
-        {
-          "year": 1976,
-          "count": 6547
-        },
-        {
-          "year": 1977,
-          "count": 6264
-        },
-        {
-          "year": 1978,
-          "count": 7197
-        },
-        {
-          "year": 1979,
-          "count": 7822
-        },
-        {
-          "year": 1980,
-          "count": 8435
-        },
-        {
-          "year": 1981,
-          "count": 8887
-        },
-        {
-          "year": 1982,
-          "count": 9134
-        },
-        {
-          "year": 1983,
-          "count": 10862
-        },
-        {
-          "year": 1984,
-          "count": 11449
-        },
-        {
-          "year": 1985,
-          "count": 12025
-        },
-        {
-          "year": 1986,
-          "count": 14193
-        },
-        {
-          "year": 1987,
-          "count": 21677
-        },
-        {
-          "year": 1988,
-          "count": 32467
-        },
-        {
-          "year": 1989,
-          "count": 36931
-        },
-        {
-          "year": 1990,
-          "count": 40640
-        },
-        {
-          "year": 1991,
-          "count": 41895
-        },
-        {
-          "year": 1992,
-          "count": 43099
-        },
-        {
-          "year": 1993,
-          "count": 45644
-        },
-        {
-          "year": 1994,
-          "count": 49028
-        },
-        {
-          "year": 1995,
-          "count": 49894
-        },
-        {
-          "year": 1996,
-          "count": 53811
-        },
-        {
-          "year": 1997,
-          "count": 56340
-        },
-        {
-          "year": 1998,
-          "count": 58618
-        },
-        {
-          "year": 1999,
-          "count": 62060
-        },
-        {
-          "year": 2000,
-          "count": 67348
-        },
-        {
-          "year": 2001,
-          "count": 68194
-        },
-        {
-          "year": 2002,
-          "count": 72289
-        },
-        {
-          "year": 2003,
-          "count": 77228
-        },
-        {
-          "year": 2004,
-          "count": 84499
-        },
-        {
-          "year": 2005,
-          "count": 86060
-        },
-        {
-          "year": 2006,
-          "count": 92382
-        },
-        {
-          "year": 2007,
-          "count": 92408
-        },
-        {
-          "year": 2008,
-          "count": 91936
-        },
-        {
-          "year": 2009,
-          "count": 92583
-        },
-        {
-          "year": 2010,
-          "count": 97399
-        },
-        {
-          "year": 2011,
-          "count": 104876
-        },
-        {
-          "year": 2012,
-          "count": 114479
-        },
-        {
-          "year": 2013,
-          "count": 123439
-        },
-        {
-          "year": 2014,
-          "count": 135899
-        },
-        {
-          "year": 2015,
-          "count": 140826
-        },
-        {
-          "year": 2016,
-          "count": 146122
-        },
-        {
-          "year": 2017,
-          "count": 151031
-        },
-        {
-          "year": 2018,
-          "count": 156719
-        },
-        {
-          "year": 2019,
-          "count": 163750
-        },
-        {
-          "year": 2020,
-          "count": 197257
-        },
-        {
-          "year": 2021,
-          "count": 226226
-        },
-        {
-          "year": 2022,
-          "count": 225108
-        },
-        {
-          "year": 2023,
-          "count": 216903
-        },
-        {
-          "year": 2024,
-          "count": 226742
-        },
-        {
-          "year": 2025,
-          "count": 247731
-        }
-      ]
-    },
-    {
-      "id": "case",
-      "years": [
-        {
-          "year": 1950,
-          "count": 3
-        },
-        {
-          "year": 1951,
-          "count": 62
-        },
-        {
-          "year": 1952,
-          "count": 61
-        },
-        {
-          "year": 1953,
-          "count": 46
-        },
-        {
-          "year": 1954,
-          "count": 52
-        },
-        {
-          "year": 1955,
-          "count": 499
-        },
-        {
-          "year": 1956,
-          "count": 2884
-        },
-        {
-          "year": 1957,
-          "count": 4135
-        },
-        {
-          "year": 1958,
-          "count": 4311
-        },
-        {
-          "year": 1959,
-          "count": 3954
-        },
-        {
-          "year": 1960,
-          "count": 4175
-        },
-        {
-          "year": 1961,
-          "count": 4998
-        },
-        {
-          "year": 1962,
-          "count": 3084
-        },
-        {
-          "year": 1963,
-          "count": 25
-        },
-        {
-          "year": 1964,
-          "count": 541
-        },
-        {
-          "year": 1965,
-          "count": 12594
-        },
-        {
-          "year": 1966,
-          "count": 13227
-        },
-        {
-          "year": 1967,
-          "count": 6964
-        },
-        {
-          "year": 1968,
-          "count": 4992
-        },
-        {
-          "year": 1969,
-          "count": 4214
-        },
-        {
-          "year": 1970,
-          "count": 4527
-        },
-        {
-          "year": 1971,
-          "count": 3889
-        },
-        {
-          "year": 1972,
-          "count": 3765
-        },
-        {
-          "year": 1973,
-          "count": 3532
-        },
-        {
-          "year": 1974,
-          "count": 4844
-        },
-        {
-          "year": 1975,
-          "count": 14841
-        },
-        {
-          "year": 1976,
-          "count": 25372
-        },
-        {
-          "year": 1977,
-          "count": 27469
-        },
-        {
-          "year": 1978,
-          "count": 28597
-        },
-        {
-          "year": 1979,
-          "count": 29885
-        },
-        {
-          "year": 1980,
-          "count": 30991
-        },
-        {
-          "year": 1981,
-          "count": 32485
-        },
-        {
-          "year": 1982,
-          "count": 33651
-        },
-        {
-          "year": 1983,
-          "count": 35151
-        },
-        {
-          "year": 1984,
-          "count": 36429
-        },
-        {
-          "year": 1985,
-          "count": 36902
-        },
-        {
-          "year": 1986,
-          "count": 37021
-        },
-        {
-          "year": 1987,
-          "count": 37935
-        },
-        {
-          "year": 1988,
-          "count": 39035
-        },
-        {
-          "year": 1989,
-          "count": 39874
-        },
-        {
-          "year": 1990,
-          "count": 39476
-        },
-        {
-          "year": 1991,
-          "count": 38125
-        },
-        {
-          "year": 1992,
-          "count": 38732
-        },
-        {
-          "year": 1993,
-          "count": 39639
-        },
-        {
-          "year": 1994,
-          "count": 39180
-        },
-        {
-          "year": 1995,
-          "count": 39797
-        },
-        {
-          "year": 1996,
-          "count": 40130
-        },
-        {
-          "year": 1997,
-          "count": 40092
-        },
-        {
-          "year": 1998,
-          "count": 41672
-        },
-        {
-          "year": 1999,
-          "count": 41438
-        },
-        {
-          "year": 2000,
-          "count": 42535
-        },
-        {
-          "year": 2001,
-          "count": 43412
-        },
-        {
-          "year": 2002,
-          "count": 43809
-        },
-        {
-          "year": 2003,
-          "count": 45908
-        },
-        {
-          "year": 2004,
-          "count": 46683
-        },
-        {
-          "year": 2005,
-          "count": 50959
-        },
-        {
-          "year": 2006,
-          "count": 55779
-        },
-        {
-          "year": 2007,
-          "count": 59058
-        },
-        {
-          "year": 2008,
-          "count": 62351
-        },
-        {
-          "year": 2009,
-          "count": 64382
-        },
-        {
-          "year": 2010,
-          "count": 66631
-        },
-        {
-          "year": 2011,
-          "count": 70962
-        },
-        {
-          "year": 2012,
-          "count": 72392
-        },
-        {
-          "year": 2013,
-          "count": 73518
-        },
-        {
-          "year": 2014,
-          "count": 74801
-        },
-        {
-          "year": 2015,
-          "count": 73686
-        },
-        {
-          "year": 2016,
-          "count": 71093
-        },
-        {
-          "year": 2017,
-          "count": 73255
-        },
-        {
-          "year": 2018,
-          "count": 73357
-        },
-        {
-          "year": 2019,
-          "count": 76210
-        },
-        {
-          "year": 2020,
-          "count": 86345
-        },
-        {
-          "year": 2021,
-          "count": 85948
-        },
-        {
-          "year": 2022,
-          "count": 75904
-        },
-        {
-          "year": 2023,
-          "count": 73238
-        },
-        {
-          "year": 2024,
-          "count": 83313
-        },
-        {
-          "year": 2025,
-          "count": 79279
-        }
-      ]
-    },
-    {
-      "id": "letter",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 0
-        },
-        {
-          "year": 1952,
-          "count": 0
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 0
-        },
-        {
-          "year": 1957,
-          "count": 0
-        },
-        {
-          "year": 1958,
-          "count": 0
-        },
-        {
-          "year": 1959,
-          "count": 0
-        },
-        {
-          "year": 1960,
-          "count": 0
-        },
-        {
-          "year": 1961,
-          "count": 1
-        },
-        {
-          "year": 1962,
-          "count": 0
-        },
-        {
-          "year": 1963,
-          "count": 0
-        },
-        {
-          "year": 1964,
-          "count": 0
-        },
-        {
-          "year": 1965,
-          "count": 11
-        },
-        {
-          "year": 1966,
-          "count": 171
-        },
-        {
-          "year": 1967,
-          "count": 272
-        },
-        {
-          "year": 1968,
-          "count": 71
-        },
-        {
-          "year": 1969,
-          "count": 6
-        },
-        {
-          "year": 1970,
-          "count": 125
-        },
-        {
-          "year": 1971,
-          "count": 176
-        },
-        {
-          "year": 1972,
-          "count": 50
-        },
-        {
-          "year": 1973,
-          "count": 17
-        },
-        {
-          "year": 1974,
-          "count": 84
-        },
-        {
-          "year": 1975,
-          "count": 212
-        },
-        {
-          "year": 1976,
-          "count": 3041
-        },
-        {
-          "year": 1977,
-          "count": 9274
-        },
-        {
-          "year": 1978,
-          "count": 10136
-        },
-        {
-          "year": 1979,
-          "count": 11335
-        },
-        {
-          "year": 1980,
-          "count": 9748
-        },
-        {
-          "year": 1981,
-          "count": 8805
-        },
-        {
-          "year": 1982,
-          "count": 9876
-        },
-        {
-          "year": 1983,
-          "count": 11575
-        },
-        {
-          "year": 1984,
-          "count": 12373
-        },
-        {
-          "year": 1985,
-          "count": 13213
-        },
-        {
-          "year": 1986,
-          "count": 14656
-        },
-        {
-          "year": 1987,
-          "count": 16291
-        },
-        {
-          "year": 1988,
-          "count": 17599
-        },
-        {
-          "year": 1989,
-          "count": 18970
-        },
-        {
-          "year": 1990,
-          "count": 19956
-        },
-        {
-          "year": 1991,
-          "count": 21410
-        },
-        {
-          "year": 1992,
-          "count": 23951
-        },
-        {
-          "year": 1993,
-          "count": 24385
-        },
-        {
-          "year": 1994,
-          "count": 23879
-        },
-        {
-          "year": 1995,
-          "count": 24847
-        },
-        {
-          "year": 1996,
-          "count": 24406
-        },
-        {
-          "year": 1997,
-          "count": 23991
-        },
-        {
-          "year": 1998,
-          "count": 23887
-        },
-        {
-          "year": 1999,
-          "count": 24533
-        },
-        {
-          "year": 2000,
-          "count": 24801
-        },
-        {
-          "year": 2001,
-          "count": 25150
-        },
-        {
-          "year": 2002,
-          "count": 24661
-        },
-        {
-          "year": 2003,
-          "count": 25505
-        },
-        {
-          "year": 2004,
-          "count": 26796
-        },
-        {
-          "year": 2005,
-          "count": 29012
-        },
-        {
-          "year": 2006,
-          "count": 32010
-        },
-        {
-          "year": 2007,
-          "count": 33012
-        },
-        {
-          "year": 2008,
-          "count": 34791
-        },
-        {
-          "year": 2009,
-          "count": 35125
-        },
-        {
-          "year": 2010,
-          "count": 36069
-        },
-        {
-          "year": 2011,
-          "count": 36593
-        },
-        {
-          "year": 2012,
-          "count": 37409
-        },
-        {
-          "year": 2013,
-          "count": 47004
-        },
-        {
-          "year": 2014,
-          "count": 46985
-        },
-        {
-          "year": 2015,
-          "count": 47740
-        },
-        {
-          "year": 2016,
-          "count": 45263
-        },
-        {
-          "year": 2017,
-          "count": 44001
-        },
-        {
-          "year": 2018,
-          "count": 45866
-        },
-        {
-          "year": 2019,
-          "count": 47937
-        },
-        {
-          "year": 2020,
-          "count": 64746
-        },
-        {
-          "year": 2021,
-          "count": 58905
-        },
-        {
-          "year": 2022,
-          "count": 48637
-        },
-        {
-          "year": 2023,
-          "count": 45154
-        },
-        {
-          "year": 2024,
-          "count": 48866
-        },
-        {
-          "year": 2025,
-          "count": 50290
-        }
-      ]
-    },
-    {
-      "id": "comment",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 0
-        },
-        {
-          "year": 1952,
-          "count": 1
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 0
-        },
-        {
-          "year": 1957,
-          "count": 0
-        },
-        {
-          "year": 1958,
-          "count": 0
-        },
-        {
-          "year": 1959,
-          "count": 0
-        },
-        {
-          "year": 1960,
-          "count": 0
-        },
-        {
-          "year": 1961,
-          "count": 0
-        },
-        {
-          "year": 1962,
-          "count": 0
-        },
-        {
-          "year": 1963,
-          "count": 0
-        },
-        {
-          "year": 1964,
-          "count": 0
-        },
-        {
-          "year": 1965,
-          "count": 0
-        },
-        {
-          "year": 1966,
-          "count": 24
-        },
-        {
-          "year": 1967,
-          "count": 16
-        },
-        {
-          "year": 1968,
-          "count": 5
-        },
-        {
-          "year": 1969,
-          "count": 0
-        },
-        {
-          "year": 1970,
-          "count": 97
-        },
-        {
-          "year": 1971,
-          "count": 79
-        },
-        {
-          "year": 1972,
-          "count": 3
-        },
-        {
-          "year": 1973,
-          "count": 1
-        },
-        {
-          "year": 1974,
-          "count": 3
-        },
-        {
-          "year": 1975,
-          "count": 18
-        },
-        {
-          "year": 1976,
-          "count": 14
-        },
-        {
-          "year": 1977,
-          "count": 15
-        },
-        {
-          "year": 1978,
-          "count": 7
-        },
-        {
-          "year": 1979,
-          "count": 9
-        },
-        {
-          "year": 1980,
-          "count": 2
-        },
-        {
-          "year": 1981,
-          "count": 7
-        },
-        {
-          "year": 1982,
-          "count": 24
-        },
-        {
-          "year": 1983,
-          "count": 12
-        },
-        {
-          "year": 1984,
-          "count": 10
-        },
-        {
-          "year": 1985,
-          "count": 18
-        },
-        {
-          "year": 1986,
-          "count": 27
-        },
-        {
-          "year": 1987,
-          "count": 38
-        },
-        {
-          "year": 1988,
-          "count": 91
-        },
-        {
-          "year": 1989,
-          "count": 5718
-        },
-        {
-          "year": 1990,
-          "count": 10647
-        },
-        {
-          "year": 1991,
-          "count": 11934
-        },
-        {
-          "year": 1992,
-          "count": 14064
-        },
-        {
-          "year": 1993,
-          "count": 15748
-        },
-        {
-          "year": 1994,
-          "count": 15506
-        },
-        {
-          "year": 1995,
-          "count": 16611
-        },
-        {
-          "year": 1996,
-          "count": 15848
-        },
-        {
-          "year": 1997,
-          "count": 17092
-        },
-        {
-          "year": 1998,
-          "count": 17628
-        },
-        {
-          "year": 1999,
-          "count": 18836
-        },
-        {
-          "year": 2000,
-          "count": 19492
-        },
-        {
-          "year": 2001,
-          "count": 19893
-        },
-        {
-          "year": 2002,
-          "count": 22209
-        },
-        {
-          "year": 2003,
-          "count": 25028
-        },
-        {
-          "year": 2004,
-          "count": 25430
-        },
-        {
-          "year": 2005,
-          "count": 27124
-        },
-        {
-          "year": 2006,
-          "count": 29623
-        },
-        {
-          "year": 2007,
-          "count": 30434
-        },
-        {
-          "year": 2008,
-          "count": 32010
-        },
-        {
-          "year": 2009,
-          "count": 32778
-        },
-        {
-          "year": 2010,
-          "count": 35170
-        },
-        {
-          "year": 2011,
-          "count": 38315
-        },
-        {
-          "year": 2012,
-          "count": 38992
-        },
-        {
-          "year": 2013,
-          "count": 49113
-        },
-        {
-          "year": 2014,
-          "count": 48920
-        },
-        {
-          "year": 2015,
-          "count": 50583
-        },
-        {
-          "year": 2016,
-          "count": 48433
-        },
-        {
-          "year": 2017,
-          "count": 52643
-        },
-        {
-          "year": 2018,
-          "count": 54044
-        },
-        {
-          "year": 2019,
-          "count": 55773
-        },
-        {
-          "year": 2020,
-          "count": 62177
-        },
-        {
-          "year": 2021,
-          "count": 57670
-        },
-        {
-          "year": 2022,
-          "count": 49588
-        },
-        {
-          "year": 2023,
-          "count": 42014
-        },
-        {
-          "year": 2024,
-          "count": 23441
-        },
-        {
-          "year": 2025,
-          "count": 10390
-        }
-      ]
-    },
-    {
-      "id": "editorial",
-      "years": [
-        {
-          "year": 1950,
-          "count": 18
-        },
-        {
-          "year": 1951,
-          "count": 19
-        },
-        {
-          "year": 1952,
-          "count": 18
-        },
-        {
-          "year": 1953,
-          "count": 18
-        },
-        {
-          "year": 1954,
-          "count": 26
-        },
-        {
-          "year": 1955,
-          "count": 12
-        },
-        {
-          "year": 1956,
-          "count": 6
-        },
-        {
-          "year": 1957,
-          "count": 3
-        },
-        {
-          "year": 1958,
-          "count": 6
-        },
-        {
-          "year": 1959,
-          "count": 5
-        },
-        {
-          "year": 1960,
-          "count": 4
-        },
-        {
-          "year": 1961,
-          "count": 5
-        },
-        {
-          "year": 1962,
-          "count": 9
-        },
-        {
-          "year": 1963,
-          "count": 10
-        },
-        {
-          "year": 1964,
-          "count": 10
-        },
-        {
-          "year": 1965,
-          "count": 13
-        },
-        {
-          "year": 1966,
-          "count": 47
-        },
-        {
-          "year": 1967,
-          "count": 66
-        },
-        {
-          "year": 1968,
-          "count": 27
-        },
-        {
-          "year": 1969,
-          "count": 16
-        },
-        {
-          "year": 1970,
-          "count": 18
-        },
-        {
-          "year": 1971,
-          "count": 32
-        },
-        {
-          "year": 1972,
-          "count": 37
-        },
-        {
-          "year": 1973,
-          "count": 113
-        },
-        {
-          "year": 1974,
-          "count": 83
-        },
-        {
-          "year": 1975,
-          "count": 373
-        },
-        {
-          "year": 1976,
-          "count": 1441
-        },
-        {
-          "year": 1977,
-          "count": 3178
-        },
-        {
-          "year": 1978,
-          "count": 3366
-        },
-        {
-          "year": 1979,
-          "count": 3365
-        },
-        {
-          "year": 1980,
-          "count": 2615
-        },
-        {
-          "year": 1981,
-          "count": 2196
-        },
-        {
-          "year": 1982,
-          "count": 1921
-        },
-        {
-          "year": 1983,
-          "count": 2204
-        },
-        {
-          "year": 1984,
-          "count": 2280
-        },
-        {
-          "year": 1985,
-          "count": 2402
-        },
-        {
-          "year": 1986,
-          "count": 2830
-        },
-        {
-          "year": 1987,
-          "count": 3258
-        },
-        {
-          "year": 1988,
-          "count": 3320
-        },
-        {
-          "year": 1989,
-          "count": 3798
-        },
-        {
-          "year": 1990,
-          "count": 4920
-        },
-        {
-          "year": 1991,
-          "count": 6597
-        },
-        {
-          "year": 1992,
-          "count": 6987
-        },
-        {
-          "year": 1993,
-          "count": 7385
-        },
-        {
-          "year": 1994,
-          "count": 7620
-        },
-        {
-          "year": 1995,
-          "count": 8066
-        },
-        {
-          "year": 1996,
-          "count": 8437
-        },
-        {
-          "year": 1997,
-          "count": 8696
-        },
-        {
-          "year": 1998,
-          "count": 9111
-        },
-        {
-          "year": 1999,
-          "count": 9790
-        },
-        {
-          "year": 2000,
-          "count": 10530
-        },
-        {
-          "year": 2001,
-          "count": 11188
-        },
-        {
-          "year": 2002,
-          "count": 11770
-        },
-        {
-          "year": 2003,
-          "count": 12874
-        },
-        {
-          "year": 2004,
-          "count": 13492
-        },
-        {
-          "year": 2005,
-          "count": 14617
-        },
-        {
-          "year": 2006,
-          "count": 15190
-        },
-        {
-          "year": 2007,
-          "count": 15924
-        },
-        {
-          "year": 2008,
-          "count": 19706
-        },
-        {
-          "year": 2009,
-          "count": 20481
-        },
-        {
-          "year": 2010,
-          "count": 21228
-        },
-        {
-          "year": 2011,
-          "count": 22374
-        },
-        {
-          "year": 2012,
-          "count": 23543
-        },
-        {
-          "year": 2013,
-          "count": 24882
-        },
-        {
-          "year": 2014,
-          "count": 26085
-        },
-        {
-          "year": 2015,
-          "count": 28339
-        },
-        {
-          "year": 2016,
-          "count": 30109
-        },
-        {
-          "year": 2017,
-          "count": 32327
-        },
-        {
-          "year": 2018,
-          "count": 33447
-        },
-        {
-          "year": 2019,
-          "count": 34924
-        },
-        {
-          "year": 2020,
-          "count": 42172
-        },
-        {
-          "year": 2021,
-          "count": 41524
-        },
-        {
-          "year": 2022,
-          "count": 42026
-        },
-        {
-          "year": 2023,
-          "count": 42693
-        },
-        {
-          "year": 2024,
-          "count": 39502
-        },
-        {
-          "year": 2025,
-          "count": 36548
-        }
-      ]
-    },
-    {
-      "id": "rct",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 0
-        },
-        {
-          "year": 1952,
-          "count": 0
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 0
-        },
-        {
-          "year": 1957,
-          "count": 0
-        },
-        {
-          "year": 1958,
-          "count": 0
-        },
-        {
-          "year": 1959,
-          "count": 0
-        },
-        {
-          "year": 1960,
-          "count": 1
-        },
-        {
-          "year": 1961,
-          "count": 1
-        },
-        {
-          "year": 1962,
-          "count": 0
-        },
-        {
-          "year": 1963,
-          "count": 0
-        },
-        {
-          "year": 1964,
-          "count": 0
-        },
-        {
-          "year": 1965,
-          "count": 39
-        },
-        {
-          "year": 1966,
-          "count": 194
-        },
-        {
-          "year": 1967,
-          "count": 217
-        },
-        {
-          "year": 1968,
-          "count": 271
-        },
-        {
-          "year": 1969,
-          "count": 289
-        },
-        {
-          "year": 1970,
-          "count": 355
-        },
-        {
-          "year": 1971,
-          "count": 378
-        },
-        {
-          "year": 1972,
-          "count": 476
-        },
-        {
-          "year": 1973,
-          "count": 569
-        },
-        {
-          "year": 1974,
-          "count": 649
-        },
-        {
-          "year": 1975,
-          "count": 930
-        },
-        {
-          "year": 1976,
-          "count": 1241
-        },
-        {
-          "year": 1977,
-          "count": 1248
-        },
-        {
-          "year": 1978,
-          "count": 1468
-        },
-        {
-          "year": 1979,
-          "count": 1786
-        },
-        {
-          "year": 1980,
-          "count": 2071
-        },
-        {
-          "year": 1981,
-          "count": 2282
-        },
-        {
-          "year": 1982,
-          "count": 2550
-        },
-        {
-          "year": 1983,
-          "count": 3050
-        },
-        {
-          "year": 1984,
-          "count": 2861
-        },
-        {
-          "year": 1985,
-          "count": 3534
-        },
-        {
-          "year": 1986,
-          "count": 3893
-        },
-        {
-          "year": 1987,
-          "count": 4447
-        },
-        {
-          "year": 1988,
-          "count": 4534
-        },
-        {
-          "year": 1989,
-          "count": 5647
-        },
-        {
-          "year": 1990,
-          "count": 6760
-        },
-        {
-          "year": 1991,
-          "count": 7170
-        },
-        {
-          "year": 1992,
-          "count": 7591
-        },
-        {
-          "year": 1993,
-          "count": 8262
-        },
-        {
-          "year": 1994,
-          "count": 9490
-        },
-        {
-          "year": 1995,
-          "count": 10365
-        },
-        {
-          "year": 1996,
-          "count": 10174
-        },
-        {
-          "year": 1997,
-          "count": 10353
-        },
-        {
-          "year": 1998,
-          "count": 10767
-        },
-        {
-          "year": 1999,
-          "count": 11525
-        },
-        {
-          "year": 2000,
-          "count": 11160
-        },
-        {
-          "year": 2001,
-          "count": 11998
-        },
-        {
-          "year": 2002,
-          "count": 12238
-        },
-        {
-          "year": 2003,
-          "count": 13457
-        },
-        {
-          "year": 2004,
-          "count": 15172
-        },
-        {
-          "year": 2005,
-          "count": 16324
-        },
-        {
-          "year": 2006,
-          "count": 17326
-        },
-        {
-          "year": 2007,
-          "count": 19064
-        },
-        {
-          "year": 2008,
-          "count": 19504
-        },
-        {
-          "year": 2009,
-          "count": 20566
-        },
-        {
-          "year": 2010,
-          "count": 22446
-        },
-        {
-          "year": 2011,
-          "count": 25280
-        },
-        {
-          "year": 2012,
-          "count": 27379
-        },
-        {
-          "year": 2013,
-          "count": 29577
-        },
-        {
-          "year": 2014,
-          "count": 29735
-        },
-        {
-          "year": 2015,
-          "count": 29471
-        },
-        {
-          "year": 2016,
-          "count": 28528
-        },
-        {
-          "year": 2017,
-          "count": 28259
-        },
-        {
-          "year": 2018,
-          "count": 26686
-        },
-        {
-          "year": 2019,
-          "count": 26155
-        },
-        {
-          "year": 2020,
-          "count": 28103
-        },
-        {
-          "year": 2021,
-          "count": 29411
-        },
-        {
-          "year": 2022,
-          "count": 28455
-        },
-        {
-          "year": 2023,
-          "count": 25619
-        },
-        {
-          "year": 2024,
-          "count": 27557
-        },
-        {
-          "year": 2025,
-          "count": 30843
-        }
-      ]
-    },
-    {
-      "id": "meta",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 0
-        },
-        {
-          "year": 1952,
-          "count": 0
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 0
-        },
-        {
-          "year": 1957,
-          "count": 0
-        },
-        {
-          "year": 1958,
-          "count": 0
-        },
-        {
-          "year": 1959,
-          "count": 0
-        },
-        {
-          "year": 1960,
-          "count": 0
-        },
-        {
-          "year": 1961,
-          "count": 0
-        },
-        {
-          "year": 1962,
-          "count": 0
-        },
-        {
-          "year": 1963,
-          "count": 0
-        },
-        {
-          "year": 1964,
-          "count": 0
-        },
-        {
-          "year": 1965,
-          "count": 0
-        },
-        {
-          "year": 1966,
-          "count": 1
-        },
-        {
-          "year": 1967,
-          "count": 0
-        },
-        {
-          "year": 1968,
-          "count": 0
-        },
-        {
-          "year": 1969,
-          "count": 0
-        },
-        {
-          "year": 1970,
-          "count": 0
-        },
-        {
-          "year": 1971,
-          "count": 0
-        },
-        {
-          "year": 1972,
-          "count": 0
-        },
-        {
-          "year": 1973,
-          "count": 0
-        },
-        {
-          "year": 1974,
-          "count": 0
-        },
-        {
-          "year": 1975,
-          "count": 0
-        },
-        {
-          "year": 1976,
-          "count": 0
-        },
-        {
-          "year": 1977,
-          "count": 0
-        },
-        {
-          "year": 1978,
-          "count": 0
-        },
-        {
-          "year": 1979,
-          "count": 0
-        },
-        {
-          "year": 1980,
-          "count": 0
-        },
-        {
-          "year": 1981,
-          "count": 0
-        },
-        {
-          "year": 1982,
-          "count": 1
-        },
-        {
-          "year": 1983,
-          "count": 0
-        },
-        {
-          "year": 1984,
-          "count": 0
-        },
-        {
-          "year": 1985,
-          "count": 0
-        },
-        {
-          "year": 1986,
-          "count": 0
-        },
-        {
-          "year": 1987,
-          "count": 0
-        },
-        {
-          "year": 1988,
-          "count": 1
-        },
-        {
-          "year": 1989,
-          "count": 0
-        },
-        {
-          "year": 1990,
-          "count": 271
-        },
-        {
-          "year": 1991,
-          "count": 332
-        },
-        {
-          "year": 1992,
-          "count": 370
-        },
-        {
-          "year": 1993,
-          "count": 322
-        },
-        {
-          "year": 1994,
-          "count": 383
-        },
-        {
-          "year": 1995,
-          "count": 420
-        },
-        {
-          "year": 1996,
-          "count": 476
-        },
-        {
-          "year": 1997,
-          "count": 588
-        },
-        {
-          "year": 1998,
-          "count": 629
-        },
-        {
-          "year": 1999,
-          "count": 729
-        },
-        {
-          "year": 2000,
-          "count": 836
-        },
-        {
-          "year": 2001,
-          "count": 932
-        },
-        {
-          "year": 2002,
-          "count": 1068
-        },
-        {
-          "year": 2003,
-          "count": 1284
-        },
-        {
-          "year": 2004,
-          "count": 1590
-        },
-        {
-          "year": 2005,
-          "count": 2099
-        },
-        {
-          "year": 2006,
-          "count": 2470
-        },
-        {
-          "year": 2007,
-          "count": 2617
-        },
-        {
-          "year": 2008,
-          "count": 2904
-        },
-        {
-          "year": 2009,
-          "count": 3528
-        },
-        {
-          "year": 2010,
-          "count": 4385
-        },
-        {
-          "year": 2011,
-          "count": 5635
-        },
-        {
-          "year": 2012,
-          "count": 7510
-        },
-        {
-          "year": 2013,
-          "count": 9243
-        },
-        {
-          "year": 2014,
-          "count": 10855
-        },
-        {
-          "year": 2015,
-          "count": 12039
-        },
-        {
-          "year": 2016,
-          "count": 12657
-        },
-        {
-          "year": 2017,
-          "count": 13416
-        },
-        {
-          "year": 2018,
-          "count": 14407
-        },
-        {
-          "year": 2019,
-          "count": 16221
-        },
-        {
-          "year": 2020,
-          "count": 19802
-        },
-        {
-          "year": 2021,
-          "count": 22895
-        },
-        {
-          "year": 2022,
-          "count": 23643
-        },
-        {
-          "year": 2023,
-          "count": 23129
-        },
-        {
-          "year": 2024,
-          "count": 24155
-        },
-        {
-          "year": 2025,
-          "count": 26254
-        }
-      ]
-    },
-    {
-      "id": "systematic",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 0
-        },
-        {
-          "year": 1952,
-          "count": 0
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 0
-        },
-        {
-          "year": 1957,
-          "count": 1
-        },
-        {
-          "year": 1958,
-          "count": 0
-        },
-        {
-          "year": 1959,
-          "count": 0
-        },
-        {
-          "year": 1960,
-          "count": 0
-        },
-        {
-          "year": 1961,
-          "count": 0
-        },
-        {
-          "year": 1962,
-          "count": 1
-        },
-        {
-          "year": 1963,
-          "count": 0
-        },
-        {
-          "year": 1964,
-          "count": 0
-        },
-        {
-          "year": 1965,
-          "count": 0
-        },
-        {
-          "year": 1966,
-          "count": 0
-        },
-        {
-          "year": 1967,
-          "count": 1
-        },
-        {
-          "year": 1968,
-          "count": 0
-        },
-        {
-          "year": 1969,
-          "count": 0
-        },
-        {
-          "year": 1970,
-          "count": 0
-        },
-        {
-          "year": 1971,
-          "count": 0
-        },
-        {
-          "year": 1972,
-          "count": 1
-        },
-        {
-          "year": 1973,
-          "count": 0
-        },
-        {
-          "year": 1974,
-          "count": 0
-        },
-        {
-          "year": 1975,
-          "count": 0
-        },
-        {
-          "year": 1976,
-          "count": 1
-        },
-        {
-          "year": 1977,
-          "count": 0
-        },
-        {
-          "year": 1978,
-          "count": 1
-        },
-        {
-          "year": 1979,
-          "count": 1
-        },
-        {
-          "year": 1980,
-          "count": 2
-        },
-        {
-          "year": 1981,
-          "count": 1
-        },
-        {
-          "year": 1982,
-          "count": 1
-        },
-        {
-          "year": 1983,
-          "count": 2
-        },
-        {
-          "year": 1984,
-          "count": 1
-        },
-        {
-          "year": 1985,
-          "count": 1
-        },
-        {
-          "year": 1986,
-          "count": 0
-        },
-        {
-          "year": 1987,
-          "count": 2
-        },
-        {
-          "year": 1988,
-          "count": 2
-        },
-        {
-          "year": 1989,
-          "count": 2
-        },
-        {
-          "year": 1990,
-          "count": 4
-        },
-        {
-          "year": 1991,
-          "count": 7
-        },
-        {
-          "year": 1992,
-          "count": 2
-        },
-        {
-          "year": 1993,
-          "count": 8
-        },
-        {
-          "year": 1994,
-          "count": 24
-        },
-        {
-          "year": 1995,
-          "count": 37
-        },
-        {
-          "year": 1996,
-          "count": 70
-        },
-        {
-          "year": 1997,
-          "count": 135
-        },
-        {
-          "year": 1998,
-          "count": 222
-        },
-        {
-          "year": 1999,
-          "count": 298
-        },
-        {
-          "year": 2000,
-          "count": 1413
-        },
-        {
-          "year": 2001,
-          "count": 1062
-        },
-        {
-          "year": 2002,
-          "count": 1204
-        },
-        {
-          "year": 2003,
-          "count": 1404
-        },
-        {
-          "year": 2004,
-          "count": 1712
-        },
-        {
-          "year": 2005,
-          "count": 2031
-        },
-        {
-          "year": 2006,
-          "count": 2500
-        },
-        {
-          "year": 2007,
-          "count": 3338
-        },
-        {
-          "year": 2008,
-          "count": 3643
-        },
-        {
-          "year": 2009,
-          "count": 4428
-        },
-        {
-          "year": 2010,
-          "count": 5286
-        },
-        {
-          "year": 2011,
-          "count": 6545
-        },
-        {
-          "year": 2012,
-          "count": 8292
-        },
-        {
-          "year": 2013,
-          "count": 10176
-        },
-        {
-          "year": 2014,
-          "count": 11985
-        },
-        {
-          "year": 2015,
-          "count": 13804
-        },
-        {
-          "year": 2016,
-          "count": 15441
-        },
-        {
-          "year": 2017,
-          "count": 17804
-        },
-        {
-          "year": 2018,
-          "count": 20600
-        },
-        {
-          "year": 2019,
-          "count": 24877
-        },
-        {
-          "year": 2020,
-          "count": 30325
-        },
-        {
-          "year": 2021,
-          "count": 36067
-        },
-        {
-          "year": 2022,
-          "count": 37707
-        },
-        {
-          "year": 2023,
-          "count": 35052
-        },
-        {
-          "year": 2024,
-          "count": 38085
-        },
-        {
-          "year": 2025,
-          "count": 43882
-        }
-      ]
-    },
-    {
-      "id": "preprint",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 0
-        },
-        {
-          "year": 1952,
-          "count": 0
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 0
-        },
-        {
-          "year": 1957,
-          "count": 0
-        },
-        {
-          "year": 1958,
-          "count": 0
-        },
-        {
-          "year": 1959,
-          "count": 0
-        },
-        {
-          "year": 1960,
-          "count": 0
-        },
-        {
-          "year": 1961,
-          "count": 0
-        },
-        {
-          "year": 1962,
-          "count": 0
-        },
-        {
-          "year": 1963,
-          "count": 0
-        },
-        {
-          "year": 1964,
-          "count": 0
-        },
-        {
-          "year": 1965,
-          "count": 0
-        },
-        {
-          "year": 1966,
-          "count": 0
-        },
-        {
-          "year": 1967,
-          "count": 0
-        },
-        {
-          "year": 1968,
-          "count": 0
-        },
-        {
-          "year": 1969,
-          "count": 0
-        },
-        {
-          "year": 1970,
-          "count": 0
-        },
-        {
-          "year": 1971,
-          "count": 0
-        },
-        {
-          "year": 1972,
-          "count": 0
-        },
-        {
-          "year": 1973,
-          "count": 0
-        },
-        {
-          "year": 1974,
-          "count": 0
-        },
-        {
-          "year": 1975,
-          "count": 0
-        },
-        {
-          "year": 1976,
-          "count": 0
-        },
-        {
-          "year": 1977,
-          "count": 0
-        },
-        {
-          "year": 1978,
-          "count": 0
-        },
-        {
-          "year": 1979,
-          "count": 0
-        },
-        {
-          "year": 1980,
-          "count": 0
-        },
-        {
-          "year": 1981,
-          "count": 0
-        },
-        {
-          "year": 1982,
-          "count": 0
-        },
-        {
-          "year": 1983,
-          "count": 0
-        },
-        {
-          "year": 1984,
-          "count": 0
-        },
-        {
-          "year": 1985,
-          "count": 0
-        },
-        {
-          "year": 1986,
-          "count": 0
-        },
-        {
-          "year": 1987,
-          "count": 0
-        },
-        {
-          "year": 1988,
-          "count": 0
-        },
-        {
-          "year": 1989,
-          "count": 0
-        },
-        {
-          "year": 1990,
-          "count": 0
-        },
-        {
-          "year": 1991,
-          "count": 0
-        },
-        {
-          "year": 1992,
-          "count": 0
-        },
-        {
-          "year": 1993,
-          "count": 0
-        },
-        {
-          "year": 1994,
-          "count": 0
-        },
-        {
-          "year": 1995,
-          "count": 0
-        },
-        {
-          "year": 1996,
-          "count": 0
-        },
-        {
-          "year": 1997,
-          "count": 0
-        },
-        {
-          "year": 1998,
-          "count": 0
-        },
-        {
-          "year": 1999,
-          "count": 0
-        },
-        {
-          "year": 2000,
-          "count": 0
-        },
-        {
-          "year": 2001,
-          "count": 0
-        },
-        {
-          "year": 2002,
-          "count": 0
-        },
-        {
-          "year": 2003,
-          "count": 0
-        },
-        {
-          "year": 2004,
-          "count": 0
-        },
-        {
-          "year": 2005,
-          "count": 0
-        },
-        {
-          "year": 2006,
-          "count": 0
-        },
-        {
-          "year": 2007,
-          "count": 0
-        },
-        {
-          "year": 2008,
-          "count": 0
-        },
-        {
-          "year": 2009,
-          "count": 0
-        },
-        {
-          "year": 2010,
-          "count": 0
-        },
-        {
-          "year": 2011,
-          "count": 0
-        },
-        {
-          "year": 2012,
-          "count": 0
-        },
-        {
-          "year": 2013,
-          "count": 0
-        },
-        {
-          "year": 2014,
-          "count": 0
-        },
-        {
-          "year": 2015,
-          "count": 0
-        },
-        {
-          "year": 2016,
-          "count": 0
-        },
-        {
-          "year": 2017,
-          "count": 0
-        },
-        {
-          "year": 2018,
-          "count": 0
-        },
-        {
-          "year": 2019,
-          "count": 0
-        },
-        {
-          "year": 2020,
-          "count": 1482
-        },
-        {
-          "year": 2021,
-          "count": 1401
-        },
-        {
-          "year": 2022,
-          "count": 822
-        },
-        {
-          "year": 2023,
-          "count": 13200
-        },
-        {
-          "year": 2024,
-          "count": 16059
-        },
-        {
-          "year": 2025,
-          "count": 20951
-        }
-      ]
-    },
-    {
-      "id": "retracted",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 1
-        },
-        {
-          "year": 1952,
-          "count": 0
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 0
-        },
-        {
-          "year": 1957,
-          "count": 0
-        },
-        {
-          "year": 1958,
-          "count": 0
-        },
-        {
-          "year": 1959,
-          "count": 1
-        },
-        {
-          "year": 1960,
-          "count": 0
-        },
-        {
-          "year": 1961,
-          "count": 0
-        },
-        {
-          "year": 1962,
-          "count": 0
-        },
-        {
-          "year": 1963,
-          "count": 1
-        },
-        {
-          "year": 1964,
-          "count": 0
-        },
-        {
-          "year": 1965,
-          "count": 0
-        },
-        {
-          "year": 1966,
-          "count": 0
-        },
-        {
-          "year": 1967,
-          "count": 0
-        },
-        {
-          "year": 1968,
-          "count": 1
-        },
-        {
-          "year": 1969,
-          "count": 0
-        },
-        {
-          "year": 1970,
-          "count": 0
-        },
-        {
-          "year": 1971,
-          "count": 0
-        },
-        {
-          "year": 1972,
-          "count": 0
-        },
-        {
-          "year": 1973,
-          "count": 3
-        },
-        {
-          "year": 1974,
-          "count": 0
-        },
-        {
-          "year": 1975,
-          "count": 7
-        },
-        {
-          "year": 1976,
-          "count": 3
-        },
-        {
-          "year": 1977,
-          "count": 2
-        },
-        {
-          "year": 1978,
-          "count": 8
-        },
-        {
-          "year": 1979,
-          "count": 9
-        },
-        {
-          "year": 1980,
-          "count": 12
-        },
-        {
-          "year": 1981,
-          "count": 16
-        },
-        {
-          "year": 1982,
-          "count": 6
-        },
-        {
-          "year": 1983,
-          "count": 14
-        },
-        {
-          "year": 1984,
-          "count": 13
-        },
-        {
-          "year": 1985,
-          "count": 14
-        },
-        {
-          "year": 1986,
-          "count": 10
-        },
-        {
-          "year": 1987,
-          "count": 17
-        },
-        {
-          "year": 1988,
-          "count": 19
-        },
-        {
-          "year": 1989,
-          "count": 35
-        },
-        {
-          "year": 1990,
-          "count": 54
-        },
-        {
-          "year": 1991,
-          "count": 42
-        },
-        {
-          "year": 1992,
-          "count": 36
-        },
-        {
-          "year": 1993,
-          "count": 32
-        },
-        {
-          "year": 1994,
-          "count": 53
-        },
-        {
-          "year": 1995,
-          "count": 64
-        },
-        {
-          "year": 1996,
-          "count": 58
-        },
-        {
-          "year": 1997,
-          "count": 69
-        },
-        {
-          "year": 1998,
-          "count": 98
-        },
-        {
-          "year": 1999,
-          "count": 101
-        },
-        {
-          "year": 2000,
-          "count": 131
-        },
-        {
-          "year": 2001,
-          "count": 173
-        },
-        {
-          "year": 2002,
-          "count": 251
-        },
-        {
-          "year": 2003,
-          "count": 225
-        },
-        {
-          "year": 2004,
-          "count": 308
-        },
-        {
-          "year": 2005,
-          "count": 354
-        },
-        {
-          "year": 2006,
-          "count": 467
-        },
-        {
-          "year": 2007,
-          "count": 496
-        },
-        {
-          "year": 2008,
-          "count": 564
-        },
-        {
-          "year": 2009,
-          "count": 625
-        },
-        {
-          "year": 2010,
-          "count": 726
-        },
-        {
-          "year": 2011,
-          "count": 822
-        },
-        {
-          "year": 2012,
-          "count": 908
-        },
-        {
-          "year": 2013,
-          "count": 1052
-        },
-        {
-          "year": 2014,
-          "count": 1333
-        },
-        {
-          "year": 2015,
-          "count": 1408
-        },
-        {
-          "year": 2016,
-          "count": 1379
-        },
-        {
-          "year": 2017,
-          "count": 1838
-        },
-        {
-          "year": 2018,
-          "count": 2306
-        },
-        {
-          "year": 2019,
-          "count": 2829
-        },
-        {
-          "year": 2020,
-          "count": 2981
-        },
-        {
-          "year": 2021,
-          "count": 3835
-        },
-        {
-          "year": 2022,
-          "count": 7303
-        },
-        {
-          "year": 2023,
-          "count": 2417
-        },
-        {
-          "year": 2024,
-          "count": 2331
-        },
-        {
-          "year": 2025,
-          "count": 1069
-        }
-      ]
-    },
-    {
-      "id": "retraction",
-      "years": [
-        {
-          "year": 1950,
-          "count": 0
-        },
-        {
-          "year": 1951,
-          "count": 0
-        },
-        {
-          "year": 1952,
-          "count": 0
-        },
-        {
-          "year": 1953,
-          "count": 0
-        },
-        {
-          "year": 1954,
-          "count": 0
-        },
-        {
-          "year": 1955,
-          "count": 0
-        },
-        {
-          "year": 1956,
-          "count": 0
-        },
-        {
-          "year": 1957,
-          "count": 0
-        },
-        {
-          "year": 1958,
-          "count": 0
-        },
-        {
-          "year": 1959,
-          "count": 0
-        },
-        {
-          "year": 1960,
-          "count": 0
-        },
-        {
-          "year": 1961,
-          "count": 0
-        },
-        {
-          "year": 1962,
-          "count": 0
-        },
-        {
-          "year": 1963,
-          "count": 0
-        },
-        {
-          "year": 1964,
-          "count": 0
-        },
-        {
-          "year": 1965,
-          "count": 0
-        },
-        {
-          "year": 1966,
-          "count": 1
-        },
-        {
-          "year": 1967,
-          "count": 0
-        },
-        {
-          "year": 1968,
-          "count": 1
-        },
-        {
-          "year": 1969,
-          "count": 0
-        },
-        {
-          "year": 1970,
-          "count": 1
-        },
-        {
-          "year": 1971,
-          "count": 0
-        },
-        {
-          "year": 1972,
-          "count": 0
-        },
-        {
-          "year": 1973,
-          "count": 0
-        },
-        {
-          "year": 1974,
-          "count": 0
-        },
-        {
-          "year": 1975,
-          "count": 3
-        },
-        {
-          "year": 1976,
-          "count": 0
-        },
-        {
-          "year": 1977,
-          "count": 3
-        },
-        {
-          "year": 1978,
-          "count": 0
-        },
-        {
-          "year": 1979,
-          "count": 0
-        },
-        {
-          "year": 1980,
-          "count": 8
-        },
-        {
-          "year": 1981,
-          "count": 2
-        },
-        {
-          "year": 1982,
-          "count": 4
-        },
-        {
-          "year": 1983,
-          "count": 9
-        },
-        {
-          "year": 1984,
-          "count": 7
-        },
-        {
-          "year": 1985,
-          "count": 12
-        },
-        {
-          "year": 1986,
-          "count": 6
-        },
-        {
-          "year": 1987,
-          "count": 10
-        },
-        {
-          "year": 1988,
-          "count": 5
-        },
-        {
-          "year": 1989,
-          "count": 12
-        },
-        {
-          "year": 1990,
-          "count": 20
-        },
-        {
-          "year": 1991,
-          "count": 20
-        },
-        {
-          "year": 1992,
-          "count": 25
-        },
-        {
-          "year": 1993,
-          "count": 19
-        },
-        {
-          "year": 1994,
-          "count": 19
-        },
-        {
-          "year": 1995,
-          "count": 20
-        },
-        {
-          "year": 1996,
-          "count": 14
-        },
-        {
-          "year": 1997,
-          "count": 39
-        },
-        {
-          "year": 1998,
-          "count": 50
-        },
-        {
-          "year": 1999,
-          "count": 32
-        },
-        {
-          "year": 2000,
-          "count": 25
-        },
-        {
-          "year": 2001,
-          "count": 28
-        },
-        {
-          "year": 2002,
-          "count": 44
-        },
-        {
-          "year": 2003,
-          "count": 62
-        },
-        {
-          "year": 2004,
-          "count": 67
-        },
-        {
-          "year": 2005,
-          "count": 76
-        },
-        {
-          "year": 2006,
-          "count": 139
-        },
-        {
-          "year": 2007,
-          "count": 149
-        },
-        {
-          "year": 2008,
-          "count": 244
-        },
-        {
-          "year": 2009,
-          "count": 311
-        },
-        {
-          "year": 2010,
-          "count": 311
-        },
-        {
-          "year": 2011,
-          "count": 485
-        },
-        {
-          "year": 2012,
-          "count": 552
-        },
-        {
-          "year": 2013,
-          "count": 621
-        },
-        {
-          "year": 2014,
-          "count": 545
-        },
-        {
-          "year": 2015,
-          "count": 747
-        },
-        {
-          "year": 2016,
-          "count": 843
-        },
-        {
-          "year": 2017,
-          "count": 678
-        },
-        {
-          "year": 2018,
-          "count": 853
-        },
-        {
-          "year": 2019,
-          "count": 930
-        },
-        {
-          "year": 2020,
-          "count": 1529
-        },
-        {
-          "year": 2021,
-          "count": 2032
-        },
-        {
-          "year": 2022,
-          "count": 2402
-        },
-        {
-          "year": 2023,
-          "count": 8031
-        },
-        {
-          "year": 2024,
-          "count": 4119
-        },
-        {
-          "year": 2025,
-          "count": 4824
-        }
-      ]
-    }
-  ],
-  "growth": [
-    {
-      "db": "sra",
-      "field": "PDAT",
-      "label": "SRA",
-      "what": "experiments by publication date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 0
-        },
-        {
-          "year": 2001,
-          "count": 0
-        },
-        {
-          "year": 2002,
-          "count": 0
-        },
-        {
-          "year": 2003,
-          "count": 0
-        },
-        {
-          "year": 2004,
-          "count": 0
-        },
-        {
-          "year": 2005,
-          "count": 0
-        },
-        {
-          "year": 2006,
-          "count": 0
-        },
-        {
-          "year": 2007,
-          "count": 2
-        },
-        {
-          "year": 2008,
-          "count": 1452
-        },
-        {
-          "year": 2009,
-          "count": 8150
-        },
-        {
-          "year": 2010,
-          "count": 21193
-        },
-        {
-          "year": 2011,
-          "count": 40869
-        },
-        {
-          "year": 2012,
-          "count": 113554
-        },
-        {
-          "year": 2013,
-          "count": 184318
-        },
-        {
-          "year": 2014,
-          "count": 400022
-        },
-        {
-          "year": 2015,
-          "count": 656498
-        },
-        {
-          "year": 2016,
-          "count": 1062662
-        },
-        {
-          "year": 2017,
-          "count": 1151308
-        },
-        {
-          "year": 2018,
-          "count": 1794378
-        },
-        {
-          "year": 2019,
-          "count": 2121205
-        },
-        {
-          "year": 2020,
-          "count": 3157194
-        },
-        {
-          "year": 2021,
-          "count": 5593190
-        },
-        {
-          "year": 2022,
-          "count": 6307765
-        },
-        {
-          "year": 2023,
-          "count": 5105692
-        },
-        {
-          "year": 2024,
-          "count": 4851795
-        },
-        {
-          "year": 2025,
-          "count": 5128225
-        }
-      ]
-    },
-    {
-      "db": "biosample",
-      "field": "PDAT",
-      "label": "BioSample",
-      "what": "samples by publication date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 20231
-        },
-        {
-          "year": 2001,
-          "count": 3202
-        },
-        {
-          "year": 2002,
-          "count": 6245
-        },
-        {
-          "year": 2003,
-          "count": 7145
-        },
-        {
-          "year": 2004,
-          "count": 8455
-        },
-        {
-          "year": 2005,
-          "count": 16181
-        },
-        {
-          "year": 2006,
-          "count": 22544
-        },
-        {
-          "year": 2007,
-          "count": 36180
-        },
-        {
-          "year": 2008,
-          "count": 43973
-        },
-        {
-          "year": 2009,
-          "count": 75537
-        },
-        {
-          "year": 2010,
-          "count": 242979
-        },
-        {
-          "year": 2011,
-          "count": 318442
-        },
-        {
-          "year": 2012,
-          "count": 1281041
-        },
-        {
-          "year": 2013,
-          "count": 621132
-        },
-        {
-          "year": 2014,
-          "count": 752276
-        },
-        {
-          "year": 2015,
-          "count": 1087030
-        },
-        {
-          "year": 2016,
-          "count": 1293864
-        },
-        {
-          "year": 2017,
-          "count": 1744743
-        },
-        {
-          "year": 2018,
-          "count": 2105007
-        },
-        {
-          "year": 2019,
-          "count": 2684792
-        },
-        {
-          "year": 2020,
-          "count": 3327194
-        },
-        {
-          "year": 2021,
-          "count": 6956019
-        },
-        {
-          "year": 2022,
-          "count": 7287724
-        },
-        {
-          "year": 2023,
-          "count": 6713051
-        },
-        {
-          "year": 2024,
-          "count": 6370601
-        },
-        {
-          "year": 2025,
-          "count": 7990026
-        }
-      ]
-    },
-    {
-      "db": "gds",
-      "field": "PDAT",
-      "label": "GEO DataSets",
-      "what": "records by publication date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 12
-        },
-        {
-          "year": 2001,
-          "count": 698
-        },
-        {
-          "year": 2002,
-          "count": 2274
-        },
-        {
-          "year": 2003,
-          "count": 8870
-        },
-        {
-          "year": 2004,
-          "count": 19673
-        },
-        {
-          "year": 2005,
-          "count": 38140
-        },
-        {
-          "year": 2006,
-          "count": 49170
-        },
-        {
-          "year": 2007,
-          "count": 82495
-        },
-        {
-          "year": 2008,
-          "count": 89614
-        },
-        {
-          "year": 2009,
-          "count": 116782
-        },
-        {
-          "year": 2010,
-          "count": 133280
-        },
-        {
-          "year": 2011,
-          "count": 172287
-        },
-        {
-          "year": 2012,
-          "count": 187942
-        },
-        {
-          "year": 2013,
-          "count": 213627
-        },
-        {
-          "year": 2014,
-          "count": 263223
-        },
-        {
-          "year": 2015,
-          "count": 277132
-        },
-        {
-          "year": 2016,
-          "count": 363055
-        },
-        {
-          "year": 2017,
-          "count": 410212
-        },
-        {
-          "year": 2018,
-          "count": 516422
-        },
-        {
-          "year": 2019,
-          "count": 559596
-        },
-        {
-          "year": 2020,
-          "count": 773622
-        },
-        {
-          "year": 2021,
-          "count": 726683
-        },
-        {
-          "year": 2022,
-          "count": 667809
-        },
-        {
-          "year": 2023,
-          "count": 1513490
-        },
-        {
-          "year": 2024,
-          "count": 651959
-        },
-        {
-          "year": 2025,
-          "count": 681023
-        }
-      ]
-    },
-    {
-      "db": "bioproject",
-      "field": "DATE",
-      "label": "BioProject",
-      "what": "projects by registration date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 0
-        },
-        {
-          "year": 2001,
-          "count": 13
-        },
-        {
-          "year": 2002,
-          "count": 92
-        },
-        {
-          "year": 2003,
-          "count": 735
-        },
-        {
-          "year": 2004,
-          "count": 1925
-        },
-        {
-          "year": 2005,
-          "count": 1956
-        },
-        {
-          "year": 2006,
-          "count": 2632
-        },
-        {
-          "year": 2007,
-          "count": 3706
-        },
-        {
-          "year": 2008,
-          "count": 4657
-        },
-        {
-          "year": 2009,
-          "count": 6316
-        },
-        {
-          "year": 2010,
-          "count": 8428
-        },
-        {
-          "year": 2011,
-          "count": 12843
-        },
-        {
-          "year": 2012,
-          "count": 19638
-        },
-        {
-          "year": 2013,
-          "count": 28514
-        },
-        {
-          "year": 2014,
-          "count": 40333
-        },
-        {
-          "year": 2015,
-          "count": 31699
-        },
-        {
-          "year": 2016,
-          "count": 46640
-        },
-        {
-          "year": 2017,
-          "count": 62557
-        },
-        {
-          "year": 2018,
-          "count": 76003
-        },
-        {
-          "year": 2019,
-          "count": 76436
-        },
-        {
-          "year": 2020,
-          "count": 80352
-        },
-        {
-          "year": 2021,
-          "count": 84355
-        },
-        {
-          "year": 2022,
-          "count": 94753
-        },
-        {
-          "year": 2023,
-          "count": 106150
-        },
-        {
-          "year": 2024,
-          "count": 100847
-        },
-        {
-          "year": 2025,
-          "count": 131414
-        }
-      ]
-    },
-    {
-      "db": "assembly",
-      "field": "SRDT",
-      "label": "Assembly",
-      "what": "assemblies by sequence release date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 483
-        },
-        {
-          "year": 2001,
-          "count": 240
-        },
-        {
-          "year": 2002,
-          "count": 536
-        },
-        {
-          "year": 2003,
-          "count": 482
-        },
-        {
-          "year": 2004,
-          "count": 555
-        },
-        {
-          "year": 2005,
-          "count": 1398
-        },
-        {
-          "year": 2006,
-          "count": 2038
-        },
-        {
-          "year": 2007,
-          "count": 2262
-        },
-        {
-          "year": 2008,
-          "count": 2154
-        },
-        {
-          "year": 2009,
-          "count": 3957
-        },
-        {
-          "year": 2010,
-          "count": 5345
-        },
-        {
-          "year": 2011,
-          "count": 6660
-        },
-        {
-          "year": 2012,
-          "count": 9782
-        },
-        {
-          "year": 2013,
-          "count": 17772
-        },
-        {
-          "year": 2014,
-          "count": 23200
-        },
-        {
-          "year": 2015,
-          "count": 37232
-        },
-        {
-          "year": 2016,
-          "count": 43724
-        },
-        {
-          "year": 2017,
-          "count": 58571
-        },
-        {
-          "year": 2018,
-          "count": 81184
-        },
-        {
-          "year": 2019,
-          "count": 340735
-        },
-        {
-          "year": 2020,
-          "count": 374297
-        },
-        {
-          "year": 2021,
-          "count": 276512
-        },
-        {
-          "year": 2022,
-          "count": 368122
-        },
-        {
-          "year": 2023,
-          "count": 546636
-        },
-        {
-          "year": 2024,
-          "count": 609806
-        },
-        {
-          "year": 2025,
-          "count": 537509
-        }
-      ]
-    },
-    {
-      "db": "clinvar",
-      "field": "CDAT",
-      "label": "ClinVar",
-      "what": "records by creation date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 0
-        },
-        {
-          "year": 2001,
-          "count": 0
-        },
-        {
-          "year": 2002,
-          "count": 0
-        },
-        {
-          "year": 2003,
-          "count": 0
-        },
-        {
-          "year": 2004,
-          "count": 0
-        },
-        {
-          "year": 2005,
-          "count": 0
-        },
-        {
-          "year": 2006,
-          "count": 0
-        },
-        {
-          "year": 2007,
-          "count": 0
-        },
-        {
-          "year": 2008,
-          "count": 0
-        },
-        {
-          "year": 2009,
-          "count": 0
-        },
-        {
-          "year": 2010,
-          "count": 0
-        },
-        {
-          "year": 2011,
-          "count": 0
-        },
-        {
-          "year": 2012,
-          "count": 0
-        },
-        {
-          "year": 2013,
-          "count": 17166
-        },
-        {
-          "year": 2014,
-          "count": 24276
-        },
-        {
-          "year": 2015,
-          "count": 51834
-        },
-        {
-          "year": 2016,
-          "count": 125417
-        },
-        {
-          "year": 2017,
-          "count": 105402
-        },
-        {
-          "year": 2018,
-          "count": 133677
-        },
-        {
-          "year": 2019,
-          "count": 178356
-        },
-        {
-          "year": 2020,
-          "count": 183794
-        },
-        {
-          "year": 2021,
-          "count": 331567
-        },
-        {
-          "year": 2022,
-          "count": 476575
-        },
-        {
-          "year": 2023,
-          "count": 780107
-        },
-        {
-          "year": 2024,
-          "count": 706690
-        },
-        {
-          "year": 2025,
-          "count": 1098653
-        }
-      ]
-    },
-    {
-      "db": "gene",
-      "field": "CDAT",
-      "label": "Gene",
-      "what": "records by creation date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 23876
-        },
-        {
-          "year": 2001,
-          "count": 78804
-        },
-        {
-          "year": 2002,
-          "count": 114877
-        },
-        {
-          "year": 2003,
-          "count": 690387
-        },
-        {
-          "year": 2004,
-          "count": 430422
-        },
-        {
-          "year": 2005,
-          "count": 578168
-        },
-        {
-          "year": 2006,
-          "count": 743230
-        },
-        {
-          "year": 2007,
-          "count": 1183883
-        },
-        {
-          "year": 2008,
-          "count": 1337620
-        },
-        {
-          "year": 2009,
-          "count": 1419327
-        },
-        {
-          "year": 2010,
-          "count": 1291730
-        },
-        {
-          "year": 2011,
-          "count": 1377699
-        },
-        {
-          "year": 2012,
-          "count": 2861249
-        },
-        {
-          "year": 2013,
-          "count": 3420094
-        },
-        {
-          "year": 2014,
-          "count": 3503357
-        },
-        {
-          "year": 2015,
-          "count": 3313727
-        },
-        {
-          "year": 2016,
-          "count": 3967618
-        },
-        {
-          "year": 2017,
-          "count": 4388823
-        },
-        {
-          "year": 2018,
-          "count": 3260448
-        },
-        {
-          "year": 2019,
-          "count": 4316887
-        },
-        {
-          "year": 2020,
-          "count": 10536516
-        },
-        {
-          "year": 2021,
-          "count": 7076193
-        },
-        {
-          "year": 2022,
-          "count": 7781802
-        },
-        {
-          "year": 2023,
-          "count": 9244391
-        },
-        {
-          "year": 2024,
-          "count": 10496842
-        },
-        {
-          "year": 2025,
-          "count": 7837819
-        }
-      ]
-    },
-    {
-      "db": "pmc",
-      "field": "PDAT",
-      "label": "PMC",
-      "what": "articles by publication date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 47305
-        },
-        {
-          "year": 2001,
-          "count": 49281
-        },
-        {
-          "year": 2002,
-          "count": 52603
-        },
-        {
-          "year": 2003,
-          "count": 57672
-        },
-        {
-          "year": 2004,
-          "count": 64571
-        },
-        {
-          "year": 2005,
-          "count": 75997
-        },
-        {
-          "year": 2006,
-          "count": 89803
-        },
-        {
-          "year": 2007,
-          "count": 107477
-        },
-        {
-          "year": 2008,
-          "count": 149574
-        },
-        {
-          "year": 2009,
-          "count": 182760
-        },
-        {
-          "year": 2010,
-          "count": 215789
-        },
-        {
-          "year": 2011,
-          "count": 254277
-        },
-        {
-          "year": 2012,
-          "count": 295818
-        },
-        {
-          "year": 2013,
-          "count": 340939
-        },
-        {
-          "year": 2014,
-          "count": 377602
-        },
-        {
-          "year": 2015,
-          "count": 412403
-        },
-        {
-          "year": 2016,
-          "count": 426526
-        },
-        {
-          "year": 2017,
-          "count": 470792
-        },
-        {
-          "year": 2018,
-          "count": 505020
-        },
-        {
-          "year": 2019,
-          "count": 560420
-        },
-        {
-          "year": 2020,
-          "count": 750027
-        },
-        {
-          "year": 2021,
-          "count": 882043
-        },
-        {
-          "year": 2022,
-          "count": 949822
-        },
-        {
-          "year": 2023,
-          "count": 867879
-        },
-        {
-          "year": 2024,
-          "count": 890494
-        },
-        {
-          "year": 2025,
-          "count": 1020149
-        }
-      ]
-    },
-    {
-      "db": "structure",
-      "field": "DDAT",
-      "label": "Structure",
-      "what": "MMDB entries by entry date",
-      "years": [
-        {
-          "year": 2000,
-          "count": 2383
-        },
-        {
-          "year": 2001,
-          "count": 2463
-        },
-        {
-          "year": 2002,
-          "count": 2211
-        },
-        {
-          "year": 2003,
-          "count": 3408
-        },
-        {
-          "year": 2004,
-          "count": 3873
-        },
-        {
-          "year": 2005,
-          "count": 5321
-        },
-        {
-          "year": 2006,
-          "count": 5316
-        },
-        {
-          "year": 2007,
-          "count": 13924
-        },
-        {
-          "year": 2008,
-          "count": 6488
-        },
-        {
-          "year": 2009,
-          "count": 8763
-        },
-        {
-          "year": 2010,
-          "count": 7903
-        },
-        {
-          "year": 2011,
-          "count": 8215
-        },
-        {
-          "year": 2012,
-          "count": 9307
-        },
-        {
-          "year": 2013,
-          "count": 9320
-        },
-        {
-          "year": 2014,
-          "count": 8541
-        },
-        {
-          "year": 2015,
-          "count": 8970
-        },
-        {
-          "year": 2016,
-          "count": 10530
-        },
-        {
-          "year": 2017,
-          "count": 10663
-        },
-        {
-          "year": 2018,
-          "count": 12667
-        },
-        {
-          "year": 2019,
-          "count": 11309
-        },
-        {
-          "year": 2020,
-          "count": 12651
-        },
-        {
-          "year": 2021,
-          "count": 15413
-        },
-        {
-          "year": 2022,
-          "count": 14466
-        },
-        {
-          "year": 2023,
-          "count": 15512
-        },
-        {
-          "year": 2024,
-          "count": 16169
-        },
-        {
-          "year": 2025,
-          "count": 17712
-        }
-      ]
-    }
-  ],
-  "access": [
-    {
-      "id": "free",
-      "years": [
-        {
-          "year": 1990,
-          "count": 48576
-        },
-        {
-          "year": 1991,
-          "count": 50938
-        },
-        {
-          "year": 1992,
-          "count": 53960
-        },
-        {
-          "year": 1993,
-          "count": 55499
-        },
-        {
-          "year": 1994,
-          "count": 59577
-        },
-        {
-          "year": 1995,
-          "count": 66299
-        },
-        {
-          "year": 1996,
-          "count": 70186
-        },
-        {
-          "year": 1997,
-          "count": 76799
-        },
-        {
-          "year": 1998,
-          "count": 81408
-        },
-        {
-          "year": 1999,
-          "count": 86057
-        },
-        {
-          "year": 2000,
-          "count": 98867
-        },
-        {
-          "year": 2001,
-          "count": 100024
-        },
-        {
-          "year": 2002,
-          "count": 109304
-        },
-        {
-          "year": 2003,
-          "count": 120482
-        },
-        {
-          "year": 2004,
-          "count": 135836
-        },
-        {
-          "year": 2005,
-          "count": 150120
-        },
-        {
-          "year": 2006,
-          "count": 173183
-        },
-        {
-          "year": 2007,
-          "count": 197410
-        },
-        {
-          "year": 2008,
-          "count": 242480
-        },
-        {
-          "year": 2009,
-          "count": 282040
-        },
-        {
-          "year": 2010,
-          "count": 320628
-        },
-        {
-          "year": 2011,
-          "count": 364286
-        },
-        {
-          "year": 2012,
-          "count": 418512
-        },
-        {
-          "year": 2013,
-          "count": 466237
-        },
-        {
-          "year": 2014,
-          "count": 513653
-        },
-        {
-          "year": 2015,
-          "count": 557774
-        },
-        {
-          "year": 2016,
-          "count": 581248
-        },
-        {
-          "year": 2017,
-          "count": 619534
-        },
-        {
-          "year": 2018,
-          "count": 657763
-        },
-        {
-          "year": 2019,
-          "count": 711542
-        },
-        {
-          "year": 2020,
-          "count": 911891
-        },
-        {
-          "year": 2021,
-          "count": 1073863
-        },
-        {
-          "year": 2022,
-          "count": 1139418
-        },
-        {
-          "year": 2023,
-          "count": 1070513
-        },
-        {
-          "year": 2024,
-          "count": 1091519
-        },
-        {
-          "year": 2025,
-          "count": 1218471
-        }
-      ]
-    },
-    {
-      "id": "pmc",
-      "years": [
-        {
-          "year": 1990,
-          "count": 28405
-        },
-        {
-          "year": 1991,
-          "count": 29630
-        },
-        {
-          "year": 1992,
-          "count": 30808
-        },
-        {
-          "year": 1993,
-          "count": 31632
-        },
-        {
-          "year": 1994,
-          "count": 32599
-        },
-        {
-          "year": 1995,
-          "count": 33920
-        },
-        {
-          "year": 1996,
-          "count": 34571
-        },
-        {
-          "year": 1997,
-          "count": 36102
-        },
-        {
-          "year": 1998,
-          "count": 37653
-        },
-        {
-          "year": 1999,
-          "count": 39675
-        },
-        {
-          "year": 2000,
-          "count": 42013
-        },
-        {
-          "year": 2001,
-          "count": 42342
-        },
-        {
-          "year": 2002,
-          "count": 44964
-        },
-        {
-          "year": 2003,
-          "count": 50031
-        },
-        {
-          "year": 2004,
-          "count": 56489
-        },
-        {
-          "year": 2005,
-          "count": 68458
-        },
-        {
-          "year": 2006,
-          "count": 83322
-        },
-        {
-          "year": 2007,
-          "count": 104766
-        },
-        {
-          "year": 2008,
-          "count": 152299
-        },
-        {
-          "year": 2009,
-          "count": 189768
-        },
-        {
-          "year": 2010,
-          "count": 224551
-        },
-        {
-          "year": 2011,
-          "count": 265701
-        },
-        {
-          "year": 2012,
-          "count": 311687
-        },
-        {
-          "year": 2013,
-          "count": 355071
-        },
-        {
-          "year": 2014,
-          "count": 393056
-        },
-        {
-          "year": 2015,
-          "count": 433493
-        },
-        {
-          "year": 2016,
-          "count": 456999
-        },
-        {
-          "year": 2017,
-          "count": 492636
-        },
-        {
-          "year": 2018,
-          "count": 529608
-        },
-        {
-          "year": 2019,
-          "count": 581682
-        },
-        {
-          "year": 2020,
-          "count": 769655
-        },
-        {
-          "year": 2021,
-          "count": 922462
-        },
-        {
-          "year": 2022,
-          "count": 989010
-        },
-        {
-          "year": 2023,
-          "count": 907418
-        },
-        {
-          "year": 2024,
-          "count": 915524
-        },
-        {
-          "year": 2025,
-          "count": 1044404
-        }
-      ]
-    },
-    {
-      "id": "erratum",
-      "years": [
-        {
-          "year": 1990,
-          "count": 30
-        },
-        {
-          "year": 1991,
-          "count": 111
-        },
-        {
-          "year": 1992,
-          "count": 160
-        },
-        {
-          "year": 1993,
-          "count": 161
-        },
-        {
-          "year": 1994,
-          "count": 155
-        },
-        {
-          "year": 1995,
-          "count": 169
-        },
-        {
-          "year": 1996,
-          "count": 103
-        },
-        {
-          "year": 1997,
-          "count": 67
-        },
-        {
-          "year": 1998,
-          "count": 45
-        },
-        {
-          "year": 1999,
-          "count": 30
-        },
-        {
-          "year": 2000,
-          "count": 46
-        },
-        {
-          "year": 2001,
-          "count": 24
-        },
-        {
-          "year": 2002,
-          "count": 31
-        },
-        {
-          "year": 2003,
-          "count": 23
-        },
-        {
-          "year": 2004,
-          "count": 19
-        },
-        {
-          "year": 2005,
-          "count": 40
-        },
-        {
-          "year": 2006,
-          "count": 83
-        },
-        {
-          "year": 2007,
-          "count": 104
-        },
-        {
-          "year": 2008,
-          "count": 133
-        },
-        {
-          "year": 2009,
-          "count": 147
-        },
-        {
-          "year": 2010,
-          "count": 160
-        },
-        {
-          "year": 2011,
-          "count": 224
-        },
-        {
-          "year": 2012,
-          "count": 242
-        },
-        {
-          "year": 2013,
-          "count": 507
-        },
-        {
-          "year": 2014,
-          "count": 827
-        },
-        {
-          "year": 2015,
-          "count": 9952
-        },
-        {
-          "year": 2016,
-          "count": 12259
-        },
-        {
-          "year": 2017,
-          "count": 13554
-        },
-        {
-          "year": 2018,
-          "count": 15588
-        },
-        {
-          "year": 2019,
-          "count": 16545
-        },
-        {
-          "year": 2020,
-          "count": 19097
-        },
-        {
-          "year": 2021,
-          "count": 20662
-        },
-        {
-          "year": 2022,
-          "count": 20068
-        },
-        {
-          "year": 2023,
-          "count": 19943
-        },
-        {
-          "year": 2024,
-          "count": 22677
-        },
-        {
-          "year": 2025,
-          "count": 26451
-        }
-      ]
-    },
-    {
-      "id": "concern",
-      "years": [
-        {
-          "year": 1990,
-          "count": 0
-        },
-        {
-          "year": 1991,
-          "count": 0
-        },
-        {
-          "year": 1992,
-          "count": 0
-        },
-        {
-          "year": 1993,
-          "count": 0
-        },
-        {
-          "year": 1994,
-          "count": 0
-        },
-        {
-          "year": 1995,
-          "count": 0
-        },
-        {
-          "year": 1996,
-          "count": 0
-        },
-        {
-          "year": 1997,
-          "count": 0
-        },
-        {
-          "year": 1998,
-          "count": 0
-        },
-        {
-          "year": 1999,
-          "count": 0
-        },
-        {
-          "year": 2000,
-          "count": 1
-        },
-        {
-          "year": 2001,
-          "count": 0
-        },
-        {
-          "year": 2002,
-          "count": 1
-        },
-        {
-          "year": 2003,
-          "count": 2
-        },
-        {
-          "year": 2004,
-          "count": 0
-        },
-        {
-          "year": 2005,
-          "count": 5
-        },
-        {
-          "year": 2006,
-          "count": 7
-        },
-        {
-          "year": 2007,
-          "count": 0
-        },
-        {
-          "year": 2008,
-          "count": 8
-        },
-        {
-          "year": 2009,
-          "count": 8
-        },
-        {
-          "year": 2010,
-          "count": 10
-        },
-        {
-          "year": 2011,
-          "count": 10
-        },
-        {
-          "year": 2012,
-          "count": 15
-        },
-        {
-          "year": 2013,
-          "count": 20
-        },
-        {
-          "year": 2014,
-          "count": 30
-        },
-        {
-          "year": 2015,
-          "count": 33
-        },
-        {
-          "year": 2016,
-          "count": 59
-        },
-        {
-          "year": 2017,
-          "count": 65
-        },
-        {
-          "year": 2018,
-          "count": 72
-        },
-        {
-          "year": 2019,
-          "count": 139
-        },
-        {
-          "year": 2020,
-          "count": 285
-        },
-        {
-          "year": 2021,
-          "count": 341
-        },
-        {
-          "year": 2022,
-          "count": 433
-        },
-        {
-          "year": 2023,
-          "count": 388
-        },
-        {
-          "year": 2024,
-          "count": 724
-        },
-        {
-          "year": 2025,
-          "count": 768
-        }
-      ]
-    }
-  ],
-  "countries": [
-    {
-      "name": "China",
-      "term": "china[ad]",
-      "counts": {
-        "2015": 146858,
-        "2025": 502433
-      }
-    },
-    {
-      "name": "United States",
-      "term": "(usa[ad] OR \"united states\"[ad])",
-      "counts": {
-        "2015": 226933,
-        "2025": 354005
-      }
-    },
-    {
-      "name": "Japan",
-      "term": "japan[ad]",
-      "counts": {
-        "2015": 59392,
-        "2025": 80660
-      }
-    },
-    {
-      "name": "Germany",
-      "term": "germany[ad]",
-      "counts": {
-        "2015": 69019,
-        "2025": 92128
-      }
-    },
-    {
-      "name": "United Kingdom",
-      "term": "(\"united kingdom\"[ad] OR uk[ad] OR england[ad] OR scotland[ad] OR wales[ad])",
-      "counts": {
-        "2015": 99293,
-        "2025": 133295
-      }
-    },
-    {
-      "name": "India",
-      "term": "india[ad]",
-      "counts": {
-        "2015": 41976,
-        "2025": 89589
-      }
-    },
-    {
-      "name": "Italy",
-      "term": "italy[ad]",
-      "counts": {
-        "2015": 51711,
-        "2025": 81001
-      }
-    },
-    {
-      "name": "South Korea",
-      "term": "korea[ad]",
-      "counts": {
-        "2015": 37309,
-        "2025": 50495
-      }
-    },
-    {
-      "name": "Canada",
-      "term": "canada[ad]",
-      "counts": {
-        "2015": 48479,
-        "2025": 71807
-      }
-    },
-    {
-      "name": "France",
-      "term": "france[ad]",
-      "counts": {
-        "2015": 48464,
-        "2025": 60251
-      }
-    },
-    {
-      "name": "Spain",
-      "term": "spain[ad]",
-      "counts": {
-        "2015": 34890,
-        "2025": 58379
-      }
-    },
-    {
-      "name": "Australia",
-      "term": "australia[ad]",
-      "counts": {
-        "2015": 45023,
-        "2025": 63844
-      }
-    },
-    {
-      "name": "Brazil",
-      "term": "brazil[ad]",
-      "counts": {
-        "2015": 26856,
-        "2025": 42637
-      }
-    },
-    {
-      "name": "Iran",
-      "term": "iran[ad]",
-      "counts": {
-        "2015": 15859,
-        "2025": 32335
-      }
-    },
-    {
-      "name": "Turkey",
-      "term": "(turkey[ad] OR turkiye[ad])",
-      "counts": {
-        "2015": 20547,
-        "2025": 44785
-      }
-    },
-    {
-      "name": "Netherlands",
-      "term": "netherlands[ad]",
-      "counts": {
-        "2015": 33494,
-        "2025": 43468
-      }
-    },
-    {
-      "name": "Saudi Arabia",
-      "term": "\"saudi arabia\"[ad]",
-      "counts": {
-        "2015": 6903,
-        "2025": 29289
-      }
-    },
-    {
-      "name": "Pakistan",
-      "term": "pakistan[ad]",
-      "counts": {
-        "2015": 3339,
-        "2025": 16694
-      }
-    },
-    {
-      "name": "Egypt",
-      "term": "egypt[ad]",
-      "counts": {
-        "2015": 6334,
-        "2025": 20491
-      }
-    },
-    {
-      "name": "Switzerland",
-      "term": "switzerland[ad]",
-      "counts": {
-        "2015": 22289,
-        "2025": 35388
-      }
-    }
-  ],
-  "genes": [
-    {
-      "id": 7157,
-      "symbol": "TP53",
-      "description": "tumor protein p53",
-      "chromosome": "17",
-      "pubmed": 20405,
-      "clinvar": 4071
-    },
-    {
-      "id": 7124,
-      "symbol": "TNF",
-      "description": "tumor necrosis factor",
-      "chromosome": "6",
-      "pubmed": 8291,
-      "clinvar": 36
-    },
-    {
-      "id": 1956,
-      "symbol": "EGFR",
-      "description": "epidermal growth factor receptor",
-      "chromosome": "7",
-      "pubmed": 20323,
-      "clinvar": 4304
-    },
-    {
-      "id": 348,
-      "symbol": "APOE",
-      "description": "apolipoprotein E",
-      "chromosome": "19",
-      "pubmed": 5645,
-      "clinvar": 318
-    },
-    {
-      "id": 7422,
-      "symbol": "VEGFA",
-      "description": "vascular endothelial growth factor A",
-      "chromosome": "6",
-      "pubmed": 16684,
-      "clinvar": 127
-    },
-    {
-      "id": 3569,
-      "symbol": "IL6",
-      "description": "interleukin 6",
-      "chromosome": "7",
-      "pubmed": 13531,
-      "clinvar": 64
-    },
-    {
-      "id": 672,
-      "symbol": "BRCA1",
-      "description": "BRCA1 DNA repair associated",
-      "chromosome": "17",
-      "pubmed": 7221,
-      "clinvar": 16166
-    },
-    {
-      "id": 675,
-      "symbol": "BRCA2",
-      "description": "BRCA2 DNA repair associated",
-      "chromosome": "13",
-      "pubmed": 5269,
-      "clinvar": 22214
-    },
-    {
-      "id": 2099,
-      "symbol": "ESR1",
-      "description": "estrogen receptor 1",
-      "chromosome": "6",
-      "pubmed": 5980,
-      "clinvar": 264
-    },
-    {
-      "id": 207,
-      "symbol": "AKT1",
-      "description": "AKT serine/threonine kinase 1",
-      "chromosome": "14",
-      "pubmed": 7382,
-      "clinvar": 1089
-    },
-    {
-      "id": 4524,
-      "symbol": "MTHFR",
-      "description": "methylenetetrahydrofolate reductase",
-      "chromosome": "1",
-      "pubmed": 4676,
-      "clinvar": 1090
-    },
-    {
-      "id": 1080,
-      "symbol": "CFTR",
-      "description": "CF transmembrane conductance regulator",
-      "chromosome": "7",
-      "pubmed": 7067,
-      "clinvar": 6599
-    },
-    {
-      "id": 3043,
-      "symbol": "HBB",
-      "description": "hemoglobin subunit beta",
-      "chromosome": "11",
-      "pubmed": 881,
-      "clinvar": 1974
-    },
-    {
-      "id": 3845,
-      "symbol": "KRAS",
-      "description": "KRas proto-oncogene, GTPase",
-      "chromosome": "12",
-      "pubmed": 3055,
-      "clinvar": 631
-    },
-    {
-      "id": 673,
-      "symbol": "BRAF",
-      "description": "B-Raf proto-oncogene, serine/threonine kinase",
-      "chromosome": "7",
-      "pubmed": 10152,
-      "clinvar": 1721
-    },
-    {
-      "id": 5728,
-      "symbol": "PTEN",
-      "description": "phosphatase and tensin homolog",
-      "chromosome": "10",
-      "pubmed": 7992,
-      "clinvar": 4318
-    },
-    {
-      "id": 4609,
-      "symbol": "MYC",
-      "description": "MYC proto-oncogene, bHLH transcription factor",
-      "chromosome": "8",
-      "pubmed": 5765,
-      "clinvar": 103
-    },
-    {
-      "id": 1636,
-      "symbol": "ACE",
-      "description": "angiotensin I converting enzyme",
-      "chromosome": "17",
-      "pubmed": 3306,
-      "clinvar": 902
-    },
-    {
-      "id": 3630,
-      "symbol": "INS",
-      "description": "insulin",
-      "chromosome": "11",
-      "pubmed": 1034,
-      "clinvar": 254
-    },
-    {
-      "id": 920,
-      "symbol": "CD4",
-      "description": "CD4 molecule",
-      "chromosome": "12",
-      "pubmed": 2027,
-      "clinvar": 135
-    },
-    {
-      "id": 351,
-      "symbol": "APP",
-      "description": "amyloid beta precursor protein",
-      "chromosome": "21",
-      "pubmed": 4222,
-      "clinvar": 730
-    },
-    {
-      "id": 1029,
-      "symbol": "CDKN2A",
-      "description": "cyclin dependent kinase inhibitor 2A",
-      "chromosome": "9",
-      "pubmed": 4326,
-      "clinvar": 1771
-    }
-  ],
-  "zombies": [
-    {
-      "pmid": "9500320",
-      "label": "Wakefield, Lancet 1998",
-      "title": "Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children.",
-      "date": "1998 Feb 28",
-      "retracted": 2010,
-      "citedBy": 500,
-      "after": 341
-    },
-    {
-      "pmid": "14963337",
-      "label": "Hwang, Science 2004",
-      "title": "RETRACTED: Evidence of a pluripotent human embryonic stem cell line derived from a cloned blastocyst.",
-      "date": "2004 Mar 12",
-      "retracted": 2006,
-      "citedBy": 94,
-      "after": 42
-    },
-    {
-      "pmid": "15905366",
-      "label": "Hwang, Science 2005",
-      "title": "RETRACTED: Patient-specific embryonic stem cells derived from human SCNT blastocysts.",
-      "date": "2005 Jun 17",
-      "retracted": 2006,
-      "citedBy": 65,
-      "after": 36
-    },
-    {
-      "pmid": "22999595",
-      "label": "Séralini, Food Chem Toxicol 2012",
-      "title": "Long term toxicity of a Roundup herbicide and a Roundup-tolerant genetically modified maize.",
-      "date": "2012 Nov",
-      "retracted": 2014,
-      "citedBy": 59,
-      "after": 37
-    },
-    {
-      "pmid": "24476887",
-      "label": "Obokata, Nature 2014",
-      "title": "Stimulus-triggered fate conversion of somatic cells into pluripotency.",
-      "date": "2014 Jan 30",
-      "retracted": 2014,
-      "citedBy": 90,
-      "after": 30
-    },
-    {
-      "pmid": "32205204",
-      "label": "Gautret, IJAA 2020",
-      "title": "RETRACTED: Hydroxychloroquine and azithromycin as a treatment of COVID-19: results of an open-label non-randomized clinical trial.",
-      "date": "2020 Jul",
-      "retracted": 2025,
-      "citedBy": 2651,
-      "after": 8
-    },
-    {
-      "pmid": "32356626",
-      "label": "Mehra, N Engl J Med 2020",
-      "title": "Cardiovascular Disease, Drug Therapy, and Mortality in Covid-19.",
-      "date": "2020 Jun 18",
-      "retracted": 2020,
-      "citedBy": 773,
-      "after": 451
-    },
-    {
-      "pmid": "32450107",
-      "label": "Mehra, Lancet 2020",
-      "title": "RETRACTED: Hydroxychloroquine or chloroquine with or without a macrolide for treatment of COVID-19: a multinational registry analysis.",
-      "date": "2020 May 22",
-      "retracted": 2020,
-      "citedBy": 461,
-      "after": 215
-    }
-  ],
-  "classics": [
-    {
-      "pmid": "11846609",
-      "label": "Livak, qPCR ΔΔCt 2001",
-      "title": "Analysis of relative gene expression data using real-time quantitative PCR and the 2(-Delta Delta C(T)) Method.",
-      "journal": "Methods",
-      "date": "2001 Dec",
-      "citedBy": 89076
-    },
-    {
-      "pmid": "5432063",
-      "label": "Laemmli, SDS gels 1970",
-      "title": "Cleavage of structural proteins during the assembly of the head of bacteriophage T4.",
-      "journal": "Nature",
-      "date": "1970 Aug 15",
-      "citedBy": 58796
-    },
-    {
-      "pmid": "14907713",
-      "label": "Lowry, protein assay 1951",
-      "title": "Protein measurement with the Folin phenol reagent.",
-      "journal": "J Biol Chem",
-      "date": "1951 Nov",
-      "citedBy": 58491
-    },
-    {
-      "pmid": "942051",
-      "label": "Bradford, protein assay 1976",
-      "title": "A rapid and sensitive method for the quantitation of microgram quantities of protein utilizing the principle of protein-dye binding.",
-      "journal": "Anal Biochem",
-      "date": "1976 May 7",
-      "citedBy": 57047
-    },
-    {
-      "pmid": "2231712",
-      "label": "Altschul, BLAST 1990",
-      "title": "Basic local alignment search tool.",
-      "journal": "J Mol Biol",
-      "date": "1990 Oct 5",
-      "citedBy": 40945
-    },
-    {
-      "pmid": "9254694",
-      "label": "Altschul, Gapped BLAST 1997",
-      "title": "Gapped BLAST and PSI-BLAST: a new generation of protein database search programs.",
-      "journal": "Nucleic Acids Res",
-      "date": "1997 Sep 1",
-      "citedBy": 28741
-    },
-    {
-      "pmid": "271968",
-      "label": "Sanger, DNA sequencing 1977",
-      "title": "DNA sequencing with chain-terminating inhibitors.",
-      "journal": "Proc Natl Acad Sci U S A",
-      "date": "1977 Dec",
-      "citedBy": 23828
-    },
-    {
-      "pmid": "10592173",
-      "label": "Kanehisa, KEGG 2000",
-      "title": "KEGG: kyoto encyclopedia of genes and genomes.",
-      "journal": "Nucleic Acids Res",
-      "date": "2000 Jan 1",
-      "citedBy": 22591
-    },
-    {
-      "pmid": "7984417",
-      "label": "Thompson, CLUSTAL W 1994",
-      "title": "CLUSTAL W: improving the sensitivity of progressive multiple sequence alignment through sequence weighting, position-specific gap penalties and weight matrix choice.",
-      "journal": "Nucleic Acids Res",
-      "date": "1994 Nov 11",
-      "citedBy": 19771
-    },
-    {
-      "pmid": "3802833",
-      "label": "DerSimonian, meta-analysis 1986",
-      "title": "Meta-analysis in clinical trials.",
-      "journal": "Control Clin Trials",
-      "date": "1986 Sep",
-      "citedBy": 17016
-    },
-    {
-      "pmid": "2440339",
-      "label": "Chomczynski, RNA isolation 1987",
-      "title": "Single-step method of RNA isolation by acid guanidinium thiocyanate-phenol-chloroform extraction.",
-      "journal": "Anal Biochem",
-      "date": "1987 Apr",
-      "citedBy": 14379
-    },
-    {
-      "pmid": "2868172",
-      "label": "Bland, agreement 1986",
-      "title": "Statistical methods for assessing agreement between two methods of clinical measurement.",
-      "journal": "Lancet",
-      "date": "1986 Feb 8",
-      "citedBy": 14312
-    },
-    {
-      "pmid": "13428781",
-      "label": "Folch, lipid extraction 1957",
-      "title": "A simple method for the isolation and purification of total lipides from animal tissues.",
-      "journal": "J Biol Chem",
-      "date": "1957 May",
-      "citedBy": 13980
-    }
-  ],
-  "extremes": {
-    "protein": {
-      "accession": "NP_001254479.2",
-      "length": 35991,
-      "title": "titin isoform IC [Homo sapiens]",
-      "candidates": 27
-    },
-    "genes": {
-      "genes": 20574,
-      "placed": 19925,
-      "longest": {
-        "id": "54715",
-        "symbol": "RBFOX1",
-        "chr": "16",
-        "span": 2473620,
-        "exons": 30,
-        "description": "RNA binding fox-1 homolog 1"
-      },
-      "shortest": {
-        "id": "128092247",
-        "symbol": "LOC128092247",
-        "chr": "7",
-        "span": 51,
-        "exons": 1,
-        "description": "solute carrier family 4 member 2 upstream open reading frame"
-      },
-      "mostExons": {
-        "id": "7273",
-        "symbol": "TTN",
-        "chr": "2",
-        "span": 281435,
-        "exons": 364,
-        "description": "titin"
-      },
-      "singleExon": 1168,
-      "byChromosome": [
-        {
-          "chr": "1",
-          "genes": 2051
-        },
-        {
-          "chr": "2",
-          "genes": 1257
-        },
-        {
-          "chr": "3",
-          "genes": 1062
-        },
-        {
-          "chr": "4",
-          "genes": 763
-        },
-        {
-          "chr": "5",
-          "genes": 894
-        },
-        {
-          "chr": "6",
-          "genes": 1045
-        },
-        {
-          "chr": "7",
-          "genes": 940
-        },
-        {
-          "chr": "8",
-          "genes": 710
-        },
-        {
-          "chr": "9",
-          "genes": 776
-        },
-        {
-          "chr": "10",
-          "genes": 736
-        },
-        {
-          "chr": "11",
-          "genes": 1304
-        },
-        {
-          "chr": "12",
-          "genes": 1025
-        },
-        {
-          "chr": "13",
-          "genes": 337
-        },
-        {
-          "chr": "14",
-          "genes": 612
-        },
-        {
-          "chr": "15",
-          "genes": 602
-        },
-        {
-          "chr": "16",
-          "genes": 849
-        },
-        {
-          "chr": "17",
-          "genes": 1157
-        },
-        {
-          "chr": "18",
-          "genes": 268
-        },
-        {
-          "chr": "19",
-          "genes": 1411
-        },
-        {
-          "chr": "20",
-          "genes": 538
-        },
-        {
-          "chr": "21",
-          "genes": 239
-        },
-        {
-          "chr": "22",
-          "genes": 443
-        },
-        {
-          "chr": "X",
-          "genes": 848
-        },
-        {
-          "chr": "Y",
-          "genes": 45
-        },
-        {
-          "chr": "MT",
-          "genes": 13
-        }
-      ]
-    },
-    "uncultured": 6855674,
-    "stopword": {
-      "word": "however",
-      "count": 0,
-      "ignored": true
-    },
-    "trials": {
-      "latest": {
-        "id": "NCT06739499",
-        "title": "Bern, Get Ready (BEready) Cohort Study for Pandemic Preparedness",
-        "date": "2100-12-31"
-      },
-      "farFuture": {
-        "year": 2090,
-        "count": 86
-      },
-      "earliest": {
-        "id": "NCT03591926",
-        "title": "A Study Evaluating the Safety, Pharmacokinetics, Pharmacodynamics, and Efficacy of SM04646 Inhalation Solution in Subjects With Idiopathic Pulmonary Fibrosis (IPF)",
-        "date": "1900-01",
-        "posted": "2018-07-19",
-        "status": "WITHDRAWN"
-      },
-      "longAgo": {
-        "year": 1950,
-        "count": 5
-      }
-    },
-    "awards": {
-      "fy": 2025,
-      "largest": {
-        "appl": 11410911,
-        "number": "1ZIHLM200888-17",
-        "title": "National Biomedical Information Services",
-        "dollars": 357194999,
-        "ic": "NLM",
-        "org": "NATIONAL LIBRARY OF MEDICINE",
-        "activity": "ZIH"
-      },
-      "upTo100": 235,
-      "exactlyOne": 228
-    }
-  },
   "vocab": {
     "base": 2019,
     "partial": 2026,
     "totals": [
       {
         "year": 2010,
-        "count": 806589
+        "count": 806540
       },
       {
         "year": 2011,
-        "count": 876936
+        "count": 876931
       },
       {
         "year": 2012,
-        "count": 944299
+        "count": 944271
       },
       {
         "year": 2013,
-        "count": 991348
+        "count": 991290
       },
       {
         "year": 2014,
-        "count": 1042701
+        "count": 1042635
       },
       {
         "year": 2015,
-        "count": 1081760
+        "count": 1081680
       },
       {
         "year": 2016,
-        "count": 1110721
+        "count": 1110674
       },
       {
         "year": 2017,
-        "count": 1135321
+        "count": 1135317
       },
       {
         "year": 2018,
-        "count": 1186996
+        "count": 1186978
       },
       {
         "year": 2019,
-        "count": 1248394
+        "count": 1248396
       },
       {
         "year": 2020,
-        "count": 1434709
+        "count": 1434703
       },
       {
         "year": 2021,
-        "count": 1582734
+        "count": 1582728
       },
       {
         "year": 2022,
@@ -12543,19 +12182,19 @@ export default {
       },
       {
         "year": 2023,
-        "count": 1517554
+        "count": 1517575
       },
       {
         "year": 2024,
-        "count": 1559752
+        "count": 1559767
       },
       {
         "year": 2025,
-        "count": 1687551
+        "count": 1687661
       },
       {
         "year": 2026,
-        "count": 1457100
+        "count": 1477893
       }
     ],
     "words": [
@@ -12574,7 +12213,7 @@ export default {
           },
           {
             "year": 2012,
-            "count": 55
+            "count": 54
           },
           {
             "year": 2013,
@@ -12626,11 +12265,11 @@ export default {
           },
           {
             "year": 2025,
-            "count": 4989
+            "count": 4990
           },
           {
             "year": 2026,
-            "count": 1303
+            "count": 1309
           }
         ]
       },
@@ -12705,7 +12344,7 @@ export default {
           },
           {
             "year": 2026,
-            "count": 988
+            "count": 997
           }
         ]
       },
@@ -12776,11 +12415,11 @@ export default {
           },
           {
             "year": 2025,
-            "count": 73629
+            "count": 73637
           },
           {
             "year": 2026,
-            "count": 53271
+            "count": 53758
           }
         ]
       },
@@ -12807,7 +12446,7 @@ export default {
           },
           {
             "year": 2014,
-            "count": 1032
+            "count": 1031
           },
           {
             "year": 2015,
@@ -12847,15 +12486,15 @@ export default {
           },
           {
             "year": 2024,
-            "count": 15205
+            "count": 15207
           },
           {
             "year": 2025,
-            "count": 11870
+            "count": 11871
           },
           {
             "year": 2026,
-            "count": 5102
+            "count": 5144
           }
         ]
       },
@@ -12930,7 +12569,7 @@ export default {
           },
           {
             "year": 2026,
-            "count": 2791
+            "count": 2820
           }
         ]
       },
@@ -13005,7 +12644,7 @@ export default {
           },
           {
             "year": 2026,
-            "count": 153
+            "count": 154
           }
         ]
       },
@@ -13068,7 +12707,7 @@ export default {
           },
           {
             "year": 2023,
-            "count": 5539
+            "count": 5540
           },
           {
             "year": 2024,
@@ -13076,11 +12715,11 @@ export default {
           },
           {
             "year": 2025,
-            "count": 20927
+            "count": 20931
           },
           {
             "year": 2026,
-            "count": 15391
+            "count": 15528
           }
         ]
       },
@@ -13151,11 +12790,11 @@ export default {
           },
           {
             "year": 2025,
-            "count": 5064
+            "count": 5065
           },
           {
             "year": 2026,
-            "count": 3661
+            "count": 3701
           }
         ]
       }
@@ -13167,39 +12806,39 @@ export default {
       "years": [
         {
           "year": 2010,
-          "count": 213014
+          "count": 213000
         },
         {
           "year": 2011,
-          "count": 234884
+          "count": 234883
         },
         {
           "year": 2012,
-          "count": 256040
+          "count": 256029
         },
         {
           "year": 2013,
-          "count": 274762
+          "count": 274738
         },
         {
           "year": 2014,
-          "count": 292097
+          "count": 292074
         },
         {
           "year": 2015,
-          "count": 307072
+          "count": 307048
         },
         {
           "year": 2016,
-          "count": 317099
+          "count": 317082
         },
         {
           "year": 2017,
-          "count": 326812
+          "count": 326811
         },
         {
           "year": 2018,
-          "count": 340620
+          "count": 340615
         },
         {
           "year": 2019,
@@ -13207,11 +12846,11 @@ export default {
         },
         {
           "year": 2020,
-          "count": 435465
+          "count": 435462
         },
         {
           "year": 2021,
-          "count": 486866
+          "count": 486863
         },
         {
           "year": 2022,
@@ -13219,7 +12858,7 @@ export default {
         },
         {
           "year": 2023,
-          "count": 450062
+          "count": 450065
         },
         {
           "year": 2024,
@@ -13227,11 +12866,11 @@ export default {
         },
         {
           "year": 2025,
-          "count": 485671
+          "count": 485683
         },
         {
           "year": 2026,
-          "count": 400918
+          "count": 406505
         }
       ]
     }
@@ -13344,7 +12983,7 @@ export default {
       },
       {
         "year": 2001,
-        "count": 508903
+        "count": 508904
       },
       {
         "year": 2002,
@@ -13352,15 +12991,15 @@ export default {
       },
       {
         "year": 2003,
-        "count": 558861
+        "count": 558862
       },
       {
         "year": 2004,
-        "count": 595996
+        "count": 596000
       },
       {
         "year": 2005,
-        "count": 651444
+        "count": 651445
       },
       {
         "year": 2006,
@@ -13404,7 +13043,7 @@ export default {
       },
       {
         "year": 2016,
-        "count": 1011073
+        "count": 1011075
       },
       {
         "year": 2017,
@@ -13416,7 +13055,7 @@ export default {
       },
       {
         "year": 2019,
-        "count": 1065792
+        "count": 1065791
       },
       {
         "year": 2020,
@@ -13428,19 +13067,19 @@ export default {
       },
       {
         "year": 2022,
-        "count": 1222107
+        "count": 1222122
       },
       {
         "year": 2023,
-        "count": 1107806
+        "count": 1107821
       },
       {
         "year": 2024,
-        "count": 1112378
+        "count": 1112427
       },
       {
         "year": 2025,
-        "count": 1094430
+        "count": 1094783
       }
     ],
     "animals": [
@@ -13567,11 +13206,11 @@ export default {
           },
           {
             "year": 2004,
-            "count": 40066
+            "count": 40067
           },
           {
             "year": 2005,
-            "count": 43669
+            "count": 43670
           },
           {
             "year": 2006,
@@ -13615,7 +13254,7 @@ export default {
           },
           {
             "year": 2016,
-            "count": 72158
+            "count": 72159
           },
           {
             "year": 2017,
@@ -13862,7 +13501,7 @@ export default {
           },
           {
             "year": 2025,
-            "count": 27091
+            "count": 27094
           }
         ]
       },
@@ -14061,11 +13700,11 @@ export default {
           },
           {
             "year": 2022,
-            "count": 5285
+            "count": 5290
           },
           {
             "year": 2023,
-            "count": 4983
+            "count": 4988
           },
           {
             "year": 2024,
@@ -14495,7 +14134,7 @@ export default {
           },
           {
             "year": 2025,
-            "count": 7205
+            "count": 7207
           }
         ]
       },
@@ -15679,7 +15318,7 @@ export default {
           },
           {
             "year": 2004,
-            "count": 33759
+            "count": 33760
           },
           {
             "year": 2005,
@@ -15751,19 +15390,19 @@ export default {
           },
           {
             "year": 2022,
-            "count": 89263
+            "count": 89264
           },
           {
             "year": 2023,
-            "count": 82270
+            "count": 82272
           },
           {
             "year": 2024,
-            "count": 75481
+            "count": 75482
           },
           {
             "year": 2025,
-            "count": 74834
+            "count": 74860
           }
         ]
       },
@@ -15974,7 +15613,7 @@ export default {
           },
           {
             "year": 2025,
-            "count": 36212
+            "count": 36222
           }
         ]
       }
@@ -15991,7 +15630,7 @@ export default {
           "term": "\"infant, newborn\"[mh]",
           "counts": {
             "2005": 13088,
-            "2025": 19552
+            "2025": 19556
           }
         },
         {
@@ -16000,7 +15639,7 @@ export default {
           "term": "infant[mh:noexp]",
           "counts": {
             "2005": 15865,
-            "2025": 28885
+            "2025": 28888
           }
         },
         {
@@ -16009,7 +15648,7 @@ export default {
           "term": "\"child, preschool\"[mh]",
           "counts": {
             "2005": 20693,
-            "2025": 39528
+            "2025": 39539
           }
         },
         {
@@ -16018,7 +15657,7 @@ export default {
           "term": "child[mh:noexp]",
           "counts": {
             "2005": 38501,
-            "2025": 66866
+            "2025": 66897
           }
         },
         {
@@ -16027,7 +15666,7 @@ export default {
           "term": "adolescent[mh]",
           "counts": {
             "2005": 48986,
-            "2025": 92868
+            "2025": 92910
           }
         },
         {
@@ -16036,7 +15675,7 @@ export default {
           "term": "\"young adult\"[mh]",
           "counts": {
             "2005": 645,
-            "2025": 115580
+            "2025": 115619
           }
         },
         {
@@ -16045,7 +15684,7 @@ export default {
           "term": "adult[mh:noexp]",
           "counts": {
             "2005": 130490,
-            "2025": 299429
+            "2025": 299530
           }
         },
         {
@@ -16054,7 +15693,7 @@ export default {
           "term": "\"middle aged\"[mh]",
           "counts": {
             "2005": 114455,
-            "2025": 297546
+            "2025": 297634
           }
         },
         {
@@ -16063,7 +15702,7 @@ export default {
           "term": "aged[mh:noexp]",
           "counts": {
             "2005": 83807,
-            "2025": 218456
+            "2025": 218542
           }
         },
         {
@@ -16072,7 +15711,7 @@ export default {
           "term": "\"aged, 80 and over\"[mh]",
           "counts": {
             "2005": 28214,
-            "2025": 61275
+            "2025": 61302
           }
         }
       ]
@@ -16165,11 +15804,11 @@ export default {
           },
           {
             "year": 2020,
-            "count": 85587
+            "count": 85585
           },
           {
             "year": 2021,
-            "count": 133727
+            "count": 133726
           },
           {
             "year": 2022,
@@ -16177,7 +15816,7 @@ export default {
           },
           {
             "year": 2023,
-            "count": 85790
+            "count": 85792
           },
           {
             "year": 2024,
@@ -16185,7 +15824,7 @@ export default {
           },
           {
             "year": 2025,
-            "count": 39922
+            "count": 39926
           }
         ]
       },
@@ -16589,7 +16228,7 @@ export default {
           },
           {
             "year": 2015,
-            "count": 385
+            "count": 384
           },
           {
             "year": 2016,
@@ -16736,7 +16375,7 @@ export default {
           },
           {
             "year": 2024,
-            "count": 1490
+            "count": 1491
           },
           {
             "year": 2025,
@@ -16746,42 +16385,403 @@ export default {
       }
     ]
   },
+  "zombies": [
+    {
+      "pmid": "9500320",
+      "label": "Wakefield, Lancet 1998",
+      "title": "Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children.",
+      "date": "1998 Feb 28",
+      "retracted": 2010,
+      "citedBy": 501,
+      "after": 342
+    },
+    {
+      "pmid": "14963337",
+      "label": "Hwang, Science 2004",
+      "title": "RETRACTED: Evidence of a pluripotent human embryonic stem cell line derived from a cloned blastocyst.",
+      "date": "2004 Mar 12",
+      "retracted": 2006,
+      "citedBy": 94,
+      "after": 42
+    },
+    {
+      "pmid": "15905366",
+      "label": "Hwang, Science 2005",
+      "title": "RETRACTED: Patient-specific embryonic stem cells derived from human SCNT blastocysts.",
+      "date": "2005 Jun 17",
+      "retracted": 2006,
+      "citedBy": 65,
+      "after": 36
+    },
+    {
+      "pmid": "22999595",
+      "label": "Séralini, Food Chem Toxicol 2012",
+      "title": "Long term toxicity of a Roundup herbicide and a Roundup-tolerant genetically modified maize.",
+      "date": "2012 Nov",
+      "retracted": 2014,
+      "citedBy": 59,
+      "after": 37
+    },
+    {
+      "pmid": "24476887",
+      "label": "Obokata, Nature 2014",
+      "title": "Stimulus-triggered fate conversion of somatic cells into pluripotency.",
+      "date": "2014 Jan 30",
+      "retracted": 2014,
+      "citedBy": 90,
+      "after": 30
+    },
+    {
+      "pmid": "32205204",
+      "label": "Gautret, IJAA 2020",
+      "title": "RETRACTED: Hydroxychloroquine and azithromycin as a treatment of COVID-19: results of an open-label non-randomized clinical trial.",
+      "date": "2020 Jul",
+      "retracted": 2025,
+      "citedBy": 2651,
+      "after": 8
+    },
+    {
+      "pmid": "32356626",
+      "label": "Mehra, N Engl J Med 2020",
+      "title": "Cardiovascular Disease, Drug Therapy, and Mortality in Covid-19.",
+      "date": "2020 Jun 18",
+      "retracted": 2020,
+      "citedBy": 773,
+      "after": 451
+    },
+    {
+      "pmid": "32450107",
+      "label": "Mehra, Lancet 2020",
+      "title": "RETRACTED: Hydroxychloroquine or chloroquine with or without a macrolide for treatment of COVID-19: a multinational registry analysis.",
+      "date": "2020 May 22",
+      "retracted": 2020,
+      "citedBy": 461,
+      "after": 215
+    }
+  ],
+  "classics": [
+    {
+      "pmid": "11846609",
+      "label": "Livak, qPCR ΔΔCt 2001",
+      "title": "Analysis of relative gene expression data using real-time quantitative PCR and the 2(-Delta Delta C(T)) Method.",
+      "journal": "Methods",
+      "date": "2001 Dec",
+      "citedBy": 89252
+    },
+    {
+      "pmid": "5432063",
+      "label": "Laemmli, SDS gels 1970",
+      "title": "Cleavage of structural proteins during the assembly of the head of bacteriophage T4.",
+      "journal": "Nature",
+      "date": "1970 Aug 15",
+      "citedBy": 58823
+    },
+    {
+      "pmid": "14907713",
+      "label": "Lowry, protein assay 1951",
+      "title": "Protein measurement with the Folin phenol reagent.",
+      "journal": "J Biol Chem",
+      "date": "1951 Nov",
+      "citedBy": 58522
+    },
+    {
+      "pmid": "942051",
+      "label": "Bradford, protein assay 1976",
+      "title": "A rapid and sensitive method for the quantitation of microgram quantities of protein utilizing the principle of protein-dye binding.",
+      "journal": "Anal Biochem",
+      "date": "1976 May 7",
+      "citedBy": 57100
+    },
+    {
+      "pmid": "2231712",
+      "label": "Altschul, BLAST 1990",
+      "title": "Basic local alignment search tool.",
+      "journal": "J Mol Biol",
+      "date": "1990 Oct 5",
+      "citedBy": 41027
+    },
+    {
+      "pmid": "9254694",
+      "label": "Altschul, Gapped BLAST 1997",
+      "title": "Gapped BLAST and PSI-BLAST: a new generation of protein database search programs.",
+      "journal": "Nucleic Acids Res",
+      "date": "1997 Sep 1",
+      "citedBy": 28763
+    },
+    {
+      "pmid": "271968",
+      "label": "Sanger, DNA sequencing 1977",
+      "title": "DNA sequencing with chain-terminating inhibitors.",
+      "journal": "Proc Natl Acad Sci U S A",
+      "date": "1977 Dec",
+      "citedBy": 23846
+    },
+    {
+      "pmid": "10592173",
+      "label": "Kanehisa, KEGG 2000",
+      "title": "KEGG: kyoto encyclopedia of genes and genomes.",
+      "journal": "Nucleic Acids Res",
+      "date": "2000 Jan 1",
+      "citedBy": 22662
+    },
+    {
+      "pmid": "7984417",
+      "label": "Thompson, CLUSTAL W 1994",
+      "title": "CLUSTAL W: improving the sensitivity of progressive multiple sequence alignment through sequence weighting, position-specific gap penalties and weight matrix choice.",
+      "journal": "Nucleic Acids Res",
+      "date": "1994 Nov 11",
+      "citedBy": 19783
+    },
+    {
+      "pmid": "3802833",
+      "label": "DerSimonian, meta-analysis 1986",
+      "title": "Meta-analysis in clinical trials.",
+      "journal": "Control Clin Trials",
+      "date": "1986 Sep",
+      "citedBy": 17052
+    },
+    {
+      "pmid": "2440339",
+      "label": "Chomczynski, RNA isolation 1987",
+      "title": "Single-step method of RNA isolation by acid guanidinium thiocyanate-phenol-chloroform extraction.",
+      "journal": "Anal Biochem",
+      "date": "1987 Apr",
+      "citedBy": 14385
+    },
+    {
+      "pmid": "2868172",
+      "label": "Bland, agreement 1986",
+      "title": "Statistical methods for assessing agreement between two methods of clinical measurement.",
+      "journal": "Lancet",
+      "date": "1986 Feb 8",
+      "citedBy": 14343
+    },
+    {
+      "pmid": "13428781",
+      "label": "Folch, lipid extraction 1957",
+      "title": "A simple method for the isolation and purification of total lipides from animal tissues.",
+      "journal": "J Biol Chem",
+      "date": "1957 May",
+      "citedBy": 13994
+    }
+  ],
+  "extremes": {
+    "protein": {
+      "accession": "NP_001254479.2",
+      "length": 35991,
+      "title": "titin isoform IC [Homo sapiens]",
+      "candidates": 27
+    },
+    "genes": {
+      "genes": 20574,
+      "placed": 19925,
+      "longest": {
+        "id": "54715",
+        "symbol": "RBFOX1",
+        "chr": "16",
+        "span": 2473620,
+        "exons": 30,
+        "description": "RNA binding fox-1 homolog 1"
+      },
+      "shortest": {
+        "id": "128092247",
+        "symbol": "LOC128092247",
+        "chr": "7",
+        "span": 51,
+        "exons": 1,
+        "description": "solute carrier family 4 member 2 upstream open reading frame"
+      },
+      "mostExons": {
+        "id": "7273",
+        "symbol": "TTN",
+        "chr": "2",
+        "span": 281435,
+        "exons": 364,
+        "description": "titin"
+      },
+      "singleExon": 1168,
+      "byChromosome": [
+        {
+          "chr": "1",
+          "genes": 2051
+        },
+        {
+          "chr": "2",
+          "genes": 1257
+        },
+        {
+          "chr": "3",
+          "genes": 1062
+        },
+        {
+          "chr": "4",
+          "genes": 763
+        },
+        {
+          "chr": "5",
+          "genes": 894
+        },
+        {
+          "chr": "6",
+          "genes": 1045
+        },
+        {
+          "chr": "7",
+          "genes": 940
+        },
+        {
+          "chr": "8",
+          "genes": 710
+        },
+        {
+          "chr": "9",
+          "genes": 776
+        },
+        {
+          "chr": "10",
+          "genes": 736
+        },
+        {
+          "chr": "11",
+          "genes": 1304
+        },
+        {
+          "chr": "12",
+          "genes": 1025
+        },
+        {
+          "chr": "13",
+          "genes": 337
+        },
+        {
+          "chr": "14",
+          "genes": 612
+        },
+        {
+          "chr": "15",
+          "genes": 602
+        },
+        {
+          "chr": "16",
+          "genes": 849
+        },
+        {
+          "chr": "17",
+          "genes": 1157
+        },
+        {
+          "chr": "18",
+          "genes": 268
+        },
+        {
+          "chr": "19",
+          "genes": 1411
+        },
+        {
+          "chr": "20",
+          "genes": 538
+        },
+        {
+          "chr": "21",
+          "genes": 239
+        },
+        {
+          "chr": "22",
+          "genes": 443
+        },
+        {
+          "chr": "X",
+          "genes": 848
+        },
+        {
+          "chr": "Y",
+          "genes": 45
+        },
+        {
+          "chr": "MT",
+          "genes": 13
+        }
+      ]
+    },
+    "uncultured": 6855943,
+    "stopword": {
+      "word": "however",
+      "count": 0,
+      "ignored": true
+    },
+    "trials": {
+      "latest": {
+        "id": "NCT07205523",
+        "title": "High-Altitude Hematology Observation-Stem Cell Transplantation (HALO-SCT)",
+        "date": "2100-12-31"
+      },
+      "farFuture": {
+        "year": 2090,
+        "count": 85
+      },
+      "earliest": {
+        "id": "NCT03591926",
+        "title": "A Study Evaluating the Safety, Pharmacokinetics, Pharmacodynamics, and Efficacy of SM04646 Inhalation Solution in Subjects With Idiopathic Pulmonary Fibrosis (IPF)",
+        "date": "1900-01",
+        "posted": "2018-07-19",
+        "status": "WITHDRAWN"
+      },
+      "longAgo": {
+        "year": 1950,
+        "count": 5
+      }
+    },
+    "awards": {
+      "fy": 2025,
+      "largest": {
+        "appl": 11410911,
+        "number": "1ZIHLM200888-17",
+        "title": "National Biomedical Information Services",
+        "dollars": 357194999,
+        "ic": "NLM",
+        "org": "NATIONAL LIBRARY OF MEDICINE",
+        "activity": "ZIH"
+      },
+      "upTo100": 235,
+      "exactlyOne": 228
+    }
+  },
   "trialfate": {
-    "terminated": 30078,
+    "terminated": 30112,
     "stops": {
-      "total": 27098,
-      "industry": 9256,
-      "notSafety": 1152,
-      "unclassified": 6578,
+      "total": 27132,
+      "industry": 9264,
+      "notSafety": 1156,
+      "unclassified": 6591,
       "reasons": [
         {
           "id": "enrollment",
           "label": "Enrollment or accrual",
-          "count": 11361,
-          "industry": 2298
+          "count": 11376,
+          "industry": 2301
         },
         {
           "id": "business",
           "label": "Sponsor or business decision",
-          "count": 4395,
-          "industry": 3495
+          "count": 4399,
+          "industry": 3498
         },
         {
           "id": "funding",
           "label": "Funding",
-          "count": 2206,
+          "count": 2209,
           "industry": 169
         },
         {
           "id": "covid",
           "label": "COVID-19",
-          "count": 1498,
+          "count": 1499,
           "industry": 255
         },
         {
           "id": "investigator",
           "label": "Investigator left",
-          "count": 1438,
+          "count": 1440,
           "industry": 73
         },
         {
@@ -16793,7 +16793,7 @@ export default {
         {
           "id": "safety",
           "label": "Safety or toxicity",
-          "count": 838,
+          "count": 839,
           "industry": 379
         },
         {
@@ -16807,10 +16807,10 @@ export default {
     "lag": {
       "from": 2018,
       "to": 2022,
-      "n": 22685,
+      "n": 22695,
       "negative": 126,
       "median": 12.7,
-      "within12": 0.44765263389905224,
+      "within12": 0.4474994492178894,
       "peak": 11,
       "months": [
         193,
@@ -16822,7 +16822,7 @@ export default {
         334,
         355,
         507,
-        778,
+        779,
         1151,
         5670,
         1468,
@@ -16834,7 +16834,7 @@ export default {
         485,
         391,
         360,
-        361,
+        362,
         366,
         351,
         327,
@@ -16849,31 +16849,31 @@ export default {
         184,
         233,
         410,
-        181,
+        182,
         126,
         123,
         99,
         113,
-        105,
+        106,
         83,
         88,
         84,
         75,
         63,
-        63,
-        951
+        65,
+        955
       ],
       "byClass": [
         {
           "cls": "OTHER",
-          "n": 11696,
-          "within12": 0.4204001367989056,
+          "n": 11702,
+          "within12": 0.4202700393095197,
           "median": 13.1
         },
         {
           "cls": "INDUSTRY",
-          "n": 9556,
-          "within12": 0.4836751778987024,
+          "n": 9560,
+          "within12": 0.4834728033472803,
           "median": 12.2
         },
         {
